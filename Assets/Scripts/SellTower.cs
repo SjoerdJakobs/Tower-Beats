@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TowerUpgrades : MonoBehaviour {
+public class SellTower : MonoBehaviour {
 
-	void UpgradeTower()
+	void Sell()
     {
 
     }

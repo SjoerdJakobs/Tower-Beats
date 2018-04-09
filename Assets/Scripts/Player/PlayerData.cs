@@ -6,10 +6,17 @@ public class PlayerData : MonoBehaviour {
 
     public static PlayerData s_Instance;
 
-    private float m_Coins;
+    [SerializeField]private float m_Coins;
     public float Coins
     {
         get { return m_Coins; }
         set { m_Coins = value; }
+    }
+
+    [SerializeField] private int m_Lives;
+    public int Lives
+    {
+        get { return m_Lives; }
+        set { m_Lives = value; }
     }
 }

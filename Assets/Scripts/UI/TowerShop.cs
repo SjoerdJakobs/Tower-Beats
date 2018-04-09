@@ -8,6 +8,9 @@ public class TowerShop : MonoBehaviour {
 
     void BuyTower(int cost)
     {
-        PlayerData.s_Instance.Coins -= cost;
+        if (cost <= PlayerData.s_Instance.Coins)
+        {
+            PlayerData.s_Instance.Coins -= cost;
+        }
     }
 }
