@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SellTower : MonoBehaviour {
 
-	void Sell()
+	void Sell(TowerData tower)
     {
-
+        PlayerData.s_Instance.Coins += tower.Costs * 0.75f ; //Returns 75% of a towers value if you sell it
     }
 }
