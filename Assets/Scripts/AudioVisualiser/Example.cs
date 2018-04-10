@@ -22,6 +22,9 @@ public class Example : MonoBehaviour
 {
     [SerializeField]
     private GameObject[] _objects;
+
+    [SerializeField]
+    private int _ScalerMod = 250;
     
 	void Start ()
 	{
@@ -49,7 +52,7 @@ public class Example : MonoBehaviour
 		for (int i = 0; i < spectrum.Length; ++i) {
 			//Vector3 start = new Vector3 (i, 0, 0);
 			//Vector3 end = new Vector3 (i, spectrum [i]*2, 0);
-            float spectrumF = spectrum[i] * 100;
+            float spectrumF = spectrum[i] * _ScalerMod;
             _objects[i].transform.localScale = new Vector3(1, spectrumF, 1);
             _objects[i].transform.position = new Vector3(_objects[i].transform.position.x, spectrumF/2, _objects[i].transform.position.z);
 
