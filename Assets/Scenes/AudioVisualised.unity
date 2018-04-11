@@ -938,7 +938,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 6bd27a2fd8bc44f4eaab689f4c8b51ff,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 9dd7b28d8b0c88c45be16713fe54524f, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c3b3f254e4453aa4cad9c747fcbf3774, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1059,20 +1059,20 @@ MonoBehaviour:
   - {fileID: 546997142}
   - {fileID: 1735715713}
   - {fileID: 1983856862}
-  _scalerMod: 600
+  _scalerMod: 250
   _linkedObjePillar:
   - _linkedObjePillar: {fileID: 1479859279}
-    _spherePillarLink: 5
-    _sphereThreshHold: 1.4
-    _sphereMultiplier: 1.5
+    _spherePillarLink: 4
+    _sphereThreshHold: 1.6
+    _sphereMultiplier: 1
   - _linkedObjePillar: {fileID: 43092921}
-    _spherePillarLink: 6
-    _sphereThreshHold: 1.4
-    _sphereMultiplier: 1.5
-  - _linkedObjePillar: {fileID: 382692044}
     _spherePillarLink: 7
     _sphereThreshHold: 1.1
     _sphereMultiplier: 1.5
+  - _linkedObjePillar: {fileID: 382692044}
+    _spherePillarLink: 9
+    _sphereThreshHold: 0.2
+    _sphereMultiplier: 4
 --- !u!81 &1222099588
 AudioListener:
   m_ObjectHideFlags: 0

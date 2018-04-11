@@ -33,17 +33,15 @@ public class Example : MonoBehaviour
 		//Select the instance of AudioProcessor and pass a reference
 		//to this object
 		AudioProcessor processor = FindObjectOfType<AudioProcessor> ();
-		processor.onBeat.AddListener (onOnbeatDetected);
+		//processor.onBeat.AddListener (onOnbeatDetected);
 		processor.onSpectrum.AddListener (onSpectrum);
 	}
 
-	//this event will be called every time a beat is detected.
-	//Change the threshold parameter in the inspector
-	//to adjust the sensitivity
+    /*
 	void onOnbeatDetected ()
 	{
 		Debug.Log ("Beat!!!");
-	}
+	}*/
 
 	//This event will be called every frame while music is playing
 	void onSpectrum (float[] spectrum)
