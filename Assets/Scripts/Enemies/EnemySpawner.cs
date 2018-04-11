@@ -14,10 +14,12 @@ public class EnemySpawner : MonoBehaviour {
     /// Spawns a random enemy
     /// </summary>
     /// <returns></returns>
-    Enemy SpawnEnemy()
+    public void SpawnEnemy()
     {
         int randomEnemy = Random.Range(0, m_Enemies.Count);
-        Enemy newEnemy = Instantiate(m_Enemies[randomEnemy], m_EnemyContainer, m_SpawnPosition);
-        return newEnemy;
+        Enemy newEnemy = Instantiate(m_Enemies[randomEnemy]);
+        newEnemy.transform.position = m_EnemyContainer.position;
+        newEnemy.transform.SetParent(m_EnemyContainer);
+        //return newEnemy;
     }
 }

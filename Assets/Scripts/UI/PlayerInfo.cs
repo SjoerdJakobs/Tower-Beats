@@ -16,9 +16,16 @@ public class PlayerInfo : MonoBehaviour {
         s_OnUpdateLives += UpdateLives;
     }
 
+    private void Start()
+    {
+        s_OnUpdateCoins();
+        s_OnUpdateLives();
+    }
+
     void UpdateCoins()
     {
-        m_Coins.text = PlayerData.s_Instance.Coins.ToString();
+        
+        m_Coins.text = PlayerData.s_Instance.Coins.ToString("N0"); //Makes sure the text wont show decimals
     }
 
     void UpdateLives()

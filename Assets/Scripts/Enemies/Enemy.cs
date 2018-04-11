@@ -11,21 +11,34 @@ public class Enemy : MonoBehaviour {
     [SerializeField] private float m_CoinsToGive;
     [SerializeField] private int m_CoinsToSteal;
 
-    void Death()
+    private void Awake()
     {
+        m_CurrentHealth = m_MaxHealth;
+    }
+
+    public void TakeDamage(float damage)
+    {
+        m_CurrentHealth -= damage;
         if(m_CurrentHealth <= 0)
         {
-            //Give coins;
-            PlayerData.s_Instance.Coins += m_CoinsToGive;
+            Death();
         }
     }
 
-    void DamageObjective()
+    public void Death()
+    {
+        //Give coins;
+        PlayerData.s_Instance.ChangeCoinAmount(m_CoinsToGive);
+        Destroy(this.gameObject); // Will be replaced with Object pooling later
+    }
+
+    public void DamageObjective()
     {
         if (PlayerData.s_Instance.Lives > 0)
         {
-            PlayerData.s_Instance.Lives--;
-            PlayerData.s_Instance.Coins -= m_CoinsToSteal;
+            PlayerData.s_Instance.ChangeLivesAmount(-1);
+            PlayerData.s_Instance.ChangeCoinAmount(-m_CoinsToSteal);
+            Destroy(this.gameObject);
         }
         else
         {
