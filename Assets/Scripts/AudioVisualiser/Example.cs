@@ -22,11 +22,13 @@ public class Example : MonoBehaviour
 {
     [SerializeField]
     private GameObject[] _objects;
-
     [SerializeField]
-    private int _ScalerMod = 250;
-    
-	void Start ()
+    private int _scalerMod = 250;
+    [SerializeField]
+    private LinkedObj[] _linkedObjePillar;
+
+
+    void Start ()
 	{
 		//Select the instance of AudioProcessor and pass a reference
 		//to this object
@@ -52,11 +54,35 @@ public class Example : MonoBehaviour
 		for (int i = 0; i < spectrum.Length; ++i) {
 			//Vector3 start = new Vector3 (i, 0, 0);
 			//Vector3 end = new Vector3 (i, spectrum [i]*2, 0);
-            float spectrumF = spectrum[i] * _ScalerMod;
+            float spectrumF = spectrum[i] * _scalerMod;
+            for (int j = 0; j < _linkedObjePillar.Length; j++)
+            {
+                if (i == _linkedObjePillar[j]._spherePillarLink)
+                {
+                    if (spectrumF > _linkedObjePillar[j]._sphereThreshHold)
+                    {
+                        _linkedObjePillar[j]._linkedObjePillar.transform.localScale = new Vector3(spectrumF, spectrumF, spectrumF) * _linkedObjePillar[j]._sphereMultiplier;
+                    }
+                }
+                else if (_linkedObjePillar[j]._linkedObjePillar.transform.localScale.x > 0.9f)
+                {
+                    _linkedObjePillar[j]._linkedObjePillar.transform.localScale = new Vector3(_linkedObjePillar[j]._linkedObjePillar.transform.localScale.x - 0.01f, _linkedObjePillar[j]._linkedObjePillar.transform.localScale.y - 0.01f, _linkedObjePillar[j]._linkedObjePillar.transform.localScale.z - 0.01f);
+                }
+            }
             _objects[i].transform.localScale = new Vector3(1, spectrumF, 1);
             _objects[i].transform.position = new Vector3(_objects[i].transform.position.x, spectrumF/2, _objects[i].transform.position.z);
 
             //Debug.DrawLine (start, end);
 		}
 	}
+}
+
+
+[System.Serializable]
+public struct LinkedObj
+{
+    public GameObject _linkedObjePillar;
+    public int _spherePillarLink;
+    public float _sphereThreshHold;
+    public float _sphereMultiplier;
 }

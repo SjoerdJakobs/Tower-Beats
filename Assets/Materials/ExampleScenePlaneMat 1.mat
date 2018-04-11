@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: ExampleScenePlaneMat
+  m_Name: ExampleScenePlaneMat 1
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 0
@@ -72,5 +72,5 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.9558824, g: 0.6363501, b: 0.23194204, a: 1}
-    - _EmissionColor: {r: 0.8088235, g: 0.56568426, b: 0.13083908, a: 1}
+    - _Color: {r: 0.17647058, g: 0.012975779, b: 0.012975779, a: 1}
+    - _EmissionColor: {r: 0.843, g: 0.45313388, b: 0.09917647, a: 1}
