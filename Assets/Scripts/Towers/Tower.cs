@@ -7,12 +7,13 @@ public enum TowerTypes
     BASS_TOWER,
     DRUM_TOWER
 }
-[System.Serializable]
+
 public struct TowerData
 {
-    public TowerData(TowerTypes Type, int Level, float UpgradeCost,float BuyCost,float Value, float AttackDamage, float AttackRange, float AttackInterval){
+    public TowerData(string Type, int Level, int MaxLevel, float UpgradeCost,float BuyCost,float Value, float AttackDamage, float AttackRange, float AttackInterval){
         this.Type = Type;
         this.Level = Level;
+        this.MaxLevel = MaxLevel;
         this.UpgradeCost = UpgradeCost;
         this.BuyCost = BuyCost;
         this.Value = Value;
@@ -21,8 +22,9 @@ public struct TowerData
         this.AttackInterval = AttackInterval;
     }
 
-    public TowerTypes Type;
+    public string Type;
     public int Level;
+    public int MaxLevel;
     public float UpgradeCost;
     public float BuyCost;
     public float Value;
@@ -36,13 +38,10 @@ public class Tower : MonoBehaviour
     private TowerData m_TowerData;
     public TowerData TowerData { get; set; }
 
-    protected float m_BuyCost;
-    public float BuyCost { get; set; }
-
     private void Awake()
     {
         // GETS THE LEVEL 1 BASS TOWER CONFIG
-        m_TowerData = TowerConfig.s_Towers[TowerTypes.BASS_TOWER][0];
+        //m_TowerData = TowerConfig.s_Towers[TowerTypeTags.BASS_TOWER][0];
     }
 
     public virtual void Attack()
@@ -58,5 +57,11 @@ public class Tower : MonoBehaviour
     public List<Enemy> GetEnemiesInRange()
     {
         return new List<Enemy>();
+    }
+
+    //TODO remove this function once UI has been implemented
+    private void OnMouseDown()
+    {
+        TowerUpgrades.OnUpgradeTower(this);
     }
 }
