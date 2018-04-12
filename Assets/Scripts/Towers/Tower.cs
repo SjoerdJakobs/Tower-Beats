@@ -7,13 +7,14 @@ public enum TowerTypes
     BASS_TOWER,
     DRUM_TOWER
 }
-
+[System.Serializable]
 public struct TowerData
 {
-    public TowerData(TowerTypes Type, int Level, float Costs, float AttackDamage, float AttackRange, float AttackInterval){
+    public TowerData(TowerTypes Type, int Level, float UpgradeCost,float BuyCost, float AttackDamage, float AttackRange, float AttackInterval){
         this.Type = Type;
         this.Level = Level;
-        this.Costs = Costs;
+        this.UpgradeCost = UpgradeCost;
+        this.BuyCost = BuyCost;
         this.AttackDamage = AttackDamage;
         this.AttackRange = AttackRange;
         this.AttackInterval = AttackInterval;
@@ -21,7 +22,8 @@ public struct TowerData
 
     public TowerTypes Type;
     public int Level;
-    public float Costs;
+    public float UpgradeCost;
+    public float BuyCost;
     public float AttackDamage;
     public float AttackRange;
     public float AttackInterval;

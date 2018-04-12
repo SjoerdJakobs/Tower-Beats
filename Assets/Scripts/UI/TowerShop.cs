@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class TowerShop : MonoBehaviour {
 
-    [SerializeField] private List<GameObject> m_Towers = new List<GameObject>();
+    [SerializeField] private List<Tower> m_Towers = new List<Tower>();
 
-    void BuyTower(int cost)
+
+    void BuyTower(Tower towerToBuy)
     {
-        if (cost <= PlayerData.s_Instance.Coins)
+        
+        if (towerToBuy.TowerData.BuyCost <= PlayerData.s_Instance.Coins)
         {
-            PlayerData.s_Instance.Coins -= cost;
+            PlayerData.s_Instance.Coins -= towerToBuy.TowerData.BuyCost;
         }
     }
 }

@@ -5,8 +5,6 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour {
 
     [SerializeField] private Transform m_EnemyContainer;
-    [SerializeField] private Transform m_SpawnPosition;
-
 
     [SerializeField] private List<Enemy> m_Enemies = new List<Enemy>();
 
@@ -20,6 +18,5 @@ public class EnemySpawner : MonoBehaviour {
         Enemy newEnemy = Instantiate(m_Enemies[randomEnemy]);
         newEnemy.transform.position = m_EnemyContainer.position;
         newEnemy.transform.SetParent(m_EnemyContainer);
-        //return newEnemy;
     }
 }

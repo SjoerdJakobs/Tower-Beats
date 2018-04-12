@@ -9,44 +9,44 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1284845104806778}
+  m_RootGameObject: {fileID: 1047482443421850}
   m_IsPrefabParent: 1
---- !u!1 &1284845104806778
+--- !u!1 &1047482443421850
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4934577021856346}
-  - component: {fileID: 212774881310299396}
-  - component: {fileID: 114460402167368816}
+  - component: {fileID: 4365762468754424}
+  - component: {fileID: 212632890954537378}
+  - component: {fileID: 114768752582060182}
   m_Layer: 0
-  m_Name: Test Enemy
+  m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4934577021856346
+--- !u!4 &4365762468754424
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1284845104806778}
+  m_GameObject: {fileID: 1047482443421850}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7, y: -2.94, z: 0}
-  m_LocalScale: {x: 20, y: 20, z: 1}
+  m_LocalPosition: {x: -7, y: -3.37, z: 0}
+  m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114460402167368816
+--- !u!114 &114768752582060182
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1284845104806778}
+  m_GameObject: {fileID: 1047482443421850}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dee403cbe6b17e4488e1792fa3a3df74, type: 3}
@@ -56,12 +56,12 @@ MonoBehaviour:
   m_MoveSpeed: 0
   m_CoinsToGive: 40
   m_CoinsToSteal: 20
---- !u!212 &212774881310299396
+--- !u!212 &212632890954537378
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1284845104806778}
+  m_GameObject: {fileID: 1047482443421850}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0

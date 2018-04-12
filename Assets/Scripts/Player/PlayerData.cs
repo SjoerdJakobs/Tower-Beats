@@ -57,5 +57,4 @@ public class PlayerData : MonoBehaviour {
             PlayerInfo.s_OnUpdateLives();
         }
     }
-
 }
