@@ -10,6 +10,7 @@ public enum TileState
 {
     OPEN,
     NOT_USABLE,
+    PATH,
     OCCUPIED
 }
 
@@ -24,6 +25,9 @@ public class Tile : MonoBehaviour
     public int X { get { return m_PositionInGrid.x; } set { m_PositionInGrid.x = value; } }
     public int Y { get { return m_PositionInGrid.y; } set { m_PositionInGrid.y = value; } }
 
+    public delegate void TileClicked(Tile tile);
+    public static TileClicked s_OnTileClicked;
+
     private Tower m_Tower; //The tower on this tile
 
 	void Start () {
@@ -32,6 +36,8 @@ public class Tile : MonoBehaviour
 
     void OnMouseDown()
     {
+        if (s_OnTileClicked != null) s_OnTileClicked(this);
+
         switch (m_CurrentState)
         {
             case TileState.OPEN:
@@ -43,5 +49,15 @@ public class Tile : MonoBehaviour
         }
 
         print("Tile(Row: " + X + ", Position: " + Y + ") got pressed.");
+    }
+
+    public void Hightlight()
+    {
+        GetComponent<SpriteRenderer>().color = Color.grey;
+    }
+
+    public void SetAsPath()
+    {
+        GetComponent<SpriteRenderer>().color = Color.white;
     }
 }
