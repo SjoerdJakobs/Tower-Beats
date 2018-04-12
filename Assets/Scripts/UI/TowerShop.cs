@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class TowerShop : MonoBehaviour {
@@ -8,8 +7,7 @@ public class TowerShop : MonoBehaviour {
 
 
     void BuyTower(Tower towerToBuy)
-    {
-        
+    {        
         if (towerToBuy.TowerData.BuyCost <= PlayerData.s_Instance.Coins)
         {
             PlayerData.s_Instance.Coins -= towerToBuy.TowerData.BuyCost;
