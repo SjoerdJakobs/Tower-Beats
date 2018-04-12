@@ -15,10 +15,18 @@ public class GridPathCreator : MonoBehaviour
         m_IsSelectingTiles = true;
     }
 
-    public void StopSelection()
+    public void FinishSelection()
     {
         Tile.s_OnTileClicked -= TileClicked;
         m_IsSelectingTiles = false;
+    }
+
+    private void ShowPath()
+    {
+        for (int i = 0; i < m_SelectedTiles.Count; i++)
+        {
+            m_SelectedTiles[i].SetAsPath();
+        }
     }
 
     private void TileClicked(Tile tile)
@@ -28,6 +36,16 @@ public class GridPathCreator : MonoBehaviour
             if (!AlreadySelected(tile))
             { 
                 m_SelectedTiles.Add(tile);
+                tile.SetHighlightState(true);
+            }
+            else
+            {
+                int positionInList = m_SelectedTiles.IndexOf(tile);
+                List<Tile> tilesToRemove = m_SelectedTiles.GetRange(positionInList, (m_SelectedTiles.Count - positionInList));
+                for (int i = tilesToRemove.Count; i > 0; i--)
+                {
+                    tilesToRemove[i].SetHighlightState(false);
+                }
             }
         }
     }

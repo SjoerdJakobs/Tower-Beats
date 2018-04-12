@@ -51,9 +51,10 @@ public class Tile : MonoBehaviour
         print("Tile(Row: " + X + ", Position: " + Y + ") got pressed.");
     }
 
-    public void Hightlight()
+    public void SetHighlightState(bool state)
     {
-        GetComponent<SpriteRenderer>().color = Color.grey;
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.color = (state ? Color.grey : new Color(UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f)));
     }
 
     public void SetAsPath()
