@@ -1081,8 +1081,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b092258ef7a7e6746a1576ed2f6a4ffd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Cost: 0
-  m_Tower: {fileID: 0}
+  m_Towers:
+  - {fileID: 114011474239509758, guid: cc03bf1c594ce5c40a25d798571f53e1, type: 2}
+  - {fileID: 0}
+  - {fileID: 114859477180711780, guid: 05eaecc7dffd60d44860a11f60824791, type: 2}
 --- !u!114 &563516901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1786,7 +1788,6 @@ GameObject:
   - component: {fileID: 1040207339}
   - component: {fileID: 1040207338}
   - component: {fileID: 1040207337}
-  - component: {fileID: 1040207340}
   m_Layer: 5
   m_Name: Synth Tower Button
   m_TagString: Untagged
@@ -1853,15 +1854,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 563516900}
-        m_MethodName: BuyTower
-        m_Mode: 2
+        m_MethodName: PurchaseTower
+        m_Mode: 5
         m_Arguments:
-          m_ObjectArgument: {fileID: 114859477180711780, guid: 05eaecc7dffd60d44860a11f60824791,
-            type: 2}
-          m_ObjectArgumentAssemblyTypeName: Tower, Assembly-CSharp
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Synth
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -1899,19 +1899,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1040207335}
---- !u!114 &1040207340
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1040207335}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b092258ef7a7e6746a1576ed2f6a4ffd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Cost: 300
-  m_Tower: {fileID: 114859477180711780, guid: 05eaecc7dffd60d44860a11f60824791, type: 2}
 --- !u!1 &1062133236
 GameObject:
   m_ObjectHideFlags: 0
@@ -2071,9 +2058,8 @@ GameObject:
   - component: {fileID: 1276240310}
   - component: {fileID: 1276240309}
   - component: {fileID: 1276240308}
-  - component: {fileID: 1276240311}
   m_Layer: 5
-  m_Name: Kick Tower Button
+  m_Name: Drum Tower Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2138,14 +2124,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 563516900}
-        m_MethodName: BuyTower
-        m_Mode: 2
+        m_MethodName: PurchaseTower
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: Tower, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Drum
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -2183,19 +2169,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1276240306}
---- !u!114 &1276240311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1276240306}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b092258ef7a7e6746a1576ed2f6a4ffd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Cost: 200
-  m_Tower: {fileID: 114304702491229352, guid: e29dca0ffc3a0c34fae264fa8afa80db, type: 2}
 --- !u!1 &1347207999
 GameObject:
   m_ObjectHideFlags: 0
@@ -2755,6 +2728,7 @@ GameObject:
   - component: {fileID: 1657404436}
   - component: {fileID: 1657404438}
   - component: {fileID: 1657404437}
+  - component: {fileID: 1657404439}
   m_Layer: 5
   m_Name: Tower Shop Panel
   m_TagString: Untagged
@@ -2814,6 +2788,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1657404435}
+--- !u!114 &1657404439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1657404435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae77513cd9a927c4b84ec8722a5a2db4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1731791392
 Prefab:
   m_ObjectHideFlags: 0
@@ -2867,7 +2852,6 @@ GameObject:
   - component: {fileID: 1761498232}
   - component: {fileID: 1761498231}
   - component: {fileID: 1761498230}
-  - component: {fileID: 1761498233}
   m_Layer: 5
   m_Name: Bass Tower Button
   m_TagString: Untagged
@@ -2933,15 +2917,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1761498233}
-        m_MethodName: BuyTower
-        m_Mode: 1
+      - m_Target: {fileID: 563516900}
+        m_MethodName: PurchaseTower
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Bass
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -2979,19 +2963,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1761498228}
---- !u!114 &1761498233
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1761498228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b092258ef7a7e6746a1576ed2f6a4ffd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Cost: 100
-  m_Tower: {fileID: 114011474239509758, guid: cc03bf1c594ce5c40a25d798571f53e1, type: 2}
 --- !u!1 &1800908642
 GameObject:
   m_ObjectHideFlags: 0
