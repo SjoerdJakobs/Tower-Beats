@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class HexGrid : MonoBehaviour
 {
+    public enum OffsetAxis
+    {
+        X_AXIS,
+        Y_AXIS
+    }
+
     [Header("Prefab")]
     [SerializeField] private Tile m_TilePrefab;
     [Space]
@@ -13,6 +19,8 @@ public class HexGrid : MonoBehaviour
     [Space]
     [SerializeField] private float m_TileOffsetX;
     [SerializeField] private float m_TileOffsetY;
+    [Space]
+    [SerializeField] private OffsetAxis m_OffsetAxis;
     [SerializeField] private float m_OffRowOffset;
 
     [SerializeField] private Tile[,] m_Grid;
@@ -46,7 +54,16 @@ public class HexGrid : MonoBehaviour
                 tile.GetComponent<SpriteRenderer>().color = new Color(UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f));
 
                 // Set Position on map.
-                tile.transform.localPosition = new Vector2((y%2 == 0 ? lastX : lastX + m_OffRowOffset), lastY);
+                switch(m_OffsetAxis)
+                {
+                    case OffsetAxis.X_AXIS:
+                        tile.transform.localPosition = new Vector2((y % 2 == 0 ? lastX : lastX + m_OffRowOffset), lastY);
+                        break;
+                    case OffsetAxis.Y_AXIS:
+                        tile.transform.localPosition = new Vector2(lastX, (x % 2 == 0 ? lastY : lastY + m_OffRowOffset));
+                        break;
+                }
+
 
                 // Set the name of the object.
                 tile.name = "HexTile | GridPos(x: " + x + " y: " + y + ")";

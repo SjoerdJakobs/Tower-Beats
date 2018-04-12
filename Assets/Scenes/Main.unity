@@ -188,7 +188,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 225305121}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.5, y: 8, z: -10}
+  m_LocalPosition: {x: 4.5, y: 2, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -274,13 +274,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 622852281}
-  m_LocalRotation: {x: 0, y: 0, z: 0.2588191, w: 0.9659258}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 981708893}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 30}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!60 &622852285
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -384,9 +384,10 @@ MonoBehaviour:
   m_TilePrefab: {fileID: 622852282}
   m_GridWidth: 20
   m_GridHeight: 20
-  m_TileOffsetX: 0.85
-  m_TileOffsetY: 0.75
-  m_OffRowOffset: 0.42
+  m_TileOffsetX: 0.75
+  m_TileOffsetY: 0.864
+  m_OffsetAxis: 1
+  m_OffRowOffset: 0.433
 --- !u!4 &981708893
 Transform:
   m_ObjectHideFlags: 0
