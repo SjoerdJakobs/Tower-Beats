@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 /// <summary>
-/// Open = buildable, Not_Usable = unusable tile, Occupied = Tile that contains tower
+/// Open = buildable, Not_Usable = unusable tile, Path = Enemy AI Path, Occupied = Tile that contains tower
 /// </summary>
 public enum TileState
 {
@@ -16,7 +16,6 @@ public enum TileState
 
 public class Tile : MonoBehaviour
 {
-
     private TileState m_CurrentState;
     public TileState CurrentState { get; set; }
 
@@ -29,6 +28,7 @@ public class Tile : MonoBehaviour
     public static TileClicked s_OnTileClicked;
 
     private Tower m_Tower; //The tower on this tile
+    public Tower Tower { get; set; }
 
 	void Start () {
         m_CurrentState = TileState.OPEN;

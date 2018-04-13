@@ -6,6 +6,6 @@ public class SellTower : MonoBehaviour {
 
 	void Sell(TowerData tower)
     {
-        PlayerData.s_Instance.Coins += tower.Value * 0.75f ; //Returns 75% of a towers value if you sell it
+        PlayerData.s_Instance.Coins += tower.SellValue * 0.75f ; //Returns 75% of a towers value if you sell it
     }
 }
