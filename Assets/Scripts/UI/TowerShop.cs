@@ -22,9 +22,11 @@ public class TowerShop : MonoBehaviour {
                     break;
                 case TowerTypeTags.DRUM_TOWER:
                     newTower = Instantiate(m_Towers[1]);
+                    newTower.TowerData = TowerConfig.s_Towers[towerType][0];
                     break;
                 case TowerTypeTags.SYNTH_TOWER:
                     newTower = Instantiate(m_Towers[2]);
+                    newTower.TowerData = TowerConfig.s_Towers[towerType][0];
                     break;
 
             }

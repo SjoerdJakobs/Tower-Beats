@@ -41,7 +41,7 @@ public class Tile : MonoBehaviour
         switch (m_CurrentState)
         {
             case TileState.OPEN:
-                //Build tower if player has selected a tower and has enough money
+                //Open tower shop menu
                 break;
             case TileState.OCCUPIED:
                 //Open tower menu
