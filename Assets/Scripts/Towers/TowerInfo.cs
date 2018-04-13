@@ -15,7 +15,7 @@ public class TowerInfo : MonoBehaviour {
     {
         m_DamageField.text = tower.AttackDamage.ToString();
         m_RangeField.text = tower.AttackRange.ToString();
-        m_SellValue.text = (tower.Value * 0.75f).ToString();
+        m_SellValue.text = (tower.SellValue * 0.75f).ToString();
         m_UpgradeCost.text = tower.UpgradeCost.ToString();
     }
 }

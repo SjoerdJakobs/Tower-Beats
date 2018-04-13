@@ -28,9 +28,7 @@ public class TowerShop : MonoBehaviour {
                     newTower = Instantiate(m_Towers[2]);
                     newTower.TowerData = TowerConfig.s_Towers[towerType][0];
                     break;
-
-            }
-            
+            }            
         }
     }
 }

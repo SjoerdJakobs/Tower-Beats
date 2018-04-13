@@ -151,7 +151,7 @@ public class AudioProcessor : MonoBehaviour
 				float specVal = (float)System.Math.Max (-100.0f, 20.0f * (float)System.Math.Log10 (averages [i]) + 160); // dB value of this band
 				specVal *= 0.025f;
 				float dbInc = specVal - spec [i]; // dB increment since last frame
-				spec [i] = specVal; // record this frome to use next time around
+				spec [i] = specVal; // record this frame to use next time around
 				onset += dbInc; // onset function is the sum of dB increments
 			}
 
@@ -346,7 +346,7 @@ public class AudioProcessor : MonoBehaviour
 			outputs = new float[del_length];
 			indx = 0;
 
-			// calculate a log-lag gaussian weighting function, to prefer tempi around 120 bpm
+			// calculate a log-lag gaussian weighting function, to prefer tempo around 120 bpm
 			bpms = new float[del_length];
 			rweight = new float[del_length];
 			for (int i = 0; i < del_length; ++i) {
@@ -389,5 +389,3 @@ public class AudioProcessor : MonoBehaviour
 		}
 	}
 }
-
-
