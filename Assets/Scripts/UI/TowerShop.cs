@@ -1,16 +1,36 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class TowerShop : MonoBehaviour {
 
-    [SerializeField] private List<GameObject> m_Towers = new List<GameObject>();
+    [SerializeField] private List<Tower> m_Towers = new List<Tower>();
 
-    void BuyTower(int cost)
+    public void PurchaseTower(string towerType)
     {
-        if (cost <= PlayerData.s_Instance.Coins)
+       if(TowerConfig.s_Towers[towerType][0].BuyCost <= PlayerData.s_Instance.Coins)
         {
-            PlayerData.s_Instance.Coins -= cost;
+            //Gets the cost from the towers data
+            PlayerData.s_Instance.ChangeCoinAmount(-TowerConfig.s_Towers[towerType][0].BuyCost);
+           
+            //Spawns a tower
+            Tower newTower;
+            switch (towerType)
+            {
+                case TowerTypeTags.BASS_TOWER:
+                    newTower = Instantiate(m_Towers[0]);
+                    newTower.TowerData = TowerConfig.s_Towers[towerType][0];
+                    break;
+                case TowerTypeTags.DRUM_TOWER:
+                    newTower = Instantiate(m_Towers[1]);
+                    newTower.TowerData = TowerConfig.s_Towers[towerType][0];
+                    break;
+                case TowerTypeTags.SYNTH_TOWER:
+                    newTower = Instantiate(m_Towers[2]);
+                    newTower.TowerData = TowerConfig.s_Towers[towerType][0];
+                    break;
+
+            }
+            
         }
     }
 }

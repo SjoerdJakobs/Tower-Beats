@@ -43,6 +43,10 @@ public class PlayerData : MonoBehaviour {
         {
             PlayerInfo.s_OnUpdateCoins();
         }
+        if(m_Coins <= 0)
+        {
+            m_Coins = 0; //If coins drop under 0, rounds the amount of coins up to 0
+        }
     }
 
     /// <summary>
@@ -57,5 +61,4 @@ public class PlayerData : MonoBehaviour {
             PlayerInfo.s_OnUpdateLives();
         }
     }
-
 }
