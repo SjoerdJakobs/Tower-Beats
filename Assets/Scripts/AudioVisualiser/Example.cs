@@ -16,7 +16,7 @@
 
 using UnityEngine;
 using System;
-
+using System.Collections;
 
 public class Example : MonoBehaviour
 {
@@ -27,15 +27,38 @@ public class Example : MonoBehaviour
     [SerializeField]
     private LinkedObj[] _linkedObjePillar;
 
+    [SerializeField]
+    private GameObject _backPlane;
+    private Material _backPlaneMat;
+    [SerializeField]
+    private float _fadeInTime;
+    [SerializeField]
+    private float _fadeMod;
 
     void Start ()
 	{
+
 		//Select the instance of AudioProcessor and pass a reference
 		//to this object
 		AudioProcessor processor = FindObjectOfType<AudioProcessor> ();
-		//processor.onBeat.AddListener (onOnbeatDetected);
+        //processor.onBeat.AddListener (onOnbeatDetected);
+        _backPlaneMat = _backPlane.GetComponent<Renderer>().material;
 		processor.onSpectrum.AddListener (onSpectrum);
+        StartCoroutine(lightenUp());
 	}
+
+
+    IEnumerator lightenUp()
+    {
+        float counter = 0;
+        while (counter < _fadeInTime)
+        {
+            //_backPlaneMat.mainTexture
+        }
+        yield return null;
+    }
+
+
 
     /*
 	void onOnbeatDetected ()
@@ -43,8 +66,8 @@ public class Example : MonoBehaviour
 		Debug.Log ("Beat!!!");
 	}*/
 
-	//This event will be called every frame while music is playing
-	void onSpectrum (float[] spectrum)
+    //This event will be called every frame while music is playing
+    void onSpectrum (float[] spectrum)
 	{
 		//The spectrum is logarithmically averaged
 		//to 12 bands
