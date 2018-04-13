@@ -34,31 +34,36 @@ public class Example : MonoBehaviour
     private float _fadeInTime;
     [SerializeField]
     private float _fadeMod;
+    [SerializeField]
+    private int _emmisionPillar;
+    private bool _startMusicEmmision = false;
+    Color baseColor;
 
     void Start ()
-	{
+    {
+        baseColor = Color.yellow;
 
-		//Select the instance of AudioProcessor and pass a reference
-		//to this object
-		AudioProcessor processor = FindObjectOfType<AudioProcessor> ();
+        //Select the instance of AudioProcessor and pass a reference
+        //to this object
+        AudioProcessor processor = FindObjectOfType<AudioProcessor> ();
         //processor.onBeat.AddListener (onOnbeatDetected);
         _backPlaneMat = _backPlane.GetComponent<Renderer>().material;
 		processor.onSpectrum.AddListener (onSpectrum);
         StartCoroutine(lightenUp());
 	}
 
-
     IEnumerator lightenUp()
     {
+        float emission = 0;
         float counter = 0;
-        while (counter < _fadeInTime)
+        while (counter / _fadeInTime >= 1)
         {
-            //_backPlaneMat.mainTexture
+            emission = Mathf.Lerp(0, 1.0f * _fadeMod, counter / _fadeInTime);
+            
+            yield return new WaitForEndOfFrame();
         }
-        yield return null;
+        _startMusicEmmision = true;
     }
-
-
 
     /*
 	void onOnbeatDetected ()
@@ -90,7 +95,12 @@ public class Example : MonoBehaviour
                     _linkedObjePillar[j]._linkedObjePillar.transform.localScale = new Vector3(_linkedObjePillar[j]._linkedObjePillar.transform.localScale.x - 0.01f, _linkedObjePillar[j]._linkedObjePillar.transform.localScale.y - 0.01f, _linkedObjePillar[j]._linkedObjePillar.transform.localScale.z - 0.01f);
                 }
             }
-            _objects[i].transform.localScale = new Vector3(1, spectrumF, 1);
+            if(i == _emmisionPillar)
+            {
+                Color finalColor = baseColor * Mathf.LinearToGammaSpace(spectrumF);
+                _backPlaneMat.SetColor("_EmissionColor", finalColor);
+            }
+            _objects[i].transform.localScale = new Vector3(1, spectrumF*_fadeMod, 1);
             _objects[i].transform.position = new Vector3(_objects[i].transform.position.x, spectrumF/2, _objects[i].transform.position.z);
 
             //Debug.DrawLine (start, end);

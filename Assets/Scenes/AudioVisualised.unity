@@ -1144,9 +1144,10 @@ MonoBehaviour:
     _spherePillarLink: 9
     _sphereThreshHold: 0.2
     _sphereMultiplier: 4
-  _backPlane: {fileID: 0}
-  _fadeInTime: 0
-  _fadeMod: 0
+  _backPlane: {fileID: 366352154}
+  _fadeInTime: 1
+  _fadeMod: 1
+  _emmisionPillar: 1
 --- !u!81 &1222099588
 AudioListener:
   m_ObjectHideFlags: 0
