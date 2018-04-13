@@ -14,6 +14,7 @@ public enum TileState
     OCCUPIED
 }
 
+[ExecuteInEditMode]
 public class Tile : MonoBehaviour
 {
     private TileState m_CurrentState;
@@ -48,7 +49,7 @@ public class Tile : MonoBehaviour
                 break;
         }
 
-        print("Tile(Row: " + X + ", Position: " + Y + ") got pressed.");
+        Debug.Log("Tile(Row: " + X + ", Position: " + Y + ") got pressed.");
     }
 
     public void SetHighlightState(bool state)

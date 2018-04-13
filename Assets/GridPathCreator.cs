@@ -2,12 +2,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
+[ExecuteInEditMode]
 public class GridPathCreator : MonoBehaviour
 {
     [SerializeField] private List<Tile> m_SelectedTiles = new List<Tile>();
-
+    private InputField m_InputField;
     private bool m_IsSelectingTiles;
+
+    private void Awake()
+    {
+        m_InputField = transform.GetComponentInChildren<InputField>();
+    }
 
     public void StartSelection()
     {
@@ -19,6 +26,8 @@ public class GridPathCreator : MonoBehaviour
     {
         Tile.s_OnTileClicked -= TileClicked;
         m_IsSelectingTiles = false;
+        PathManager.s_Instance.SavePath(m_InputField.text, m_SelectedTiles, HexGrid.s_Instance.GridSize);
+        ShowPath();
     }
 
     private void ShowPath()
@@ -42,9 +51,10 @@ public class GridPathCreator : MonoBehaviour
             {
                 int positionInList = m_SelectedTiles.IndexOf(tile);
                 List<Tile> tilesToRemove = m_SelectedTiles.GetRange(positionInList, (m_SelectedTiles.Count - positionInList));
-                for (int i = tilesToRemove.Count; i > 0; i--)
+                for (int i = 0; i < tilesToRemove.Count; i++)
                 {
                     tilesToRemove[i].SetHighlightState(false);
+                    m_SelectedTiles.Remove(tilesToRemove[i]);
                 }
             }
         }
@@ -53,5 +63,29 @@ public class GridPathCreator : MonoBehaviour
     private bool AlreadySelected(Tile tile)
     {
         return m_SelectedTiles.Contains(tile);
+    }
+
+    public void LoadPath()
+    {
+        if(!InputFieldContainsCharacters(3))
+        {
+            Debug.LogWarning("Please enter atleast 3 characters");
+            return;
+        }
+
+        HexGrid.s_Instance.DestroyGrid(false);
+
+        GridPath path = PathManager.s_Instance.LoadPath(m_InputField.text);
+
+        for (int i = 0; i < path.Path.Count; i++)
+        {
+            Tile tile = HexGrid.s_Instance.GetTile(path.Path[i].x, path.Path[i].y);
+            tile.SetAsPath();
+        }
+    }
+
+    private bool InputFieldContainsCharacters(int minAmount)
+    {
+        return m_InputField.text.ToCharArray().Length > minAmount;
     }
 }
