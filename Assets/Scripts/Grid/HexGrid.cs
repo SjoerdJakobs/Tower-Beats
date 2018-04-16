@@ -35,6 +35,7 @@ public class HexGrid : MonoBehaviour
     private void Awake()
     {
         Init();
+        CreateGrid();
     }
 
     private void Init()
@@ -42,7 +43,7 @@ public class HexGrid : MonoBehaviour
         if (s_Instance == null)
         {
             s_Instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         else
         {

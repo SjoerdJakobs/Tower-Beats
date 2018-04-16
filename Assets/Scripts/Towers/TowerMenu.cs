@@ -27,9 +27,17 @@ public class TowerMenu : Menu {
     /// <summary>
     /// Shows the towers stats/info
     // </summary>
-    public void ShowTowerMenu()
+    /*public void ShowTowerMenu()
     {
         m_DamageField.text = m_Tower.TowerData.AttackDamage.ToString();
+        m_RangeField.text = m_Tower.TowerData.AttackRange.ToString();
+        m_SellValue.text = m_Tower.TowerData.SellValue.ToString();
+        m_UpgradeCost.text = m_Tower.TowerData.UpgradeCost.ToString();
+    }*/
+
+    public void ShowTowerMenu()
+    {
+        m_DamageField.text = PlayerData.s_Instance.SelectedTower.TowerData.AttackDamage.ToString();
         m_RangeField.text = m_Tower.TowerData.AttackRange.ToString();
         m_SellValue.text = m_Tower.TowerData.SellValue.ToString();
         m_UpgradeCost.text = m_Tower.TowerData.UpgradeCost.ToString();
