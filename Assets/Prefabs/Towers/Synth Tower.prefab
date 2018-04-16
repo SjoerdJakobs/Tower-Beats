@@ -20,8 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4918633660162384}
   - component: {fileID: 212430857329934850}
-  - component: {fileID: 114859477180711780}
   - component: {fileID: 61675087899477874}
+  - component: {fileID: 114535166801127582}
   m_Layer: 0
   m_Name: Synth Tower
   m_TagString: Untagged
@@ -67,7 +67,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.75, y: 3.6}
   m_EdgeRadius: 0
---- !u!114 &114859477180711780
+--- !u!114 &114535166801127582
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -75,7 +75,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1408809650584988}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 679f8a91f786d65409402d029cac9c2b, type: 3}
+  m_Script: {fileID: 11500000, guid: 147948b9bdc4f244196b20fb1cfef4b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &212430857329934850
@@ -111,7 +111,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: b63709030fb55344abb7247e25f763f1, type: 3}
   m_Color: {r: 0.25935337, g: 0.760828, b: 0.8602941, a: 1}
   m_FlipX: 0

@@ -35,8 +35,10 @@ public struct TowerData
 
 public class Tower : MonoBehaviour
 {
-    private TowerData m_TowerData;
+    protected TowerData m_TowerData;
     public TowerData TowerData { get; set; }
+
+    public Tower Self { get; set; } //Reference to itself
 
     public virtual void Attack()
     {
@@ -52,10 +54,12 @@ public class Tower : MonoBehaviour
     {
         return new List<Enemy>();
     }
-
-    //TODO remove this function once UI has been implemented
+    
     private void OnMouseDown()
     {
-        TowerUpgrades.OnUpgradeTower(this);
+        Debug.Log(m_TowerData.Level);
+        MenuManager.s_Instance.ShowMenu(MenuNames.TOWER_MENU);
+        TowerMenu.s_Instance.Tower = this;
+        TowerMenu.s_Instance.ShowTowerMenu();
     }
 }

@@ -20,6 +20,9 @@ public class PlayerData : MonoBehaviour {
         set { m_Lives = value; }
     }
 
+    private Tile m_SelectedTile;
+    public Tile SelectedTile { get; set; }
+
     private void Awake()
     {
         if(s_Instance == null)

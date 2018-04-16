@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DrumTower : Tower
+public class BassTower : Tower
 {
     public override void Attack()
     {
