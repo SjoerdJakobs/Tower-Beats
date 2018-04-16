@@ -4,13 +4,24 @@ using UnityEngine;
 
 public class TowerUtilities : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public void SellTower()
+    {
+        PlayerData.s_Instance.ChangeCoinAmount(PlayerData.s_Instance.SelectedTower.TowerData.SellValue);
+        Destroy(PlayerData.s_Instance.SelectedTower.gameObject);
+        TowerMenu.s_Instance.Hide();
+    }
+
+    /// <summary>
+    /// Upgrade a tower to the next level
+    /// </summary>
+    public void Upgrade()
+    {
+        if (PlayerData.s_Instance.SelectedTower.TowerData.Level < PlayerData.s_Instance.SelectedTower.TowerData.MaxLevel && PlayerData.s_Instance.Coins >= PlayerData.s_Instance.SelectedTower.TowerData.UpgradeCost)
+        {
+            PlayerData.s_Instance.ChangeCoinAmount(-PlayerData.s_Instance.SelectedTower.TowerData.UpgradeCost);
+            PlayerData.s_Instance.SelectedTower.TowerData = TowerConfig.s_Towers[PlayerData.s_Instance.SelectedTower.TowerData.Type][PlayerData.s_Instance.SelectedTower.TowerData.Level];
+            Debug.Log("Level" + PlayerData.s_Instance.SelectedTower.TowerData.Level);
+            TowerMenu.s_Instance.ShowTowerMenu();
+        }
+    }
 }

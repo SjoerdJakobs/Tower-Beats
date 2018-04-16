@@ -60,7 +60,6 @@ public class Tower : MonoBehaviour
         Debug.Log(m_TowerData.Level);
         MenuManager.s_Instance.ShowMenu(MenuNames.TOWER_MENU);
         PlayerData.s_Instance.SelectedTower = this;
-        TowerMenu.s_Instance.Tower = this;
         TowerMenu.s_Instance.ShowTowerMenu();
     }
 }

@@ -48,7 +48,7 @@ public class Tile : MonoBehaviour
             case TileState.OCCUPIED:
                 //Open tower menu and shows the stats of the tower on this tile
                 MenuManager.s_Instance.ShowMenu(MenuNames.TOWER_MENU);
-                TowerMenu.s_Instance.Tower = m_Tower;
+                PlayerData.s_Instance.SelectedTower = m_Tower;
                 TowerMenu.s_Instance.ShowTowerMenu();
                 break;
         }
