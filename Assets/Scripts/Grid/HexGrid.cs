@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Axis of the row offset
+/// </summary>
 public enum OffsetAxis
 {
     X_AXIS,
@@ -10,6 +13,9 @@ public enum OffsetAxis
 
 public class HexGrid : MonoBehaviour
 {
+    /// <summary>
+    /// Instance of the HexGrid. (Example: "HexGrid.s_Instance.CreateGrid()")
+    /// </summary>
     public static HexGrid s_Instance;
 
     [Header("Prefab")]
@@ -36,12 +42,15 @@ public class HexGrid : MonoBehaviour
         CreateGrid();
     }
 
+    /// <summary>
+    /// Gets called upon Initialization (Awake)
+    /// </summary>
     private void Init()
     {
         if (s_Instance == null)
         {
             s_Instance = this;
-            //DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -51,11 +60,23 @@ public class HexGrid : MonoBehaviour
         CreateGrid();
     }
 
+    /// <summary>
+    /// Creates a Grid with the values entered in the inspector
+    /// </summary>
     public void CreateGrid()
     {
         CreateGrid(m_GridWidth, m_GridHeight, m_TileOffsetX, m_TileOffsetY, m_OffsetAxis, m_OffRowOffset);
     }
 
+    /// <summary>
+    /// Creates a Grid
+    /// </summary>
+    /// <param name="width">Width of the Grid (x-axis)</param>
+    /// <param name="height">Height of the Grid (y-axis)</param>
+    /// <param name="tileOffsetX">Offset of the tile on the x-axis</param>
+    /// <param name="tileOffsetY">Offset of the tile on the y-axis</param>
+    /// <param name="offsetAxis">The axis of the row offset</param>
+    /// <param name="offRowOffset">The offset of the off-row (uneven rows)</param>
     public void CreateGrid(int width, int height, float tileOffsetX, float tileOffsetY, OffsetAxis offsetAxis, float offRowOffset)
     {
         if (!m_GridCreated)
@@ -66,7 +87,7 @@ public class HexGrid : MonoBehaviour
         float lastX = 0;
         float lastY = 0;
 
-        // Fill the Grid.
+        // Fill the Grid
         m_Grid = new Tile[width, height];
 
         for (int x = 0; x < width; x++)
@@ -144,6 +165,9 @@ public class HexGrid : MonoBehaviour
         return m_Grid[position.x, position.y];
     }
 
+    /// <summary>
+    /// Clears all the path tiles
+    /// </summary>
     public void ClearPathTiles()
     {
         for (int i = 0; i < m_Grid.GetLength(0); i++)
@@ -155,18 +179,26 @@ public class HexGrid : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Destroy the Grid
+    /// </summary>
+    /// <param name="immediate">Does it need to be destroyed immediately? (For editor only)</param>
     public void DestroyGrid(bool immediate)
     {
+        // Loop through all the Rows
         for (int i = transform.childCount - 1; i > 0; i--)
         {
+            // Get the Row object
             GameObject objToDestroy = transform.GetChild(i).gameObject;
 
+            // Destroy it
             if (immediate)
                 DestroyImmediate(objToDestroy);
             else
                 Destroy(objToDestroy);
         }
 
+        // Set values
         m_GridCreated = false;
         m_Grid = null;
         m_TilePrefab.gameObject.SetActive(true);
