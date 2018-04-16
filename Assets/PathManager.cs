@@ -26,7 +26,6 @@ public class GridPath
     public Vector2Int GridSize;
 }
 
-[ExecuteInEditMode]
 public class PathManager : MonoBehaviour
 {
     public static PathManager s_Instance;
@@ -88,6 +87,7 @@ public class PathManager : MonoBehaviour
 
     public void Save()
     {
+        return;
         string savePath = Application.persistentDataPath + m_FileName;
 
         BinaryFormatter bf = new BinaryFormatter();
@@ -99,6 +99,7 @@ public class PathManager : MonoBehaviour
 
     public void Load()
     {
+        return;
         string savePath = Application.persistentDataPath + m_FileName;
 
         if (!File.Exists(savePath))

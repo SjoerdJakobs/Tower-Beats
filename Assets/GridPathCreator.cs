@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[ExecuteInEditMode]
 public class GridPathCreator : MonoBehaviour
 {
     [SerializeField] private List<Tile> m_SelectedTiles = new List<Tile>();
@@ -26,8 +25,8 @@ public class GridPathCreator : MonoBehaviour
     {
         Tile.s_OnTileClicked -= TileClicked;
         m_IsSelectingTiles = false;
-        PathManager.s_Instance.SavePath(m_InputField.text, m_SelectedTiles, HexGrid.s_Instance.GridSize);
         ShowPath();
+        //PathManager.s_Instance.SavePath(m_InputField.text, m_SelectedTiles, HexGrid.s_Instance.GridSize);
     }
 
     private void ShowPath()

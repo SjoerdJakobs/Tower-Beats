@@ -14,7 +14,6 @@ public enum TileState
     OCCUPIED
 }
 
-[ExecuteInEditMode]
 public class Tile : MonoBehaviour
 {
     private TileState m_CurrentState;

@@ -8,7 +8,6 @@ public enum OffsetAxis
     Y_AXIS
 }
 
-[ExecuteInEditMode]
 public class HexGrid : MonoBehaviour
 {
     public static HexGrid s_Instance;
@@ -30,7 +29,6 @@ public class HexGrid : MonoBehaviour
     private Tile[,] m_Grid;
 
     private bool m_GridCreated;
-    public bool GridCreated { get { return m_GridCreated; } }
 
     private void Awake()
     {
@@ -49,6 +47,8 @@ public class HexGrid : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        CreateGrid();
     }
 
     public void CreateGrid()
