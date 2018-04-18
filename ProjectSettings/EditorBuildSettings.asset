@@ -14,3 +14,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Main.unity
     guid: d87e22f69b921dd4680171bf4c34e293
+  - enabled: 1
+    path: Assets/Scenes/Test Scene Jordi.unity
+    guid: f0d95064e85d46540bdba289889eb756

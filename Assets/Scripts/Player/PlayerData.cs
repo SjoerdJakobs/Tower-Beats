@@ -67,9 +67,10 @@ public class PlayerData : MonoBehaviour {
             {
                 PlayerInfo.s_OnUpdateLives(m_Lives);
             }
-        } else if (m_Lives < 0)
+        } else if (m_Lives <= 0)
         {
             //Show game over panel
+            MenuManager.s_Instance.ShowMenu(MenuNames.GAME_OVER_MENU);
         }
     }
 }

@@ -24,4 +24,13 @@ public class Sceneloader : MonoBehaviour
     {
         SceneManager.LoadSceneAsync(sceneName);
     }
+
+    /// <summary>
+    /// Reloads the current scene (Used when pressing the "Retry" button after failing a level
+    /// </summary>
+    public void ReloadCurrentScene()
+    {
+        string currentScene = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(currentScene);
+    }
 }

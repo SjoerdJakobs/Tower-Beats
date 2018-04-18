@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class TowerUtilities : MonoBehaviour {
 
+    /// <summary>
+    /// Sells a tower and returns 75% of the coins invested in the tower
+    /// </summary>
     public void SellTower()
     {
         PlayerData.s_Instance.ChangeCoinAmount(PlayerData.s_Instance.SelectedTower.TowerData.SellValue);
