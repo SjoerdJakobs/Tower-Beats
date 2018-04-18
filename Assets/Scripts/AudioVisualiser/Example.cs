@@ -42,7 +42,6 @@ public class Example : MonoBehaviour
     void Start ()
     {
         baseColor = Color.yellow;
-
         //Select the instance of AudioProcessor and pass a reference
         //to this object
         AudioProcessor processor = FindObjectOfType<AudioProcessor> ();
