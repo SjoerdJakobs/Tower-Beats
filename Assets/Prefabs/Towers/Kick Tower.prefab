@@ -20,8 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4335072429567584}
   - component: {fileID: 212789879274382048}
-  - component: {fileID: 114304702491229352}
   - component: {fileID: 61228019522596320}
+  - component: {fileID: 114585116895345644}
   m_Layer: 0
   m_Name: Kick Tower
   m_TagString: Untagged
@@ -67,7 +67,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.75, y: 3.6}
   m_EdgeRadius: 0
---- !u!114 &114304702491229352
+--- !u!114 &114585116895345644
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -75,7 +75,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1053371428429454}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 679f8a91f786d65409402d029cac9c2b, type: 3}
+  m_Script: {fileID: 11500000, guid: f8f1cb524108ee44ba99e38cb101a2b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &212789879274382048
@@ -111,7 +111,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: b63709030fb55344abb7247e25f763f1, type: 3}
   m_Color: {r: 0.6911765, g: 0.33542386, b: 0.4016676, a: 1}
   m_FlipX: 0

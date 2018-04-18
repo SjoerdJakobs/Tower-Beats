@@ -37,18 +37,23 @@ public class Tile : MonoBehaviour
     void OnMouseDown()
     {
         if (s_OnTileClicked != null) s_OnTileClicked(this);
-
+        PlayerData.s_Instance.SelectedTile = this;
         switch (m_CurrentState)
         {
             case TileState.OPEN:
+                MenuManager.s_Instance.ShowMenu(MenuNames.TOWER_SHOP_MENU);
+
                 //Open tower shop menu
                 break;
             case TileState.OCCUPIED:
-                //Open tower menu
+                //Open tower menu and shows the stats of the tower on this tile
+                MenuManager.s_Instance.ShowMenu(MenuNames.TOWER_MENU);
+                PlayerData.s_Instance.SelectedTower = m_Tower;
+                TowerMenu.s_Instance.ShowTowerMenu();
                 break;
         }
 
-        print("Tile(Row: " + X + ", Position: " + Y + ") got pressed.");
+        Debug.Log("Tile(Row: " + X + ", Position: " + Y + ") got pressed.");
     }
 
     public void SetHighlightState(bool state)

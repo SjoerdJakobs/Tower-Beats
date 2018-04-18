@@ -1,16 +1,43 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class TowerShopMenu : Menu {
 
-    public override void Show()
+    [SerializeField] private List<Tower> m_Towers = new List<Tower>();
+
+    public void PurchaseTower(string towerType)
     {
-        base.Show();
+        //If player has enough coins
+        if(TowerConfig.s_Towers[towerType][0].BuyCost <= PlayerData.s_Instance.Coins)
+        {
+            //Gets the buy cost from the towers data
+            PlayerData.s_Instance.ChangeCoinAmount(-TowerConfig.s_Towers[towerType][0].BuyCost);
+
+            //Spawns a tower of the type (parameter) passed
+            switch (towerType)
+            {
+                case TowerTypeTags.BASS_TOWER:
+                    SpawnTower(towerType, 0);
+                    Debug.Log("spawned");
+                    break;
+                case TowerTypeTags.DRUM_TOWER:
+                    SpawnTower(towerType, 1);
+                    break;
+                case TowerTypeTags.SYNTH_TOWER:
+                    SpawnTower(towerType, 2);
+                    break;
+            }
+            PlayerData.s_Instance.SelectedTile.CurrentState = TileState.OCCUPIED;
+            //Hide();
+        }
     }
 
-    public override void Hide()
+    void SpawnTower(string towerType,int indexInList)
     {
-        base.Hide();
+        Tower newTower;
+        newTower = Instantiate(m_Towers[indexInList]);
+        newTower.TowerData = TowerConfig.s_Towers[towerType][0];
+        newTower.transform.position = PlayerData.s_Instance.SelectedTile.transform.position;
+        PlayerData.s_Instance.SelectedTile.Tower = newTower;
     }
 }
