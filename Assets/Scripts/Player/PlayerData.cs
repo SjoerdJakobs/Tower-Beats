@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class PlayerData : MonoBehaviour {
 
+    public delegate void PlayerDataUpdate(float dataChangeValue);
+    public delegate void CurrencyUpdate();
+    public delegate void LivesUpdate(float lives);
+    public static PlayerDataUpdate s_OnUpdateCoins;
+    public static PlayerDataUpdate s_OnUpdateLives;
+
     public static PlayerData s_Instance;
 
     [SerializeField]private float m_Coins;
@@ -44,9 +50,9 @@ public class PlayerData : MonoBehaviour {
     public void ChangeCoinAmount(float coins)
     {
         m_Coins += coins;
-        if (PlayerInfo.s_OnUpdateCoins != null)
+        if (s_OnUpdateCoins != null)
         {
-            PlayerInfo.s_OnUpdateCoins();
+            s_OnUpdateCoins(m_Coins);
         }
         if(m_Coins <= 0)
         {
@@ -63,9 +69,9 @@ public class PlayerData : MonoBehaviour {
         if (m_Lives > 0)
         {
             m_Lives += lives;
-            if (PlayerInfo.s_OnUpdateLives != null)
+            if (s_OnUpdateLives != null)
             {
-                PlayerInfo.s_OnUpdateLives(m_Lives);
+                s_OnUpdateLives(m_Lives);
             }
         } else if (m_Lives <= 0)
         {
