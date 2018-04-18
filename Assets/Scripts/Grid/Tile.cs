@@ -42,7 +42,6 @@ public class Tile : MonoBehaviour
         {
             case TileState.OPEN:
                 MenuManager.s_Instance.ShowMenu(MenuNames.TOWER_SHOP_MENU);
-
                 //Open tower shop menu
                 break;
             case TileState.OCCUPIED:
