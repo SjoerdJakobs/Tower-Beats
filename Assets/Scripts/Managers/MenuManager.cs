@@ -8,6 +8,7 @@ public struct MenuNames
     public const string CREDITS_MENU = "CreditsMenu";
     public const string TOWER_SHOP_MENU = "TowerShopMenu";
     public const string TOWER_MENU = "TowerMenu";
+    public const string GAME_OVER_MENU = "GameOverMenu";
 }
 
 public class MenuManager : MonoBehaviour

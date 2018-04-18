@@ -60,10 +60,16 @@ public class PlayerData : MonoBehaviour {
     /// <param name="lives">Lives to add</param>
     public void ChangeLivesAmount(int lives)
     {
-        m_Lives += lives;
-        if (PlayerInfo.s_OnUpdateLives != null)
+        if (m_Lives > 0)
         {
-            PlayerInfo.s_OnUpdateLives();
+            m_Lives += lives;
+            if (PlayerInfo.s_OnUpdateLives != null)
+            {
+                PlayerInfo.s_OnUpdateLives(m_Lives);
+            }
+        } else if (m_Lives < 0)
+        {
+            //Show game over panel
         }
     }
 }

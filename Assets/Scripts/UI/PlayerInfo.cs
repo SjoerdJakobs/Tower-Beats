@@ -1,14 +1,16 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class PlayerInfo : MonoBehaviour {
 
     public delegate void InfoUpdate();
+    public delegate void LivesUpdate(float lives);
     public static InfoUpdate s_OnUpdateCoins;
-    public static InfoUpdate s_OnUpdateLives;
+    public static LivesUpdate s_OnUpdateLives;
 
     [SerializeField] private Text m_Coins;
-    [SerializeField] private Text m_Lives;
+    [SerializeField] private Image m_Lives;
 
     private void Awake()
     {
@@ -19,7 +21,7 @@ public class PlayerInfo : MonoBehaviour {
     private void Start()
     {
         s_OnUpdateCoins();
-        s_OnUpdateLives();
+        //s_OnUpdateLives();
     }
 
     void UpdateCoins()
@@ -28,9 +30,10 @@ public class PlayerInfo : MonoBehaviour {
         m_Coins.text = PlayerData.s_Instance.Coins.ToString("N0"); //Makes sure the text wont show decimals
     }
 
-    void UpdateLives()
+    void UpdateLives(float lives)
     {
-        m_Lives.text = PlayerData.s_Instance.Lives.ToString();
+        m_Lives.DOFillAmount(lives/9,0.2f);
+        //m_Lives.text = PlayerData.s_Instance.Lives.ToString();
     }
 
     private void OnDestroy()
