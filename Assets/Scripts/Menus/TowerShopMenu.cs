@@ -8,7 +8,7 @@ public class TowerShopMenu : Menu {
     public void PurchaseTower(string towerType)
     {
         //If player has enough coins
-        if(TowerConfig.s_Towers[towerType][0].BuyCost <= PlayerData.s_Instance.Coins)
+        if(TowerConfig.s_Towers[towerType][0].BuyCost <= PlayerData.s_Instance.Coins && PlayerData.s_Instance.SelectedTile.CurrentState != TileState.OCCUPIED)
         {
             //Gets the buy cost from the towers data
             PlayerData.s_Instance.ChangeCoinAmount(-TowerConfig.s_Towers[towerType][0].BuyCost);
