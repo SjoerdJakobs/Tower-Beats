@@ -3,8 +3,6 @@
 public class PlayerData : MonoBehaviour {
 
     public delegate void PlayerDataUpdate(float dataChangeValue);
-    public delegate void CurrencyUpdate();
-    public delegate void LivesUpdate(float lives);
     public static PlayerDataUpdate s_OnUpdateCoins;
     public static PlayerDataUpdate s_OnUpdateLives;
 
@@ -23,8 +21,6 @@ public class PlayerData : MonoBehaviour {
         get { return m_Lives; }
         set { m_Lives = value; }
     }
-
-    public Tower SelectedTower { get; set; }
 
     private void Awake()
     {
@@ -61,14 +57,13 @@ public class PlayerData : MonoBehaviour {
     /// <param name="lives">Lives to add</param>
     public void ChangeLivesAmount(int lives)
     {
-        if (m_Lives > 0)
+        m_Lives += lives;
+        if (s_OnUpdateLives != null)
         {
-            m_Lives += lives;
-            if (s_OnUpdateLives != null)
-            {
-                s_OnUpdateLives(m_Lives);
-            }
-        } else if (m_Lives <= 0)
+            s_OnUpdateLives(m_Lives);
+        }
+
+        if (m_Lives <= 0)
         {
             //Show game over panel
             MenuManager.s_Instance.ShowMenu(MenuNames.GAME_OVER_MENU);
