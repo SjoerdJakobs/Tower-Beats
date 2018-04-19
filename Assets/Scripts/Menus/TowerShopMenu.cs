@@ -18,7 +18,6 @@ public class TowerShopMenu : Menu {
             {
                 case TowerTypeTags.BASS_TOWER:
                     SpawnTower(towerType, 0);
-                    Debug.Log("spawned");
                     break;
                 case TowerTypeTags.DRUM_TOWER:
                     SpawnTower(towerType, 1);
