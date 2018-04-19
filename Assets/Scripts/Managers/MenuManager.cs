@@ -77,4 +77,20 @@ public class MenuManager : MonoBehaviour
         m_CurrentOpenMenu = menu;
         if (s_OnMenuOpened != null) s_OnMenuOpened(menu);
     }
+
+    public void HideMenu(string menuName)
+    {
+        for (int i = 0; i < m_Menus.Count; i++)
+        {
+            if(m_Menus[i].name == menuName)
+            {
+                HideMenu(m_Menus[i]);
+            }
+        }
+    }
+
+    public void HideMenu(Menu menu)
+    {
+        menu.Hide();
+    }
 }

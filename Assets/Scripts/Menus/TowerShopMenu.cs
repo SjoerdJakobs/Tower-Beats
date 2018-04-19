@@ -8,7 +8,7 @@ public class TowerShopMenu : Menu {
     public void PurchaseTower(string towerType)
     {
         //If player has enough coins
-        if(TowerConfig.s_Towers[towerType][0].BuyCost <= PlayerData.s_Instance.Coins && PlayerData.s_Instance.SelectedTile.CurrentState != TileState.OCCUPIED)
+        if(TowerConfig.s_Towers[towerType][0].BuyCost <= PlayerData.s_Instance.Coins && HexGrid.s_Instance.SelectedTile.CurrentState == TileState.OPEN)
         {
             //Gets the buy cost from the towers data
             PlayerData.s_Instance.ChangeCoinAmount(-TowerConfig.s_Towers[towerType][0].BuyCost);
@@ -26,7 +26,9 @@ public class TowerShopMenu : Menu {
                     SpawnTower(towerType, 2);
                     break;
             }
-            PlayerData.s_Instance.SelectedTile.CurrentState = TileState.OCCUPIED;
+            HexGrid.s_Instance.SelectedTile.CurrentState = TileState.OCCUPIED;
+            Debug.Log(HexGrid.s_Instance.SelectedTile.CurrentState);
+            MenuManager.s_Instance.HideMenu(MenuNames.TOWER_SHOP_MENU);
             //Hide();
         }
     }
@@ -36,7 +38,7 @@ public class TowerShopMenu : Menu {
         Tower newTower;
         newTower = Instantiate(m_Towers[indexInList]);
         newTower.TowerData = TowerConfig.s_Towers[towerType][0];
-        newTower.transform.position = PlayerData.s_Instance.SelectedTile.transform.position;
-        PlayerData.s_Instance.SelectedTile.Tower = newTower;
+        newTower.transform.position = HexGrid.s_Instance.SelectedTile.transform.position;
+        HexGrid.s_Instance.SelectedTile.Tower = newTower;
     }
 }

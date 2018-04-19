@@ -8,24 +8,28 @@ public class TowerMenu : Menu {
     [SerializeField] private Text m_SellValue;
     [SerializeField] private Text m_UpgradeCost;
 
-    public static TowerMenu s_Instance;
-
-    private void Awake()
-    {
-        if (s_Instance == null)
-        {
-            s_Instance = this;
-        }
-    }
     /// <summary>
     /// Shows the towers stats/info
     // </summary>
-    public void ShowTowerMenu()
+    public override void Show()
     {
-        Tower tower = PlayerData.s_Instance.SelectedTower;
+        base.Show();
+        TowerUtilities.s_OnUpgrade += ShowTowerInfo;
+        ShowTowerInfo();
+    }
+
+    private void ShowTowerInfo()
+    {
+        Tower tower = HexGrid.s_Instance.SelectedTile.Tower;
         m_DamageField.text = tower.TowerData.AttackDamage.ToString();
-        m_RangeField.text = PlayerData.s_Instance.SelectedTower.TowerData.AttackRange.ToString();
+        m_RangeField.text = tower.TowerData.AttackRange.ToString();
         m_SellValue.text = tower.TowerData.SellValue.ToString();
         m_UpgradeCost.text = tower.TowerData.UpgradeCost.ToString();
+    }
+
+    public override void Hide()
+    {
+        TowerUtilities.s_OnUpgrade -= ShowTowerInfo;
+        base.Hide();
     }
 }

@@ -15,10 +15,8 @@ public enum TileState
     OCCUPIED
 }
 
-[ExecuteInEditMode]
 public class Tile : MonoBehaviour
 {
-    private TileState m_CurrentState;
     public TileState CurrentState { get; set; }
 
     [SerializeField]private Vector2Int m_PositionInGrid;
@@ -32,33 +30,23 @@ public class Tile : MonoBehaviour
     private Tower m_Tower; //The tower on this tile
     public Tower Tower { get; set; }
 
-	void Start () {
-        m_CurrentState = TileState.OPEN;
-	}
-
     void OnMouseDown()
     {
         if (!EventSystem.current.IsPointerOverGameObject())
         {
             if (s_OnTileClicked != null) s_OnTileClicked(this);
-            PlayerData.s_Instance.SelectedTile = this;
-            switch (m_CurrentState)
-            {
-                case TileState.OPEN:
-                    MenuManager.s_Instance.ShowMenu(MenuNames.TOWER_SHOP_MENU);
-
-                    //Open tower shop menu
-                    break;
-                case TileState.OCCUPIED:
-                    //Open tower menu and shows the stats of the tower on this tile
-                    MenuManager.s_Instance.ShowMenu(MenuNames.TOWER_MENU);
-                    PlayerData.s_Instance.SelectedTower = m_Tower;
-                    TowerMenu.s_Instance.ShowTowerMenu();
-                    break;
-            }
-
-            Debug.Log("Tile(Row: " + X + ", Position: " + Y + ") got pressed.");
-        }
+            switch (CurrentState)
+        	{
+            	case TileState.OPEN:
+                	MenuManager.s_Instance.ShowMenu(MenuNames.TOWER_SHOP_MENU);
+                	//Open tower shop menu
+                	break;
+            	case TileState.OCCUPIED:
+                	//Open tower menu and shows the stats of the tower on this tile
+                	MenuManager.s_Instance.ShowMenu(MenuNames.TOWER_MENU);
+                	break;
+        	}
+		}
     }
 
     public void SetHighlightState(bool state)

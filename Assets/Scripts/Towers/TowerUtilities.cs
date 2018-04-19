@@ -2,14 +2,16 @@
 
 public class TowerUtilities : MonoBehaviour {
 
+    public delegate void UpgradeEvent();
+    public static UpgradeEvent s_OnUpgrade;
+
     /// <summary>
     /// Sells a tower and returns 75% of the coins invested in the tower
     /// </summary>
     public void SellTower()
     {
-        PlayerData.s_Instance.ChangeCoinAmount(PlayerData.s_Instance.SelectedTower.TowerData.SellValue);
-        Destroy(PlayerData.s_Instance.SelectedTower.gameObject);
-        TowerMenu.s_Instance.Hide();
+        PlayerData.s_Instance.ChangeCoinAmount(HexGrid.s_Instance.SelectedTile.Tower.TowerData.SellValue);
+        Destroy(HexGrid.s_Instance.SelectedTile.Tower.gameObject);
     }
 
     /// <summary>
@@ -17,12 +19,15 @@ public class TowerUtilities : MonoBehaviour {
     /// </summary>
     public void Upgrade()
     {
-        if (PlayerData.s_Instance.SelectedTower.TowerData.Level < PlayerData.s_Instance.SelectedTower.TowerData.MaxLevel && PlayerData.s_Instance.Coins >= PlayerData.s_Instance.SelectedTower.TowerData.UpgradeCost)
+        if (HexGrid.s_Instance.SelectedTile.Tower.TowerData.Level < HexGrid.s_Instance.SelectedTile.Tower.TowerData.MaxLevel 
+            && PlayerData.s_Instance.Coins >= HexGrid.s_Instance.SelectedTile.Tower.TowerData.UpgradeCost)
         {
-            PlayerData.s_Instance.ChangeCoinAmount(-PlayerData.s_Instance.SelectedTower.TowerData.UpgradeCost);
-            PlayerData.s_Instance.SelectedTower.TowerData = TowerConfig.s_Towers[PlayerData.s_Instance.SelectedTower.TowerData.Type][PlayerData.s_Instance.SelectedTower.TowerData.Level];
-            Debug.Log("Level" + PlayerData.s_Instance.SelectedTower.TowerData.Level);
-            TowerMenu.s_Instance.ShowTowerMenu();
+            PlayerData.s_Instance.ChangeCoinAmount(-HexGrid.s_Instance.SelectedTile.Tower.TowerData.UpgradeCost);
+            HexGrid.s_Instance.SelectedTile.Tower.TowerData = TowerConfig.s_Towers[HexGrid.s_Instance.SelectedTile.Tower.TowerData.Type][HexGrid.s_Instance.SelectedTile.Tower.TowerData.Level];
+            if (s_OnUpgrade != null)
+            {
+                s_OnUpgrade();
+            }
         }
     }
 }

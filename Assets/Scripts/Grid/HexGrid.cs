@@ -32,6 +32,7 @@ public class HexGrid : MonoBehaviour
 
     private Tile[,] m_Grid;
 
+    public Tile SelectedTile { get; set; }
     private bool m_GridCreated;
 
     private void Awake()
@@ -54,7 +55,7 @@ public class HexGrid : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
+        Tile.s_OnTileClicked += delegate (Tile tile) { SelectedTile = tile; };
         CreateGrid();
     }
 
@@ -122,7 +123,7 @@ public class HexGrid : MonoBehaviour
                 tile.PositionInGrid = new Vector2Int(x, y);
 
                 // Set the Tile's state
-                tile.CurrentState = TileState.OPEN;
+                //tile.CurrentState = TileState.OPEN;
 
                 // Add Tile to the Grid
                 m_Grid[x, y] = tile;
@@ -200,5 +201,10 @@ public class HexGrid : MonoBehaviour
         m_GridCreated = false;
         m_Grid = null;
         m_TilePrefab.gameObject.SetActive(true);
+    }
+
+    private void OnDestroy()
+    {
+        Tile.s_OnTileClicked -= delegate (Tile tile) { SelectedTile = tile; };
     }
 }
