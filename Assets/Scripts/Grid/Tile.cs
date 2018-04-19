@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 
 /// <summary>
@@ -14,6 +15,7 @@ public enum TileState
     OCCUPIED
 }
 
+[ExecuteInEditMode]
 public class Tile : MonoBehaviour
 {
     private TileState m_CurrentState;
@@ -36,23 +38,27 @@ public class Tile : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (s_OnTileClicked != null) s_OnTileClicked(this);
-        PlayerData.s_Instance.SelectedTile = this;
-        switch (m_CurrentState)
+        if (!EventSystem.current.IsPointerOverGameObject())
         {
-            case TileState.OPEN:
-                MenuManager.s_Instance.ShowMenu(MenuNames.TOWER_SHOP_MENU);
-                //Open tower shop menu
-                break;
-            case TileState.OCCUPIED:
-                //Open tower menu and shows the stats of the tower on this tile
-                MenuManager.s_Instance.ShowMenu(MenuNames.TOWER_MENU);
-                PlayerData.s_Instance.SelectedTower = m_Tower;
-                TowerMenu.s_Instance.ShowTowerMenu();
-                break;
-        }
+            if (s_OnTileClicked != null) s_OnTileClicked(this);
+            PlayerData.s_Instance.SelectedTile = this;
+            switch (m_CurrentState)
+            {
+                case TileState.OPEN:
+                    MenuManager.s_Instance.ShowMenu(MenuNames.TOWER_SHOP_MENU);
 
-        Debug.Log("Tile(Row: " + X + ", Position: " + Y + ") got pressed.");
+                    //Open tower shop menu
+                    break;
+                case TileState.OCCUPIED:
+                    //Open tower menu and shows the stats of the tower on this tile
+                    MenuManager.s_Instance.ShowMenu(MenuNames.TOWER_MENU);
+                    TowerMenu.s_Instance.Tower = m_Tower;
+                    TowerMenu.s_Instance.ShowTowerMenu();
+                    break;
+            }
+
+            Debug.Log("Tile(Row: " + X + ", Position: " + Y + ") got pressed.");
+        }
     }
 
     public void SetHighlightState(bool state)
