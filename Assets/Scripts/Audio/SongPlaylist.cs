@@ -8,11 +8,13 @@ public class SongPlaylist : MonoBehaviour {
     
     public void SelectLevel()
     {
-        LevelMusic.s_Instance.Songs = m_Playlist;
+        SongManager.s_Instance.Songs = m_Playlist;
 
-        for (int i = 0; i < LevelMusic.s_Instance.Songs.Length; i++)
+        for (int i = 0; i < SongManager.s_Instance.Songs.Length; i++)
         {
-            Debug.Log(LevelMusic.s_Instance.Songs[i].name);
+            //Debug.Log(SongManager.s_Instance.Songs[i].name);
         }
+
+        Sceneloader.s_Instance.LoadScene("Lorenzo");
     }
 }

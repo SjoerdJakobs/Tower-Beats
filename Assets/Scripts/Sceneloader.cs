@@ -4,6 +4,13 @@ using UnityEngine.SceneManagement;
 public class Sceneloader : MonoBehaviour
 {
     public static Sceneloader s_Instance;
+    public delegate void OnSceneLoaded();
+    public static OnSceneLoaded s_OnSceneLoaded;
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoadedCallback;
+    }
 
     private void Awake()
     {
@@ -14,6 +21,14 @@ public class Sceneloader : MonoBehaviour
         }
         //else
         //Destroy(gameObject);
+    }
+
+    private void OnSceneLoadedCallback(Scene scene, LoadSceneMode mode)
+    {
+        if(scene.name == "Lorenzo")
+        {
+            s_OnSceneLoaded();
+        }
     }
 
     /// <summary>
