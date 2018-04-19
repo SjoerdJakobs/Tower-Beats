@@ -12,6 +12,9 @@ public class TowerUtilities : MonoBehaviour {
     {
         PlayerData.s_Instance.ChangeCoinAmount(HexGrid.s_Instance.SelectedTile.Tower.TowerData.SellValue);
         Destroy(HexGrid.s_Instance.SelectedTile.Tower.gameObject);
+        HexGrid.s_Instance.SelectedTile.Tower = null;
+        HexGrid.s_Instance.SelectedTile.CurrentState = TileState.OPEN;
+        MenuManager.s_Instance.HideMenu(MenuNames.TOWER_MENU);
     }
 
     /// <summary>
