@@ -6,22 +6,26 @@ public class SongManager : MonoBehaviour {
 
     public delegate void SongChangeEvent(int currentSong,int maxSongs,string songName);
     public static SongChangeEvent s_OnChangeSong;
+    public delegate void PlaylistCompletion();
+    public static PlaylistCompletion s_OnPlaylistComplete;
 
     public static SongManager s_Instance;
 
     [SerializeField]private AudioClip[] m_Songs;
+    private AudioClip m_NextSong;
+
+    private AudioSource m_SongAudioSource;
+
+    private int m_SongNumber = 0;
+
+    private Coroutine m_SongQueue;
+
+    public AudioSource SongAudioSource { get { return m_SongAudioSource; } }
     public AudioClip[] Songs
     {
         get { return m_Songs; }
         set { m_Songs = value; }
     }
-
-    private AudioClip m_NextSong;
-
-    private int m_SongNumber = 0;
-
-    private AudioSource m_SongAudioSource;
-    public AudioSource SongAudioSource { get { return m_SongAudioSource; } }
 
     private void Awake()
     {
@@ -34,6 +38,7 @@ public class SongManager : MonoBehaviour {
         Destroy(gameObject);
 
         Sceneloader.s_OnSceneLoaded += CreateAudioSource;
+        s_OnPlaylistComplete += OnLevelComplete;
     }
 
     public void CreateAudioSource()
@@ -53,12 +58,20 @@ public class SongManager : MonoBehaviour {
             m_SongAudioSource.Play();
             if (s_OnChangeSong != null)
             {
-                s_OnChangeSong(m_SongNumber, m_Songs.Length, m_Songs[m_SongNumber].name);
+                s_OnChangeSong(m_SongNumber + 1, m_Songs.Length, m_Songs[m_SongNumber].name);
             }
-            StartCoroutine(QueueSong(songNumber + 1, songLength: m_SongAudioSource.clip.length));
+            RefreshQueue(songNumber + 1, songLength: m_SongAudioSource.clip.length);
         }
         else
             m_NextSong = null;
+    }
+
+    private void RefreshQueue(int songNumber, float songLength = 0)
+    {
+        if(m_SongQueue != null)
+            StopCoroutine(m_SongQueue);
+
+        m_SongQueue = StartCoroutine(QueueSong(songNumber, songLength: m_SongAudioSource.clip.length));
     }
 
     IEnumerator QueueSong(int songNumber, float songLength = 0)
@@ -70,7 +83,10 @@ public class SongManager : MonoBehaviour {
             PlayNextSongInPlaylist(songNumber);
         }
         else
-            Debug.Log("End of playlist");
+        {
+            yield return new WaitForSeconds(songLength);
+            s_OnPlaylistComplete();
+        }
     }
 
     public AudioClip GetCurrentSong()
@@ -93,7 +109,19 @@ public class SongManager : MonoBehaviour {
 
     public void SkipSong()
     {
-        PlayNextSongInPlaylist(m_SongNumber + 1);
+        if(m_SongNumber + 1!= m_Songs.Length)
+            PlayNextSongInPlaylist(m_SongNumber + 1);
+        else
+        {
+            m_SongAudioSource.Stop();
+            s_OnPlaylistComplete();
+        }
+    }
+
+    private void OnLevelComplete()
+    {
+        Debug.Log("OnLevelComplete");
+        m_SongQueue = null; 
     }
 
     private void OnDisable()
