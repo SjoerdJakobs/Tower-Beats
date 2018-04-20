@@ -32,7 +32,7 @@ public class Tile : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (!EventSystem.current.IsPointerOverGameObject())
+        if (!EventSystem.current.IsPointerOverGameObject()) 
         {
             if (s_OnTileClicked != null) s_OnTileClicked(this);
             switch (CurrentState)

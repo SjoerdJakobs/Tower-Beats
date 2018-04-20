@@ -106,7 +106,7 @@ public class HexGrid : MonoBehaviour
                 Tile tile = Instantiate(m_TilePrefab, row.transform, false) as Tile;
 
                 // Set random color for testing purposes
-                tile.GetComponent<SpriteRenderer>().color = new Color(UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f));
+                //tile.GetComponent<SpriteRenderer>().color = new Color(UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f));
 
                 // Set Position on map
                 tile.transform.localPosition = new Vector2((offsetAxis == OffsetAxis.X_AXIS ? // Is the offset axis the X axis?
@@ -121,10 +121,7 @@ public class HexGrid : MonoBehaviour
 
                 // Set the Tile's values
                 tile.PositionInGrid = new Vector2Int(x, y);
-
-                // Set the Tile's state
-                //tile.CurrentState = TileState.OPEN;
-
+                
                 // Add Tile to the Grid
                 m_Grid[x, y] = tile;
 

@@ -8,9 +8,6 @@ public class TowerMenu : Menu {
     [SerializeField] private Text m_SellValue;
     [SerializeField] private Text m_UpgradeCost;
 
-    /// <summary>
-    /// Shows the towers stats/info
-    // </summary>
     public override void Show()
     {
         base.Show();
@@ -18,6 +15,9 @@ public class TowerMenu : Menu {
         ShowTowerInfo();
     }
 
+    /// <summary>
+    /// Shows the towers stats/info
+    // </summary>
     private void ShowTowerInfo()
     {
         Tower tower = HexGrid.s_Instance.SelectedTile.Tower;

@@ -6,11 +6,13 @@ public class PlayerInfo : MonoBehaviour {
 
     [SerializeField] private Text m_Coins;
     [SerializeField] private Image m_Lives;
+    [SerializeField] private Text m_Song;
 
     private void Awake()
     {
         PlayerData.s_OnUpdateCoins += UpdateCoinsUI;
         PlayerData.s_OnUpdateLives += UpdateLivesUI;
+        SongManager.s_OnChangeSong += UpdateSongUI;
     }
 
     void UpdateCoinsUI(float coins)
@@ -21,6 +23,11 @@ public class PlayerInfo : MonoBehaviour {
     void UpdateLivesUI(float lives)
     {
         m_Lives.DOFillAmount(lives/9,0.2f);
+    }
+
+    void UpdateSongUI(int currentSong, int maxSongs,string songName)
+    {
+        m_Song.text = currentSong + "/" + maxSongs + "\n" + songName;
     }
 
     private void OnDestroy()

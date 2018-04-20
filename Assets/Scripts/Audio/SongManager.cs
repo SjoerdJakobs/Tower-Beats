@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class SongManager : MonoBehaviour {
 
+    public delegate void SongChangeEvent(int currentSong,int maxSongs,string songName);
+    public static SongChangeEvent s_OnChangeSong;
+
     public static SongManager s_Instance;
 
     [SerializeField]private AudioClip[] m_Songs;
@@ -48,7 +51,10 @@ public class SongManager : MonoBehaviour {
             m_SongNumber = songNumber;
             m_SongAudioSource.clip = m_Songs[songNumber];
             m_SongAudioSource.Play();
-
+            if (s_OnChangeSong != null)
+            {
+                s_OnChangeSong(m_SongNumber, m_Songs.Length, m_Songs[m_SongNumber].name);
+            }
             StartCoroutine(QueueSong(songNumber + 1, songLength: m_SongAudioSource.clip.length));
         }
         else
