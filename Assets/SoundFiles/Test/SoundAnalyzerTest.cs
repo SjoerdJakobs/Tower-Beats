@@ -17,9 +17,6 @@ public class SoundAnalyzerTest : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(m_AudioMixer.GetFloat("",) >= 0.2f)
-        {
-
-        }
+		
 	}
 }
