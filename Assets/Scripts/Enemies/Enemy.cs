@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour {
 
+    public delegate void DestroyEvent(Enemy enemy);
+    public static DestroyEvent s_OnDestroyEnemy;
     [SerializeField] private float m_MaxHealth;
     private float m_CurrentHealth;
 
@@ -29,6 +31,10 @@ public class Enemy : MonoBehaviour {
     {
         //Give coins;
         PlayerData.s_Instance.ChangeCoinAmount(m_CoinsToGive);
+        if (s_OnDestroyEnemy != null)
+        {
+            s_OnDestroyEnemy(this);
+        }
         Destroy(this.gameObject); // Will be replaced with Object pooling later
     }
 

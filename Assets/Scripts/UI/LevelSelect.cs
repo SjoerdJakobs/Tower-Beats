@@ -8,6 +8,7 @@ public class LevelSelect : MonoBehaviour
 
     public void SelectLevel(int levelIndex)
     {
+        Debug.Log("lmao");
         m_SelectedLevel = levelIndex;
     }
 

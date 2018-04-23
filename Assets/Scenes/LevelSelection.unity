@@ -1094,9 +1094,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Playlist:
-  - {fileID: 8300000, guid: fff3ba3bdba514b4384af7ade7a8d565, type: 3}
-  - {fileID: 8300000, guid: 67c47dd56a6e0ba4cab0c405003f898d, type: 3}
   - {fileID: 8300000, guid: b558d9bb90a171c468ab3550dedf79fc, type: 3}
+  - {fileID: 8300000, guid: 7ea90a9b7ca309f448792d550079c6cb, type: 3}
+  - {fileID: 8300000, guid: fff3ba3bdba514b4384af7ade7a8d565, type: 3}
 --- !u!114 &1065951768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1852,7 +1852,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Through the fire and flames
+  m_Text: Akame ga kill - Skyreach
 --- !u!222 &1492070282
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1913,7 +1913,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 7d47b45dcf2be6044ab27e050f4e6051, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0274da0845e49a64da7c636437653ba0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2101,7 +2101,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -76}
+  m_AnchoredPosition: {x: 0, y: 49.38198}
   m_SizeDelta: {x: 237, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1860440480
@@ -2640,7 +2640,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 50}
+  m_AnchoredPosition: {x: 0, y: -76}
   m_SizeDelta: {x: 237, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2142604447

@@ -6,10 +6,15 @@ public class Sceneloader : MonoBehaviour
     public static Sceneloader s_Instance;
     public delegate void OnSceneLoaded();
     public static OnSceneLoaded s_OnSceneLoaded;
+    private static bool s_AddedCallback;
 
     private void OnEnable()
     {
-        SceneManager.sceneLoaded += OnSceneLoadedCallback;
+        if (!s_AddedCallback)
+        {
+            SceneManager.sceneLoaded += OnSceneLoadedCallback;
+            s_AddedCallback = true;
+        }
     }
 
     private void Awake()
