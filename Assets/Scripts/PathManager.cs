@@ -1,42 +1,37 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using System;
 
 [System.Serializable]
-public class PathsData
-{
-    public List<GridPath> Paths = new List<GridPath>();
-}
-
-[System.Serializable]
 public class GridPath
 {
-    public GridPath(string Name, List<Vector2Int> Path, Vector2Int GridSize)
+    public GridPath(string Name, List<Vector2> Path)
     {
         this.Name = Name;
         this.Path = Path;
-        this.GridSize = GridSize;
     }
 
     public string Name;
-    public List<Vector2Int> Path;
-    public Vector2Int GridSize;
+    public List<Vector2> Path;
+}
+
+public class PathData
+{
+    public List<GridPath> Paths;
 }
 
 public class PathManager : MonoBehaviour
 {
+    private string m_FilePath;
     public static PathManager s_Instance;
 
-    private string m_FileName = "PathData.dat";
-
-    private PathsData m_PathsData;
-    //public PathsData PathsData { get { return m_PathsData; } }
+    private PathData m_PathData;
 
     private void Awake()
     {
+        m_PathData = new PathData();
         Init();
     }
 
@@ -52,72 +47,55 @@ public class PathManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        Load();
+        m_FilePath = Path.Combine(Application.dataPath, "Data/Paths.json");
+
+        LoadData();
     }
 
-    public void SavePath(string pathName, List<Tile> tiles, Vector2Int gridSize)
+    public GridPath GetPathByName(string name)
     {
-        List<Vector2Int> tilePositions = new List<Vector2Int>();
-
-        for (int i = 0; i < tiles.Count; i++)
-            tilePositions.Add(tiles[i].PositionInGrid);
-
-        GridPath path = new GridPath(pathName, tilePositions, gridSize);
-
-        SavePath(path);
-    }
-
-    public void SavePath(GridPath path)
-    {
-        m_PathsData.Paths.Add(path);
-        Save();
-    }
-
-    public GridPath LoadPath(string pathName)
-    {
-        Load();
-
-        GridPath path = m_PathsData.Paths.Find(x => x.Name == pathName);
-
-        if (path != null)
-            return path;
+        GridPath data = m_PathData.Paths.Find(x => x.Name == name);
+        if (data != null)
+            return data;
         else
             return null;
     }
 
-    public void Save()
+    public void SavePath(GridPath pathdata)
     {
-        return;
-        string savePath = Application.persistentDataPath + m_FileName;
+        m_PathData.Paths.Add(pathdata);
+        print(m_PathData.Paths[0].Name);
+        print(m_PathData.Paths.Count);
 
-        BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(savePath);
+        SaveData();
+    }
+    
 
-        bf.Serialize(file, m_PathsData);
-        file.Close();
+    public void SavePath(string name, List<Vector2> path)
+    {
+        m_PathData.Paths.Add(new GridPath(name, path));
+        SaveData();
     }
 
-    public void Load()
+    public void LoadData()
     {
-        return;
-        string savePath = Application.persistentDataPath + m_FileName;
+        m_PathData.Paths = new List<GridPath>();
+        string jsonString = File.ReadAllText(m_FilePath);
 
-        if (!File.Exists(savePath))
+        JsonUtility.FromJsonOverwrite(jsonString, m_PathData);
+    }
+
+    public void SaveData()
+    {
+        if(!File.Exists(m_FilePath))
         {
-            m_PathsData = new PathsData();
-            return;
+            File.Create(m_FilePath);
         }
 
-        BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Open(savePath, FileMode.Open);
-        file.Position = 0;
 
-        m_PathsData = (PathsData)bf.Deserialize(file);
-        file.Close();
-    }
 
-    public void Load2()
-    {
-       
+        string jsonString = JsonUtility.ToJson(m_PathData, true);
+        print("Saving: " + jsonString);
+        File.WriteAllText(m_FilePath, jsonString);
     }
 }

@@ -19,10 +19,9 @@ public class Tile : MonoBehaviour
 {
     public TileState CurrentState { get; set; }
 
-    [SerializeField]private Vector2Int m_PositionInGrid;
-    public Vector2Int PositionInGrid { get { return m_PositionInGrid; } set { m_PositionInGrid = value; } }
-    public int X { get { return m_PositionInGrid.x; } set { m_PositionInGrid.x = value; } }
-    public int Y { get { return m_PositionInGrid.y; } set { m_PositionInGrid.y = value; } }
+    public Vector2Int PositionInGrid { get; set; }
+    public int X { get { return PositionInGrid.x; } set { PositionInGrid = new Vector2Int(value, PositionInGrid.y); } }
+    public int Y { get { return PositionInGrid.y; } set { PositionInGrid = new Vector2Int(PositionInGrid.x, value); } }
 
     public delegate void TileClicked(Tile tile);
     public static TileClicked s_OnTileClicked;
@@ -38,12 +37,14 @@ public class Tile : MonoBehaviour
             switch (CurrentState)
         	{
             	case TileState.OPEN:
-                	MenuManager.s_Instance.ShowMenu(MenuNames.TOWER_SHOP_MENU);
+                    if(MenuManager.s_Instance != null)
+                	    MenuManager.s_Instance.ShowMenu(MenuNames.TOWER_SHOP_MENU);
                 	//Open tower shop menu
                 	break;
             	case TileState.OCCUPIED:
-                	//Open tower menu and shows the stats of the tower on this tile
-                	MenuManager.s_Instance.ShowMenu(MenuNames.TOWER_MENU);
+                    //Open tower menu and shows the stats of the tower on this tile
+                    if (MenuManager.s_Instance != null)
+                        MenuManager.s_Instance.ShowMenu(MenuNames.TOWER_MENU);
                 	break;
         	}
 		}
@@ -52,11 +53,11 @@ public class Tile : MonoBehaviour
     public void SetHighlightState(bool state)
     {
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.color = (state ? Color.grey : new Color(UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f)));
+        spriteRenderer.color = (state ? Color.yellow : Color.white);
     }
 
     public void SetAsPath()
     {
-        GetComponent<SpriteRenderer>().color = Color.white;
+        GetComponent<SpriteRenderer>().color = Color.green;
     }
 }

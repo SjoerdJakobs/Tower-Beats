@@ -8,33 +8,55 @@ public class GridPathCreator : MonoBehaviour
 {
     [SerializeField] private List<Tile> m_SelectedTiles = new List<Tile>();
     private InputField m_InputField;
+    private Text m_SelectingStateText;
     private bool m_IsSelectingTiles;
+    private GridPathCreatorNotification m_Notification;
 
     private void Awake()
     {
         m_InputField = transform.GetComponentInChildren<InputField>();
+        m_Notification = transform.GetComponentInChildren<GridPathCreatorNotification>();
+        m_SelectingStateText = GameObject.Find("StartStopSelectionText").GetComponent<Text>();
     }
 
-    public void StartSelection()
+    public void ToggleSelection()
     {
-        Tile.s_OnTileClicked += TileClicked;
-        m_IsSelectingTiles = true;
+        m_IsSelectingTiles = !m_IsSelectingTiles;
+
+        UpdateSelectionState();
+    }
+
+    private void UpdateSelectionState()
+    {
+        if (m_IsSelectingTiles)
+        {
+            m_SelectingStateText.text = "Stop Selection";
+            Tile.s_OnTileClicked += TileClicked;
+        }
+        else
+        {
+            m_SelectingStateText.text = "Start Selection";
+            Tile.s_OnTileClicked -= TileClicked;
+        }
     }
 
     public void FinishSelection()
     {
-        Tile.s_OnTileClicked -= TileClicked;
         m_IsSelectingTiles = false;
+        UpdateSelectionState();
         ShowPath();
-        //PathManager.s_Instance.SavePath(m_InputField.text, m_SelectedTiles, HexGrid.s_Instance.GridSize);
+
+        List<Vector2> tilePositions = new List<Vector2>();
+        for (int i = 0; i < m_SelectedTiles.Count; i++)
+            tilePositions.Add(m_SelectedTiles[i].PositionInGrid);
+
+        PathManager.s_Instance.SavePath(new GridPath(m_InputField.text, tilePositions));
     }
 
     private void ShowPath()
     {
         for (int i = 0; i < m_SelectedTiles.Count; i++)
-        {
             m_SelectedTiles[i].SetAsPath();
-        }
     }
 
     private void TileClicked(Tile tile)
@@ -45,6 +67,7 @@ public class GridPathCreator : MonoBehaviour
             { 
                 m_SelectedTiles.Add(tile);
                 tile.SetHighlightState(true);
+                m_Notification.ShowNotification(GridPathCreatorNotification.NotificationType.LOG, "<b>" + tile.name + "</b> has been added to the path.");
             }
             else
             {
@@ -55,36 +78,22 @@ public class GridPathCreator : MonoBehaviour
                     tilesToRemove[i].SetHighlightState(false);
                     m_SelectedTiles.Remove(tilesToRemove[i]);
                 }
+                m_Notification.ShowNotification(GridPathCreatorNotification.NotificationType.WARNING, "Succesfully removed Tile(s) in path: <b>" + PrintPathList(tilesToRemove) + "</b>");
             }
         }
+    }
+
+    private string PrintPathList(List<Tile> list)
+    {
+        string temp = "";
+        for (int i = 0; i < list.Count; i++)
+            temp += list[i].PositionInGrid + (i != list.Count - 1 ? ", " : "");
+
+        return temp;
     }
 
     private bool AlreadySelected(Tile tile)
     {
         return m_SelectedTiles.Contains(tile);
-    }
-
-    public void LoadPath()
-    {
-        if(!InputFieldContainsCharacters(3))
-        {
-            Debug.LogWarning("Please enter atleast 3 characters");
-            return;
-        }
-
-        HexGrid.s_Instance.DestroyGrid(false);
-
-        GridPath path = PathManager.s_Instance.LoadPath(m_InputField.text);
-
-        for (int i = 0; i < path.Path.Count; i++)
-        {
-            Tile tile = HexGrid.s_Instance.GetTile(path.Path[i].x, path.Path[i].y);
-            tile.SetAsPath();
-        }
-    }
-
-    private bool InputFieldContainsCharacters(int minAmount)
-    {
-        return m_InputField.text.ToCharArray().Length > minAmount;
     }
 }
