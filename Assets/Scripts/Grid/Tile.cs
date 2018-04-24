@@ -26,8 +26,7 @@ public class Tile : MonoBehaviour
     public delegate void TileClicked(Tile tile);
     public static TileClicked s_OnTileClicked;
 
-    private Tower m_Tower; //The tower on this tile
-    public Tower Tower { get; set; }
+    public Tower Tower { get; set; } //The tower on this tile
 
     void OnMouseDown()
     {
