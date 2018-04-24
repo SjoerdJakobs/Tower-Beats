@@ -46,11 +46,24 @@ public class GridPathCreator : MonoBehaviour
         UpdateSelectionState();
         ShowPath();
 
-        List<Vector2> tilePositions = new List<Vector2>();
+        if(string.IsNullOrEmpty(m_InputField.text))
+        {
+            m_Notification.ShowNotification(GridPathCreatorNotification.NotificationType.ERROR, "Please enter a path name.");
+            return;
+        }
+
+        if(PathManager.s_Instance.PathNameExists(m_InputField.text))
+        {
+            m_Notification.ShowNotification(GridPathCreatorNotification.NotificationType.ERROR, "A path with the name: <b>" + m_InputField.text + "</b> already exists.");
+            return;
+        }
+
+        List<Vector2Int> tilePositions = new List<Vector2Int>();
         for (int i = 0; i < m_SelectedTiles.Count; i++)
             tilePositions.Add(m_SelectedTiles[i].PositionInGrid);
 
-        PathManager.s_Instance.SavePath(new GridPath(m_InputField.text, tilePositions));
+        PathManager.s_Instance.SavePath(new GridPath(m_InputField.text, HexGrid.s_Instance.GridSize, tilePositions));
+        m_Notification.ShowNotification(GridPathCreatorNotification.NotificationType.LOG, "Succesfully saved <b>" + m_InputField.text + "</b>.");
     }
 
     private void ShowPath()

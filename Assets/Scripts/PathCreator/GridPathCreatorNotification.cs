@@ -31,12 +31,20 @@ public class GridPathCreatorNotification : MonoBehaviour
         SetStartingState();
     }
 
+    /// <summary>
+    /// Sets the starting state of the animated objects
+    /// </summary>
     private void SetStartingState()
     {
         m_NotificationText.DOFade(0, 0);
         m_RectTransform.DOSizeDelta(new Vector2(0, m_RectTransform.sizeDelta.y), 0);
     }
 
+    /// <summary>
+    /// Shows a notification
+    /// </summary>
+    /// <param name="type">Type of notification</param>
+    /// <param name="text">Text to show</param>
     public void ShowNotification(NotificationType type, string text)
     {
         switch(type)
@@ -65,6 +73,10 @@ public class GridPathCreatorNotification : MonoBehaviour
         m_ShowSequence.AppendCallback(() => HideNotification(2f));
     }
 
+    /// <summary>
+    /// Hides the notification
+    /// </summary>
+    /// <param name="interval">Interval beteen Show and Hide</param>
     private void HideNotification(float interval)
     {
         Sequence m_HideSequence = DOTween.Sequence();

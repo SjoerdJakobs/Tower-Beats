@@ -68,6 +68,16 @@ public class HexGrid : MonoBehaviour
     }
 
     /// <summary>
+    /// Creates a Grid with the values entered in the inspector and overwrites the width and the height
+    /// </summary>
+    /// <param name="width">Width of the Grid (x-axis)</param>
+    /// <param name="height">Height of the Grid (y-axis)</param>
+    public void CreateGrid(int width, int height)
+    {
+        CreateGrid(width, height, m_TileOffsetX, m_TileOffsetY, m_OffsetAxis, m_OffRowOffset);
+    }
+
+    /// <summary>
     /// Creates a Grid
     /// </summary>
     /// <param name="width">Width of the Grid (x-axis)</param>
