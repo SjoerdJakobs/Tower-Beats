@@ -17,6 +17,13 @@ public class GridPathCreator : MonoBehaviour
         m_InputField = transform.GetComponentInChildren<InputField>();
         m_Notification = transform.GetComponentInChildren<GridPathCreatorNotification>();
         m_SelectingStateText = GameObject.Find("StartStopSelectionText").GetComponent<Text>();
+
+        HexGrid.s_OnHexGridDestroyed += ClearSelectedTiles;
+    }
+
+    private void OnDestroy()
+    {
+        HexGrid.s_OnHexGridDestroyed -= ClearSelectedTiles;
     }
 
     public void ToggleSelection()
@@ -108,5 +115,10 @@ public class GridPathCreator : MonoBehaviour
     private bool AlreadySelected(Tile tile)
     {
         return m_SelectedTiles.Contains(tile);
+    }
+
+    private void ClearSelectedTiles()
+    {
+        m_SelectedTiles.Clear();
     }
 }

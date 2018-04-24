@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 /// <summary>
 /// Axis of the row offset
@@ -15,6 +16,9 @@ public class HexGrid : MonoBehaviour
     /// Instance of the HexGrid. (Example: "HexGrid.s_Instance.CreateGrid()")
     /// </summary>
     public static HexGrid s_Instance;
+
+    public static Action s_OnHexGridCreated;
+    public static Action s_OnHexGridDestroyed;
 
     [Header("Prefab")]
     [SerializeField] private Tile m_TilePrefab;
@@ -148,6 +152,9 @@ public class HexGrid : MonoBehaviour
 
         // Hide Prefab
         m_TilePrefab.gameObject.SetActive(false);
+
+        // Invoke delegate
+        if (s_OnHexGridCreated != null) s_OnHexGridCreated();
     }
 
     /// <summary>
@@ -208,6 +215,9 @@ public class HexGrid : MonoBehaviour
         m_GridCreated = false;
         m_Grid = null;
         m_TilePrefab.gameObject.SetActive(true);
+
+        // Invoke delegate
+        if (s_OnHexGridDestroyed != null) s_OnHexGridDestroyed();
     }
 
     private void OnDestroy()
