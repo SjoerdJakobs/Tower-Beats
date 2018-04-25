@@ -23,8 +23,6 @@ public class GetRMS : MonoBehaviour {
     private int qSamples = 1024;  // array size
     private float refValue = 0.1f; // RMS value for 0 dB
     private float rmsValue;   // sound level - RMS
-    private float dbValue;    // sound level - dB
-    private float volume = 2; // set how much the scale will vary
 
     private float[] samples; // audio samples
 
@@ -47,8 +45,6 @@ public class GetRMS : MonoBehaviour {
         }
         rmsValue = Mathf.Sqrt(sum / qSamples); // rms = square root of average
 
-        //Debug.Log(rmsValue);
-
         if(rmsValue >= 0.06)
         {
             switch (Instrument)
@@ -56,16 +52,17 @@ public class GetRMS : MonoBehaviour {
                 case InstrumentGroup.BASS:
                     Debug.Log("Bass cue");
                     if(s_BassCue != null)
-                    {
                         s_BassCue();
-                    }
                     break;
                 case InstrumentGroup.DRUM:
                     Debug.Log("Drum cue");
                     if(s_DrumCue != null)
-                    {
                         s_DrumCue();
-                    }
+                    break;
+                case InstrumentGroup.SYNTH:
+                    Debug.Log("Synth cue");
+                    if (s_SynthCue != null)
+                        s_SynthCue();
                     break;
             }
         }
