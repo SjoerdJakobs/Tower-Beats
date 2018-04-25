@@ -1,6 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
+#region Enums
+
 /// <summary>
 /// Axis of the row offset
 /// </summary>
@@ -10,8 +12,12 @@ public enum OffsetAxis
     Y_AXIS
 }
 
+#endregion
+
 public class HexGrid : MonoBehaviour
 {
+    #region Variables
+
     /// <summary>
     /// Instance of the HexGrid. (Example: "HexGrid.s_Instance.CreateGrid()")
     /// </summary>
@@ -39,11 +45,24 @@ public class HexGrid : MonoBehaviour
     public Tile SelectedTile { get; set; }
     private bool m_GridCreated;
 
+    #endregion
+
+    #region Monobehaviour functions
+
     private void Awake()
     {
         Init();
         CreateGrid();
     }
+
+    private void OnDestroy()
+    {
+        Tile.s_OnTileClicked -= delegate (Tile tile) { SelectedTile = tile; };
+    }
+
+    #endregion
+
+    #region Initialization
 
     /// <summary>
     /// Gets called upon Initialization (Awake)
@@ -62,6 +81,10 @@ public class HexGrid : MonoBehaviour
         Tile.s_OnTileClicked += delegate (Tile tile) { SelectedTile = tile; };
         CreateGrid();
     }
+
+    #endregion
+
+    #region Grid
 
     /// <summary>
     /// Creates a Grid with the values entered in the inspector
@@ -158,6 +181,38 @@ public class HexGrid : MonoBehaviour
     }
 
     /// <summary>
+    /// Destroy the Grid
+    /// </summary>
+    /// <param name="immediate">Does it need to be destroyed immediately? (For editor only)</param>
+    public void DestroyGrid(bool immediate)
+    {
+        // Loop through all the Rows
+        for (int i = transform.childCount - 1; i > 0; i--)
+        {
+            // Get the Row object
+            GameObject objToDestroy = transform.GetChild(i).gameObject;
+
+            // Destroy it
+            if (immediate)
+                DestroyImmediate(objToDestroy);
+            else
+                Destroy(objToDestroy);
+        }
+
+        // Set values
+        m_GridCreated = false;
+        m_Grid = null;
+        m_TilePrefab.gameObject.SetActive(true);
+
+        // Invoke delegate
+        if (s_OnHexGridDestroyed != null) s_OnHexGridDestroyed();
+    }
+
+    #endregion
+
+    #region Tile Utils
+
+    /// <summary>
     /// Get a Tile by Grid Position
     /// </summary>
     /// <param name="x">Position X in the Grid</param>
@@ -187,41 +242,10 @@ public class HexGrid : MonoBehaviour
         {
             for (int j = 0; j < m_Grid.GetLength(1); j++)
             {
-                m_Grid[i, j].SetHighlightState(false);
+                m_Grid[i, j].SetTileVisualsState(TileVisualState.BASE);
             }
         }
     }
 
-    /// <summary>
-    /// Destroy the Grid
-    /// </summary>
-    /// <param name="immediate">Does it need to be destroyed immediately? (For editor only)</param>
-    public void DestroyGrid(bool immediate)
-    {
-        // Loop through all the Rows
-        for (int i = transform.childCount - 1; i > 0; i--)
-        {
-            // Get the Row object
-            GameObject objToDestroy = transform.GetChild(i).gameObject;
-
-            // Destroy it
-            if (immediate)
-                DestroyImmediate(objToDestroy);
-            else
-                Destroy(objToDestroy);
-        }
-
-        // Set values
-        m_GridCreated = false;
-        m_Grid = null;
-        m_TilePrefab.gameObject.SetActive(true);
-
-        // Invoke delegate
-        if (s_OnHexGridDestroyed != null) s_OnHexGridDestroyed();
-    }
-
-    private void OnDestroy()
-    {
-        Tile.s_OnTileClicked -= delegate (Tile tile) { SelectedTile = tile; };
-    }
+    #endregion
 }

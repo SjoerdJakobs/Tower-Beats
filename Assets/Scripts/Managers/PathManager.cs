@@ -4,6 +4,8 @@ using System.IO;
 using UnityEngine;
 using System;
 
+#region Serializable Data Classes
+
 [System.Serializable]
 public class GridPath
 {
@@ -31,18 +33,29 @@ public class PathData
     public List<GridPath> Paths = new List<GridPath>();
 }
 
+#endregion
+
 public class PathManager : MonoBehaviour
 {
+    #region Variables
+
     public static PathManager s_Instance;
 
     private string m_FilePath;
     private PathData m_PathData;
+
+    #endregion
+
+    #region Initialization
 
     private void Awake()
     {
         Init();
     }
 
+    /// <summary>
+    /// Gets called upon initialization
+    /// </summary>
     private void Init()
     {
         if(s_Instance == null)
@@ -61,6 +74,10 @@ public class PathManager : MonoBehaviour
         LoadData();
     }
 
+    #endregion
+
+    #region Utils
+
     /// <summary>
     /// Returns a GridPath by name
     /// </summary>
@@ -68,12 +85,31 @@ public class PathManager : MonoBehaviour
     /// <returns>A GridPath by name</returns>
     public GridPath GetPathByName(string name)
     {
-        GridPath data = m_PathData.Paths.Find(x => x.Name == name);
+        GridPath data = m_PathData.Paths.Find(x => x.Name.ToLower() == name.ToLower());
         if (data != null)
             return data;
         else
             return null;
     }
+
+    /// <summary>
+    /// Checks if a path name already exists
+    /// </summary>
+    /// <param name="name">Name of the path</param>
+    /// <returns>If the entered path name already exists in the files</returns>
+    public bool PathNameExists(string name)
+    {
+        for (int i = 0; i < m_PathData.Paths.Count; i++)
+        {
+            if (m_PathData.Paths[i].Name.ToLower() == name.ToLower())
+                return true;
+        }
+        return false;
+    }
+
+    #endregion
+
+    #region Save and Load Paths
 
     /// <summary>
     /// Saves a path
@@ -98,6 +134,30 @@ public class PathManager : MonoBehaviour
     {
         SavePath(new GridPath(name, gridSize, path));
     }
+
+    /// <summary>
+    /// Loads a path by name
+    /// </summary>
+    /// <param name="pathName">Name of the path</param>
+    public void LoadPath(string pathName)
+    {
+        GridPath pathData = GetPathByName(pathName);
+
+        if (pathData == null) return;
+
+        HexGrid.s_Instance.DestroyGrid(false);
+        HexGrid.s_Instance.CreateGrid(pathData.GridSize.x, pathData.GridSize.y);
+
+        for (int i = 0; i < pathData.Path.Count; i++)
+        {
+            Tile tile = HexGrid.s_Instance.GetTile(pathData.Path[i]);
+            tile.SetTileVisualsState(TileVisualState.PATH);
+        }
+    }
+
+    #endregion
+
+    #region Save And Load Data
 
     /// <summary>
     /// Loads all the data
@@ -130,18 +190,5 @@ public class PathManager : MonoBehaviour
             File.Create(m_FilePath).Dispose();
     }
 
-    /// <summary>
-    /// Checks if a path name already exists
-    /// </summary>
-    /// <param name="name">Name of the path</param>
-    /// <returns>If the entered path name already exists in the files</returns>
-    public bool PathNameExists(string name)
-    {
-        for (int i = 0; i < m_PathData.Paths.Count; i++)
-        {
-            if (m_PathData.Paths[i].Name.ToLower() == name.ToLower())
-                return true;
-        }
-        return false;
-    }
+    #endregion
 }
