@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - HexTile
+  - Kill Zone
   layers:
   - Default
   - TransparentFX
