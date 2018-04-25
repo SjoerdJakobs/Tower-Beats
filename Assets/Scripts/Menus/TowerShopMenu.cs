@@ -28,8 +28,7 @@ public class TowerShopMenu : Menu {
             }
             HexGrid.s_Instance.SelectedTile.CurrentState = TileState.OCCUPIED;
             Debug.Log(HexGrid.s_Instance.SelectedTile.CurrentState);
-            MenuManager.s_Instance.HideMenu(MenuNames.TOWER_SHOP_MENU);
-            //Hide();
+            Hide();
         }
     }
 
