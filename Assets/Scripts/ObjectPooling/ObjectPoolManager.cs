@@ -9,12 +9,14 @@ public class ObjectPoolManager : MonoBehaviour {
     public event System.Action OnTick;
 
     [SerializeField]
+    private float m_TickIntervalValue;
     private WaitForSeconds m_TickInterval;
 
     // Use this for initialization
     void Awake()
     {
-        m_TickInterval = new WaitForSeconds(0.5f);
+        DontDestroyOnLoad(this.gameObject);
+        m_TickInterval = new WaitForSeconds(m_TickIntervalValue);
         Init();
         ObjectPools = new List<ObjectPool>();
         StartCoroutine(Ticker());
@@ -32,8 +34,18 @@ public class ObjectPoolManager : MonoBehaviour {
             Destroy(gameObject);
         }
     }
-
-    public ObjectPool GetObjectPool(GameObject Prefab)
+    /// <summary>
+    /// This returns the objectpool that contains your prefab.
+    /// If the pool does not exist yet it will automaticly create one.
+    /// </summary>
+    /// <param name="Prefab">The prefab that will be pooled</param>
+    /// <param name="PoolStartSize">the starting size of the object pool</param>
+    /// <param name="IncreaseIncrement">the steps in which the pool will increase when needed</param>
+    /// <param name="ManagerTicksBeforeClean">amount of ticks before clean check</param>
+    /// <param name="CleanThreshold">threshold for the amount of disabled objects needed before it will be cleaned</param>
+    /// <param name="DontDestroyOnLoadBool"></param>
+    /// <returns></returns>
+    public ObjectPool GetObjectPool(GameObject Prefab, int PoolStartSize = 20, int IncreaseIncrement = 5, int ManagerTicksBeforeClean = 5, int CleanThreshold = 20 , bool DontDestroyOnLoadBool = false)
     {
         if(Prefab.GetComponent<PoolObj>() == null)
         {
@@ -51,12 +63,16 @@ public class ObjectPoolManager : MonoBehaviour {
             }
 
             GameObject newPoolObj = new GameObject(Prefab.name + " pool");
+            if(DontDestroyOnLoadBool)
+            {
+                DontDestroyOnLoad(newPoolObj);
+            }
             newPoolObj.AddComponent<ObjectPool>();
 
             ObjectPool newPool = newPoolObj.GetComponent<ObjectPool>();
             newPool.ObjectPrefab = Prefab;
             OnTick += newPool.OnTick;
-            newPool.Init();
+            newPool.Init(PoolStartSize,IncreaseIncrement,ManagerTicksBeforeClean,CleanThreshold);
             ObjectPools.Add(newPool);
 
             return newPool;

@@ -13,10 +13,23 @@ public class TestObjectPool : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        pools.Add(ObjectPoolManager.s_Instance.GetObjectPool(obj1,20,5,5,20,true));
         pools.Add(ObjectPoolManager.s_Instance.GetObjectPool(obj1));
+        pools.Add(ObjectPoolManager.s_Instance.GetObjectPool(obj1));
+        pools.Add(ObjectPoolManager.s_Instance.GetObjectPool(obj1));
+        pools.Add(ObjectPoolManager.s_Instance.GetObjectPool(obj1));
+
         pools.Add(ObjectPoolManager.s_Instance.GetObjectPool(obj2));
+        pools.Add(ObjectPoolManager.s_Instance.GetObjectPool(obj2));
+        pools.Add(ObjectPoolManager.s_Instance.GetObjectPool(obj2));
+        pools.Add(ObjectPoolManager.s_Instance.GetObjectPool(obj2));
+        pools.Add(ObjectPoolManager.s_Instance.GetObjectPool(obj2));
+
         pools.Add(ObjectPoolManager.s_Instance.GetObjectPool(obj3));
-        pools.Add(ObjectPoolManager.s_Instance.GetObjectPool(obj1));
+        pools.Add(ObjectPoolManager.s_Instance.GetObjectPool(obj3));
+        pools.Add(ObjectPoolManager.s_Instance.GetObjectPool(obj3));
+        pools.Add(ObjectPoolManager.s_Instance.GetObjectPool(obj3));
+        pools.Add(ObjectPoolManager.s_Instance.GetObjectPool(obj3));
     }
 
     public FloatRange timeBetweenSpawns, scale, randomVelocity, angularVelocity;
