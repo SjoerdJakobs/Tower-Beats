@@ -3,59 +3,60 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
-    public GameObject ObjectPrefab;
-    public Queue<GameObject> DeadList;
+    public GameObject ObjectPrefab { get; set; }
 
-    public int ObjectsInPool;
-    public int ObjectsAliveInPool;
+    private Queue<GameObject> m_DeadList;
 
-    public int CleanThreshold;
-    public int IncreaseIncrement;
-    public int ManagerTicksBeforeClean;
-    public int CurrentTick;
+    private int m_ObjectsInPool;
+    private int m_ObjectsAliveInPool;
 
-    public bool isAboveThreshold;
+    private int m_CleanThreshold;
+    private int m_IncreaseIncrement;
+    private int m_anagerTicksBeforeClean;
+    private int m_CurrentTick;
+
+    private bool m_isAboveThreshold;
 
     public void Init(int PoolStartSize = 20, int IncreaseIncrement = 5, int ManagerTicksBeforeClean = 5, int CleanThreshold = 20)
     {
         ObjectPrefab.GetComponent<PoolObj>().Pool = this;
-        this.CleanThreshold = CleanThreshold;
-        this.IncreaseIncrement = IncreaseIncrement;
-        this.ManagerTicksBeforeClean = ManagerTicksBeforeClean;
-        ObjectsAliveInPool = 0;
-        DeadList = new Queue<GameObject>();
+        this.m_CleanThreshold = CleanThreshold;
+        this.m_IncreaseIncrement = IncreaseIncrement;
+        this.m_anagerTicksBeforeClean = ManagerTicksBeforeClean;
+        m_ObjectsAliveInPool = 0;
+        m_DeadList = new Queue<GameObject>();
         for (int i = 0; i < PoolStartSize; i++)
         {
             GameObject NewPoolObj = Instantiate(ObjectPrefab, transform);
             NewPoolObj.GetComponent<PoolObj>().Pool = this;
-            DeadList.Enqueue(NewPoolObj);
-            ObjectsInPool++;
+            m_DeadList.Enqueue(NewPoolObj);
+            m_ObjectsInPool++;
             NewPoolObj.SetActive(false);
         }
     }
 
     public GameObject GetFromPool()
     {
-        if(ObjectsAliveInPool < ObjectsInPool)
+        if(m_ObjectsAliveInPool < m_ObjectsInPool)
         {
-            ObjectsAliveInPool++;
-            GameObject returnObject = DeadList.Dequeue();
+            m_ObjectsAliveInPool++;
+            GameObject returnObject = m_DeadList.Dequeue();
             returnObject.SetActive(true);
             return (returnObject);
         }
         else
         {
-            for (int i = 0; i < IncreaseIncrement; i++)
+            for (int i = 0; i < m_IncreaseIncrement; i++)
             {
                 GameObject NewPoolObj = Instantiate(ObjectPrefab, transform);
                 NewPoolObj.GetComponent<PoolObj>().Pool = this;
-                DeadList.Enqueue(NewPoolObj);
-                ObjectsInPool++;
+                m_DeadList.Enqueue(NewPoolObj);
+                m_ObjectsInPool++;
                 NewPoolObj.SetActive(false);
             }
 
-            ObjectsAliveInPool++;
-            GameObject returnObject = DeadList.Dequeue();
+            m_ObjectsAliveInPool++;
+            GameObject returnObject = m_DeadList.Dequeue();
             returnObject.SetActive(true);
             return (returnObject);
         }
@@ -63,30 +64,30 @@ public class ObjectPool : MonoBehaviour
 
     public void OnTick()
     {
-        if (CurrentTick >= ManagerTicksBeforeClean)
+        if (m_CurrentTick >= m_anagerTicksBeforeClean)
         {
-            if (ObjectsInPool - ObjectsAliveInPool > CleanThreshold)
+            if (m_ObjectsInPool - m_ObjectsAliveInPool > m_CleanThreshold)
             {
-                for (int i = 0; i < CleanThreshold; i++)
+                for (int i = 0; i < m_CleanThreshold; i++)
                 {
-                    GameObject returnObject = DeadList.Dequeue();
+                    GameObject returnObject = m_DeadList.Dequeue();
                     Destroy(returnObject);
-                    ObjectsInPool--;
+                    m_ObjectsInPool--;
                 }
-                CurrentTick = 5;
+                m_CurrentTick = 5;
             }
             else
             {
-                CurrentTick = 0;
+                m_CurrentTick = 0;
             }
         }
-        CurrentTick++;
+        m_CurrentTick++;
     }
 
     public void AddObjectToPool(GameObject obj)
     {
         obj.SetActive(false);
-        DeadList.Enqueue(obj);
-        ObjectsAliveInPool--;
+        m_DeadList.Enqueue(obj);
+        m_ObjectsAliveInPool--;
     }
 }

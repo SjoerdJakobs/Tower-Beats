@@ -5,14 +5,16 @@ using UnityEngine;
 public class ObjectPoolManager : MonoBehaviour {
 
     public static ObjectPoolManager s_Instance;
-
     public List<ObjectPool> ObjectPools;
-
     public event System.Action OnTick;
+
+    [SerializeField]
+    private WaitForSeconds m_TickInterval;
 
     // Use this for initialization
     void Awake()
     {
+        m_TickInterval = new WaitForSeconds(0.5f);
         Init();
         ObjectPools = new List<ObjectPool>();
         StartCoroutine(Ticker());
@@ -22,9 +24,13 @@ public class ObjectPoolManager : MonoBehaviour {
     private void Init()
     {
         if (s_Instance == null)
+        {
             s_Instance = this;
+        }
         else
+        {
             Destroy(gameObject);
+        }
     }
 
     public ObjectPool GetObjectPool(GameObject Prefab)
@@ -65,7 +71,7 @@ public class ObjectPoolManager : MonoBehaviour {
             {
                 OnTick();
             }
-            yield return new WaitForSeconds(1);
+            yield return m_TickInterval;
         }        
     }
 }
