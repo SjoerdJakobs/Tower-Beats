@@ -7,7 +7,9 @@ public class GetRMS : MonoBehaviour {
     public delegate void AudioCueEvent();
     public static AudioCueEvent s_BassCue;
     public static AudioCueEvent s_DrumCue;
+    public static AudioCueEvent s_SynthCue;
 
+    //Used to identify the type of instrument
     public enum InstrumentGroup
     {
         BASS,
