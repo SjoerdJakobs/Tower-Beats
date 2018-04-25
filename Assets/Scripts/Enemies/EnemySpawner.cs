@@ -19,6 +19,7 @@ public class EnemySpawner : MonoBehaviour {
 
         Enemy.s_OnDestroyEnemy += RemoveEnemyFromList;
     }
+
     /// <summary>
     /// Spawns a random enemy
     /// </summary>
@@ -28,8 +29,9 @@ public class EnemySpawner : MonoBehaviour {
         int randomEnemy = Random.Range(0, m_Enemies.Count);
         Enemy newEnemy = Instantiate(m_Enemies[randomEnemy]);
         SpawnedEnemies.Add(newEnemy);
-        newEnemy.transform.position = m_EnemyContainer.position;
+        newEnemy.transform.position = PathManager.s_Instance.CurrentPathNodes[0];//m_EnemyContainer.position;
         newEnemy.transform.SetParent(m_EnemyContainer);
+        newEnemy.Move();
     }
 
     void RemoveEnemyFromList(Enemy enemy)

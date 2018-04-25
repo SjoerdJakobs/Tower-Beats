@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Enemy : MonoBehaviour {
 
@@ -12,6 +13,8 @@ public class Enemy : MonoBehaviour {
     [SerializeField] private float m_MoveSpeed;
     [SerializeField] private float m_CoinsToGive;
     [SerializeField] private int m_CoinsToSteal;
+
+    private int m_CurrentNodeIndex;
 
     private void Awake()
     {
@@ -50,11 +53,24 @@ public class Enemy : MonoBehaviour {
         {
             //Gameover
         }
-
     }
 
-    void MoveToNextWaypoint()
+
+    //TEMP
+    public void Move()
     {
-
+        m_CurrentNodeIndex = 1;
+        MoveToNextNode();
     }
+
+    //TEMP
+    private void MoveToNextNode()
+    {
+        if (m_CurrentNodeIndex < PathManager.s_Instance.CurrentPathNodes.Count)
+        {
+            transform.DOMove(PathManager.s_Instance.CurrentPathNodes[m_CurrentNodeIndex], m_MoveSpeed).SetEase(Ease.Linear).OnComplete(() => MoveToNextNode());
+            m_CurrentNodeIndex++;
+        }
+    }
+
 }

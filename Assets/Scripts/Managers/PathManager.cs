@@ -44,6 +44,9 @@ public class PathManager : MonoBehaviour
     private string m_FilePath;
     private PathData m_PathData;
 
+    private List<Vector2> m_CurrentPathNodes = new List<Vector2>();
+    public List<Vector2> CurrentPathNodes { get { return m_CurrentPathNodes; } }
+
     #endregion
 
     #region Initialization
@@ -145,6 +148,8 @@ public class PathManager : MonoBehaviour
 
         if (pathData == null) return;
 
+        m_CurrentPathNodes.Clear();
+
         HexGrid.s_Instance.DestroyGrid(false);
         HexGrid.s_Instance.CreateGrid(pathData.GridSize.x, pathData.GridSize.y);
 
@@ -152,6 +157,8 @@ public class PathManager : MonoBehaviour
         {
             Tile tile = HexGrid.s_Instance.GetTile(pathData.Path[i]);
             tile.SetTileVisualsState(TileVisualState.PATH);
+            tile.CurrentState = TileState.PATH;
+            m_CurrentPathNodes.Add(tile.transform.position);
         }
     }
 
