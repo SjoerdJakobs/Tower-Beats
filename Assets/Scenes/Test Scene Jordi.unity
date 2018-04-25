@@ -143,7 +143,6 @@ MonoBehaviour:
   m_EnemyContainer: {fileID: 221497455}
   m_Enemies:
   - {fileID: 114768752582060182, guid: 6070b2b6ce613c74ca956f892c914407, type: 2}
-  - {fileID: 0}
   SpawnedEnemies: []
 --- !u!4 &221497455
 Transform:
