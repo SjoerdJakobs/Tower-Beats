@@ -32,26 +32,24 @@ public class Tower : MonoBehaviour
 {
     protected TowerData m_TowerData;
     public TowerData TowerData { get; set; }
-    [SerializeField]private List<Enemy> m_EnemiesInRange = new List<Enemy>();
+    [SerializeField]protected List<Enemy> m_EnemiesInRange = new List<Enemy>();
     protected Enemy m_Target;
     protected bool m_ReadyToAttack = true;
     protected bool m_StartedCooldown;
 
     public Tower Self { get; set; } //Reference to itself
 
+    private LineRenderer m_LineRenderer;
 
-    private void Awake()
+    public virtual void Awake()
     {
         Enemy.s_OnDestroyEnemy += RemoveEnemyFromList;
+        m_LineRenderer = GetComponent<LineRenderer>();
     }
 
     private void Update()
     {
         GetTarget();
-        if(m_Target != null)
-        {
-            Attack();
-        }
     }
 
     /// <summary>
@@ -74,6 +72,22 @@ public class Tower : MonoBehaviour
         }
     }
 
+    public IEnumerator DrawLine()
+    {
+        m_LineRenderer.SetPosition(0, transform.position);
+
+        m_LineRenderer.SetPosition(1, m_Target.transform.position);
+
+        yield return new WaitForSeconds(0.075f);
+
+        RemoveLine();
+    }
+
+    void RemoveLine()
+    {
+        m_LineRenderer.SetPosition(1, Vector3.zero);
+    }
+
     /// <summary>
     /// Gets all the enemies that are within the towers range
     /// </summary>
@@ -83,7 +97,8 @@ public class Tower : MonoBehaviour
         for (int i = 0; i < EnemySpawner.s_Instance.SpawnedEnemies.Count; i++)
         {
             Enemy enemy = EnemySpawner.s_Instance.SpawnedEnemies[i];
-            float distance = Vector3.Distance(transform.position, enemy.transform.position);            
+            float distance = Vector3.Distance(transform.position, enemy.transform.position);
+            
             if(distance <= TowerData.AttackRange && !m_EnemiesInRange.Contains(enemy))
             {
                 m_EnemiesInRange.Add(enemy);
@@ -104,7 +119,7 @@ public class Tower : MonoBehaviour
 
     public virtual void Attack()
     {
-        // Do attack (done in child classes)
+        //Do attack (done in child classes)
         //After tower has attacked, start cooldown
         if (!m_ReadyToAttack && !m_StartedCooldown)
         {
