@@ -2320,6 +2320,21 @@ Prefab:
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 1.2
       objectReference: {fileID: 0}
+    - target: {fileID: 212762076599681872, guid: 09c6adc9570a3e04d9850194b8601349,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212762076599681872, guid: 09c6adc9570a3e04d9850194b8601349,
+        type: 2}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 212762076599681872, guid: 09c6adc9570a3e04d9850194b8601349,
+        type: 2}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 09c6adc9570a3e04d9850194b8601349, type: 2}
   m_IsPrefabParent: 0
