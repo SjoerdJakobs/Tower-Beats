@@ -71,6 +71,10 @@ public class Enemy : MonoBehaviour {
             transform.DOMove(PathManager.s_Instance.CurrentPathNodes[m_CurrentNodeIndex], m_MoveSpeed).SetEase(Ease.Linear).OnComplete(() => MoveToNextNode());
             m_CurrentNodeIndex++;
         }
+        else
+        {
+            DamageObjective();
+        }
     }
 
 }

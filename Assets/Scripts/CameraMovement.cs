@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using DG.Tweening;
+﻿using UnityEngine;
 
 public class CameraMovement : MonoBehaviour {
 
@@ -10,15 +7,15 @@ public class CameraMovement : MonoBehaviour {
     [SerializeField] private float m_MinY;
     [SerializeField] private float m_MaxY;
     [SerializeField] private float m_LerpSpeed; // Lower value is faster
-	
-	void Start () {
-	
-	}
-	
+
 	void Update () {
         MoveCamera();
 	}
 
+    /// <summary>
+    /// Allows the player to move the camera.
+    /// Movement is clamped between X and Y values to make sure the player stays in the map
+    /// </summary>
     void MoveCamera()
     {
         float currentX = transform.position.x;
