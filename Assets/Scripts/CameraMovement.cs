@@ -45,6 +45,6 @@ public class CameraMovement : MonoBehaviour {
 
     public void Screenshake()
     {
-        transform.DOShakePosition(0.2f, 1, 10, 30, false, true);
+        transform.DOShakePosition(0.2f,2,30, 30, false, true);
     }
 }
