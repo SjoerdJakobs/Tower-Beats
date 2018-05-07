@@ -27,7 +27,7 @@ public class Enemy : MonoBehaviour {
     public void TakeDamage(float damage)
     {
         m_CurrentHealth -= damage;
-        if(m_CurrentHealth <= 0)
+        if (m_CurrentHealth <= 0)
         {
             Death();
         }
@@ -46,16 +46,8 @@ public class Enemy : MonoBehaviour {
 
     public void DamageObjective()
     {
-        //If there is a instance of the CameraMovement script in the scene, shake the screen
-        if (CameraMovement.s_Instance != null)
-        {
-            CameraMovement.s_Instance.Screenshake();
-        }
-        //If there is a instance of the ShowHitIndicator script in the scene, show the hit indicator
-        if (ShowHitIndicator.s_Instance != null)
-        {
-            ShowHitIndicator.s_Instance.HitIndicator();
-        }
+        Effects.s_Screenshake(0.2f,30);
+
         if (PlayerData.s_Instance.Lives > 0)
         {
             PlayerData.s_Instance.ChangeLivesAmount(-1);
