@@ -15,39 +15,19 @@ public class CameraMovement : MonoBehaviour {
 	
 	}
 	
-	// Update is called once per frame
 	void Update () {
         MoveCamera();
 	}
 
     void MoveCamera()
     {
+        float currentX = transform.position.x;
+        float currentY = transform.position.y;
+        currentX = Mathf.Clamp(currentX, m_MinX, m_MaxX);
+        currentY = Mathf.Clamp(currentY, m_MinY, m_MaxY);
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
-        Vector3 movePos = new Vector3(transform.position.x + x, transform.position.y + y,-10);
-        if (movePos.x < m_MaxX && movePos.x > m_MinX )
-        {
-            
-        }
-
-        if (movePos.x > m_MaxX)
-        {
-            movePos.x = m_MaxX;
-        }
-        else if(movePos.x < m_MinX)
-        {
-            movePos.x = m_MinX;
-        }
-
-        if(movePos.y > m_MaxY)
-        {
-            movePos.y = m_MaxY;
-        }
-        else if(movePos.y < m_MinY)
-        {
-            movePos.y = m_MinY;
-        }
-
+        Vector3 movePos = new Vector3(currentX + x, currentY + y,-10);
         transform.position = Vector3.Lerp(transform.position, movePos, m_LerpSpeed);
     }
 }

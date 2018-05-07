@@ -22,7 +22,7 @@ public class PlayerInfo : MonoBehaviour {
 
     void UpdateLivesUI(float lives)
     {
-        m_Lives.DOFillAmount(lives/9,0.2f);
+        m_Lives.DOFillAmount(lives/10,0.2f);
     }
 
     void UpdateSongUI(int currentSong, int maxSongs,string songName)
