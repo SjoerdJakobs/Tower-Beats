@@ -97,15 +97,19 @@ public class Tower : MonoBehaviour
         for (int i = 0; i < EnemySpawner.s_Instance.SpawnedEnemies.Count; i++)
         {
             Enemy enemy = EnemySpawner.s_Instance.SpawnedEnemies[i];
-            float distance = Vector3.Distance(transform.position, enemy.transform.position);
-            
-            if(distance <= TowerData.AttackRange && !m_EnemiesInRange.Contains(enemy))
+
+            if(enemy != null)
             {
-                m_EnemiesInRange.Add(enemy);
-            }
-            else if(distance >= TowerData.AttackRange && m_EnemiesInRange.Contains(enemy))
-            {
-                RemoveEnemyFromList(enemy);
+                float distance = Vector3.Distance(transform.position, enemy.transform.position);
+
+                if (distance <= TowerData.AttackRange && !m_EnemiesInRange.Contains(enemy))
+                {
+                    m_EnemiesInRange.Add(enemy);
+                }
+                else if (distance >= TowerData.AttackRange && m_EnemiesInRange.Contains(enemy))
+                {
+                    RemoveEnemyFromList(enemy);
+                }
             }
         }
         
