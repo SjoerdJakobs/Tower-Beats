@@ -52,6 +52,7 @@ public class Enemy : MonoBehaviour {
         else
         {
             //Gameover
+            MenuManager.s_Instance.ShowMenu(MenuNames.GAME_OVER_MENU);
         }
     }
 
