@@ -18,5 +18,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Lorenzo.unity
     guid: 65516a430aeeb9d47b1cb1331b772dc9
   - enabled: 1
+    path: Assets/Scenes/Jordi Test Scene.unity
+    guid: 32a629b18276913409664b0a4910ad7e
+  - enabled: 1
     path: Assets/Scenes/TestSceneJeffrey.unity
     guid: 265146290f6389d459fa9bbf0370ff23
