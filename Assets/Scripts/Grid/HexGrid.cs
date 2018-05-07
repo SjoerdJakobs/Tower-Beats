@@ -41,7 +41,11 @@ public class HexGrid : MonoBehaviour
     [SerializeField] private float m_OffRowOffset;
 
     private Tile[,] m_Grid;
-
+    public Tile[,] Grid
+    {
+        get { return m_Grid; }
+        set { m_Grid = value; }
+    }
     public Tile SelectedTile { get; set; }
     private bool m_GridCreated;
 

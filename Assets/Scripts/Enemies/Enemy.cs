@@ -43,16 +43,22 @@ public class Enemy : MonoBehaviour {
 
     public void DamageObjective()
     {
+        //If there is a instance of the CameraMovement script in the scene, shake the screen
+        if (CameraMovement.s_Instance != null)
+        {
+            CameraMovement.s_Instance.Screenshake();
+        }
+        //If there is a instance of the ShowHitIndicator script in the scene, show the hit indicator
+        if (ShowHitIndicator.s_Instance != null)
+        {
+            ShowHitIndicator.s_Instance.HitIndicator();
+        }
         if (PlayerData.s_Instance.Lives > 0)
         {
             PlayerData.s_Instance.ChangeLivesAmount(-1);
             PlayerData.s_Instance.ChangeCoinAmount(-m_CoinsToSteal);
+            
             Destroy(this.gameObject);
-        }
-        else
-        {
-            //Gameover
-            MenuManager.s_Instance.ShowMenu(MenuNames.GAME_OVER_MENU);
         }
     }
 
@@ -77,5 +83,4 @@ public class Enemy : MonoBehaviour {
             DamageObjective();
         }
     }
-
 }
