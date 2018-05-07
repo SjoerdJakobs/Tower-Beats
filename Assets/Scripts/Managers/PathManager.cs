@@ -44,8 +44,8 @@ public class PathManager : MonoBehaviour
     private string m_FilePath;
     private PathData m_PathData;
 
-    private List<Vector2> m_CurrentPathNodes = new List<Vector2>();
-    public List<Vector2> CurrentPathNodes { get { return m_CurrentPathNodes; } }
+    private List<Vector3> m_CurrentPathNodes = new List<Vector3>();
+    public List<Vector3> CurrentPathNodes { get { return m_CurrentPathNodes; } }
 
     #endregion
 

@@ -10,6 +10,9 @@ public class Enemy : MonoBehaviour {
     [SerializeField] private float m_MaxHealth;
     private float m_CurrentHealth;
 
+    //TEMP
+    private Tween m_dopath;
+
     [SerializeField] private float m_MoveSpeed;
     [SerializeField] private float m_CoinsToGive;
     [SerializeField] private int m_CoinsToSteal;
@@ -60,8 +63,27 @@ public class Enemy : MonoBehaviour {
     //TEMP
     public void Move()
     {
-        m_CurrentNodeIndex = 1;
-        MoveToNextNode();
+        Vector3[] pathArray = PathManager.s_Instance.CurrentPathNodes.ToArray();
+        m_dopath = transform.DOPath(pathArray, pathArray.Length * m_MoveSpeed).SetEase(Ease.Linear).OnComplete(() => DamageObjective());
+        Invoke("PausePath",1);
+        Invoke("PlayPath",2);
+        //dopath.Play();
+        //m_CurrentNodeIndex = 1;
+
+        //MoveToNextNode();
+    }
+
+
+    //TEMP
+    private void PausePath()
+    {
+        m_dopath.Pause();
+    }
+
+    //TEMP
+    private void PlayPath()
+    {
+        m_dopath.Play();
     }
 
     //TEMP
