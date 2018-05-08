@@ -14,6 +14,10 @@ public class PlayerInfo : MonoBehaviour {
         PlayerData.s_OnUpdateCoins += UpdateCoinsUI;
         PlayerData.s_OnUpdateLives += UpdateLivesUI;
         SongManager.s_OnChangeSong += UpdateSongUI;
+
+        Sequence healthBarStartSequence = DOTween.Sequence();
+        //healthBarStartSequence.Append
+
     }
 
     void UpdateCoinsUI(float coins)
@@ -34,7 +38,7 @@ public class PlayerInfo : MonoBehaviour {
             Effects.ChangeImageColor(m_Lives, Effects.s_EffectColors["Red"], 0.3f);
         }
 
-        Effects.s_ImageFlash(m_DamageIndicator, 0.2f, 4, Effects.s_EffectColors["Red"]);
+        Effects.s_ImageFlash(m_DamageIndicator, 0.2f, 2, Effects.s_EffectColors["Red"]);
     }
 
     void UpdateSongUI(int currentSong, int maxSongs,string songName)

@@ -46,7 +46,7 @@ public class Enemy : MonoBehaviour {
 
     public void DamageObjective()
     {
-        Effects.s_Screenshake(0.2f,30);
+        Effects.s_Screenshake(0.2f,20);
 
         if (PlayerData.s_Instance.Lives > 0)
         {

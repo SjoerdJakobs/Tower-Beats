@@ -13,6 +13,8 @@ public class Effects : MonoBehaviour
         {"Yellow", new Color(255,255,0) }
     };
 
+    private static bool m_FlashIsPlaying;
+
     /// <summary>
     /// Screenshake effect
     /// </summary>
@@ -32,7 +34,10 @@ public class Effects : MonoBehaviour
     /// <param name="flashColor">Color of the flashing image</param>
     public static void s_ImageFlash(Image imageToFlash, float fadeDuration,int loops, Color flashColor)
     {
-        imageToFlash.DOFade(1, fadeDuration).SetLoops(loops,LoopType.Yoyo);
+        if (!m_FlashIsPlaying) {
+            m_FlashIsPlaying = true;
+            imageToFlash.DOFade(1, fadeDuration).SetLoops(loops, LoopType.Yoyo).OnComplete(() => m_FlashIsPlaying = false);
+        }        
     }
 
     /// <summary>
