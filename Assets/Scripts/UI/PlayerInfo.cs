@@ -15,8 +15,13 @@ public class PlayerInfo : MonoBehaviour {
         PlayerData.s_OnUpdateLives += UpdateLivesUI;
         SongManager.s_OnChangeSong += UpdateSongUI;
 
+        m_Lives.fillAmount = 0; // Makes sure the bar is empty at the start before the filling tween starts
         Sequence healthBarStartSequence = DOTween.Sequence();
-        //healthBarStartSequence.Append
+        healthBarStartSequence.AppendInterval(0.3f);
+        healthBarStartSequence.Append(m_Lives.DOFillAmount(1, 3f)).SetEase(Ease.Linear);
+        healthBarStartSequence.Insert(0.3f, m_Lives.DOColor(Color.red, 0.2f));
+        healthBarStartSequence.Insert(0.7f, m_Lives.DOColor(Effects.s_EffectColors["Yellow"], 0.2f));
+        healthBarStartSequence.Insert(1.8f, m_Lives.DOColor(Color.green, 0.2f));
 
     }
 
