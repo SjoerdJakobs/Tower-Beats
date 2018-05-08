@@ -32,7 +32,8 @@ public class Sceneloader : MonoBehaviour
     {
         if(scene.name == "Lorenzo")
         {
-            s_OnSceneLoaded();
+            if(s_OnSceneLoaded != null)
+                s_OnSceneLoaded();
         }
     }
 

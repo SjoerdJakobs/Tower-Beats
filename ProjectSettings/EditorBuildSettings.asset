@@ -11,10 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LevelSelection.unity
     guid: 516a96a2f78bdd649a78cbdde866e0d7
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Main.unity
     guid: d87e22f69b921dd4680171bf4c34e293
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Lorenzo.unity
     guid: 65516a430aeeb9d47b1cb1331b772dc9
   - enabled: 1
