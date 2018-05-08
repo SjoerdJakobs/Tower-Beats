@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviour {
     private void Awake()
     {
         m_CurrentHealth = m_MaxHealth;
+        PauseCheck.s_Instance.Pause += TogglePause;
     }
 
     public void TakeDamage(float damage)
@@ -63,25 +64,19 @@ public class Enemy : MonoBehaviour {
     {
         Vector3[] pathArray = PathManager.s_Instance.CurrentPathNodes.ToArray();
         m_dopath = transform.DOPath(pathArray, pathArray.Length * m_MoveSpeed).SetEase(Ease.Linear).OnComplete(() => DamageObjective());
-        Invoke("PausePath",1);
-        Invoke("PlayPath",2);
-        //dopath.Play();
-        //m_CurrentNodeIndex = 1;
-
-        //MoveToNextNode();
+        
     }
 
-
-    //TEMP
-    private void PausePath()
+    public void TogglePause(bool pause)
     {
-        m_dopath.Pause();
-    }
-
-    //TEMP
-    private void PlayPath()
-    {
-        m_dopath.Play();
+        if(pause)
+        {
+            m_dopath.Pause();
+        }
+        else
+        {
+            m_dopath.Play();
+        }
     }
 
     //TEMP

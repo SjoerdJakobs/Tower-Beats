@@ -9,6 +9,7 @@ public struct MenuNames
     public const string TOWER_SHOP_MENU = "TowerShopMenu";
     public const string TOWER_MENU = "TowerMenu";
     public const string GAME_OVER_MENU = "GameOverMenu";
+    public const string PAUSE_MENU = "PauseMenu";
 }
 
 public class MenuManager : MonoBehaviour
@@ -92,5 +93,30 @@ public class MenuManager : MonoBehaviour
     public void HideMenu(Menu menu)
     {
         menu.Hide();
+    }
+
+    public void ToggleMenu(Menu menu)
+    {
+        if (IsAnyMenuOpen)
+        {
+            if (m_CurrentOpenMenu != menu)
+            {
+                m_CurrentOpenMenu.Hide();
+                menu.Show();
+                m_CurrentOpenMenu = menu;
+                if (s_OnMenuOpened != null) s_OnMenuOpened(menu);
+            }
+            else
+            {
+                m_CurrentOpenMenu = null;
+                menu.Hide();
+            }
+        }
+        else
+        {
+            menu.Show();
+            m_CurrentOpenMenu = menu;
+            if (s_OnMenuOpened != null) s_OnMenuOpened(menu);
+        }
     }
 }
