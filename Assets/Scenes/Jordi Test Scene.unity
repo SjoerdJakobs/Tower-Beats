@@ -27581,6 +27581,12 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &644675561 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114667277404907232, guid: b682b91d8605c534b8865614730f3882,
+    type: 2}
+  m_PrefabInternal: {fileID: 947396418}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &647332185
 GameObject:
   m_ObjectHideFlags: 0
@@ -40912,6 +40918,11 @@ Prefab:
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114991563976994516, guid: b682b91d8605c534b8865614730f3882,
+        type: 2}
+      propertyPath: m_DamageIndicator
+      value: 
+      objectReference: {fileID: 644675561}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b682b91d8605c534b8865614730f3882, type: 2}
   m_IsPrefabParent: 0
