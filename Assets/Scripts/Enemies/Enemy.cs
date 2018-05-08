@@ -62,9 +62,9 @@ public class Enemy : MonoBehaviour {
     public void Move()
     {
         Vector3[] pathArray = PathManager.s_Instance.CurrentPathNodes.ToArray();
-        m_dopath = transform.DOPath(pathArray, pathArray.Length * m_MoveSpeed).SetEase(Ease.Linear).OnComplete(() => DamageObjective());
-        Invoke("PausePath",1);
-        Invoke("PlayPath",2);
+        m_dopath = transform.DOPath(pathArray, pathArray.Length / m_MoveSpeed, PathType.CatmullRom).SetEase(Ease.Linear).OnComplete(() => DamageObjective());
+        //Invoke("PausePath",1);
+        //Invoke("PlayPath",2);
         //dopath.Play();
         //m_CurrentNodeIndex = 1;
 

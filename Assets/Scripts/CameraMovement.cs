@@ -9,7 +9,12 @@ public class CameraMovement : MonoBehaviour {
     [SerializeField] private float m_LerpSpeed; // Lower value is faster
     [SerializeField] private float m_ScreenOffset = 0;
     [SerializeField] private float m_MoveSpeed = 1;
-    private bool m_UsingMouseInput;
+    [Space(20f)]
+    [SerializeField] private bool m_UseMouseInput = true;
+    [SerializeField] private bool m_UseKeyInput = true;
+    [SerializeField] private bool m_UseTouchInput = false;
+
+    private bool m_GotMouseInput;
 
     void LateUpdate () {
 
@@ -22,7 +27,7 @@ public class CameraMovement : MonoBehaviour {
     /// </summary>
     void MoveCamera()
     {
-        m_UsingMouseInput = false;
+        m_GotMouseInput = false;
 
         float currentX = transform.position.x;
         float currentY = transform.position.y;
@@ -35,34 +40,53 @@ public class CameraMovement : MonoBehaviour {
 
         Vector3 movePos = transform.position;
 
-        if (Input.mousePosition.x > Screen.width - m_ScreenOffset)
+        if(m_UseMouseInput)
         {
-            // Move Right
-            movePos += Vector3.right;
-            m_UsingMouseInput = true;
-        }
-        if (Input.mousePosition.x < m_ScreenOffset)
-        {
-            // Move Left
-            movePos += Vector3.left;
-            m_UsingMouseInput = true;
-        }
-        if (Input.mousePosition.y > Screen.height - m_ScreenOffset)
-        {
-            // Move Down
-            movePos += Vector3.up;
-            m_UsingMouseInput = true;
-        }
-        if (Input.mousePosition.y < m_ScreenOffset)
-        {
-            // Move Up
-            movePos += Vector3.down;
-            m_UsingMouseInput = true;
+            if (Input.mousePosition.x > Screen.width - m_ScreenOffset)
+            {
+                // Move Right
+                movePos += Vector3.right;
+                m_GotMouseInput = true;
+            }
+            if (Input.mousePosition.x < m_ScreenOffset)
+            {
+                // Move Left
+                movePos += Vector3.left;
+                m_GotMouseInput = true;
+            }
+            if (Input.mousePosition.y > Screen.height - m_ScreenOffset)
+            {
+                // Move Down
+                movePos -= Vector3.down;
+                m_GotMouseInput = true;
+            }
+            if (Input.mousePosition.y < m_ScreenOffset)
+            {
+                // Move Up
+                movePos -= Vector3.up;
+                m_GotMouseInput = true;
+            }
         }
 
-        // Use Key movement
-        if(!m_UsingMouseInput)
-            movePos = new Vector3(movePos.x + x, movePos.y + y, transform.position.z);
+        if(m_UseKeyInput)
+        {
+            // Use Key movement
+            if (!m_GotMouseInput)
+                movePos = new Vector3(movePos.x + x, movePos.y + y, transform.position.z);
+        }
+
+        // NEEDS TO BE TESTED ON MOBILE
+        if(m_UseTouchInput)
+        {
+            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
+            {
+                // Get movement of the finger since last frame
+                Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
+
+                // Set movePos
+                movePos = touchDeltaPosition;
+            }
+        }
 
         movePos = new Vector3(Mathf.Clamp(movePos.x, m_MinX, m_MaxX), Mathf.Clamp(movePos.y, m_MinY, m_MaxY), transform.position.z);
 

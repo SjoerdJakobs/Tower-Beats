@@ -22,7 +22,7 @@ public class Effects : MonoBehaviour
     /// <param name="vibration">Vibration power of the shake</param>
     public static void s_Screenshake(float duration, int vibration)
     {
-        Camera.main.transform.DOShakePosition(duration, 2, vibration, 30, false, true);
+        Camera.main.transform.DOShakePosition(duration, 1, vibration, 30, false, true);
     }
 
     /// <summary>

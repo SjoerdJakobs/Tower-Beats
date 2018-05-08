@@ -24987,13 +24987,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da66d9cc90499a43947427b2a65ccf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MinX: 7
+  m_MinX: 8
   m_MaxX: 19
-  m_MinY: 3
+  m_MinY: 4.5
   m_MaxY: 9.5
   m_LerpSpeed: 0.2
   m_ScreenOffset: 0
   m_MoveSpeed: 1
+  m_UseMouseInput: 1
+  m_UseKeyInput: 1
+  m_UseTouchInput: 0
 --- !u!81 &616523905
 AudioListener:
   m_ObjectHideFlags: 0
