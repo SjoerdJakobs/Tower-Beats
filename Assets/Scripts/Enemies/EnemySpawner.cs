@@ -35,6 +35,21 @@ public class EnemySpawner : MonoBehaviour {
         newEnemy.Move();
     }
 
+    public void SpawnWave()
+    {
+        StopCoroutine(SpawnEnemies());
+        StartCoroutine(SpawnEnemies());
+    }
+
+    private IEnumerator SpawnEnemies()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            SpawnEnemy();
+            yield return new WaitForSeconds(1f);
+        }
+    }
+
     void RemoveEnemyFromList(Enemy enemy)
     {
         SpawnedEnemies.Remove(enemy);

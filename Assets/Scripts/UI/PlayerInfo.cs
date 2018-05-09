@@ -8,12 +8,14 @@ public class PlayerInfo : MonoBehaviour {
     [SerializeField] private Image m_Lives;
     [SerializeField] private Text m_Song;
     [SerializeField] private Image m_DamageIndicator;
+    [SerializeField] private Text m_PreparationTimer;
 
     private void Awake()
     {
         PlayerData.s_OnUpdateCoins += UpdateCoinsUI;
         PlayerData.s_OnUpdateLives += UpdateLivesUI;
         SongManager.s_OnChangeSong += UpdateSongUI;
+        GameManager.s_OnPreparationTimeUpdated += UpdatePreparationTime;
 
         m_Lives.fillAmount = 0; // Makes sure the bar is empty at the start before the filling tween starts
         Sequence healthBarStartSequence = DOTween.Sequence();
@@ -54,9 +56,22 @@ public class PlayerInfo : MonoBehaviour {
         m_Song.text = currentSong + "/" + maxSongs + "\n" + songName;
     }
 
+    private void UpdatePreparationTime(int time)
+    {
+        if(time == 0)
+        {
+            m_PreparationTimer.text = "";
+            m_PreparationTimer.gameObject.SetActive(false);
+        }
+        else
+            m_PreparationTimer.text = "Prepare your defenses.\nSpawning in: " + time + " second(s)";
+    }
+
     private void OnDestroy()
     {
         PlayerData.s_OnUpdateCoins -= UpdateCoinsUI;
         PlayerData.s_OnUpdateLives -= UpdateLivesUI;
+        SongManager.s_OnChangeSong -= UpdateSongUI;
+        GameManager.s_OnPreparationTimeUpdated -= UpdatePreparationTime;
     }
 }
