@@ -22,7 +22,6 @@ public class PlayerInfo : MonoBehaviour {
         healthBarStartSequence.Insert(0.3f, m_Lives.DOColor(Color.red, 0.2f));
         healthBarStartSequence.Insert(0.7f, m_Lives.DOColor(Effects.s_EffectColors["Yellow"], 0.2f));
         healthBarStartSequence.Insert(1.8f, m_Lives.DOColor(Color.green, 0.2f));
-
     }
 
     void UpdateCoinsUI(float coins)
@@ -32,18 +31,22 @@ public class PlayerInfo : MonoBehaviour {
 
     void UpdateLivesUI(float lives)
     {
-        m_Lives.DOFillAmount(lives/10,0.2f);
-        if(lives == 7)
+        m_Lives.DOFillAmount(lives/10,0.3f);
+        if(lives > 7)
         {
-            Effects.YoyoImageColor(m_Lives, Effects.s_EffectColors["Yellow"], 3, 0.3f);
+            Effects.ChangeImageColor(m_Lives, Color.green, 0.3f);
+        }
+        else if(lives <= 7 && lives > 3)
+        {
+            Effects.ChangeImageColor(m_Lives, Effects.s_EffectColors["Yellow"], 0.3f);
             //Effects.ChangeImageColor(m_Lives, Effects.s_EffectColors["Yellow"], 0.3f);
         }
-        else if(lives == 3)
+        else if(lives <= 3)
         {
             Effects.ChangeImageColor(m_Lives, Effects.s_EffectColors["Red"], 0.3f);
         }
 
-        Effects.s_ImageFlash(m_DamageIndicator, 0.2f, 2, Effects.s_EffectColors["Red"]);
+        //Effects.s_ImageFlash(m_DamageIndicator, 0.2f, 2, Effects.s_EffectColors["Red"]);
     }
 
     void UpdateSongUI(int currentSong, int maxSongs,string songName)
