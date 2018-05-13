@@ -1,0 +1,307 @@
+
+Enemy1.png
+size: 5626,631
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+BitTrail/BitTrail0001
+  rotate: false
+  xy: 2304, 329
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+BitTrail/BitTrail0002
+  rotate: false
+  xy: 2340, 27
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+BitTrail/BitTrail0003
+  rotate: false
+  xy: 2606, 329
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+BitTrail/BitTrail0004
+  rotate: false
+  xy: 2642, 27
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+BitTrail/BitTrail0005
+  rotate: false
+  xy: 2908, 329
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+BitTrail/BitTrail0006
+  rotate: false
+  xy: 2944, 27
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+BitTrail/BitTrail0007
+  rotate: false
+  xy: 3210, 329
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+BitTrail/BitTrail0008
+  rotate: false
+  xy: 3246, 27
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+BitTrail/BitTrail0009
+  rotate: false
+  xy: 3512, 329
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+BitTrail/BitTrail0010
+  rotate: false
+  xy: 3548, 27
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+BitTrail/BitTrail0011
+  rotate: false
+  xy: 3814, 329
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+BitTrail/BitTrail0012
+  rotate: false
+  xy: 3850, 27
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+BitTrail/BitTrail0013
+  rotate: false
+  xy: 4116, 329
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+BitTrail/BitTrail0014
+  rotate: false
+  xy: 4152, 27
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+BitTrail/BitTrail0015
+  rotate: false
+  xy: 4418, 329
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+BitTrail/BitTrail0016
+  rotate: false
+  xy: 4454, 27
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+BitTrail/BitTrail0017
+  rotate: false
+  xy: 4720, 329
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+BitTrail/BitTrail0018
+  rotate: false
+  xy: 4756, 27
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+BitTrail/BitTrail0019
+  rotate: false
+  xy: 5022, 329
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+BitTrail/BitTrail0020
+  rotate: false
+  xy: 5058, 27
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+BitTrail/BitTrail0021
+  rotate: false
+  xy: 5324, 329
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+Distort1
+  rotate: true
+  xy: 2012, 303
+  size: 326, 290
+  orig: 326, 290
+  offset: 0, 0
+  index: -1
+Distort2
+  rotate: false
+  xy: 2012, 11
+  size: 326, 290
+  orig: 326, 290
+  offset: 0, 0
+  index: -1
+Enemy_1_Eye
+  rotate: false
+  xy: 206, 28
+  size: 35, 49
+  orig: 35, 49
+  offset: 0, 0
+  index: -1
+Enemy_1_Eye_Hit
+  rotate: false
+  xy: 243, 28
+  size: 35, 49
+  orig: 35, 49
+  offset: 0, 0
+  index: -1
+Enemy_1_Pulse
+  rotate: false
+  xy: 280, 28
+  size: 35, 49
+  orig: 35, 49
+  offset: 0, 0
+  index: -1
+Enemy_1_Right_wing
+  rotate: true
+  xy: 5360, 227
+  size: 100, 121
+  orig: 100, 121
+  offset: 0, 0
+  index: -1
+Enemy_1_Right_wing_hit
+  rotate: true
+  xy: 5483, 227
+  size: 100, 121
+  orig: 100, 121
+  offset: 0, 0
+  index: -1
+Enemy_1_left_truster
+  rotate: false
+  xy: 317, 40
+  size: 28, 37
+  orig: 28, 37
+  offset: 0, 0
+  index: -1
+Enemy_1_left_truster_hit
+  rotate: true
+  xy: 317, 10
+  size: 28, 37
+  orig: 28, 37
+  offset: 0, 0
+  index: -1
+Enemy_1_left_wing
+  rotate: true
+  xy: 5360, 138
+  size: 87, 81
+  orig: 87, 81
+  offset: 0, 0
+  index: -1
+Enemy_1_left_wing_hit
+  rotate: true
+  xy: 5360, 49
+  size: 87, 81
+  orig: 87, 81
+  offset: 0, 0
+  index: -1
+Enemy_1_middelpiece
+  rotate: false
+  xy: 2, 13
+  size: 60, 64
+  orig: 60, 64
+  offset: 0, 0
+  index: -1
+Enemy_1_middelpiece_hit
+  rotate: false
+  xy: 64, 13
+  size: 60, 64
+  orig: 60, 64
+  offset: 0, 0
+  index: -1
+Enemy_1_pupil
+  rotate: true
+  xy: 126, 2
+  size: 26, 41
+  orig: 26, 41
+  offset: 0, 0
+  index: -1
+Enemy_1_righttruster
+  rotate: false
+  xy: 126, 30
+  size: 38, 47
+  orig: 38, 47
+  offset: 0, 0
+  index: -1
+Enemy_1_righttruster_hit
+  rotate: false
+  xy: 166, 30
+  size: 38, 47
+  orig: 38, 47
+  offset: 0, 0
+  index: -1
+PvB_Effects0001
+  rotate: true
+  xy: 2, 79
+  size: 550, 400
+  orig: 550, 400
+  offset: 0, 0
+  index: -1
+PvB_Effects0002
+  rotate: true
+  xy: 404, 79
+  size: 550, 400
+  orig: 550, 400
+  offset: 0, 0
+  index: -1
+PvB_Effects0003
+  rotate: true
+  xy: 806, 79
+  size: 550, 400
+  orig: 550, 400
+  offset: 0, 0
+  index: -1
+PvB_Effects0004
+  rotate: true
+  xy: 806, 79
+  size: 550, 400
+  orig: 550, 400
+  offset: 0, 0
+  index: -1
+PvB_Effects0005
+  rotate: true
+  xy: 1208, 79
+  size: 550, 400
+  orig: 550, 400
+  offset: 0, 0
+  index: -1
+PvB_Effects0006
+  rotate: true
+  xy: 1610, 79
+  size: 550, 400
+  orig: 550, 400
+  offset: 0, 0
+  index: -1
