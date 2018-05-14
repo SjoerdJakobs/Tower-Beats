@@ -858,7 +858,7 @@ GameObject:
   - component: {fileID: 783365400}
   - component: {fileID: 783365399}
   m_Layer: 5
-  m_Name: 2n3
+  m_Name: 2&3BlackBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1878,9 +1878,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Playlist:
-  - Drum: {fileID: 8300000, guid: c5d98ae777dd1ff48854aafdf61c5981, type: 3}
-    Bass: {fileID: 8300000, guid: cb81f35d952b5b948be046d613675baa, type: 3}
-    Synth: {fileID: 0}
+  - Songname: We are number one
+    Drum: {fileID: 8300000, guid: becd6f8162f17c74fac6999454485139, type: 3}
+    Bass: {fileID: 8300000, guid: 4f7ab0a2f71e9a94880bb1705fe42dbd, type: 3}
+    Synth: {fileID: 8300000, guid: 5b7baa17c0220e14eadfdb1a219d2db7, type: 3}
+    RemainingTracks:
+    - {fileID: 8300000, guid: a6a60afd1c6923640abdd359165ba17a, type: 3}
+    - {fileID: 8300000, guid: e913aa337e3c83e4fb2b941137fcc44a, type: 3}
+    - {fileID: 8300000, guid: fdb7f2b1d7b22c741bbec311d39f9854, type: 3}
+  - Songname: The Offspring - Self Esteem
+    Drum: {fileID: 8300000, guid: 55148074b38cb36428d0232475dde94d, type: 3}
+    Bass: {fileID: 8300000, guid: 0084d33c8049df74db746c38aba7a1ee, type: 3}
+    Synth: {fileID: 8300000, guid: cd4c382af691c944da3130161ef17aea, type: 3}
+    RemainingTracks:
+    - {fileID: 8300000, guid: 137554dc5fa8ae942bbf94c07059ecda, type: 3}
+    - {fileID: 8300000, guid: 54b3f7a9ffe67be4b84402b8e3774339, type: 3}
+    - {fileID: 8300000, guid: 127468ef179871a45988b077b2e88569, type: 3}
+  - Songname: Dragonforce - TTFAF
+    Drum: {fileID: 8300000, guid: c9034ec352b8a0441916538bc27168ac, type: 3}
+    Bass: {fileID: 8300000, guid: a4cdd799d2507724e984c78619bb14f8, type: 3}
+    Synth: {fileID: 8300000, guid: b413ced19af90b64ba1f52e066bbd591, type: 3}
+    RemainingTracks:
+    - {fileID: 8300000, guid: a25ec0b625e19f94a9450c5267f07efe, type: 3}
 --- !u!114 &1437353308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1977,7 +1996,7 @@ GameObject:
   - component: {fileID: 1490637340}
   - component: {fileID: 1490637339}
   m_Layer: 5
-  m_Name: 1n2
+  m_Name: 1&2BlackBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

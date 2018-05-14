@@ -25,11 +25,20 @@ public class SongManager : MonoBehaviour {
     
     private Coroutine m_SongQueue;
 
+    //List of remaining tracks the song.
+    private List<GameObject> m_RemainingTracks = new List<GameObject>();
+
     public AudioSource[] SongAudioSources { get { return m_SongAudioSources; } }
     public Song[] Songs
     {
         get { return m_Songs; }
         set { m_Songs = value; }
+    }
+
+    public int SongNumber
+    {
+        get { return m_SongNumber; }
+        set { m_SongNumber = value; }
     }
 
     private void Awake()
@@ -82,9 +91,24 @@ public class SongManager : MonoBehaviour {
     /// <param name="songNumber">Number of the currently playing song in the playlist.</param>
     private void SetSongTracks(int songNumber)
     {
+        RemoveExcessiveTracks();
+
         m_SongAudioSources[0].clip = m_Songs[songNumber].Bass;
         m_SongAudioSources[1].clip = m_Songs[songNumber].Drum;
         m_SongAudioSources[2].clip = m_Songs[songNumber].Synth;
+
+        for (int i = 0; i < m_Songs[songNumber].RemainingTracks.Count; i++)
+        {
+            GameObject sourceParent;
+            sourceParent = new GameObject();
+            sourceParent.name = m_Songs[songNumber].RemainingTracks[i].name;
+            sourceParent.transform.SetParent(transform);
+
+            AudioSource source = sourceParent.AddComponent<AudioSource>();
+            source.clip = m_Songs[songNumber].RemainingTracks[i];
+            source.Play();
+            m_RemainingTracks.Add(sourceParent);
+        }
     }
 
     /// <summary>
@@ -96,6 +120,19 @@ public class SongManager : MonoBehaviour {
         {
             m_SongAudioSources[i].Play();
         }
+    }
+
+    /// <summary>
+    /// Removes all left over tracks which are not Drum/Bass/Synth
+    /// </summary>
+    private void RemoveExcessiveTracks()
+    {
+        for (int i = 0; i < m_RemainingTracks.Count; i++)
+        {
+            Destroy(m_RemainingTracks[i]);
+        }
+
+        m_RemainingTracks.Clear();
     }
 
     /// <summary>

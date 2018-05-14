@@ -53,7 +53,7 @@ public class PlayerInfo : MonoBehaviour {
 
     void UpdateSongUI(int currentSong, int maxSongs,string songName)
     {
-        m_Song.text = currentSong + "/" + maxSongs + "\n" + songName;
+        m_Song.text = currentSong + "/" + maxSongs + "  " + songName;
     }
 
     private void UpdatePreparationTime(int time)
