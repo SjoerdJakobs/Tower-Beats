@@ -30,9 +30,23 @@ public class EnemySpawner : MonoBehaviour {
         Enemy newEnemy = Instantiate(m_Enemies[randomEnemy]);
         SpawnedEnemies.Add(newEnemy);
         newEnemy.transform.position = PathManager.s_Instance.CurrentPathNodes[0];
-        //newEnemy.transform.position = m_EnemyContainer.position;
         newEnemy.transform.SetParent(m_EnemyContainer);
         newEnemy.Move();
+    }
+
+    public void SpawnWave()
+    {
+        StopCoroutine(SpawnEnemies());
+        StartCoroutine(SpawnEnemies());
+    }
+
+    private IEnumerator SpawnEnemies()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            SpawnEnemy();
+            yield return new WaitForSeconds(1f);
+        }
     }
 
     void RemoveEnemyFromList(Enemy enemy)

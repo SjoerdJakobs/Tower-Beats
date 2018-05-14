@@ -75,22 +75,6 @@ public class Tower : MonoBehaviour
         }
     }
 
-    public IEnumerator DrawLine()
-    {
-        m_LineRenderer.SetPosition(0, new Vector3(transform.position.x, transform.position.y, 10));
-
-        m_LineRenderer.SetPosition(1, new Vector3(m_Target.transform.position.x, m_Target.transform.position.y, 10));
-
-        yield return new WaitForSeconds(0.075f);
-
-        RemoveLine();
-    }
-
-    void RemoveLine()
-    {
-        m_LineRenderer.SetPosition(1, new Vector3(0,0,10));
-    }
-
     /// <summary>
     /// Gets all the enemies that are within the towers range
     /// </summary>

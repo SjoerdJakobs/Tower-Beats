@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using DG.Tweening;
 
 public class CameraMovement : MonoBehaviour {
 
@@ -14,12 +15,30 @@ public class CameraMovement : MonoBehaviour {
     [SerializeField] private bool m_UseKeyInput = true;
     [SerializeField] private bool m_UseTouchInput = false;
 
+    public static CameraMovement s_Instance;
+
     private bool m_GotMouseInput;
 
-    void LateUpdate () {
+    public bool CanMoveCamera { get; set; }
 
-        MoveCamera();
-	}
+    private void Awake()
+    {
+        Init();
+    }
+
+    private void Init()
+    {
+        if (s_Instance == null)
+            s_Instance = this;
+        else
+            Destroy(gameObject);
+    }
+
+    void LateUpdate()
+    {
+        if (CanMoveCamera)
+            MoveCamera();
+    }
 
     /// <summary>
     /// Allows the player to move the camera.
@@ -40,7 +59,7 @@ public class CameraMovement : MonoBehaviour {
 
         Vector3 movePos = transform.position;
 
-        if(m_UseMouseInput)
+        if (m_UseMouseInput)
         {
             if (Input.mousePosition.x > Screen.width - m_ScreenOffset)
             {
@@ -68,7 +87,7 @@ public class CameraMovement : MonoBehaviour {
             }
         }
 
-        if(m_UseKeyInput)
+        if (m_UseKeyInput)
         {
             // Use Key movement
             if (!m_GotMouseInput)
@@ -76,7 +95,7 @@ public class CameraMovement : MonoBehaviour {
         }
 
         // NEEDS TO BE TESTED ON MOBILE
-        if(m_UseTouchInput)
+        if (m_UseTouchInput)
         {
             if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
             {
@@ -91,5 +110,21 @@ public class CameraMovement : MonoBehaviour {
         movePos = new Vector3(Mathf.Clamp(movePos.x, m_MinX, m_MaxX), Mathf.Clamp(movePos.y, m_MinY, m_MaxY), transform.position.z);
 
         transform.position = Vector3.Lerp(transform.position, movePos, m_LerpSpeed);
+    }
+
+    public void ScrollCameraToPosition(Tile tile, float duration, System.Action onComplete)
+    {
+        ScrollCameraToPosition(tile.transform, duration, onComplete);
+    }
+
+    public void ScrollCameraToPosition(Transform transform, float duration, System.Action onComplete)
+    {
+        ScrollCameraToPosition(transform.position, duration, onComplete);
+    }
+
+    public void ScrollCameraToPosition(Vector2 position, float duration, System.Action onComplete)
+    {
+        CanMoveCamera = false;
+        transform.DOMove(new Vector3(position.x, position.y, transform.position.z), duration).SetEase(Ease.InOutQuad).OnComplete(delegate { onComplete(); CanMoveCamera = true; });
     }
 }

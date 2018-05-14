@@ -5,26 +5,40 @@ using UnityEngine;
 public class SongManager : MonoBehaviour {
 
     public delegate void SongChangeEvent(int currentSong,int maxSongs,string songName);
+    //An event which gets called everytime the song changes.
     public static SongChangeEvent s_OnChangeSong;
+
     public delegate void PlaylistCompletion();
+    //A delegate which gets called when all of the songs in the playlist are done playing(when the level is done).
     public static PlaylistCompletion s_OnPlaylistComplete;
 
     public static SongManager s_Instance;
 
-    [SerializeField]private AudioClip[] m_Songs;
-    private AudioClip m_NextSong;
+    //All of the songs which are in the playlist
+    private Song[] m_Songs;
 
-    private AudioSource m_SongAudioSource;
+    //Bass, Drum & Synth Audio sources. In that specific order.
+    [SerializeField]private AudioSource[] m_SongAudioSources;
 
+    //Number of the currently playing song in the playlist.
     private int m_SongNumber = 0;
-
+    
     private Coroutine m_SongQueue;
 
-    public AudioSource SongAudioSource { get { return m_SongAudioSource; } }
-    public AudioClip[] Songs
+    //List of remaining tracks the song.
+    private List<GameObject> m_RemainingTracks = new List<GameObject>();
+
+    public AudioSource[] SongAudioSources { get { return m_SongAudioSources; } }
+    public Song[] Songs
     {
         get { return m_Songs; }
         set { m_Songs = value; }
+    }
+
+    public int SongNumber
+    {
+        get { return m_SongNumber; }
+        set { m_SongNumber = value; }
     }
 
     private void Awake()
@@ -37,48 +51,113 @@ public class SongManager : MonoBehaviour {
         else
         Destroy(gameObject);
 
-        Sceneloader.s_OnSceneLoaded += CreateAudioSource;
+        GameManager.s_OnGameStart += StartPlaylist;
         s_OnPlaylistComplete += OnLevelComplete;
     }
 
-    public void CreateAudioSource()
+    /// <summary>
+    /// Starts the playlist.
+    /// </summary>
+    private void StartPlaylist()
     {
-        if (m_SongAudioSource == null)
-            m_SongAudioSource = gameObject.AddComponent<AudioSource>();
-
         PlayNextSongInPlaylist(m_SongNumber);
     }
 
+    /// <summary>
+    /// Plays the next song in the playlist.
+    /// Changes the UI information with s_OnChangeSong
+    /// </summary>
+    /// <param name="songNumber">Number of the currently playing song in the playlist. Increases in this function.</param>
     private void PlayNextSongInPlaylist(int songNumber)
     {
         if (songNumber < m_Songs.Length)
         {
             m_SongNumber = songNumber;
-            m_SongAudioSource.clip = m_Songs[songNumber];
-            m_SongAudioSource.Play();
+
+            SetSongTracks(songNumber);
+            StartSong();
+
             if (s_OnChangeSong != null)
             {
-                s_OnChangeSong(m_SongNumber + 1, m_Songs.Length, m_Songs[m_SongNumber].name);
+                s_OnChangeSong(m_SongNumber + 1, m_Songs.Length, "Hell song");
             }
-            RefreshQueue(songNumber + 1, songLength: m_SongAudioSource.clip.length);
+            RefreshQueue(songNumber + 1, songLength: m_SongAudioSources[0].clip.length);
         }
-        else
-            m_NextSong = null;
     }
 
+    /// <summary>
+    /// Sets the Bass, Drum & Synth of the audio sources to those of the current song.
+    /// </summary>
+    /// <param name="songNumber">Number of the currently playing song in the playlist.</param>
+    private void SetSongTracks(int songNumber)
+    {
+        RemoveExcessiveTracks();
+
+        m_SongAudioSources[0].clip = m_Songs[songNumber].Bass;
+        m_SongAudioSources[1].clip = m_Songs[songNumber].Drum;
+        m_SongAudioSources[2].clip = m_Songs[songNumber].Synth;
+
+        for (int i = 0; i < m_Songs[songNumber].RemainingTracks.Count; i++)
+        {
+            GameObject sourceParent;
+            sourceParent = new GameObject();
+            sourceParent.name = m_Songs[songNumber].RemainingTracks[i].name;
+            sourceParent.transform.SetParent(transform);
+
+            AudioSource source = sourceParent.AddComponent<AudioSource>();
+            source.clip = m_Songs[songNumber].RemainingTracks[i];
+            source.Play();
+            m_RemainingTracks.Add(sourceParent);
+        }
+    }
+
+    /// <summary>
+    /// Plays all of the audio sources, which combined, define the current song.
+    /// </summary>
+    private void StartSong()
+    {
+        for (int i = 0; i < m_SongAudioSources.Length; i++)
+        {
+            m_SongAudioSources[i].Play();
+        }
+    }
+
+    /// <summary>
+    /// Removes all left over tracks which are not Drum/Bass/Synth
+    /// </summary>
+    private void RemoveExcessiveTracks()
+    {
+        for (int i = 0; i < m_RemainingTracks.Count; i++)
+        {
+            Destroy(m_RemainingTracks[i]);
+        }
+
+        m_RemainingTracks.Clear();
+    }
+
+    /// <summary>
+    /// Refreshes the queue.
+    /// </summary>
+    /// <param name="songNumber"></param>
+    /// <param name="songLength"></param>
     private void RefreshQueue(int songNumber, float songLength = 0)
     {
         if(m_SongQueue != null)
             StopCoroutine(m_SongQueue);
 
-        m_SongQueue = StartCoroutine(QueueSong(songNumber, songLength: m_SongAudioSource.clip.length));
+        m_SongQueue = StartCoroutine(QueueSong(songNumber, songLength: m_SongAudioSources[songNumber].clip.length));
     }
 
+    /// <summary>
+    /// Puts the next song in the queue.
+    /// </summary>
+    /// <param name="songNumber">Number of the currently playing song in the playlist.</param>
+    /// <param name="songLength">Length of the currently playing song.</param>
+    /// <returns></returns>
     IEnumerator QueueSong(int songNumber, float songLength = 0)
     {
         if (songNumber < m_Songs.Length)
         {
-            m_NextSong = m_Songs[songNumber];
             yield return new WaitForSeconds(songLength);
             PlayNextSongInPlaylist(songNumber);
         }
@@ -89,35 +168,10 @@ public class SongManager : MonoBehaviour {
         }
     }
 
-    public AudioClip GetCurrentSong()
-    {
-        return m_SongAudioSource.clip;
-    }
-
-    public AudioClip GetNextSong()
-    {
-        if(m_SongNumber < m_Songs.Length -1)
-        {
-            return m_NextSong;
-        }
-        else
-        {
-            Debug.Log("This is the final song in the playlist");
-            return null;
-        }
-    }
-
-    public void SkipSong()
-    {
-        if(m_SongNumber + 1!= m_Songs.Length)
-            PlayNextSongInPlaylist(m_SongNumber + 1);
-        else
-        {
-            m_SongAudioSource.Stop();
-            s_OnPlaylistComplete();
-        }
-    }
-
+    /// <summary>
+    /// Gets called when the level is completed.
+    /// Clears the song queue.
+    /// </summary>
     private void OnLevelComplete()
     {
         Debug.Log("OnLevelComplete");
@@ -126,6 +180,7 @@ public class SongManager : MonoBehaviour {
 
     private void OnDisable()
     {
-        Sceneloader.s_OnSceneLoaded -= CreateAudioSource;
+        GameManager.s_OnGameStart -= StartPlaylist;
+        Sceneloader.s_OnSceneLoaded -= StartPlaylist;
     }
 }

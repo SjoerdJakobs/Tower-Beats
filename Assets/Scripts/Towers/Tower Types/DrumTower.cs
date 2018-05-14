@@ -15,7 +15,6 @@ public class DrumTower : Tower
         base.Attack();
         if (m_ReadyToAttack && m_Target != null)
         {
-            StartCoroutine(DrawLine());
             m_Target.TakeDamage(TowerData.AttackDamage);
             m_ReadyToAttack = false;
             m_StartedCooldown = false;

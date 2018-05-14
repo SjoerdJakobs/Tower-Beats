@@ -19,7 +19,6 @@ public class BassTower : Tower
 
         if (m_ReadyToAttack && m_Target != null)
         {
-            StartCoroutine(DrawLine());
             m_towerProjectileData = m_pool.GetFromPool().GetComponent<TowerProjectile>();
             m_towerProjectileData.SetNewVars(transform.position, m_Target, TowerData.AttackDamage, 1);
             //m_Target.TakeDamage(TowerData.AttackDamage);
