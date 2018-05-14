@@ -17,6 +17,8 @@ public class CameraMovement : MonoBehaviour {
 
     public static CameraMovement s_Instance;
 
+    private Vector3 m_MovePos;
+
     private bool m_GotMouseInput;
 
     public bool CanMoveCamera { get; set; }
@@ -34,17 +36,21 @@ public class CameraMovement : MonoBehaviour {
             Destroy(gameObject);
     }
 
-    void LateUpdate()
+    private void Update()
     {
         if (CanMoveCamera)
+        {
+            GetInput();
             MoveCamera();
+        }
+
     }
 
     /// <summary>
     /// Allows the player to move the camera.
     /// Movement is clamped between X and Y values to make sure the player stays in the map
     /// </summary>
-    void MoveCamera()
+    void GetInput()
     {
         m_GotMouseInput = false;
 
@@ -57,32 +63,32 @@ public class CameraMovement : MonoBehaviour {
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
 
-        Vector3 movePos = transform.position;
+        m_MovePos = transform.position;
 
         if (m_UseMouseInput)
         {
             if (Input.mousePosition.x > Screen.width - m_ScreenOffset)
             {
                 // Move Right
-                movePos += Vector3.right;
+                m_MovePos += Vector3.right;
                 m_GotMouseInput = true;
             }
             if (Input.mousePosition.x < m_ScreenOffset)
             {
                 // Move Left
-                movePos += Vector3.left;
+                m_MovePos += Vector3.left;
                 m_GotMouseInput = true;
             }
             if (Input.mousePosition.y > Screen.height - m_ScreenOffset)
             {
                 // Move Down
-                movePos -= Vector3.down;
+                m_MovePos -= Vector3.down;
                 m_GotMouseInput = true;
             }
             if (Input.mousePosition.y < m_ScreenOffset)
             {
                 // Move Up
-                movePos -= Vector3.up;
+                m_MovePos -= Vector3.up;
                 m_GotMouseInput = true;
             }
         }
@@ -91,7 +97,7 @@ public class CameraMovement : MonoBehaviour {
         {
             // Use Key movement
             if (!m_GotMouseInput)
-                movePos = new Vector3(movePos.x + x, movePos.y + y, transform.position.z);
+                m_MovePos = new Vector3(m_MovePos.x + x, m_MovePos.y + y, transform.position.z);
         }
 
         // NEEDS TO BE TESTED ON MOBILE
@@ -103,28 +109,31 @@ public class CameraMovement : MonoBehaviour {
                 Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
 
                 // Set movePos
-                movePos = touchDeltaPosition;
+                m_MovePos = touchDeltaPosition;
             }
         }
 
-        movePos = new Vector3(Mathf.Clamp(movePos.x, m_MinX, m_MaxX), Mathf.Clamp(movePos.y, m_MinY, m_MaxY), transform.position.z);
-
-        transform.position = Vector3.Lerp(transform.position, movePos, m_LerpSpeed);
+        m_MovePos = new Vector3(Mathf.Clamp(m_MovePos.x, m_MinX, m_MaxX), Mathf.Clamp(m_MovePos.y, m_MinY, m_MaxY), transform.position.z);   
     }
 
-    public void ScrollCameraToPosition(Tile tile, float duration, System.Action onComplete)
+    private void MoveCamera()
     {
-        ScrollCameraToPosition(tile.transform, duration, onComplete);
+        transform.position = Vector3.Lerp(transform.position, m_MovePos, m_LerpSpeed);
     }
 
-    public void ScrollCameraToPosition(Transform transform, float duration, System.Action onComplete)
+    public void ScrollCameraToPosition(Tile tile, float duration, bool enableMoveCameraOnComplete, System.Action onComplete)
     {
-        ScrollCameraToPosition(transform.position, duration, onComplete);
+        ScrollCameraToPosition(tile.transform, duration, enableMoveCameraOnComplete, onComplete);
     }
 
-    public void ScrollCameraToPosition(Vector2 position, float duration, System.Action onComplete)
+    public void ScrollCameraToPosition(Transform transform, float duration, bool enableMoveCameraOnComplete, System.Action onComplete)
+    {
+        ScrollCameraToPosition(transform.position, duration, enableMoveCameraOnComplete, onComplete);
+    }
+
+    public void ScrollCameraToPosition(Vector2 position, float duration, bool enableMoveCameraOnComplete, System.Action onComplete)
     {
         CanMoveCamera = false;
-        transform.DOMove(new Vector3(position.x, position.y, transform.position.z), duration).SetEase(Ease.InOutQuad).OnComplete(delegate { onComplete(); CanMoveCamera = true; });
+        transform.DOMove(new Vector3(position.x, position.y, transform.position.z), duration).SetEase(Ease.InOutQuad).OnComplete(delegate { onComplete(); CanMoveCamera = enableMoveCameraOnComplete; });
     }
 }
