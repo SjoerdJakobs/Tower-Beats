@@ -99,9 +99,7 @@ public class SongManager : MonoBehaviour {
 
         for (int i = 0; i < m_Songs[songNumber].RemainingTracks.Count; i++)
         {
-            GameObject sourceParent;
-            sourceParent = new GameObject();
-            sourceParent.name = m_Songs[songNumber].RemainingTracks[i].name;
+            GameObject sourceParent = new GameObject { name = m_Songs[songNumber].RemainingTracks[i].name };
             sourceParent.transform.SetParent(transform);
 
             AudioSource source = sourceParent.AddComponent<AudioSource>();
