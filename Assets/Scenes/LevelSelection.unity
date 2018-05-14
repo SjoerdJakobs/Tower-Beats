@@ -1230,11 +1230,14 @@ MonoBehaviour:
     - {fileID: 8300000, guid: d18dadd628af60640a6b4b786c11fd7f, type: 3}
     - {fileID: 8300000, guid: 9b79fbac0af1bb0489876a3ab8e0a1eb, type: 3}
     - {fileID: 8300000, guid: 241d855da64b44f4cb25dbca30bb99da, type: 3}
-  - Songname: 
-    Drum: {fileID: 0}
-    Bass: {fileID: 0}
-    Synth: {fileID: 0}
-    RemainingTracks: []
+  - Songname: Cold waters
+    Drum: {fileID: 8300000, guid: 0dba258d70f2dfe40be160a889a282b7, type: 3}
+    Bass: {fileID: 8300000, guid: 34cf78a184813454389f6c9100387213, type: 3}
+    Synth: {fileID: 8300000, guid: 303c417a92c6de149b5181c2626da4f6, type: 3}
+    RemainingTracks:
+    - {fileID: 8300000, guid: 0e165009714365b48a8476882734263f, type: 3}
+    - {fileID: 8300000, guid: 83c0d64e9e92e324d854d2903db57b73, type: 3}
+    - {fileID: 8300000, guid: 57753317fe8646d42b496f885fec2961, type: 3}
   - Songname: 
     Drum: {fileID: 0}
     Bass: {fileID: 0}
