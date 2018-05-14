@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class BassTower : Tower
 {
+    private TowerProjectile m_towerProjectileData;
+    private ObjectPool m_pool;
     public override void Awake()
     {
         base.Awake();
+        m_pool = ObjectPoolManager.s_Instance.GetObjectPool(attackProjectile);
         GetRMS.s_BassCue += Attack;
     }
 
@@ -17,7 +20,9 @@ public class BassTower : Tower
         if (m_ReadyToAttack && m_Target != null)
         {
             StartCoroutine(DrawLine());
-            m_Target.TakeDamage(TowerData.AttackDamage);
+            m_towerProjectileData = m_pool.GetFromPool().GetComponent<TowerProjectile>();
+            m_towerProjectileData.SetNewVars(transform.position, m_Target, TowerData.AttackDamage, 1);
+            //m_Target.TakeDamage(TowerData.AttackDamage);
             m_ReadyToAttack = false;
             m_StartedCooldown = false;
         }

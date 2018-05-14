@@ -4,19 +4,7 @@ using UnityEngine;
 using System.Linq;
 
 public struct TowerData
-{
-    public TowerData(string Type, int Level, int MaxLevel, float UpgradeCost,float BuyCost,float SellValue, float AttackDamage, float AttackRange, float AttackInterval){
-        this.Type = Type;
-        this.Level = Level;
-        this.MaxLevel = MaxLevel;
-        this.UpgradeCost = UpgradeCost;
-        this.BuyCost = BuyCost;
-        this.SellValue = SellValue;
-        this.AttackDamage = AttackDamage;
-        this.AttackRange = AttackRange;
-        this.AttackInterval = AttackInterval;
-    }
-
+{ 
     public string Type;
     public int Level;
     public int MaxLevel;
@@ -26,6 +14,19 @@ public struct TowerData
     public float AttackDamage;
     public float AttackRange;
     public float AttackInterval;
+
+    public TowerData(string type, int level, int maxLevel, float upgradeCost, float buyCost, float sellValue, float attackDamage, float attackRange, float attackInterval)
+    {
+        Type = type;
+        Level = level;
+        MaxLevel = maxLevel;
+        UpgradeCost = upgradeCost;
+        BuyCost = buyCost;
+        SellValue = sellValue;
+        AttackDamage = attackDamage;
+        AttackRange = attackRange;
+        AttackInterval = attackInterval;
+    }
 }
 
 public class Tower : MonoBehaviour
@@ -36,6 +37,8 @@ public class Tower : MonoBehaviour
     protected Enemy m_Target;
     protected bool m_ReadyToAttack = true;
     protected bool m_StartedCooldown;
+    [SerializeField]
+    protected GameObject attackProjectile;
 
     public Tower Self { get; set; } //Reference to itself
 

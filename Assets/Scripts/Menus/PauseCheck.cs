@@ -9,7 +9,7 @@ public class PauseCheck : MonoBehaviour {
     [SerializeField]
     private bool m_onPause;
 
-    public event System.Action<bool> Pause;
+    public static event System.Action<bool> Pause;
 
     private void Awake()
     {

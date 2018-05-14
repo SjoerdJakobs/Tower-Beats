@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour {
     private void Awake()
     {
         m_CurrentHealth = m_MaxHealth;
-        PauseCheck.s_Instance.Pause += TogglePause;
+        PauseCheck.Pause += TogglePause;
     }
 
     public void TakeDamage(float damage)
