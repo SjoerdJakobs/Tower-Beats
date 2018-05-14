@@ -33,9 +33,10 @@ public class GameManager : MonoBehaviour
         StartCoroutine(StartPreparationTime(() => {
             print("start spawning enemies");
             if(s_OnGameStart != null) s_OnGameStart();
-            EnemySpawner.s_Instance.SpawnWave();
+            EnemySpawner.s_Instance.SpawnWave(10, 1, () => { print("done spawning wave"); });
         }));
-        CameraMovement.s_Instance.ScrollCameraToPosition(HexGrid.s_Instance.GetTile(10, 5).transform, 1, () => { print("done scrolling"); });
+
+        CameraMovement.s_Instance.ScrollCameraToPosition(HexGrid.s_Instance.GetTile(10, 5).transform, 1, true, () => { print("done scrolling"); });
     }
 
     private IEnumerator StartPreparationTime(System.Action callback)

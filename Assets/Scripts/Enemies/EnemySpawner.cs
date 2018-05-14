@@ -1,11 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour {
 
     public static EnemySpawner s_Instance;
-    [SerializeField] private Transform m_EnemyContainer;
 
     [SerializeField] private List<Enemy> m_Enemies = new List<Enemy>();
     public List<Enemy> SpawnedEnemies = new List<Enemy>();
@@ -26,27 +26,29 @@ public class EnemySpawner : MonoBehaviour {
     /// <returns></returns>
     public void SpawnEnemy()
     {
-        int randomEnemy = Random.Range(0, m_Enemies.Count);
+        int randomEnemy = UnityEngine.Random.Range(0, m_Enemies.Count);
         Enemy newEnemy = Instantiate(m_Enemies[randomEnemy]);
         SpawnedEnemies.Add(newEnemy);
         newEnemy.transform.position = PathManager.s_Instance.CurrentPathNodes[0];
-        newEnemy.transform.SetParent(m_EnemyContainer);
+        newEnemy.transform.SetParent(transform);
         newEnemy.Move();
     }
 
-    public void SpawnWave()
+    public void SpawnWave(int amountOfEnemies, float interval, Action callback = null)
     {
-        StopCoroutine(SpawnEnemies());
-        StartCoroutine(SpawnEnemies());
+        StartCoroutine(SpawnEnemies(amountOfEnemies, interval, callback));
     }
 
-    private IEnumerator SpawnEnemies()
+    private IEnumerator SpawnEnemies(int amountOfEnemies, float interval, Action callback = null)
     {
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < amountOfEnemies; i++)
         {
             SpawnEnemy();
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(interval);
         }
+
+        if(callback != null)
+            callback();
     }
 
     void RemoveEnemyFromList(Enemy enemy)
