@@ -9,6 +9,7 @@ public class TowerProjectile : PoolObj {
     private float m_damage;
     private float m_movSpeed;
     private Enemy m_target;
+    private GameObject m_targetObj;
     private bool m_pause;
 
     private void Awake()
@@ -23,24 +24,35 @@ public class TowerProjectile : PoolObj {
         m_target = newTarget;
         m_damage = newDamage;
         m_movSpeed = newSpeed;
+        m_targetObj = newTarget.gameObject;
         StartCoroutine(MoveToTarget());
 
     }
 
     private IEnumerator MoveToTarget()
     {
+        Vector3 lastPos = Vector3.zero;
         float lerpValue = 0;
         while (lerpValue <= 1)
         {
-            if(!m_pause)
+            if (!m_pause)
             {
-                Vector3.Lerp(m_startPos, m_target.transform.position, lerpValue*m_movSpeed);
-                lerpValue += Time.deltaTime;
-                transform.LookAt(m_target.transform.position);
+                if (m_targetObj != null)
+                {
+                    transform.position = Vector3.Lerp(m_startPos, m_targetObj.transform.position, lerpValue);
+                    lastPos = m_targetObj.transform.position;
+                    lerpValue += Time.deltaTime;
+                    transform.LookAt(m_target.transform.position);
+                }
+                else
+                {
+                    transform.position = Vector3.Lerp(m_startPos, lastPos, lerpValue * m_movSpeed);
+                    lerpValue += Time.deltaTime;
+                }
             }
             yield return new WaitForEndOfFrame();
         }
-        if(m_target != null)
+        if(m_targetObj != null)
         {
             m_target.TakeDamage(m_damage);
         }

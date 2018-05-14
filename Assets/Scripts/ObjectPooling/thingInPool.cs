@@ -28,9 +28,4 @@ public class thingInPool : PoolObj {
             ReturnToPool();
         }
     }
-
-    void OnLevelWasLoaded()
-    {
-        ReturnToPool();
-    }
 }

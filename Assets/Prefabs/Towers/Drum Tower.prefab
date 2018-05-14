@@ -54,7 +54,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EnemiesInRange: []
-  attackProjectile: {fileID: 1417497478518890, guid: 8aa3ee82de502c54d8b05e3a6bf8818c,
+  attackProjectile: {fileID: 1172778507945960, guid: 04e3ee5bccfd5de439910a2b7e5f621e,
     type: 2}
 --- !u!120 &120409566723923972
 LineRenderer:

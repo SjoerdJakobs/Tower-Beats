@@ -1885,7 +1885,7 @@ MonoBehaviour:
     RemainingTracks:
     - {fileID: 8300000, guid: a6a60afd1c6923640abdd359165ba17a, type: 3}
     - {fileID: 8300000, guid: e913aa337e3c83e4fb2b941137fcc44a, type: 3}
-    - {fileID: 8300000, guid: fdb7f2b1d7b22c741bbec311d39f9854, type: 3}
+    - {fileID: 8300000, guid: a6a60afd1c6923640abdd359165ba17a, type: 3}
   - Songname: The Offspring - Self Esteem
     Drum: {fileID: 8300000, guid: 55148074b38cb36428d0232475dde94d, type: 3}
     Bass: {fileID: 8300000, guid: 0084d33c8049df74db746c38aba7a1ee, type: 3}
