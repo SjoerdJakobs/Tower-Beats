@@ -640,7 +640,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: bdf434f422e05b445a51745fc2802148, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 51b42f8208196d84aa8e47043edf02e2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -750,7 +750,7 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
     m_Alignment: 5
@@ -759,7 +759,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Head up ft James Newton
+  m_Text: Through the fire and flames
 --- !u!222 &567526079
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1118,7 +1118,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Cutting Shapes
+  m_Text: Self esteem
 --- !u!222 &1032596976
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1216,7 +1216,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a53aca4fee8b4434a940fd2302cca4de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Playlist: []
+  m_Playlist:
+  - Songname: Good feeling
+    Drum: {fileID: 8300000, guid: 163aa9b09e3a5934c9dea64014947eb4, type: 3}
+    Bass: {fileID: 8300000, guid: 95ba0635e17650e4eb31326f543d9bff, type: 3}
+    Synth: {fileID: 8300000, guid: 6b36196bd0bb7404280a3e89d55188ae, type: 3}
+    RemainingTracks:
+    - {fileID: 8300000, guid: 3bdfe877e47a2d24d8070c85dae175a3, type: 3}
+    - {fileID: 8300000, guid: 4199822e91b92d243a7444ee859b3d19, type: 3}
+    - {fileID: 8300000, guid: e0e62e7a15816e142ac68edca68b91fd, type: 3}
+    - {fileID: 8300000, guid: 7ff4a6bc2eb344740a8864bff00b55be, type: 3}
+    - {fileID: 8300000, guid: 699fe5048edd0d54a84d6d29acff271b, type: 3}
+    - {fileID: 8300000, guid: d18dadd628af60640a6b4b786c11fd7f, type: 3}
+    - {fileID: 8300000, guid: 9b79fbac0af1bb0489876a3ab8e0a1eb, type: 3}
+    - {fileID: 8300000, guid: 241d855da64b44f4cb25dbca30bb99da, type: 3}
+  - Songname: 
+    Drum: {fileID: 0}
+    Bass: {fileID: 0}
+    Synth: {fileID: 0}
+    RemainingTracks: []
+  - Songname: 
+    Drum: {fileID: 0}
+    Bass: {fileID: 0}
+    Synth: {fileID: 0}
+    RemainingTracks: []
 --- !u!114 &1065951768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1613,7 +1636,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Something Just Like This
+  m_Text: We are number one
 --- !u!222 &1316499904
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1742,7 +1765,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 0b053a5f1bc30234da66ac5d1b8645b0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7d47b45dcf2be6044ab27e050f4e6051, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1899,7 +1922,7 @@ MonoBehaviour:
     Bass: {fileID: 8300000, guid: a4cdd799d2507724e984c78619bb14f8, type: 3}
     Synth: {fileID: 8300000, guid: b413ced19af90b64ba1f52e066bbd591, type: 3}
     RemainingTracks:
-    - {fileID: 8300000, guid: a25ec0b625e19f94a9450c5267f07efe, type: 3}
+    - {fileID: 0}
 --- !u!114 &1437353308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2549,7 +2572,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: b919ffedf39859b489c0a09636d2f76b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 658fcdea44577914e8a360776ed04374, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
