@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour {
     public static DestroyEvent s_OnDestroyEnemy;
     [SerializeField] private float m_MaxHealth;
     private float m_CurrentHealth;
+    private bool m_IsAlive = true;
 
     //TEMP
     private Tween m_dopath;
@@ -45,13 +46,15 @@ public class Enemy : MonoBehaviour {
 
     public void Death(bool killedByPlayer)
     {
+        m_IsAlive = false;
         //If player kills the enemy
         if (killedByPlayer)
         {
             //Give coins
             PlayerData.s_Instance.ChangeCoinAmount(m_CoinsToGive);
         }
-        Destroy(this.gameObject);
+        //Play death anim
+        //Destroy(this.gameObject);
     }
 
     public void DamageObjective()
@@ -71,8 +74,11 @@ public class Enemy : MonoBehaviour {
     //TEMP
     public void Move()
     {
-        Vector3[] pathArray = PathManager.s_Instance.CurrentPathNodes.ToArray();
-        m_dopath = transform.DOPath(pathArray, pathArray.Length / m_MoveSpeed, PathType.CatmullRom).SetEase(Ease.Linear).OnComplete(() => DamageObjective());
+        if (m_IsAlive)
+        {
+            Vector3[] pathArray = PathManager.s_Instance.CurrentPathNodes.ToArray();
+            m_dopath = transform.DOPath(pathArray, pathArray.Length / m_MoveSpeed, PathType.CatmullRom).SetEase(Ease.Linear).OnComplete(() => DamageObjective());
+        }
         //Invoke("PausePath",1);
         //Invoke("PlayPath",2);
         //dopath.Play();
