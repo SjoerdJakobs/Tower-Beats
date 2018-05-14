@@ -30,7 +30,6 @@ public class EnemySpawner : MonoBehaviour {
         Enemy newEnemy = Instantiate(m_Enemies[randomEnemy]);
         SpawnedEnemies.Add(newEnemy);
         newEnemy.transform.position = PathManager.s_Instance.CurrentPathNodes[0];
-        //newEnemy.transform.position = m_EnemyContainer.position;
         newEnemy.transform.SetParent(m_EnemyContainer);
         newEnemy.Move();
     }

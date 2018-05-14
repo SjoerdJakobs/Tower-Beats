@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviour {
     private void Awake()
     {
         m_CurrentHealth = m_MaxHealth;
+        //MusicScript.MusicDoneDelegate += Death;
         PauseCheck.Pause += TogglePause;
     }
 
@@ -30,18 +31,19 @@ public class Enemy : MonoBehaviour {
         m_CurrentHealth -= damage;
         if (m_CurrentHealth <= 0)
         {
-            Death();
+            Death(true);
         }
     }
 
-    public void Death()
+    public void Death(bool killedByPlayer)
     {
-        //Give coins;
-        PlayerData.s_Instance.ChangeCoinAmount(m_CoinsToGive);
-        if (s_OnDestroyEnemy != null)
+        //If player kills the enemy
+        if (killedByPlayer)
         {
-            s_OnDestroyEnemy(this);
+            //Give coins
+            PlayerData.s_Instance.ChangeCoinAmount(m_CoinsToGive);
         }
+
         Destroy(this.gameObject); // Will be replaced with Object pooling later
     }
 
@@ -103,5 +105,14 @@ public class Enemy : MonoBehaviour {
         {
             DamageObjective();
         }
+    }
+
+    private void OnDestroy()
+    {
+        if (s_OnDestroyEnemy != null)
+        {
+            s_OnDestroyEnemy(this);
+        }
+        //MusicScript.MusicDoneDelegate -= Death;
     }
 }
