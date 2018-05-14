@@ -51,7 +51,7 @@ public class SongManager : MonoBehaviour {
         else
         Destroy(gameObject);
 
-        Sceneloader.s_OnSceneLoaded += StartPlaylist;
+        GameManager.s_OnGameStart += StartPlaylist;
         s_OnPlaylistComplete += OnLevelComplete;
     }
 
@@ -180,6 +180,7 @@ public class SongManager : MonoBehaviour {
 
     private void OnDisable()
     {
+        GameManager.s_OnGameStart -= StartPlaylist;
         Sceneloader.s_OnSceneLoaded -= StartPlaylist;
     }
 }

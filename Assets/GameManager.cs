@@ -5,11 +5,13 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager s_Instance;
-    private int m_PreparationTime = 30;
+    private int m_PreparationTime = 5;
 
     public delegate void PreparationTimeUpdated(int time);
     public static PreparationTimeUpdated s_OnPreparationTimeUpdated;
 
+    public delegate void GameStarted();
+    public static GameStarted s_OnGameStart;
 
     private void Start()
     {
@@ -30,6 +32,7 @@ public class GameManager : MonoBehaviour
     {
         StartCoroutine(StartPreparationTime(() => {
             print("start spawning enemies");
+            if(s_OnGameStart != null) s_OnGameStart();
             EnemySpawner.s_Instance.SpawnWave();
         }));
         CameraMovement.s_Instance.ScrollCameraToPosition(HexGrid.s_Instance.GetTile(10, 5).transform, 1, () => { print("done scrolling"); });
