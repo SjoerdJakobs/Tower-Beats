@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class TowerShopMenu : Menu {
+public class TowerShopPopUp : PopUp {
 
     [SerializeField] private List<Tower> m_Towers = new List<Tower>();
 
@@ -28,7 +28,6 @@ public class TowerShopMenu : Menu {
             }
             HexGrid.s_Instance.SelectedTile.CurrentState = TileState.OCCUPIED;
             Debug.Log(HexGrid.s_Instance.SelectedTile.CurrentState);
-            Hide();
         }
     }
 

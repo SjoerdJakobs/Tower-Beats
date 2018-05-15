@@ -79,6 +79,19 @@ public class MenuManager : MonoBehaviour
         if (s_OnMenuOpened != null) s_OnMenuOpened(menu);
     }
 
+    public void ShowMenu(string menuName,Vector3 position)
+    {
+        Camera cam = Camera.main;
+        for (int i = 0; i < m_Menus.Count; i++)
+        {
+            if (m_Menus[i].name == menuName)
+            {
+                ShowMenu(m_Menus[i]);
+                m_Menus[i].transform.position = cam.WorldToScreenPoint(position);
+            }
+        }
+    }
+
     public void HideMenu(string menuName)
     {
         for (int i = 0; i < m_Menus.Count; i++)

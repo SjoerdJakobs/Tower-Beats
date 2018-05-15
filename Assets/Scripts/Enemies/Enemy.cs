@@ -41,7 +41,7 @@ public class Enemy : MonoBehaviour {
     /// </summary>
     public void Death()
     {
-        Death(false); 
+        Death(false);
     }
 
     public void Death(bool killedByPlayer)

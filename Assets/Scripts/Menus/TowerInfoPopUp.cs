@@ -1,16 +1,15 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class TowerMenu : Menu {
+public class TowerInfoPopUp : PopUp {
 
     [SerializeField] private Text m_DamageField;
     [SerializeField] private Text m_RangeField;
     [SerializeField] private Text m_SellValue;
     [SerializeField] private Text m_UpgradeCost;
 
-    public override void Show()
+    private void OnEnable()
     {
-        base.Show();
         TowerUtilities.s_OnUpgrade += ShowTowerInfo;
         ShowTowerInfo();
     }
@@ -27,9 +26,8 @@ public class TowerMenu : Menu {
         m_UpgradeCost.text = tower.TowerData.UpgradeCost.ToString();
     }
 
-    public override void Hide()
+    public void OnDisable()
     {
         TowerUtilities.s_OnUpgrade -= ShowTowerInfo;
-        base.Hide();
     }
 }

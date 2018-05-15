@@ -76,14 +76,20 @@ public class Tile : MonoBehaviour
             switch (CurrentState)
         	{
             	case TileState.OPEN:
-                    if(MenuManager.s_Instance != null)
-                	    MenuManager.s_Instance.ShowMenu(MenuNames.TOWER_SHOP_MENU);
+                    if (PopUpManager.s_Instance != null)
+                    {
+                        //MenuManager.s_Instance.ShowMenu(MenuNames.TOWER_SHOP_MENU,this.transform.position);
+                        PopUpManager.s_Instance.ShowPopUp(PopUpNames.TOWER_SHOP_MENU, new Vector2(transform.position.x,transform.position.y+1.5f));
+                    }
                 	//Open tower shop menu
                 	break;
             	case TileState.OCCUPIED:
                     //Open tower menu and shows the stats of the tower on this tile
-                    if (MenuManager.s_Instance != null)
-                        MenuManager.s_Instance.ShowMenu(MenuNames.TOWER_MENU);
+                    if (PopUpManager.s_Instance != null)
+                    {
+                        //MenuManager.s_Instance.ShowMenu(MenuNames.TOWER_MENU);
+                        PopUpManager.s_Instance.ShowPopUp(PopUpNames.TOWER_MENU, transform.position);
+                    }
                 	break;
         	}
 		}
