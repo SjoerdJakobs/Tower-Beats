@@ -99,7 +99,10 @@ public class SongManager : MonoBehaviour {
 
         for (int i = 0; i < m_Songs[songNumber].RemainingTracks.Count; i++)
         {
-            GameObject sourceParent = new GameObject { name = m_Songs[songNumber].RemainingTracks[i].name };
+            GameObject sourceParent;
+            sourceParent = new GameObject();
+            Debug.Log(m_Songs[songNumber].RemainingTracks[i].name);
+            //sourceParent.name = m_Songs[songNumber].RemainingTracks[i].name;
             sourceParent.transform.SetParent(transform);
 
             AudioSource source = sourceParent.AddComponent<AudioSource>();
@@ -143,7 +146,12 @@ public class SongManager : MonoBehaviour {
         if(m_SongQueue != null)
             StopCoroutine(m_SongQueue);
 
-        m_SongQueue = StartCoroutine(QueueSong(songNumber, songLength: m_SongAudioSources[songNumber].clip.length));
+        if (songNumber < m_Songs.Length)
+        {
+            m_SongQueue = StartCoroutine(QueueSong(songNumber, songLength: m_SongAudioSources[songNumber].clip.length));
+        }
+        else
+            Debug.Log("No more songs in playlist.");
     }
 
     /// <summary>
@@ -174,6 +182,11 @@ public class SongManager : MonoBehaviour {
     {
         Debug.Log("OnLevelComplete");
         m_SongQueue = null; 
+    }
+
+    public void SkipSong()
+    {
+        PlayNextSongInPlaylist(m_SongNumber + 1);
     }
 
     private void OnDisable()

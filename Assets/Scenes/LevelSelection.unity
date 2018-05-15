@@ -1044,7 +1044,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Stereo Sayan 3D
+  m_Text: Bring me to life
 --- !u!222 &988673981
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1217,19 +1217,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Playlist:
-  - Songname: Good feeling
-    Drum: {fileID: 8300000, guid: 163aa9b09e3a5934c9dea64014947eb4, type: 3}
-    Bass: {fileID: 8300000, guid: 95ba0635e17650e4eb31326f543d9bff, type: 3}
-    Synth: {fileID: 8300000, guid: 6b36196bd0bb7404280a3e89d55188ae, type: 3}
+  - Songname: Bring me to life
+    Drum: {fileID: 8300000, guid: 5c14e466157cfab4493438eede092402, type: 3}
+    Bass: {fileID: 8300000, guid: 27130a3d952301c4496d33109cd22c1d, type: 3}
+    Synth: {fileID: 8300000, guid: 562bce46e816f6747b7d6211ac9660b2, type: 3}
     RemainingTracks:
-    - {fileID: 8300000, guid: 3bdfe877e47a2d24d8070c85dae175a3, type: 3}
-    - {fileID: 8300000, guid: 4199822e91b92d243a7444ee859b3d19, type: 3}
-    - {fileID: 8300000, guid: e0e62e7a15816e142ac68edca68b91fd, type: 3}
-    - {fileID: 8300000, guid: 7ff4a6bc2eb344740a8864bff00b55be, type: 3}
-    - {fileID: 8300000, guid: 699fe5048edd0d54a84d6d29acff271b, type: 3}
-    - {fileID: 8300000, guid: d18dadd628af60640a6b4b786c11fd7f, type: 3}
-    - {fileID: 8300000, guid: 9b79fbac0af1bb0489876a3ab8e0a1eb, type: 3}
-    - {fileID: 8300000, guid: 241d855da64b44f4cb25dbca30bb99da, type: 3}
+    - {fileID: 8300000, guid: 9770afaa207e1f841a8d00d523673dab, type: 3}
+    - {fileID: 8300000, guid: 45b8c31fda43f5d4ebff6e35af2b26a9, type: 3}
+    - {fileID: 8300000, guid: 142d84e61295a5f46a0bed6cded0123d, type: 3}
+    - {fileID: 8300000, guid: f5cdfaa813d735a498c278e21858b8df, type: 3}
   - Songname: Cold waters
     Drum: {fileID: 8300000, guid: 0dba258d70f2dfe40be160a889a282b7, type: 3}
     Bass: {fileID: 8300000, guid: 34cf78a184813454389f6c9100387213, type: 3}
@@ -1238,11 +1234,13 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 0e165009714365b48a8476882734263f, type: 3}
     - {fileID: 8300000, guid: 83c0d64e9e92e324d854d2903db57b73, type: 3}
     - {fileID: 8300000, guid: 57753317fe8646d42b496f885fec2961, type: 3}
-  - Songname: 
-    Drum: {fileID: 0}
-    Bass: {fileID: 0}
-    Synth: {fileID: 0}
-    RemainingTracks: []
+  - Songname: Shape of you
+    Drum: {fileID: 8300000, guid: bad82907dbe23544b855b6dbf9459a8e, type: 3}
+    Bass: {fileID: 8300000, guid: d82120600e17d0744adba80f3705a01e, type: 3}
+    Synth: {fileID: 8300000, guid: 6e56f47e503e6864b984ab633ca8f75b, type: 3}
+    RemainingTracks:
+    - {fileID: 8300000, guid: 12072b7be463c014da1daae95cc79234, type: 3}
+    - {fileID: 8300000, guid: 8e656d83bc20d25498a24099fe3ebcae, type: 3}
 --- !u!114 &1065951768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1836,7 +1834,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: c3569f18c01ba28448b0d805875713eb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 16e38ef581eec0849affdd30cf7fd388, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1925,7 +1923,7 @@ MonoBehaviour:
     Bass: {fileID: 8300000, guid: a4cdd799d2507724e984c78619bb14f8, type: 3}
     Synth: {fileID: 8300000, guid: b413ced19af90b64ba1f52e066bbd591, type: 3}
     RemainingTracks:
-    - {fileID: 0}
+    - {fileID: 8300000, guid: 345c19549500a10479609eb56d71395e, type: 3}
 --- !u!114 &1437353308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2137,7 +2135,7 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 1
+    m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
     m_Alignment: 5
@@ -2146,7 +2144,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Akame ga kill - Skyreach
+  m_Text: Cold water
 --- !u!222 &1492070282
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2207,7 +2205,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 0274da0845e49a64da7c636437653ba0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e92fffa72a8d7f34195347d5c0cef025, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2279,7 +2277,7 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
     m_Alignment: 5
@@ -2288,7 +2286,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Shinzou o Sasageyo!
+  m_Text: Ed Sheeran - Shape of you
 --- !u!222 &1595172077
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2472,7 +2470,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 72ca675186b36784988daca32168e046, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6d4677b3c786c594986be9638230e8ef, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

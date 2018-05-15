@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GetRMS : MonoBehaviour {
 
@@ -19,6 +20,14 @@ public class GetRMS : MonoBehaviour {
     }
 
     public InstrumentGroup Instrument;
+
+    private Slider m_Slider;
+
+    public Slider Slider
+    {
+        get { return m_Slider; }
+        set { m_Slider = value; }
+    }
 
     private int qSamples = 1024;  // array size
     private float refValue = 0.1f; // RMS value for 0 dB
@@ -72,5 +81,7 @@ public class GetRMS : MonoBehaviour {
     {
         GetVolume();
         //transform.localScale.y = volume * rmsValue;
+        if(m_Slider != null)
+            m_Slider.value = (rmsValue * 6);
     }
 }
