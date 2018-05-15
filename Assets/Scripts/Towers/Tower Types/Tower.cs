@@ -37,6 +37,7 @@ public class Tower : MonoBehaviour
     protected Enemy m_Target;
     protected bool m_ReadyToAttack = true;
     protected bool m_StartedCooldown;
+    private bool m_Paused;
     [SerializeField]
     protected GameObject attackProjectile;
 
@@ -46,6 +47,7 @@ public class Tower : MonoBehaviour
 
     public virtual void Awake()
     {
+        PauseCheck.Pause += TogglePause;
         Enemy.s_OnDestroyEnemy += RemoveEnemyFromList;
         m_LineRenderer = GetComponent<LineRenderer>();
     }
@@ -118,10 +120,23 @@ public class Tower : MonoBehaviour
         }
     }
 
+    private void TogglePause(bool Pause)
+    {
+        m_Paused = Pause;
+    }
+
     IEnumerator AttackCooldown()
     {
+        float timer = 0;
         m_StartedCooldown = true;
-        yield return new WaitForSeconds(TowerData.AttackInterval);
+        while(timer <= TowerData.AttackInterval)
+        {
+            if(!m_Paused)
+            {
+                timer += Time.deltaTime;
+            }
+            yield return new WaitForEndOfFrame();
+        }
         m_ReadyToAttack = true;
     }
 }

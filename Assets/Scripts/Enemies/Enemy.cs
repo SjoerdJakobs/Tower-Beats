@@ -54,7 +54,7 @@ public class Enemy : MonoBehaviour {
             PlayerData.s_Instance.ChangeCoinAmount(m_CoinsToGive);
         }
         //Play death anim
-        //Destroy(this.gameObject);
+        Destroy(this.gameObject);
     }
 
     public void DamageObjective()

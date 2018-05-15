@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody))]
 public class thingInPool : PoolObj {
@@ -19,6 +20,7 @@ public class thingInPool : PoolObj {
     {
         Body = GetComponent<Rigidbody>();
         meshRenderers = GetComponentsInChildren<MeshRenderer>();
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     void OnTriggerEnter(Collider enteredCollider)
@@ -27,5 +29,11 @@ public class thingInPool : PoolObj {
         {
             ReturnToPool();
         }
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("ye");
+        ReturnToPool();
     }
 }

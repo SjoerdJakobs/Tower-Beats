@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 #region Enums
 
@@ -56,6 +57,16 @@ public class Tile : MonoBehaviour
     #endregion
 
     #region Monobehavior functions
+    private void Awake()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        CurrentState = TileState.OPEN;
+        Tower = null;
+    }
 
     void OnMouseDown()
     {

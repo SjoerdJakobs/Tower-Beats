@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class TowerProjectile : PoolObj {
 
@@ -15,6 +15,7 @@ public class TowerProjectile : PoolObj {
     private void Awake()
     {
         PauseCheck.Pause += TogglePause;
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     public void SetNewVars(Vector3 newPos, Enemy newTarget, float newDamage, float newSpeed)
@@ -64,5 +65,11 @@ public class TowerProjectile : PoolObj {
     public void TogglePause(bool pause)
     {
         m_pause = pause;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("ye");
+        ReturnToPool();
     }
 }

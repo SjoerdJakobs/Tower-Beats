@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
         {
             //if(s_OnPreparationTimeUpdated != null) s_OnPreparationTimeUpdated(i);
             NotificationManager.s_Instance.EnqueueNotification((i == 0 ? "Enemies incoming" : i.ToString()), (i == 0 ? 1.5f : 0.5f));
-            print("Time left: " + i);
+            //print("Time left: " + i);
             yield return new WaitForSeconds(1);
         }
         callback();

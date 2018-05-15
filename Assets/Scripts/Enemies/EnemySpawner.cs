@@ -9,6 +9,7 @@ public class EnemySpawner : MonoBehaviour {
 
     [SerializeField] private List<Enemy> m_Enemies = new List<Enemy>();
     public List<Enemy> SpawnedEnemies = new List<Enemy>();
+    private bool m_Paused;
 
     private void Awake()
     {
@@ -18,6 +19,7 @@ public class EnemySpawner : MonoBehaviour {
         }
 
         Enemy.s_OnDestroyEnemy += RemoveEnemyFromList;
+        PauseCheck.Pause += TogglePause;
     }
 
     /// <summary>
@@ -34,6 +36,11 @@ public class EnemySpawner : MonoBehaviour {
         newEnemy.Move();
     }
 
+    private void TogglePause(bool Pause)
+    {
+        m_Paused = Pause;
+    }
+
     public void SpawnWave(int amountOfEnemies, float interval, Action callback = null)
     {
         StartCoroutine(SpawnEnemies(amountOfEnemies, interval, callback));
@@ -44,7 +51,15 @@ public class EnemySpawner : MonoBehaviour {
         for (int i = 0; i < amountOfEnemies; i++)
         {
             SpawnEnemy();
-            yield return new WaitForSeconds(interval);
+            float timer = 0;
+            while (timer <= interval)
+            {
+                if (!m_Paused)
+                {
+                    timer += Time.deltaTime;
+                }
+                yield return new WaitForEndOfFrame();
+            }
         }
 
         if(callback != null)

@@ -6,11 +6,11 @@ public class PoolObj : MonoBehaviour
 
     public void ReturnToPool()
     {
-        if (Pool != null)
+        if (Pool != null && this != null)
         {
             Pool.AddObjectToPool(this.gameObject);
         }
-        else
+        else if(this != null)
         {
             Destroy(gameObject);
         }
