@@ -21,6 +21,6 @@ public class SongPlaylist : MonoBehaviour {
     {
         SongManager.s_Instance.Songs = m_Playlist;
 
-        Sceneloader.s_Instance.LoadScene("Lorenzo");
+        Sceneloader.s_Instance.LoadScene("Game");
     }
 }

@@ -9,7 +9,7 @@ public class SynthTower : Tower
     public override void Awake()
     {
         base.Awake();
-        m_pool = ObjectPoolManager.s_Instance.GetObjectPool(attackProjectile);
+        m_pool = ObjectPoolManager.s_Instance.GetObjectPool(attackProjectile, 20, 5, 5, 20, true);
         GetRMS.s_SynthCue += Attack;
     }
 
