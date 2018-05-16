@@ -13,10 +13,10 @@ public class GetRMS : MonoBehaviour {
     //Used to identify the type of instrument
     public enum InstrumentGroup
     {
-        BASS,
-        DRUM,
-        SYNTH,
-        VOCAL
+        Bass,
+        Drum,
+        Synth,
+        Vocal
     }
 
     public InstrumentGroup Instrument;
@@ -36,7 +36,12 @@ public class GetRMS : MonoBehaviour {
     private float[] samples; // audio samples
 
     [SerializeField]private AudioSource m_Source;
- 
+
+    private void OnEnable()
+    {
+        Sceneloader.s_OnSceneLoaded += SetSlider;
+    }
+
     void Start()
     {
         samples = new float[qSamples];
@@ -58,17 +63,17 @@ public class GetRMS : MonoBehaviour {
         {
             switch (Instrument)
             {
-                case InstrumentGroup.BASS:
+                case InstrumentGroup.Bass:
                     Debug.Log("Bass cue");
                     if(s_BassCue != null)
                         s_BassCue();
                     break;
-                case InstrumentGroup.DRUM:
+                case InstrumentGroup.Drum:
                     Debug.Log("Drum cue");
                     if(s_DrumCue != null)
                         s_DrumCue();
                     break;
-                case InstrumentGroup.SYNTH:
+                case InstrumentGroup.Synth:
                     Debug.Log("Synth cue");
                     if (s_SynthCue != null)
                         s_SynthCue();
@@ -77,11 +82,21 @@ public class GetRMS : MonoBehaviour {
         }
     }
 
+    void SetSlider()
+    {
+        m_Slider = GameObject.Find(Instrument.ToString() + "Slider").GetComponent<Slider>();
+    }
+
     void Update()
     {
         GetVolume();
         //transform.localScale.y = volume * rmsValue;
         if(m_Slider != null)
             m_Slider.value = (rmsValue * 6);
+    }
+
+    private void OnDisable()
+    {
+        Sceneloader.s_OnSceneLoaded -= SetSlider;
     }
 }

@@ -30,7 +30,7 @@ public class Sceneloader : MonoBehaviour
 
     private void OnSceneLoadedCallback(Scene scene, LoadSceneMode mode)
     {
-        if(scene.name == "Lorenzo")
+        if(scene.name == "Game")
         {
             if(s_OnSceneLoaded != null)
                 s_OnSceneLoaded();

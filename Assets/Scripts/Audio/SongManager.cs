@@ -52,6 +52,7 @@ public class SongManager : MonoBehaviour {
         Destroy(gameObject);
 
         GameManager.s_OnGameStart += StartPlaylist;
+        Sceneloader.s_OnSceneLoaded += SetSongUI;
         s_OnPlaylistComplete += OnLevelComplete;
     }
 
@@ -77,11 +78,17 @@ public class SongManager : MonoBehaviour {
             SetSongTracks(songNumber);
             StartSong();
 
-            if (s_OnChangeSong != null)
-            {
-                s_OnChangeSong(m_SongNumber + 1, m_Songs.Length, "Hell song");
-            }
+            SetSongUI();
+
             RefreshQueue(songNumber + 1, songLength: m_SongAudioSources[0].clip.length);
+        }
+    }
+
+    void SetSongUI()
+    {
+        if (s_OnChangeSong != null)
+        {
+            s_OnChangeSong(m_SongNumber + 1, m_Songs.Length, m_Songs[m_SongNumber].Songname);
         }
     }
 
@@ -99,10 +106,8 @@ public class SongManager : MonoBehaviour {
 
         for (int i = 0; i < m_Songs[songNumber].RemainingTracks.Count; i++)
         {
-            GameObject sourceParent;
-            sourceParent = new GameObject();
-            Debug.Log(m_Songs[songNumber].RemainingTracks[i].name);
-            //sourceParent.name = m_Songs[songNumber].RemainingTracks[i].name;
+            GameObject sourceParent = new GameObject();
+            sourceParent.name = m_Songs[songNumber].RemainingTracks[i].name;
             sourceParent.transform.SetParent(transform);
 
             AudioSource source = sourceParent.AddComponent<AudioSource>();
@@ -192,6 +197,7 @@ public class SongManager : MonoBehaviour {
     private void OnDisable()
     {
         GameManager.s_OnGameStart -= StartPlaylist;
+        Sceneloader.s_OnSceneLoaded -= SetSongUI;
         Sceneloader.s_OnSceneLoaded -= StartPlaylist;
     }
 }
