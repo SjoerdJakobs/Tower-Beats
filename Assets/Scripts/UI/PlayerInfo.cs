@@ -6,7 +6,7 @@ public class PlayerInfo : MonoBehaviour {
 
     [SerializeField] private Text m_Coins;
     [SerializeField] private Image m_Lives;
-    [SerializeField] private Text m_Song;
+    [SerializeField] private Text m_SongText;
     [SerializeField] private Image m_DamageIndicator;
     [SerializeField] private Text m_PreparationTimer;
 
@@ -53,7 +53,7 @@ public class PlayerInfo : MonoBehaviour {
 
     void UpdateSongUI(int currentSong, int maxSongs,string songName)
     {
-        m_Song.text = currentSong + "/" + maxSongs + "  " + songName;
+        m_SongText.text = currentSong + "/" + maxSongs + "  " + songName;
     }
 
     private void UpdatePreparationTime(int time)
