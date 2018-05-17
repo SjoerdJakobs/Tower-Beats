@@ -88,7 +88,8 @@ public class SongManager : MonoBehaviour {
     {
         if (s_OnChangeSong != null)
         {
-            s_OnChangeSong(m_SongNumber + 1, m_Songs.Length, m_Songs[m_SongNumber].Songname);
+            Debug.Log(s_OnChangeSong);
+            s_OnChangeSong((m_SongNumber + 1), m_Songs.Length, m_Songs[m_SongNumber].Songname);
         }
     }
 

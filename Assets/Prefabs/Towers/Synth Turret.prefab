@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 95009753554554656}
   - component: {fileID: 114846945578314558}
   m_Layer: 0
-  m_Name: TURRET_Synth2
+  m_Name: Synth Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
