@@ -35,6 +35,12 @@ public struct TileArt
     public SpriteRenderer VisualStateRenderer;
 }
 
+[System.Serializable]
+public class TileData
+{
+
+}
+
 #endregion
 
 public class Tile : MonoBehaviour

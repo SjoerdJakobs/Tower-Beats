@@ -3,6 +3,8 @@ using DG.Tweening;
 
 public class CameraMovement : MonoBehaviour {
 
+    [SerializeField] private bool m_UseBounderies = true;
+    [Space(10f)]
     [SerializeField] private float m_MinX;
     [SerializeField] private float m_MaxX;
     [SerializeField] private float m_MinY;
@@ -34,6 +36,9 @@ public class CameraMovement : MonoBehaviour {
             s_Instance = this;
         else
             Destroy(gameObject);
+
+        if(!m_UseBounderies)
+            CanMoveCamera = true;
     }
 
     private void Update()
@@ -57,8 +62,11 @@ public class CameraMovement : MonoBehaviour {
         float currentX = transform.position.x;
         float currentY = transform.position.y;
 
-        currentX = Mathf.Clamp(currentX, m_MinX, m_MaxX);
-        currentY = Mathf.Clamp(currentY, m_MinY, m_MaxY);
+        if(m_UseBounderies)
+        {
+            currentX = Mathf.Clamp(currentX, m_MinX, m_MaxX);
+            currentY = Mathf.Clamp(currentY, m_MinY, m_MaxY);
+        }
 
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
@@ -113,7 +121,7 @@ public class CameraMovement : MonoBehaviour {
             }
         }
 
-        m_MovePos = new Vector3(Mathf.Clamp(m_MovePos.x, m_MinX, m_MaxX), Mathf.Clamp(m_MovePos.y, m_MinY, m_MaxY), transform.position.z);   
+        m_MovePos = new Vector3((m_UseBounderies ? Mathf.Clamp(m_MovePos.x, m_MinX, m_MaxX) : m_MovePos.x), (m_UseBounderies ? Mathf.Clamp(m_MovePos.y, m_MinY, m_MaxY) : m_MovePos.y), transform.position.z);   
     }
 
     private void MoveCamera()
