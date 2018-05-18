@@ -14,6 +14,8 @@ public class Enemy : MonoBehaviour {
     //TEMP
     private Tween m_dopath;
 
+    private EnemyHealthbar m_EnemyHealthbar;
+
     [SerializeField] private float m_MoveSpeed;
     [SerializeField] private float m_CoinsToGive;
     [SerializeField] private int m_CoinsToSteal;
@@ -25,11 +27,15 @@ public class Enemy : MonoBehaviour {
         m_CurrentHealth = m_MaxHealth;
         SongManager.s_OnPlaylistComplete += Death;
         PauseCheck.Pause += TogglePause;
+
+        m_EnemyHealthbar = GetComponent<EnemyHealthbar>();
     }
 
     public void TakeDamage(float damage)
     {
         m_CurrentHealth -= damage;
+        m_EnemyHealthbar.ChangeEnemyHealthUI(m_CurrentHealth / m_MaxHealth);
+
         if (m_CurrentHealth <= 0)
         {
             Death(true);

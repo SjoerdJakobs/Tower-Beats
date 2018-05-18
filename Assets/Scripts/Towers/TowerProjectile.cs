@@ -34,13 +34,13 @@ public class TowerProjectile : PoolObj {
     {
         Vector3 lastPos = Vector3.zero;
         float lerpValue = 0;
-        while (lerpValue <= 1)
+        while (lerpValue * m_movSpeed <= 1)
         {
             if (!m_pause)
             {
                 if (m_targetObj != null)
                 {
-                    transform.position = Vector3.Lerp(m_startPos, m_targetObj.transform.position, lerpValue);
+                    transform.position = Vector3.Lerp(m_startPos, m_targetObj.transform.position, lerpValue * m_movSpeed);
                     lastPos = m_targetObj.transform.position;
                     lerpValue += Time.deltaTime;
                     transform.LookAt(m_target.transform.position);

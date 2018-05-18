@@ -6,8 +6,8 @@ public class EnemyHealthbar : MonoBehaviour {
 
     [SerializeField] private Image m_EnemyHealthbar;
 
-    void ChangeEnemyHealthUI(float currentEnemyHealth)
+    public void ChangeEnemyHealthUI(float healthbarValue)
     {
-        m_EnemyHealthbar.DOFillAmount(currentEnemyHealth, 0.2f);
+        m_EnemyHealthbar.DOFillAmount(healthbarValue, 0.2f);
     }
 }
