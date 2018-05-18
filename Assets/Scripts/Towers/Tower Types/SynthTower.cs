@@ -10,7 +10,7 @@ public class SynthTower : Tower
     {
         base.Awake();
         m_pool = ObjectPoolManager.s_Instance.GetObjectPool(attackProjectile, 20, 5, 5, 20, true);
-        GetRMS.s_SynthCue += Attack;
+        GetRMS.s_LeadCue += Attack;
     }
 
     public override void Attack()
@@ -29,6 +29,6 @@ public class SynthTower : Tower
 
     private void OnDestroy()
     {
-        GetRMS.s_SynthCue -= Attack;
+        GetRMS.s_LeadCue -= Attack;
     }
 }
