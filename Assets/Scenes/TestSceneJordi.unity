@@ -561,6 +561,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 33576091528976642, guid: 6070b2b6ce613c74ca956f892c914407,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6070b2b6ce613c74ca956f892c914407, type: 2}
   m_IsPrefabParent: 0
@@ -667,6 +672,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da66d9cc90499a43947427b2a65ccf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_UseBounderies: 1
   m_MinX: 8.2
   m_MaxX: 18
   m_MinY: 4.35
@@ -958,7 +964,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &757109692
 GameObject:
@@ -1290,7 +1296,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &884610577
 GameObject:
@@ -1563,7 +1569,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4717605004064510, guid: 09c6adc9570a3e04d9850194b8601349, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 09c6adc9570a3e04d9850194b8601349, type: 2}
@@ -1815,7 +1821,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Enemies:
-  - {fileID: 114768752582060182, guid: 6070b2b6ce613c74ca956f892c914407, type: 2}
+  - {fileID: 0}
   SpawnedEnemies: []
 --- !u!4 &1127462652
 Transform:
@@ -1828,7 +1834,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1425034966
 GameObject:
@@ -2351,7 +2357,7 @@ Prefab:
         type: 2}
       propertyPath: m_Towers.Array.data[2]
       value: 
-      objectReference: {fileID: 114215525636296248, guid: 2585f069a5472a448a01dba9cdd17ed2,
+      objectReference: {fileID: 114627308776494304, guid: 8ab5ee8723ebde9418efe8a95830d141,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2f7cee28495c40545bcf3d054c0bf310, type: 2}
