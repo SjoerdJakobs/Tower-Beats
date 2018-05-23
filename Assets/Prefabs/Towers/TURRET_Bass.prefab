@@ -53,7 +53,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EnemiesInRange: []
-  attackProjectile: {fileID: 0}
+  attackProjectile: {fileID: 1172778507945960, guid: 04e3ee5bccfd5de439910a2b7e5f621e,
+    type: 2}
 --- !u!212 &212732730437248908
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -87,7 +88,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 1ff26958c982e214bbc7b102df5ecacb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

@@ -53,7 +53,7 @@ public class EnemySpawner : MonoBehaviour {
         {
             SpawnEnemy();
             float timer = 0;
-            while (timer <= 100)
+            while (timer <= interval)
             {
                 if (!m_Paused)
                 {

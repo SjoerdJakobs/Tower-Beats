@@ -75,9 +75,9 @@ public class Enemy : MonoBehaviour {
             PlayerData.s_Instance.ChangeCoinAmount(m_CoinsToGive);
         }
         //Play death anim
-        Sequence deathSqn = DOTween.Sequence();
+        /*Sequence deathSqn = DOTween.Sequence();
 
-        /*deathSqn.AppendInterval(0.15f);
+        deathSqn.AppendInterval(0.15f);
         deathSqn.AppendCallback(() => Destroy(this.gameObject));*/
         Destroy(this.gameObject);
     }
