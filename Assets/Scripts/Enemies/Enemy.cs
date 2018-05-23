@@ -41,9 +41,6 @@ public class Enemy : MonoBehaviour {
         EffectsManager.s_Instance.SpawnEffect(EffectType.ENEMY_HIT, false, transform.position);
         m_CurrentHealth -= damage;
         m_EnemyHealthbar.ChangeEnemyHealthUI(m_CurrentHealth, damage);
-        
-        m_EnemyHealthbar.ChangeEnemyHealthUI(m_CurrentHealth, damage);
-
 
         if (m_CurrentHealth <= 0)
         {
