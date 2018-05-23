@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour {
     //TEMP
     private Tween m_dopath;
     private SkeletonAnimation m_SkeletonAnims;
+    private AnimationState m_Anim;
     private EnemyHealthbar m_EnemyHealthbar;
 
     [SerializeField] private float m_MoveSpeed;
@@ -39,13 +40,18 @@ public class Enemy : MonoBehaviour {
     {
         m_CurrentHealth -= damage;
         m_EnemyHealthbar.ChangeEnemyHealthUI(m_CurrentHealth, damage);
-        StartCoroutine(AnimationRoutine("HIT_Electricity", 1f));
+        
         m_EnemyHealthbar.ChangeEnemyHealthUI(m_CurrentHealth, damage);
 
 
         if (m_CurrentHealth <= 0)
         {
             Death(true);
+        }else if(m_CurrentHealth > 0)
+        {
+            m_SkeletonAnims.AnimationState.SetAnimation(0, "HIT_Electricity", false);
+            m_SkeletonAnims.AnimationState.AddAnimation(0, "MOVE", true,0);
+
         }
     }
 
@@ -54,12 +60,14 @@ public class Enemy : MonoBehaviour {
     /// </summary>
     public void Death()
     {
+
         Death(false);
     }
 
     public void Death(bool killedByPlayer)
     {
         m_IsAlive = false;
+        
         //If player kills the enemy
         if (killedByPlayer)
         {
@@ -146,10 +154,13 @@ public class Enemy : MonoBehaviour {
         SongManager.s_OnPlaylistComplete -= Death;
     }
 
-    IEnumerator AnimationRoutine(string animationName, float duration)
+    void DeathRoutine()
     {
-        m_SkeletonAnims.AnimationName = animationName;
-        yield return new WaitForSeconds(duration);
-        m_SkeletonAnims.AnimationName = "MOVE";
+        m_SkeletonAnims.AnimationState.SetAnimation(0, "Death", false);
+        m_SkeletonAnims.AnimationState.End += delegate
+        {
+            Destroy(this.gameObject);
+        };
     }
+
 }
