@@ -6,7 +6,11 @@ using UnityEngine;
 
 public enum EffectType
 {
-    ENEMY_SPAWN
+    ENEMY_SPAWN,
+    ENEMY_HIT,
+    ELECTRO_TURRET_ATTACK,
+    LASER_TURRET_ATTACK,
+    SHOOT_TURRET_ATTACK
 }
 
 public class EffectsManager : MonoBehaviour

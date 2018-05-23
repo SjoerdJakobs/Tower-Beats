@@ -69,7 +69,6 @@ public class TowerProjectile : PoolObj {
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("ye");
         ReturnToPool();
     }
 }

@@ -28,6 +28,9 @@ public class VisualEffect : MonoBehaviour
             case EffectType.ENEMY_SPAWN:
                 m_Animation.AnimationName = "Spawn FX";
                 break;
+            case EffectType.ENEMY_HIT:
+                m_Animation.AnimationName = "Hit FX";
+                break;
         }
 
         m_Animation.loop = loop;
