@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114585116895345644}
   - component: {fileID: 120409566723923972}
   m_Layer: 0
-  m_Name: Drum Tower
+  m_Name: TURRET_Drum
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

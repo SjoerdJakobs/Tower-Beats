@@ -112,6 +112,14 @@ public class SongManager : MonoBehaviour {
 
             RefreshQueue(songNumber + 1, songLength: m_SongAudioSources[0].clip.length);
         }
+        else
+        {
+            if (s_OnPlaylistComplete != null)
+            {
+                s_OnPlaylistComplete();
+                MenuManager.s_Instance.ShowMenu(MenuNames.VICTORY_MENU);
+            }
+        }
     }
 
     void SetSongUI()
@@ -129,7 +137,6 @@ public class SongManager : MonoBehaviour {
     /// <param name="songNumber">Number of the currently playing song in the playlist.</param>
     private void SetSongTracks(int songNumber)
     {
-        RemoveExcessiveTracks();
         LoadSong(m_Songs[songNumber].Songname);
         m_SongAudioSources[0].clip = m_Bass;
         m_SongAudioSources[1].clip = m_Drum;
@@ -219,7 +226,11 @@ public class SongManager : MonoBehaviour {
     private void OnLevelComplete()
     {
         Debug.Log("OnLevelComplete");
-        m_SongQueue = null; 
+        m_SongQueue = null;
+        m_SongAudioSources[0].clip = null;
+        m_SongAudioSources[1].clip = null;
+        m_SongAudioSources[2].clip = null;
+        RemoveExcessiveTracks();
     }
 
     public void SkipSong()

@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4918633660162384}
   - component: {fileID: 212430857329934850}
   - component: {fileID: 114535166801127582}
+  - component: {fileID: 114849368548835228}
   m_Layer: 0
   m_Name: Lead Tower
   m_TagString: Untagged
@@ -55,6 +56,19 @@ MonoBehaviour:
   m_EnemiesInRange: []
   attackProjectile: {fileID: 1172778507945960, guid: 04e3ee5bccfd5de439910a2b7e5f621e,
     type: 2}
+--- !u!114 &114849368548835228
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1408809650584988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c51033de8cdb24ca65d8d39c575c14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EnemiesInRange: []
+  attackProjectile: {fileID: 0}
 --- !u!212 &212430857329934850
 SpriteRenderer:
   m_ObjectHideFlags: 1
