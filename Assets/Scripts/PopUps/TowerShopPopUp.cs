@@ -1,9 +1,36 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TowerShopPopUp : PopUp {
 
     [SerializeField] private List<Tower> m_Towers = new List<Tower>();
+
+    [SerializeField] private Color m_AvailableColor;
+    [SerializeField] private Color m_UnavailableColor;
+    [SerializeField] private Text m_BassTowerCost;
+    [SerializeField] private Text m_DrumTowerCost;
+    [SerializeField] private Text m_LeadTowerCost;
+
+    private void OnEnable()
+    {
+        float coins = PlayerData.s_Instance.Coins;
+
+        CompareCostAndSetTextColor(coins, TowerConfig.s_Towers[TowerTypeTags.BASS_TOWER][0].BuyCost, m_BassTowerCost);
+        CompareCostAndSetTextColor(coins, TowerConfig.s_Towers[TowerTypeTags.DRUM_TOWER][0].BuyCost, m_DrumTowerCost);
+        CompareCostAndSetTextColor(coins, TowerConfig.s_Towers[TowerTypeTags.LEAD_TOWER][0].BuyCost,m_LeadTowerCost);
+    }
+
+    void CompareCostAndSetTextColor(float coins, float cost, Text textToColor)
+    {
+        if(coins >= cost)
+        {
+            textToColor.color = m_AvailableColor;
+        }else
+        {
+            textToColor.color = m_UnavailableColor;
+        }
+    }
 
     public void PurchaseTower(string towerType)
     {

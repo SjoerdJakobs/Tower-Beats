@@ -23,7 +23,14 @@ public class TowerInfoPopUp : PopUp {
         m_DamageField.text = tower.TowerData.AttackDamage.ToString();
         m_RangeField.text = tower.TowerData.AttackRange.ToString();
         m_SellValue.text = tower.TowerData.SellValue.ToString();
-        m_UpgradeCost.text = tower.TowerData.UpgradeCost.ToString();
+        if (tower.TowerData.Level < tower.TowerData.MaxLevel)
+        {
+            m_UpgradeCost.text = tower.TowerData.UpgradeCost.ToString();
+        }
+        else
+        {
+            m_UpgradeCost.text = "MAX";
+        }
     }
 
     public void OnDisable()
