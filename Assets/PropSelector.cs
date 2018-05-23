@@ -44,8 +44,17 @@ public class PropSelector : MonoBehaviour
 
     public void ConfirmSelection()
     {
+        string[] fileExtensions = { ".png", ".jpg" };
+
         string path = AssetDatabase.GetAssetPath(m_Image.sprite);
         path = path.Remove(0, 17); // Remove "/Assets/Resources/" from path string
+
+        for (int i = 0; i < fileExtensions.Length; i++)
+        {
+            if (path.Contains(fileExtensions[i]))
+                path = path.Replace(fileExtensions[i], "");
+        }
+        //path = path.Replace(".png", "");
 
         if (s_OnPropSelectorConfirm != null) s_OnPropSelectorConfirm(path);
     }
