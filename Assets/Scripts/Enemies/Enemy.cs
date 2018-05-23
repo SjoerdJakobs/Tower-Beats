@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Spine.Unity;
 using DG.Tweening;
 
 public class Enemy : MonoBehaviour {
@@ -13,7 +14,7 @@ public class Enemy : MonoBehaviour {
 
     //TEMP
     private Tween m_dopath;
-
+    private SkeletonAnimation m_SkeletonAnims;
     private EnemyHealthbar m_EnemyHealthbar;
 
     [SerializeField] private float m_MoveSpeed;
@@ -25,6 +26,7 @@ public class Enemy : MonoBehaviour {
     private void Awake()
     {
         m_CurrentHealth = m_MaxHealth;
+        m_SkeletonAnims = GetComponent<SkeletonAnimation>();
         SongManager.s_OnPlaylistComplete += Death;
         PauseCheck.Pause += TogglePause;
 
@@ -37,6 +39,9 @@ public class Enemy : MonoBehaviour {
     {
         m_CurrentHealth -= damage;
         m_EnemyHealthbar.ChangeEnemyHealthUI(m_CurrentHealth, damage);
+        StartCoroutine(AnimationRoutine("HIT_Electricity", 1f));
+        m_EnemyHealthbar.ChangeEnemyHealthUI(m_CurrentHealth / m_MaxHealth);
+
 
         if (m_CurrentHealth <= 0)
         {
@@ -139,5 +144,12 @@ public class Enemy : MonoBehaviour {
             s_OnDestroyEnemy(this);
         }
         SongManager.s_OnPlaylistComplete -= Death;
+    }
+
+    IEnumerator AnimationRoutine(string animationName, float duration)
+    {
+        m_SkeletonAnims.AnimationName = animationName;
+        yield return new WaitForSeconds(duration);
+        m_SkeletonAnims.AnimationName = "MOVE";
     }
 }
