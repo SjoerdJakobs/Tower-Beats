@@ -66,6 +66,11 @@ public class Enemy : MonoBehaviour {
 
     public void Death(bool killedByPlayer)
     {
+        PausePath();
+        if(s_OnDestroyEnemy != null)
+        {
+            s_OnDestroyEnemy(this);
+        }
         m_IsAlive = false;
         
         //If player kills the enemy
@@ -74,12 +79,11 @@ public class Enemy : MonoBehaviour {
             //Give coins
             PlayerData.s_Instance.ChangeCoinAmount(m_CoinsToGive);
         }
-        //Play death anim
-        /*Sequence deathSqn = DOTween.Sequence();
-
-        deathSqn.AppendInterval(0.15f);
-        deathSqn.AppendCallback(() => Destroy(this.gameObject));*/
-        Destroy(this.gameObject);
+        m_SkeletonAnims.AnimationState.SetAnimation(0, "DEATH", false);
+        m_SkeletonAnims.AnimationState.Complete += delegate
+        {
+            Destroy(this.gameObject);
+        };
     }
 
     public void DamageObjective()
@@ -147,20 +151,12 @@ public class Enemy : MonoBehaviour {
 
     private void OnDestroy()
     {
-        if (s_OnDestroyEnemy != null)
-        {
-            s_OnDestroyEnemy(this);
-        }
         SongManager.s_OnPlaylistComplete -= Death;
     }
 
     void DeathRoutine()
     {
-        m_SkeletonAnims.AnimationState.SetAnimation(0, "Death", false);
-        m_SkeletonAnims.AnimationState.End += delegate
-        {
-            Destroy(this.gameObject);
-        };
+        
     }
 
 }
