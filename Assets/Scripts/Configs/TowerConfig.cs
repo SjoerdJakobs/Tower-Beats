@@ -16,11 +16,11 @@ public class TowerConfig
             new TowerData(TowerTypeTags.DRUM_TOWER, 2, 3, 300, 0, 375, 2f,2.75f,0.3f),
             new TowerData(TowerTypeTags.DRUM_TOWER, 3, 3, 0, 0 , 600, 2f, 3f, 0.25f)
         }},
-        {TowerTypeTags.SYNTH_TOWER, new List<TowerData>()
+        {TowerTypeTags.LEAD_TOWER, new List<TowerData>()
         {
-            new TowerData(TowerTypeTags.SYNTH_TOWER, 1, 3, 200, 200, 150,4f, 1.5f,0.4f),
-            new TowerData(TowerTypeTags.SYNTH_TOWER, 2, 3, 300, 0, 300, 2f, 2.25f, 0.3f),
-            new TowerData(TowerTypeTags.SYNTH_TOWER, 3, 3, 0, 0, 525, 2f, 2.75f, 0.2f)
+            new TowerData(TowerTypeTags.LEAD_TOWER, 1, 3, 200, 200, 150,4f, 1.5f,0.4f),
+            new TowerData(TowerTypeTags.LEAD_TOWER, 2, 3, 300, 0, 300, 2f, 2.25f, 0.3f),
+            new TowerData(TowerTypeTags.LEAD_TOWER, 3, 3, 0, 0, 525, 2f, 2.75f, 0.2f)
         }}
     };
 }

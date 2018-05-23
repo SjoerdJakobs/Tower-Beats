@@ -22,7 +22,7 @@ public class TowerShopPopUp : PopUp {
                 case TowerTypeTags.DRUM_TOWER:
                     SpawnTower(towerType, 1);
                     break;
-                case TowerTypeTags.SYNTH_TOWER:
+                case TowerTypeTags.LEAD_TOWER:
                     SpawnTower(towerType, 2);
                     break;
             }
