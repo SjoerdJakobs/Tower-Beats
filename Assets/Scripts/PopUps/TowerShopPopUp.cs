@@ -38,5 +38,9 @@ public class TowerShopPopUp : PopUp {
         newTower.TowerData = TowerConfig.s_Towers[towerType][0];
         newTower.transform.position = HexGrid.s_Instance.SelectedTile.transform.position;
         HexGrid.s_Instance.SelectedTile.Tower = newTower;
+
+        int orderInLayer = (HexGrid.s_Instance.GridSize.y - HexGrid.s_Instance.SelectedTile.Y);
+
+        newTower.GetComponent<SpriteRenderer>().sortingOrder = orderInLayer;
     }
 }
