@@ -354,7 +354,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -1218,29 +1218,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Playlist:
   - Songname: Bring me to life
-    Drum: {fileID: 8300000, guid: 5c14e466157cfab4493438eede092402, type: 3}
-    Bass: {fileID: 8300000, guid: 27130a3d952301c4496d33109cd22c1d, type: 3}
-    Synth: {fileID: 8300000, guid: 562bce46e816f6747b7d6211ac9660b2, type: 3}
-    RemainingTracks:
-    - {fileID: 8300000, guid: 9770afaa207e1f841a8d00d523673dab, type: 3}
-    - {fileID: 8300000, guid: 45b8c31fda43f5d4ebff6e35af2b26a9, type: 3}
-    - {fileID: 8300000, guid: 142d84e61295a5f46a0bed6cded0123d, type: 3}
-    - {fileID: 8300000, guid: f5cdfaa813d735a498c278e21858b8df, type: 3}
   - Songname: Cold waters
-    Drum: {fileID: 8300000, guid: 0dba258d70f2dfe40be160a889a282b7, type: 3}
-    Bass: {fileID: 8300000, guid: 34cf78a184813454389f6c9100387213, type: 3}
-    Synth: {fileID: 8300000, guid: 303c417a92c6de149b5181c2626da4f6, type: 3}
-    RemainingTracks:
-    - {fileID: 8300000, guid: 0e165009714365b48a8476882734263f, type: 3}
-    - {fileID: 8300000, guid: 83c0d64e9e92e324d854d2903db57b73, type: 3}
-    - {fileID: 8300000, guid: 57753317fe8646d42b496f885fec2961, type: 3}
   - Songname: Shape of you
-    Drum: {fileID: 8300000, guid: bad82907dbe23544b855b6dbf9459a8e, type: 3}
-    Bass: {fileID: 8300000, guid: d82120600e17d0744adba80f3705a01e, type: 3}
-    Synth: {fileID: 8300000, guid: 6e56f47e503e6864b984ab633ca8f75b, type: 3}
-    RemainingTracks:
-    - {fileID: 8300000, guid: 12072b7be463c014da1daae95cc79234, type: 3}
-    - {fileID: 8300000, guid: 8e656d83bc20d25498a24099fe3ebcae, type: 3}
 --- !u!114 &1065951768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1497,7 +1476,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -1902,28 +1881,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Playlist:
-  - Songname: We are number one
-    Drum: {fileID: 8300000, guid: becd6f8162f17c74fac6999454485139, type: 3}
-    Bass: {fileID: 8300000, guid: 4f7ab0a2f71e9a94880bb1705fe42dbd, type: 3}
-    Synth: {fileID: 8300000, guid: 5b7baa17c0220e14eadfdb1a219d2db7, type: 3}
-    RemainingTracks:
-    - {fileID: 8300000, guid: a6a60afd1c6923640abdd359165ba17a, type: 3}
-    - {fileID: 8300000, guid: e913aa337e3c83e4fb2b941137fcc44a, type: 3}
-    - {fileID: 8300000, guid: a6a60afd1c6923640abdd359165ba17a, type: 3}
-  - Songname: The Offspring - Self Esteem
-    Drum: {fileID: 8300000, guid: 55148074b38cb36428d0232475dde94d, type: 3}
-    Bass: {fileID: 8300000, guid: 0084d33c8049df74db746c38aba7a1ee, type: 3}
-    Synth: {fileID: 8300000, guid: cd4c382af691c944da3130161ef17aea, type: 3}
-    RemainingTracks:
-    - {fileID: 8300000, guid: 137554dc5fa8ae942bbf94c07059ecda, type: 3}
-    - {fileID: 8300000, guid: 54b3f7a9ffe67be4b84402b8e3774339, type: 3}
-    - {fileID: 8300000, guid: 127468ef179871a45988b077b2e88569, type: 3}
-  - Songname: Dragonforce - TTFAF
-    Drum: {fileID: 8300000, guid: c9034ec352b8a0441916538bc27168ac, type: 3}
-    Bass: {fileID: 8300000, guid: a4cdd799d2507724e984c78619bb14f8, type: 3}
-    Synth: {fileID: 8300000, guid: b413ced19af90b64ba1f52e066bbd591, type: 3}
-    RemainingTracks:
-    - {fileID: 8300000, guid: 345c19549500a10479609eb56d71395e, type: 3}
+  - Songname: We Are Number One
+  - Songname: Self Esteem
+  - Songname: Through The Fire And Flames
 --- !u!114 &1437353308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2390,7 +2350,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:

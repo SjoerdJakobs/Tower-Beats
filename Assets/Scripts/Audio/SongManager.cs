@@ -26,7 +26,7 @@ public class SongManager : MonoBehaviour {
     private Coroutine m_SongQueue;
 
     //List of remaining tracks the song.
-    private List<GameObject> m_RemainingTracks = new List<GameObject>();
+    [SerializeField]private List<GameObject> m_RemainingTracksObjects = new List<GameObject>();
 
     public AudioSource[] SongAudioSources { get { return m_SongAudioSources; } }
     public Song[] Songs
@@ -35,10 +35,38 @@ public class SongManager : MonoBehaviour {
         set { m_Songs = value; }
     }
 
+    private AudioClip m_Bass;
+    private AudioClip m_Drum;
+    private AudioClip m_Lead;
+
+    private AudioClip[] m_RemainingTracks;
+
+
     public int SongNumber
     {
         get { return m_SongNumber; }
         set { m_SongNumber = value; }
+    }
+
+    void LoadSong(string songName)
+    {
+        RemoveExcessiveTracks();
+        //Gets the songs tracks from the resource / audio folder
+        //Tracks are put in the Resources/Audio folder under the song name
+        for (int i = 0; i < Songs.Length; i++)
+        {
+            string songPath = "Audio/" + songName + "/" + songName;
+            string miscTracks = "Audio/" + songName + "/MiscTracks";
+
+            m_Bass = Resources.Load<AudioClip>(songPath + " Bass");
+            m_Drum = Resources.Load<AudioClip>(songPath + " Drum");
+            m_Lead = Resources.Load<AudioClip>(songPath + " Lead");
+
+            //ResourceRequest remainingClips = Resources.LoadAsync(miscTracks);
+            m_RemainingTracks = Resources.LoadAll<AudioClip>(miscTracks);
+
+
+        }
     }
 
     private void Awake()
@@ -50,6 +78,8 @@ public class SongManager : MonoBehaviour {
         }
         else
         Destroy(gameObject);
+
+
 
         GameManager.s_OnGameStart += StartPlaylist;
         Sceneloader.s_OnSceneLoaded += SetSongUI;
@@ -100,21 +130,21 @@ public class SongManager : MonoBehaviour {
     private void SetSongTracks(int songNumber)
     {
         RemoveExcessiveTracks();
+        LoadSong(m_Songs[songNumber].Songname);
+        m_SongAudioSources[0].clip = m_Bass;
+        m_SongAudioSources[1].clip = m_Drum;
+        m_SongAudioSources[2].clip = m_Lead;
 
-        m_SongAudioSources[0].clip = m_Songs[songNumber].Bass;
-        m_SongAudioSources[1].clip = m_Songs[songNumber].Drum;
-        m_SongAudioSources[2].clip = m_Songs[songNumber].Synth;
-
-        for (int i = 0; i < m_Songs[songNumber].RemainingTracks.Count; i++)
+        for (int i = 0; i < m_RemainingTracks.Length; i++)
         {
             GameObject sourceParent = new GameObject();
-            sourceParent.name = m_Songs[songNumber].RemainingTracks[i].name;
+            sourceParent.name = m_RemainingTracks[i].name;
             sourceParent.transform.SetParent(transform);
 
             AudioSource source = sourceParent.AddComponent<AudioSource>();
-            source.clip = m_Songs[songNumber].RemainingTracks[i];
+            source.clip = m_RemainingTracks[i];
             source.Play();
-            m_RemainingTracks.Add(sourceParent);
+            m_RemainingTracksObjects.Add(sourceParent);
         }
     }
 
@@ -134,12 +164,14 @@ public class SongManager : MonoBehaviour {
     /// </summary>
     private void RemoveExcessiveTracks()
     {
-        for (int i = 0; i < m_RemainingTracks.Count; i++)
+        for (int i = 0; i < m_RemainingTracksObjects.Count; i++)
         {
-            Destroy(m_RemainingTracks[i]);
+            m_RemainingTracks[i] = null;
+            Destroy(m_RemainingTracksObjects[i]);
+            
         }
 
-        m_RemainingTracks.Clear();
+        m_RemainingTracksObjects.Clear();
     }
 
     /// <summary>
