@@ -2348,6 +2348,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 114274141273149714, guid: 2f7cee28495c40545bcf3d054c0bf310,
+        type: 2}
+      propertyPath: m_Towers.Array.data[1]
+      value: 
+      objectReference: {fileID: 114511312130410272, guid: 1b182fc18236c924aa113e4e94c81cbd,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2f7cee28495c40545bcf3d054c0bf310, type: 2}
   m_IsPrefabParent: 0

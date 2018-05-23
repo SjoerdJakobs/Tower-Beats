@@ -9,18 +9,18 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1857194346612976}
+  m_RootGameObject: {fileID: 1328544408461234}
   m_IsPrefabParent: 1
---- !u!1 &1857194346612976
+--- !u!1 &1328544408461234
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4568093862243474}
-  - component: {fileID: 212479831131375854}
-  - component: {fileID: 114058675958181602}
+  - component: {fileID: 4396834826881582}
+  - component: {fileID: 212478675567826046}
+  - component: {fileID: 114511312130410272}
   m_Layer: 0
   m_Name: TURRET_Drum
   m_TagString: Untagged
@@ -28,25 +28,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4568093862243474
+--- !u!4 &4396834826881582
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1857194346612976}
+  m_GameObject: {fileID: 1328544408461234}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.537599, y: 2.6912284, z: 0}
+  m_LocalPosition: {x: 5.109234, y: 2.813153, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114058675958181602
+--- !u!114 &114511312130410272
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1857194346612976}
+  m_GameObject: {fileID: 1328544408461234}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8f1cb524108ee44ba99e38cb101a2b5, type: 3}
@@ -55,12 +55,12 @@ MonoBehaviour:
   m_EnemiesInRange: []
   attackProjectile: {fileID: 1172778507945960, guid: 04e3ee5bccfd5de439910a2b7e5f621e,
     type: 2}
---- !u!212 &212479831131375854
+--- !u!212 &212478675567826046
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1857194346612976}
+  m_GameObject: {fileID: 1328544408461234}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -88,11 +88,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-<<<<<<< Updated upstream
-  m_SortingOrder: 2
-=======
   m_SortingOrder: 0
->>>>>>> Stashed changes
   m_Sprite: {fileID: 21300000, guid: faf78ca5f6478d540814b662b1336283, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
