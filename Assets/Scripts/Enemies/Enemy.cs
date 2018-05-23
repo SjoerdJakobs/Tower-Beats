@@ -40,7 +40,7 @@ public class Enemy : MonoBehaviour {
         m_CurrentHealth -= damage;
         m_EnemyHealthbar.ChangeEnemyHealthUI(m_CurrentHealth, damage);
         StartCoroutine(AnimationRoutine("HIT_Electricity", 1f));
-        m_EnemyHealthbar.ChangeEnemyHealthUI(m_CurrentHealth / m_MaxHealth);
+        m_EnemyHealthbar.ChangeEnemyHealthUI(m_CurrentHealth, damage);
 
 
         if (m_CurrentHealth <= 0)
