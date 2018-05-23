@@ -1,13 +1,75 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using System.Collections.Generic;
 
 public class EnemyHealthbar : MonoBehaviour {
 
-    [SerializeField] private Image m_EnemyHealthbar;
+    [SerializeField] private List<Image> m_EnemyHealthbar = new List<Image>();
 
-    public void ChangeEnemyHealthUI(float healthbarValue)
+    private float m_HealthPerBar;
+
+    private int m_CurrentHealthbar = 10;
+
+    private bool m_IsAnimating;
+
+    private float m_Modulo;
+
+    public void SetHealthbarValue(float value)
     {
-        m_EnemyHealthbar.DOFillAmount(healthbarValue, 0.2f);
+        m_HealthPerBar = value / 10;
+    }
+
+    public void ChangeEnemyHealthUI(float newHealthValue, float damageTaken)
+    {
+        if(m_CurrentHealthbar > 0)
+            AnimateHealthbar(damageTaken);
+    }
+
+    private int BarsToAnimate(float damage)
+    {
+        float decimalValue = damage / m_HealthPerBar;
+        float Rounded = Mathf.RoundToInt(damage / m_HealthPerBar);
+
+        m_Modulo = decimalValue - Rounded;
+
+        return (int)Rounded;
+    }
+
+    void AnimateHealthbar(float damage)
+    {
+        for (int i = 0; i < BarsToAnimate(damage); i++)
+        {
+            m_CurrentHealthbar -= 1;
+
+            if (!m_IsAnimating)
+            {
+                m_IsAnimating = true;
+
+                Sequence animateBarSqn = DOTween.Sequence();
+
+                animateBarSqn.Append(m_EnemyHealthbar[m_CurrentHealthbar].rectTransform.DOAnchorPosY(1.5f, 0.15f));
+                animateBarSqn.Join(m_EnemyHealthbar[m_CurrentHealthbar].DOFade(0f, 0.15f));
+
+                animateBarSqn.OnComplete(AnimateBarCallback);
+            }
+            else
+            {
+                Sequence animateBarSqn = DOTween.Sequence();
+
+                animateBarSqn.AppendInterval(0.05f);
+                animateBarSqn.Append(m_EnemyHealthbar[m_CurrentHealthbar].rectTransform.DOAnchorPosY(1.5f, 0.15f));
+                animateBarSqn.Join(m_EnemyHealthbar[m_CurrentHealthbar].DOFade(0f, 0.15f));
+
+                animateBarSqn.OnComplete(AnimateBarCallback);
+            }
+        }
+        m_IsAnimating = false;
+    }
+
+    void AnimateBarCallback()
+    {
+        m_EnemyHealthbar[m_CurrentHealthbar].gameObject.SetActive(false);
+        m_EnemyHealthbar.RemoveAt(m_CurrentHealthbar);
     }
 }

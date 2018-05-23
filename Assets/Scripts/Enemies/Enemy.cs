@@ -29,12 +29,14 @@ public class Enemy : MonoBehaviour {
         PauseCheck.Pause += TogglePause;
 
         m_EnemyHealthbar = GetComponent<EnemyHealthbar>();
+
+        m_EnemyHealthbar.SetHealthbarValue(m_MaxHealth);
     }
 
     public void TakeDamage(float damage)
     {
         m_CurrentHealth -= damage;
-        m_EnemyHealthbar.ChangeEnemyHealthUI(m_CurrentHealth / m_MaxHealth);
+        m_EnemyHealthbar.ChangeEnemyHealthUI(m_CurrentHealth, damage);
 
         if (m_CurrentHealth <= 0)
         {
@@ -60,6 +62,10 @@ public class Enemy : MonoBehaviour {
             PlayerData.s_Instance.ChangeCoinAmount(m_CoinsToGive);
         }
         //Play death anim
+        Sequence deathSqn = DOTween.Sequence();
+
+        /*deathSqn.AppendInterval(0.15f);
+        deathSqn.AppendCallback(() => Destroy(this.gameObject));*/
         Destroy(this.gameObject);
     }
 

@@ -101,7 +101,7 @@ public class SongManager : MonoBehaviour {
     /// <param name="songNumber">Number of the currently playing song in the playlist. Increases in this function.</param>
     private void PlayNextSongInPlaylist(int songNumber)
     {
-        if (songNumber < m_Songs.Length)
+        if (m_Songs != null && songNumber < m_Songs.Length)
         {
             m_SongNumber = songNumber;
 
@@ -126,8 +126,7 @@ public class SongManager : MonoBehaviour {
     {
         if (s_OnChangeSong != null)
         {
-            Debug.Log(s_OnChangeSong);
-            s_OnChangeSong((m_SongNumber + 1), m_Songs.Length, m_Songs[m_SongNumber].Songname);
+            //s_OnChangeSong((m_SongNumber + 1), m_Songs.Length, m_Songs[m_SongNumber].Songname);
         }
     }
 
