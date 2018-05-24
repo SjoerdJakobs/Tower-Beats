@@ -53,7 +53,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EnemiesInRange: []
-  attackProjectile: {fileID: 0}
+  attackProjectile: {fileID: 1172778507945960, guid: 04e3ee5bccfd5de439910a2b7e5f621e,
+    type: 2}
 --- !u!212 &212163598814454026
 SpriteRenderer:
   m_ObjectHideFlags: 1
