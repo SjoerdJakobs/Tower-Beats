@@ -45,10 +45,10 @@ public class ObjectPoolManager : MonoBehaviour {
     /// <param name="CleanThreshold">threshold for the amount of disabled objects needed before it will be cleaned</param>
     /// <param name="DontDestroyOnLoadBool"></param>
     /// <returns></returns>
-    public ObjectPool GetObjectPool(GameObject Prefab, int PoolStartSize = 20, int IncreaseIncrement = 5, int ManagerTicksBeforeClean = 5, int CleanThreshold = 20 , bool DontDestroyOnLoadBool = false)
+    public ObjectPool GetObjectPool(GameObject Prefab, int PoolStartSize = 20, int IncreaseIncrement = 5, int ManagerTicksBeforeClean = 5, int CleanThreshold = 20 , bool DontDestroyOnLoadBool = false, PooledSubObject generic = PooledSubObject.Default)
     {
         if(Prefab.GetComponent<PoolObj>() == null)
-        {
+        {            
             Debug.LogError("POOLOBJECT COMPONENT NOT FOUND ON PREFAB");
             return null;
         }
@@ -72,7 +72,7 @@ public class ObjectPoolManager : MonoBehaviour {
             ObjectPool newPool = newPoolObj.GetComponent<ObjectPool>();
             newPool.ObjectPrefab = Prefab;
             OnTick += newPool.OnTick;
-            newPool.Init(PoolStartSize,IncreaseIncrement,ManagerTicksBeforeClean,CleanThreshold);
+            newPool.Init(generic,PoolStartSize,IncreaseIncrement,ManagerTicksBeforeClean,CleanThreshold);
             ObjectPools.Add(newPool);
 
             return newPool;

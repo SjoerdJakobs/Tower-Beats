@@ -13,7 +13,7 @@ public class TestObjectPool : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        pools.Add(ObjectPoolManager.s_Instance.GetObjectPool(obj1,20,5,5,20,false));
+        pools.Add(ObjectPoolManager.s_Instance.GetObjectPool(obj1,20,5,5,20,false,PooledSubObject.Rigidbody));
         pools.Add(ObjectPoolManager.s_Instance.GetObjectPool(obj1));
         pools.Add(ObjectPoolManager.s_Instance.GetObjectPool(obj1));
         pools.Add(ObjectPoolManager.s_Instance.GetObjectPool(obj1));
@@ -54,8 +54,12 @@ public class TestObjectPool : MonoBehaviour {
 
     void SpawnStuff()
     {
-        ObjectPool pool = pools[Random.Range(0, pools.Count)];
+        int poolInt = Random.Range(0, pools.Count);
+
+        ObjectPool pool = pools[poolInt];
         thingInPool thing = pool.GetFromPool().GetComponent<thingInPool>();
+        Rigidbody R = thing.ObjData.GenericObj as Rigidbody;
+        //R.isKinematic = false;
 
         thing.transform.localPosition = transform.position;
         thing.transform.localScale = Vector3.one * scale.RandomInRange;
@@ -67,6 +71,11 @@ public class TestObjectPool : MonoBehaviour {
             Random.onUnitSphere * angularVelocity.RandomInRange;
 
         thing.SetMaterial(stuffMaterial);
+
+        if(poolInt < 5)
+        {
+            thing.StopRigidBody(.5f);
+        }
     }
 }
 

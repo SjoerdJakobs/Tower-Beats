@@ -36,4 +36,15 @@ public class thingInPool : PoolObj {
         Debug.Log("ye");
         ReturnToPool();
     }
+
+    public void StopRigidBody(float T)
+    {
+        Invoke("RigidStop", T);
+    }
+
+    private void RigidStop()
+    {
+        Rigidbody R = ObjData.GenericObj as Rigidbody;
+        R.isKinematic = true;
+    }
 }

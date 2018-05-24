@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class OnSceneReload : MonoBehaviour {
-
+    /*
     public static OnSceneReload s_Instance;
 
     [SerializeField]
@@ -33,5 +33,5 @@ public class OnSceneReload : MonoBehaviour {
     {
         Debug.Log("ye");
         Reload();
-    }
+    }*/
 }
