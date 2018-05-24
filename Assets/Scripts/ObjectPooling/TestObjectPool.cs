@@ -58,7 +58,7 @@ public class TestObjectPool : MonoBehaviour {
 
         ObjectPool pool = pools[poolInt];
         thingInPool thing = pool.GetFromPool().GetComponent<thingInPool>();
-        Rigidbody R = thing.ObjData.GenericObj as Rigidbody;
+        Rigidbody R = thing.GenericObj as Rigidbody;
         //R.isKinematic = false;
 
         thing.transform.localPosition = transform.position;

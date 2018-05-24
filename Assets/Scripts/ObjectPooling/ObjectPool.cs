@@ -6,7 +6,7 @@ public class ObjectPool : MonoBehaviour
     public GameObject ObjectPrefab { get; set; }
     //private Queue<GameObject> m_DeadList;
     private Queue<PoolObj> m_DeadList;
-
+    private PooledSubObject m_objEnum;
     private Object m_GenericObj;
 
     private int m_ObjectsInPool;
@@ -23,29 +23,9 @@ public class ObjectPool : MonoBehaviour
 
     public void Init(PooledSubObject GenericObj, int PoolStartSize = 20, int IncreaseIncrement = 5, int ManagerTicksBeforeClean = 5, int CleanThreshold = 20)
     {
-        switch (GenericObj)
-        {
-            case PooledSubObject.Default:
-                m_GenericObj = null;
-                break;
-            case PooledSubObject.GameObject:
-                m_GenericObj = ObjectPrefab;
-                break;
-            case PooledSubObject.VisualEffect:
-                m_GenericObj = ObjectPrefab.GetComponent<VisualEffect>();
-                break;
-            case PooledSubObject.Enemy:
-                m_GenericObj = ObjectPrefab.GetComponent<Enemy>();
-                break;
-            case PooledSubObject.Rigidbody:
-                m_GenericObj = ObjectPrefab.GetComponent<Rigidbody>();
-                break;
-            default:
-                m_GenericObj = null;
-                break;
-        }
-        PoolObjDataStruct TempData = new PoolObjDataStruct(this,ObjectPrefab,m_GenericObj);
-        ObjectPrefab.GetComponent<PoolObj>().ObjData = TempData;
+        m_objEnum = GenericObj;
+        PoolObj TempData = ObjectPrefab.GetComponent<PoolObj>();
+        TempData.Pool = this;
         this.m_CleanThreshold = CleanThreshold;
         this.m_IncreaseIncrement = IncreaseIncrement;
         this.m_anagerTicksBeforeClean = ManagerTicksBeforeClean;
@@ -59,7 +39,27 @@ public class ObjectPool : MonoBehaviour
         {
             GameObject NewPoolGameObj = Instantiate(ObjectPrefab, transform);
             PoolObj poolObj = NewPoolGameObj.GetComponent<PoolObj>();
-            poolObj.ObjData = new PoolObjDataStruct(this, NewPoolGameObj, m_GenericObj);
+            switch (GenericObj)
+            {
+                case PooledSubObject.Default:
+                    poolObj.GenericObj = null;
+                    break;
+                case PooledSubObject.GameObject:
+                    poolObj.GenericObj = poolObj.gameObject;
+                    break;
+                case PooledSubObject.VisualEffect:
+                    poolObj.GenericObj = poolObj.gameObject.GetComponent<VisualEffect>();
+                    break;
+                case PooledSubObject.Enemy:
+                    poolObj.GenericObj = poolObj.gameObject.GetComponent<Enemy>();
+                    break;
+                case PooledSubObject.Rigidbody:
+                    poolObj.GenericObj = poolObj.gameObject.GetComponent<Rigidbody>();
+                    break;
+                default:
+                    m_GenericObj = null;
+                    break;
+            }
             m_DeadList.Enqueue(poolObj);
 
             m_ObjectsInPool++;
@@ -73,7 +73,7 @@ public class ObjectPool : MonoBehaviour
         {
             m_ObjectsAliveInPool++;
             PoolObj returnObject = m_DeadList.Dequeue();
-            returnObject.ObjData.GameObj.SetActive(true);
+            returnObject.gameObject.SetActive(true);
             return (returnObject);
         }
         else
@@ -82,7 +82,27 @@ public class ObjectPool : MonoBehaviour
             {
                 GameObject NewPoolGameObj = Instantiate(ObjectPrefab, transform);
                 PoolObj poolObj = NewPoolGameObj.GetComponent<PoolObj>();
-                poolObj.ObjData = new PoolObjDataStruct(this, NewPoolGameObj, m_GenericObj);
+                switch (m_objEnum)
+                {
+                    case PooledSubObject.Default:
+                        poolObj.GenericObj = null;
+                        break;
+                    case PooledSubObject.GameObject:
+                        poolObj.GenericObj = poolObj.gameObject;
+                        break;
+                    case PooledSubObject.VisualEffect:
+                        poolObj.GenericObj = poolObj.gameObject.GetComponent<VisualEffect>();
+                        break;
+                    case PooledSubObject.Enemy:
+                        poolObj.GenericObj = poolObj.gameObject.GetComponent<Enemy>();
+                        break;
+                    case PooledSubObject.Rigidbody:
+                        poolObj.GenericObj = poolObj.gameObject.GetComponent<Rigidbody>();
+                        break;
+                    default:
+                        m_GenericObj = null;
+                        break;
+                }
                 m_DeadList.Enqueue(poolObj);
 
                 m_ObjectsInPool++;
@@ -91,7 +111,7 @@ public class ObjectPool : MonoBehaviour
 
             m_ObjectsAliveInPool++;
             PoolObj returnObject = m_DeadList.Dequeue();
-            returnObject.ObjData.GameObj.SetActive(true);
+            returnObject.gameObject.SetActive(true);
             return (returnObject);
         }
     }
@@ -105,7 +125,7 @@ public class ObjectPool : MonoBehaviour
                 for (int i = 0; i < m_CleanThreshold; i++)
                 {
                     PoolObj returnObject = m_DeadList.Dequeue();
-                    Destroy(returnObject.ObjData.GameObj);
+                    Destroy(returnObject.gameObject);
                     m_ObjectsInPool--;
                 }
                 m_CurrentTick = 5;

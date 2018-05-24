@@ -44,7 +44,7 @@ public class thingInPool : PoolObj {
 
     private void RigidStop()
     {
-        Rigidbody R = ObjData.GenericObj as Rigidbody;
+        Rigidbody R = GenericObj as Rigidbody;
         R.isKinematic = true;
     }
 }

@@ -2,13 +2,15 @@
 
 public class PoolObj : MonoBehaviour
 {
-    public PoolObjDataStruct ObjData { get; set; }
+    public ObjectPool Pool;
+    public Object GenericObj;
+    //public PoolObjDataStruct ObjData { get; set; }
     
     public void ReturnToPool()
     {
-        if (ObjData.Pool != null && this != null)
+        if (Pool != null && this != null)
         {
-            ObjData.Pool.AddObjectToPool(this);
+            Pool.AddObjectToPool(this);
         }
         else if(this != null)
         {
@@ -16,7 +18,7 @@ public class PoolObj : MonoBehaviour
         }
     }
 }
-
+/*
 public struct PoolObjDataStruct
 {
     public ObjectPool Pool;
@@ -31,7 +33,7 @@ public struct PoolObjDataStruct
         GameObj = gameObj;
         GenericObj = genericObj;
     }
-}
+}*/
 
 
 public enum PooledSubObject : byte
