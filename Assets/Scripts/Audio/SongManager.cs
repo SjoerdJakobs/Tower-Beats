@@ -195,7 +195,10 @@ public class SongManager : MonoBehaviour {
             m_SongQueue = StartCoroutine(QueueSong(songNumber, songLength: m_SongAudioSources[songNumber].clip.length));
         }
         else
+        {
+            m_SongQueue = StartCoroutine(QueueSong(songNumber, songLength: m_SongAudioSources[songNumber - 1].clip.length));
             Debug.Log("No more songs in playlist.");
+        }
     }
 
     /// <summary>
@@ -213,6 +216,7 @@ public class SongManager : MonoBehaviour {
         }
         else
         {
+
             yield return new WaitForSeconds(songLength);
             s_OnPlaylistComplete();
         }

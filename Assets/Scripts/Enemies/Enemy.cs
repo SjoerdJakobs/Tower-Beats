@@ -81,7 +81,6 @@ public class Enemy : MonoBehaviour {
         m_SkeletonAnims.AnimationState.SetAnimation(0, "DEATH", false);
         m_SkeletonAnims.AnimationState.Complete += delegate
         {
-            Debug.Log("Destroy");
             Destroy(this.gameObject);
         };
     }
