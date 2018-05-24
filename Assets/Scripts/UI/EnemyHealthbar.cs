@@ -49,7 +49,8 @@ public class EnemyHealthbar : MonoBehaviour {
 
         for (int i = 0; i < BarsToAnimate(damage); i++)
         {
-            m_CurrentHealthbar -= 1;
+            if (m_CurrentHealthbar > 0)
+                m_CurrentHealthbar -= 1;
 
             if(!m_IsAnimating)
             {
