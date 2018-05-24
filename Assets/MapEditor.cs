@@ -140,8 +140,37 @@ public class MapEditor : MonoBehaviour
     public void ResetTile()
     {
         TileData currentTileData = GetTileDataFromMap(CurrentSelectedTile.PositionInGrid);
-        m_Map.TilesData.Remove(currentTileData);
-        CurrentSelectedTile.SetTileVisualsState(TileVisualState.BASE);
+
+        if(currentTileData.State == TileState.PATH)
+        {
+            for (int i = m_Map.TilesData.Count - 1; i >= 0; i--)
+            {
+                if (m_Map.TilesData[i].State == TileState.PATH)
+                {
+                    if (m_Map.TilesData[i].PathTileIndex >= currentTileData.PathTileIndex)
+                    {
+                        ResetTileVisual(m_Map.TilesData[i]);
+                        RemoveTile(m_Map.TilesData[i]);
+                    }
+                }
+            }
+        }
+        else
+        {
+            ResetTileVisual(currentTileData);
+            RemoveTile(currentTileData);
+        }
+
+    }
+
+    private void RemoveTile(TileData tile)
+    {
+        m_Map.TilesData.Remove(tile);
+    }
+
+    private void ResetTileVisual(TileData tile)
+    {
+        HexGrid.s_Instance.GetTile(tile.PathTilePosition).SetTileVisualsState(TileVisualState.BASE);
     }
 
     public TileData GetTileDataFromMap(Vector2Int tilePosition)
