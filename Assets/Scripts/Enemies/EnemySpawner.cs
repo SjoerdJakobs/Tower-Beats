@@ -71,4 +71,9 @@ public class EnemySpawner : MonoBehaviour {
     {
         SpawnedEnemies.Remove(enemy);
     }
+
+    private void OnDestroy()
+    {
+        Enemy.s_OnDestroyEnemy -= RemoveEnemyFromList;
+    }
 }

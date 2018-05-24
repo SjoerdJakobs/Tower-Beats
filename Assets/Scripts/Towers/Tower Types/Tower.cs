@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 
 public struct TowerData
 { 
@@ -138,5 +137,10 @@ public class Tower : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         m_ReadyToAttack = true;
+    }
+
+    private void OnDestroy()
+    {
+        Enemy.s_OnDestroyEnemy -= RemoveEnemyFromList;
     }
 }
