@@ -32,7 +32,7 @@ public class ObjectPool : MonoBehaviour
                 m_GenericObj = ObjectPrefab;
                 break;
             case PooledSubObject.VisualEffect:
-                m_GenericObj = ObjectPrefab.GetComponent<Enemy>();
+                m_GenericObj = ObjectPrefab.GetComponent<VisualEffect>();
                 break;
             case PooledSubObject.Enemy:
                 m_GenericObj = ObjectPrefab.GetComponent<Enemy>();
