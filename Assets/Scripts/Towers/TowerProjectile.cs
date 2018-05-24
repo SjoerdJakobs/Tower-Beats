@@ -11,6 +11,7 @@ public class TowerProjectile : PoolObj {
     private Enemy m_target;
     private GameObject m_targetObj;
     private bool m_pause;
+    private Vector3 m_Offset = new Vector3(0, 0.5f, 0);
 
     private void Awake()
     {
@@ -40,10 +41,13 @@ public class TowerProjectile : PoolObj {
             {
                 if (m_targetObj != null)
                 {
-                    transform.position = Vector3.Lerp(m_startPos, m_targetObj.transform.position, lerpValue * m_movSpeed);
+                    transform.position = Vector3.Lerp(m_startPos, (m_targetObj.transform.position + m_Offset), lerpValue * m_movSpeed);
                     lastPos = m_targetObj.transform.position;
                     lerpValue += Time.deltaTime;
-                    transform.LookAt(m_target.transform.position);
+
+                    Vector3 difference = m_target.transform.position - transform.position;
+                    float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+                    transform.rotation = Quaternion.Euler(0, 0, (rotationZ + 90));
                 }
                 else
                 {

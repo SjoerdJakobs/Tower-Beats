@@ -44,8 +44,10 @@ public class Enemy : MonoBehaviour {
 
         if (m_CurrentHealth <= 0)
         {
+            DOTween.Kill(10, true);
             Death(true);
-        }else if(m_CurrentHealth > 0)
+        }
+        else if(m_CurrentHealth > 0)
         {
             m_SkeletonAnims.AnimationState.SetAnimation(0, "HIT_Electricity", false);
             m_SkeletonAnims.AnimationState.AddAnimation(0, "MOVE", true,0);
@@ -58,7 +60,6 @@ public class Enemy : MonoBehaviour {
     /// </summary>
     public void Death()
     {
-
         Death(false);
     }
 
@@ -80,6 +81,7 @@ public class Enemy : MonoBehaviour {
         m_SkeletonAnims.AnimationState.SetAnimation(0, "DEATH", false);
         m_SkeletonAnims.AnimationState.Complete += delegate
         {
+            Debug.Log("Destroy");
             Destroy(this.gameObject);
         };
     }
