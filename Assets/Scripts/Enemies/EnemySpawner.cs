@@ -33,7 +33,7 @@ public class EnemySpawner : MonoBehaviour {
         SpawnedEnemies.Add(newEnemy);
         newEnemy.transform.position = PathManager.s_Instance.CurrentPathNodes[0];
         newEnemy.transform.SetParent(transform);
-        EffectsManager.s_Instance.SpawnEffect(EffectType.ENEMY_SPAWN, false, PathManager.s_Instance.CurrentPathNodes[0]);
+        //EffectsManager.s_Instance.SpawnEffect(EffectType.ENEMY_SPAWN, false, PathManager.s_Instance.CurrentPathNodes[0]);
         newEnemy.Move();
     }
 

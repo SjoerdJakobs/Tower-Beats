@@ -64,17 +64,17 @@ public class GetRMS : MonoBehaviour {
             switch (Instrument)
             {
                 case InstrumentGroup.Bass:
-                    Debug.Log("Bass cue");
+                    //Debug.Log("Bass cue");
                     if(s_BassCue != null)
                         s_BassCue();
                     break;
                 case InstrumentGroup.Drum:
-                    Debug.Log("Drum cue");
+                    //Debug.Log("Drum cue");
                     if(s_DrumCue != null)
                         s_DrumCue();
                     break;
                 case InstrumentGroup.Synth:
-                    Debug.Log("Synth cue");
+                    //Debug.Log("Synth cue");
                     if (s_LeadCue != null)
                         s_LeadCue();
                     break;

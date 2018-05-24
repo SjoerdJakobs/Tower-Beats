@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class PropSelector : MonoBehaviour
 {
@@ -44,9 +46,11 @@ public class PropSelector : MonoBehaviour
 
     public void ConfirmSelection()
     {
+#if UNITY_EDITOR
         string[] fileExtensions = { ".png", ".jpg" };
 
         string path = AssetDatabase.GetAssetPath(m_Image.sprite);
+
         path = path.Remove(0, 17); // Remove "/Assets/Resources/" from path string
 
         for (int i = 0; i < fileExtensions.Length; i++)
@@ -57,6 +61,7 @@ public class PropSelector : MonoBehaviour
         //path = path.Replace(".png", "");
 
         if (s_OnPropSelectorConfirm != null) s_OnPropSelectorConfirm(path);
+#endif
     }
 
     private void UpdateProp()

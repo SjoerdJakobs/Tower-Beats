@@ -47,6 +47,8 @@ public class PathManager : MonoBehaviour
     private List<Vector3> m_CurrentPathNodes = new List<Vector3>();
     public List<Vector3> CurrentPathNodes { get { return m_CurrentPathNodes; } }
 
+    [SerializeField] private TextAsset m_PathJSONFile;
+
     #endregion
 
     #region Initialization
@@ -171,9 +173,11 @@ public class PathManager : MonoBehaviour
     /// </summary>
     public void LoadData()
     {
+#if UNITY_EDITOR
         TryCreateFile();
+#endif  
 
-        string jsonString = File.ReadAllText(m_FilePath);
+        string jsonString = m_PathJSONFile.ToString();
         JsonUtility.FromJsonOverwrite(jsonString, m_PathData);
     }
 
