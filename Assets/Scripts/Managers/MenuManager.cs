@@ -4,7 +4,7 @@ using UnityEngine;
 public struct MenuNames
 {
     public const string SETTINGS_MENU = "SettingsMenu";
-    public const string VICTORY_POPUP = "VictoryPopup";
+    public const string VICTORY_MENU = "VictoryMenu";
     public const string CREDITS_MENU = "CreditsMenu";
     public const string TOWER_SHOP_MENU = "TowerShopMenu";
     public const string TOWER_MENU = "TowerMenu";

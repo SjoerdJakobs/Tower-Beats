@@ -2,5 +2,5 @@
     //Tag strings that are used to define the 
     public const string BASS_TOWER = "Bass";
     public const string DRUM_TOWER = "Drum";
-    public const string SYNTH_TOWER = "Synth";
+    public const string LEAD_TOWER = "Lead";
 }

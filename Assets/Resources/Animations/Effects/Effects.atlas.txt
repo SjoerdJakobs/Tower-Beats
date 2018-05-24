@@ -1,383 +1,390 @@
 
 Effects.png
-size: 1512,3412
+size: 5354,996
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 Background
   rotate: false
-  xy: 2, 2418
+  xy: 2, 2
   size: 1468, 992
   orig: 1468, 992
   offset: 0, 0
   index: -1
+Bullet/Beam
+  rotate: true
+  xy: 5096, 305
+  size: 173, 242
+  orig: 173, 242
+  offset: 0, 0
+  index: -1
 Hit/HitEffect0001
   rotate: false
-  xy: 2, 2116
+  xy: 1472, 694
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Hit/HitEffect0002
   rotate: false
-  xy: 2, 1814
+  xy: 1472, 392
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Hit/HitEffect0003
   rotate: false
-  xy: 304, 2116
+  xy: 1472, 90
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Hit/HitEffect0004
   rotate: false
-  xy: 2, 1512
+  xy: 1774, 694
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Hit/HitEffect0005
   rotate: false
-  xy: 304, 1814
+  xy: 1774, 392
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Hit/HitEffect0006
   rotate: false
-  xy: 606, 2116
+  xy: 1774, 90
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Shoot/ShootFX0001
   rotate: false
-  xy: 2, 1210
+  xy: 2076, 694
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Shoot/ShootFX0002
   rotate: false
-  xy: 304, 1512
+  xy: 2076, 392
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Shoot/ShootFX0003
   rotate: false
-  xy: 606, 1814
+  xy: 2076, 90
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Shoot/ShootFX0004
   rotate: false
-  xy: 908, 2116
+  xy: 2378, 694
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Shoot/ShootFX0005
   rotate: false
-  xy: 2, 908
+  xy: 2378, 392
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Shoot/ShootFX0006
   rotate: false
-  xy: 2, 908
+  xy: 2378, 392
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Shoot/ShootFX0007
   rotate: false
-  xy: 304, 1210
+  xy: 2378, 90
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Shoot/ShootFX0008
   rotate: false
-  xy: 304, 1210
+  xy: 2378, 90
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Shoot/ShootFX0009
   rotate: false
-  xy: 606, 1512
+  xy: 2680, 694
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Shoot/ShootFX0010
   rotate: false
-  xy: 606, 1512
+  xy: 2680, 694
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Spawn/Electric1/Electric10001
   rotate: false
-  xy: 908, 1814
+  xy: 2680, 392
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Spawn/Electric1/Electric10002
   rotate: false
-  xy: 2, 606
+  xy: 2680, 90
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Spawn/Electric1/Electric10003
   rotate: false
-  xy: 2, 606
+  xy: 2680, 90
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Spawn/Electric1/Electric10004
   rotate: false
-  xy: 304, 908
+  xy: 2982, 694
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Spawn/Electric2/Electric20001
   rotate: false
-  xy: 606, 1210
+  xy: 2982, 392
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Spawn/Electric2/Electric20002
   rotate: false
-  xy: 908, 1512
+  xy: 2982, 90
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Spawn/ElectricLine/ElectricLine0002
   rotate: false
-  xy: 908, 1512
+  xy: 2982, 90
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Spawn/ElectricLine/ElectricLine0010
   rotate: false
-  xy: 908, 1512
+  xy: 2982, 90
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Spawn/ElectricLine/ElectricLine0012
   rotate: false
-  xy: 908, 1512
+  xy: 2982, 90
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Spawn/ElectricLine/ElectricLine0015
   rotate: false
-  xy: 908, 1512
+  xy: 2982, 90
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Spawn/ElectricLine/ElectricLine0016
   rotate: false
-  xy: 908, 1512
+  xy: 2982, 90
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Spawn/Electric2/Electric20003
   rotate: false
-  xy: 2, 304
+  xy: 3284, 694
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Spawn/Electric2/Electric20004
   rotate: false
-  xy: 2, 304
+  xy: 3284, 694
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Spawn/Electric2/Electric20005
   rotate: false
-  xy: 304, 606
+  xy: 3284, 392
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Spawn/Electric2/Electric20006
   rotate: false
-  xy: 606, 908
+  xy: 3284, 90
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Spawn/Electric3/Electric30001
   rotate: false
-  xy: 908, 1210
+  xy: 3586, 694
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Spawn/Electric3/Electric30002
   rotate: false
-  xy: 2, 2
+  xy: 3586, 392
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Spawn/Electric3/Electric30003
   rotate: false
-  xy: 2, 2
+  xy: 3586, 392
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Spawn/Electric3/Electric30004
   rotate: false
-  xy: 304, 304
+  xy: 3586, 90
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Spawn/Electric3/Electric30005
   rotate: false
-  xy: 606, 606
+  xy: 3888, 694
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Spawn/Electric3/Electric30006
   rotate: false
-  xy: 606, 606
+  xy: 3888, 694
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Spawn/ElectricLine/ElectricLine0001
   rotate: false
-  xy: 908, 908
+  xy: 3888, 392
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Spawn/ElectricLine/ElectricLine0003
   rotate: false
-  xy: 304, 2
+  xy: 3888, 90
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Spawn/ElectricLine/ElectricLine0004
   rotate: false
-  xy: 606, 304
+  xy: 4190, 694
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Spawn/ElectricLine/ElectricLine0005
   rotate: false
-  xy: 908, 606
+  xy: 4190, 392
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Spawn/ElectricLine/ElectricLine0006
   rotate: false
-  xy: 606, 2
+  xy: 4190, 90
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Spawn/ElectricLine/ElectricLine0007
   rotate: false
-  xy: 606, 2
+  xy: 4190, 90
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Spawn/ElectricLine/ElectricLine0008
   rotate: false
-  xy: 908, 304
+  xy: 4492, 694
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Spawn/ElectricLine/ElectricLine0009
   rotate: false
-  xy: 908, 2
+  xy: 4794, 694
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Spawn/ElectricLine/ElectricLine0011
   rotate: false
-  xy: 1210, 2116
+  xy: 4492, 392
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Spawn/ElectricLine/ElectricLine0013
   rotate: false
-  xy: 1210, 1814
+  xy: 4794, 392
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Spawn/ElectricLine/ElectricLine0014
   rotate: false
-  xy: 1210, 1512
+  xy: 4492, 90
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Spawn/ElectricLine/ElectricLine0017
   rotate: false
-  xy: 1210, 1210
+  xy: 4794, 90
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 Spawn/Hex
   rotate: false
-  xy: 1210, 952
+  xy: 5096, 738
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
   index: -1
 Spawn/HexHalf
   rotate: false
-  xy: 1210, 694
+  xy: 5096, 480
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
   index: -1
 Spawn/TURRET_Synth
-  rotate: false
-  xy: 1210, 460
+  rotate: true
+  xy: 5096, 156
   size: 147, 232
   orig: 147, 232
   offset: 0, 0
   index: -1
 SpwanLine
-  rotate: false
-  xy: 1210, 270
+  rotate: true
+  xy: 5096, 24
   size: 130, 188
   orig: 130, 188
   offset: 0, 0

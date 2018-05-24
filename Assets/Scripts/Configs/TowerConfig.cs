@@ -6,21 +6,21 @@ public class TowerConfig
     {
         // TYPE, LEVEL, MAXLEVEL, UPGRADECOST, BUYCOST, VALUE (Sell), DAMAGE, RANGE, INTERVAL
         {TowerTypeTags.BASS_TOWER, new List<TowerData>() {
-            new TowerData(TowerTypeTags.BASS_TOWER, 1, 3, 200, 100, 75, 240f, 2.5f, 0.4f),
-            new TowerData(TowerTypeTags.BASS_TOWER, 2, 3, 200, 0, 225, 500f, 3f, 0.25f),
-            new TowerData(TowerTypeTags.BASS_TOWER, 3, 3, 0, 0, 375, 720f, 3.5f, 0.2f)
+            new TowerData(TowerTypeTags.BASS_TOWER, 1, 3, 200, 150, 75, 4f, 2.5f, 0.4f),
+            new TowerData(TowerTypeTags.BASS_TOWER, 2, 3, 200, 0, 225, 6f, 3f, 0.25f),
+            new TowerData(TowerTypeTags.BASS_TOWER, 3, 3, 0, 0, 375, 8f, 3.5f, 0.2f)
         }},
         {TowerTypeTags.DRUM_TOWER, new List<TowerData>()
         {
-            new TowerData(TowerTypeTags.DRUM_TOWER, 1, 3, 200, 300, 225, 260f, 2.55f, 0.35f),
-            new TowerData(TowerTypeTags.DRUM_TOWER, 2, 3, 300, 0, 375, 300f,2.75f,0.3f),
-            new TowerData(TowerTypeTags.DRUM_TOWER, 3, 3, 0, 0 , 600, 360, 3f, 0.25f)
+            new TowerData(TowerTypeTags.DRUM_TOWER, 1, 3, 200, 350, 225, 3f, 2.55f, 0.35f),
+            new TowerData(TowerTypeTags.DRUM_TOWER, 2, 3, 300, 0, 375, 5f,2.75f,0.3f),
+            new TowerData(TowerTypeTags.DRUM_TOWER, 3, 3, 0, 0 , 600, 7f, 3f, 0.25f)
         }},
-        {TowerTypeTags.SYNTH_TOWER, new List<TowerData>()
+        {TowerTypeTags.LEAD_TOWER, new List<TowerData>()
         {
-            new TowerData(TowerTypeTags.SYNTH_TOWER, 1, 3, 200, 200, 150,300, 1.5f,0.4f),
-            new TowerData(TowerTypeTags.SYNTH_TOWER, 2, 3, 300, 0, 300, 600, 2.25f, 0.3f),
-            new TowerData(TowerTypeTags.SYNTH_TOWER, 3, 3, 0, 0, 525, 900, 2.75f, 0.2f)
+            new TowerData(TowerTypeTags.LEAD_TOWER, 1, 3, 200, 200, 150,4f, 1.5f,0.4f),
+            new TowerData(TowerTypeTags.LEAD_TOWER, 2, 3, 300, 0, 300, 6f, 2.25f, 0.3f),
+            new TowerData(TowerTypeTags.LEAD_TOWER, 3, 3, 0, 0, 525, 8f, 2.75f, 0.2f)
         }}
     };
 }

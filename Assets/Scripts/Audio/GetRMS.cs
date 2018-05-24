@@ -8,7 +8,7 @@ public class GetRMS : MonoBehaviour {
     public delegate void AudioCueEvent();
     public static AudioCueEvent s_BassCue;
     public static AudioCueEvent s_DrumCue;
-    public static AudioCueEvent s_SynthCue;
+    public static AudioCueEvent s_LeadCue;
 
     //Used to identify the type of instrument
     public enum InstrumentGroup
@@ -75,8 +75,8 @@ public class GetRMS : MonoBehaviour {
                     break;
                 case InstrumentGroup.Synth:
                     Debug.Log("Synth cue");
-                    if (s_SynthCue != null)
-                        s_SynthCue();
+                    if (s_LeadCue != null)
+                        s_LeadCue();
                     break;
             }
         }

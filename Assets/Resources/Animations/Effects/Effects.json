@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "SUY8MozVmQQci8Z48+wQS66RDpE", "spine": "3.6.52", "width": 312, "height": 338.61, "images": "" },
+"skeleton": { "hash": "MIpTTFrgH+4uxEoXsxnyuMX67QY", "spine": "3.6.52", "width": 312, "height": 338.61, "images": "" },
 "bones": [
 	{ "name": "root" },
 	{ "name": "SpawnFX", "parent": "root" },
@@ -17,6 +17,8 @@
 	{ "name": "Hex7", "parent": "ElectricLine", "length": 74.66, "rotation": 89.71, "x": -0.7, "y": -2.21 },
 	{ "name": "HexHalf", "parent": "ElectricLine", "length": 56.47, "rotation": 90, "x": 0.81, "y": -7.13 },
 	{ "name": "HitFX", "parent": "root", "x": 2, "y": 37.86 },
+	{ "name": "LaserBeamFX", "parent": "root" },
+	{ "name": "LaserBeam", "parent": "LaserBeamFX", "length": 77.11, "rotation": 90, "y": -1.3 },
 	{ "name": "ShootFX", "parent": "root", "x": 12, "y": 0.86 },
 	{ "name": "SpawnFX2", "parent": "SpawnFX", "length": 119.47, "rotation": 90.13, "x": 0.66, "y": 4.96 }
 ],
@@ -33,6 +35,7 @@
 	{ "name": "Spawn/Hex7", "bone": "Hex7", "attachment": "Spawn/Hex" },
 	{ "name": "Spawn/HexHalf", "bone": "HexHalf", "attachment": "Spawn/HexHalf" },
 	{ "name": "Spawn/TURRET_Synth", "bone": "root" },
+	{ "name": "Bullet/Bullet", "bone": "LaserBeam", "attachment": "Bullet/Beam" },
 	{ "name": "SpwanLine", "bone": "SpawnFX2", "attachment": "SpwanLine" },
 	{ "name": "ElectricLine", "bone": "ElectricLine2", "attachment": "Spawn/ElectricLine/ElectricLine0001" },
 	{ "name": "ElectricLine2", "bone": "Electric1", "attachment": "Spawn/Electric1/Electric10004" },
@@ -43,6 +46,9 @@
 	"default": {
 		"Background": {
 			"Background": { "x": 170.63, "y": -16, "scaleX": 0.766, "scaleY": 0.766, "width": 1468, "height": 992 }
+		},
+		"Bullet/Bullet": {
+			"Bullet/Beam": { "x": 27.56, "scaleX": 0.342, "scaleY": 0.342, "rotation": -90, "width": 173, "height": 242 }
 		},
 		"ElectricLine": {
 			"Spawn/ElectricLine/ElectricLine0001": { "x": -121.72, "y": -125.81, "width": 300, "height": 300 },
@@ -140,6 +146,11 @@
 "animations": {
 	"ElectroTurretAttack": {
 		"slots": {
+			"Bullet/Bullet": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
 			"ElectricLine": {
 				"color": [
 					{ "time": 0, "color": "ffffffff" }
@@ -498,70 +509,80 @@
 					{ "time": 1.2333, "x": 1.496, "y": -1.496, "curve": "stepped" },
 					{ "time": 1.2667, "x": 1.496, "y": -1.496 }
 				]
+			},
+			"root": {
+				"scale": [
+					{ "time": 0, "x": 1.03, "y": 1.03 }
+				]
 			}
 		},
 		"drawOrder": [
 			{
 				"time": 0.3333,
 				"offsets": [
-					{ "slot": "ElectricLine4", "offset": -5 }
+					{ "slot": "ElectricLine4", "offset": -6 }
 				]
 			},
 			{
 				"time": 0.3667,
 				"offsets": [
-					{ "slot": "ElectricLine3", "offset": -3 },
-					{ "slot": "ElectricLine4", "offset": -5 }
+					{ "slot": "ElectricLine3", "offset": -4 },
+					{ "slot": "ElectricLine4", "offset": -6 }
 				]
 			},
 			{
 				"time": 0.5333,
 				"offsets": [
-					{ "slot": "ElectricLine3", "offset": -3 },
-					{ "slot": "ElectricLine4", "offset": -5 }
+					{ "slot": "ElectricLine3", "offset": -4 },
+					{ "slot": "ElectricLine4", "offset": -6 }
 				]
 			},
 			{
 				"time": 0.6667,
 				"offsets": [
-					{ "slot": "ElectricLine3", "offset": -3 },
-					{ "slot": "ElectricLine4", "offset": -5 }
+					{ "slot": "ElectricLine3", "offset": -4 },
+					{ "slot": "ElectricLine4", "offset": -6 }
 				]
 			},
 			{
 				"time": 0.8667,
 				"offsets": [
-					{ "slot": "ElectricLine4", "offset": -5 }
+					{ "slot": "ElectricLine4", "offset": -6 }
 				]
 			},
 			{
 				"time": 1.0667,
 				"offsets": [
-					{ "slot": "ElectricLine4", "offset": -5 }
+					{ "slot": "ElectricLine4", "offset": -6 }
 				]
 			},
 			{
 				"time": 1.2667,
 				"offsets": [
-					{ "slot": "ElectricLine4", "offset": -5 }
+					{ "slot": "ElectricLine4", "offset": -6 }
 				]
 			},
 			{
 				"time": 1.4667,
 				"offsets": [
-					{ "slot": "ElectricLine4", "offset": -5 }
+					{ "slot": "ElectricLine4", "offset": -6 }
 				]
 			},
 			{
 				"time": 1.6667,
 				"offsets": [
-					{ "slot": "ElectricLine4", "offset": -5 }
+					{ "slot": "ElectricLine4", "offset": -6 }
 				]
 			}
 		]
 	},
 	"Hit FX": {
 		"slots": {
+			"Bullet/Bullet": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
 			"ElectricLine": {
 				"attachment": [
 					{ "time": 0, "name": null }
@@ -657,8 +678,150 @@
 			}
 		}
 	},
+	"LaserBeamFX": {
+		"slots": {
+			"ElectricLine": {
+				"attachment": [
+					{ "time": 0, "name": "Spawn/ElectricLine/ElectricLine0001" },
+					{ "time": 0.0333, "name": "Spawn/ElectricLine/ElectricLine0002" },
+					{ "time": 0.0667, "name": "Spawn/ElectricLine/ElectricLine0003" },
+					{ "time": 0.1, "name": "Spawn/ElectricLine/ElectricLine0004" },
+					{ "time": 0.1333, "name": "Spawn/ElectricLine/ElectricLine0005" },
+					{ "time": 0.1667, "name": "Spawn/ElectricLine/ElectricLine0006" },
+					{ "time": 0.2, "name": "Spawn/ElectricLine/ElectricLine0007" },
+					{ "time": 0.2333, "name": "Spawn/ElectricLine/ElectricLine0008" },
+					{ "time": 0.2667, "name": "Spawn/ElectricLine/ElectricLine0009" },
+					{ "time": 0.3, "name": "Spawn/ElectricLine/ElectricLine0010" },
+					{ "time": 0.3333, "name": "Spawn/ElectricLine/ElectricLine0011" },
+					{ "time": 0.3667, "name": "Spawn/ElectricLine/ElectricLine0012" },
+					{ "time": 0.4, "name": "Spawn/ElectricLine/ElectricLine0013" },
+					{ "time": 0.4333, "name": "Spawn/ElectricLine/ElectricLine0014" },
+					{ "time": 0.4667, "name": "Spawn/ElectricLine/ElectricLine0015" },
+					{ "time": 0.5, "name": "Spawn/ElectricLine/ElectricLine0016" },
+					{ "time": 0.5333, "name": "Spawn/ElectricLine/ElectricLine0017" },
+					{ "time": 0.5667, "name": null },
+					{ "time": 0.6, "name": "Spawn/ElectricLine/ElectricLine0001" },
+					{ "time": 0.6333, "name": "Spawn/ElectricLine/ElectricLine0002" }
+				]
+			},
+			"ElectricLine2": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"ElectricLine3": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"ElectricLine4": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Hit/HitEffect0001": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Shoot/ShootFX0001": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Spawn/Hex": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Spawn/Hex2": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Spawn/Hex3": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Spawn/Hex4": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Spawn/Hex5": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Spawn/Hex6": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Spawn/Hex7": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Spawn/HexHalf": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Spawn/TURRET_Synth": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"SpwanLine": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			}
+		},
+		"bones": {
+			"ShootFX": {
+				"translate": [
+					{ "time": 0, "x": 25, "y": 11 }
+				]
+			},
+			"ElectricLine2": {
+				"translate": [
+					{ "time": 0, "x": -74.79, "y": -15.42, "curve": "stepped" },
+					{ "time": 0.0333, "x": -74.79, "y": -15.42, "curve": "stepped" },
+					{ "time": 0.0667, "x": -74.79, "y": -15.42, "curve": "stepped" },
+					{ "time": 0.1, "x": -74.79, "y": -15.42 }
+				],
+				"scale": [
+					{ "time": 0, "x": 0.372, "y": 0.573 }
+				]
+			},
+			"LaserBeam": {
+				"scale": [
+					{ "time": 0, "x": 1.619, "y": 1 },
+					{ "time": 0.0667, "x": 1.62, "y": 1.029 },
+					{ "time": 0.1667, "x": 1.62, "y": 1 },
+					{ "time": 0.2333, "x": 1.62, "y": 1.029 },
+					{ "time": 0.2667, "x": 1.62, "y": 0.982 },
+					{ "time": 0.3, "x": 1.62, "y": 1 },
+					{ "time": 0.3667, "x": 1.62, "y": 1.029 },
+					{ "time": 0.4, "x": 1.62, "y": 0.982 },
+					{ "time": 0.4667, "x": 1.62, "y": 1 },
+					{ "time": 0.5333, "x": 1.62, "y": 1.029 },
+					{ "time": 0.5667, "x": 1.62, "y": 0.982 },
+					{ "time": 0.6333, "x": 1.62, "y": 1 }
+				]
+			}
+		}
+	},
 	"Shoot FX": {
 		"slots": {
+			"Bullet/Bullet": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
 			"ElectricLine": {
 				"attachment": [
 					{ "time": 0, "name": null }
@@ -759,6 +922,11 @@
 	},
 	"Spawn FX": {
 		"slots": {
+			"Bullet/Bullet": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
 			"ElectricLine": {
 				"color": [
 					{ "time": 0, "color": "ffffffff" }

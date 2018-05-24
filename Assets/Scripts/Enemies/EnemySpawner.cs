@@ -33,6 +33,7 @@ public class EnemySpawner : MonoBehaviour {
         SpawnedEnemies.Add(newEnemy);
         newEnemy.transform.position = PathManager.s_Instance.CurrentPathNodes[0];
         newEnemy.transform.SetParent(transform);
+        EffectsManager.s_Instance.SpawnEffect(EffectType.ENEMY_SPAWN, false, PathManager.s_Instance.CurrentPathNodes[0]);
         newEnemy.Move();
     }
 
@@ -69,5 +70,10 @@ public class EnemySpawner : MonoBehaviour {
     void RemoveEnemyFromList(Enemy enemy)
     {
         SpawnedEnemies.Remove(enemy);
+    }
+
+    private void OnDestroy()
+    {
+        Enemy.s_OnDestroyEnemy -= RemoveEnemyFromList;
     }
 }

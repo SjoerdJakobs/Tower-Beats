@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Spine.Unity;
 using DG.Tweening;
 
 public class Enemy : MonoBehaviour {
@@ -13,6 +14,9 @@ public class Enemy : MonoBehaviour {
 
     //TEMP
     private Tween m_dopath;
+    private SkeletonAnimation m_SkeletonAnims;
+    private AnimationState m_Anim;
+    private EnemyHealthbar m_EnemyHealthbar;
 
     [SerializeField] private float m_MoveSpeed;
     [SerializeField] private float m_CoinsToGive;
@@ -23,16 +27,31 @@ public class Enemy : MonoBehaviour {
     private void Awake()
     {
         m_CurrentHealth = m_MaxHealth;
+        m_SkeletonAnims = GetComponent<SkeletonAnimation>();
         SongManager.s_OnPlaylistComplete += Death;
         PauseCheck.Pause += TogglePause;
+
+        m_EnemyHealthbar = GetComponent<EnemyHealthbar>();
+
+        m_EnemyHealthbar.SetHealthbarValue(m_MaxHealth);
     }
 
     public void TakeDamage(float damage)
     {
+        EffectsManager.s_Instance.SpawnEffect(EffectType.ENEMY_HIT, false, transform.position);
         m_CurrentHealth -= damage;
+        m_EnemyHealthbar.ChangeEnemyHealthUI(m_CurrentHealth, damage);
+
         if (m_CurrentHealth <= 0)
         {
+            DOTween.Kill(10, true);
             Death(true);
+        }
+        else if(m_CurrentHealth > 0)
+        {
+            m_SkeletonAnims.AnimationState.SetAnimation(0, "HIT_Electricity", false);
+            m_SkeletonAnims.AnimationState.AddAnimation(0, "MOVE", true,0);
+
         }
     }
 
@@ -46,15 +65,25 @@ public class Enemy : MonoBehaviour {
 
     public void Death(bool killedByPlayer)
     {
+        PausePath();
+        if(s_OnDestroyEnemy != null)
+        {
+            s_OnDestroyEnemy(this);
+        }
         m_IsAlive = false;
+        
         //If player kills the enemy
         if (killedByPlayer)
         {
             //Give coins
             PlayerData.s_Instance.ChangeCoinAmount(m_CoinsToGive);
         }
-        //Play death anim
-        Destroy(this.gameObject);
+        m_SkeletonAnims.AnimationState.SetAnimation(0, "DEATH", false);
+        m_SkeletonAnims.AnimationState.Complete += delegate
+        {
+            Debug.Log("Destroy");
+            Destroy(this.gameObject);
+        };
     }
 
     public void DamageObjective()
@@ -122,10 +151,12 @@ public class Enemy : MonoBehaviour {
 
     private void OnDestroy()
     {
-        if (s_OnDestroyEnemy != null)
-        {
-            s_OnDestroyEnemy(this);
-        }
         SongManager.s_OnPlaylistComplete -= Death;
     }
+
+    void DeathRoutine()
+    {
+        
+    }
+
 }

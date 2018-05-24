@@ -13,15 +13,20 @@ public enum TileState
     OPEN,
     NOT_USABLE,
     PATH,
-    OCCUPIED
+    OCCUPIED,
+    TURRET_SPAWN,
+    HEADQUARTERS
 }
 
 public enum TileVisualState
 {
     BASE,
     PATH,
-    SELECTED,
-    UNSELECTED
+    ENEMY_SPAWN,
+    PROP,
+    TURRET_SPAWN,
+    TURRET_SELECTED,
+    HEADQUARTERS
 }
 
 #endregion
@@ -33,6 +38,25 @@ public struct TileArt
 {
     public TileVisualState VisualState;
     public SpriteRenderer VisualStateRenderer;
+}
+
+[System.Serializable]
+public class TileData
+{
+    public TileData(TileState State, int PathTileIndex = -1, Vector2Int PathTilePosition = default(Vector2Int), string FilePathToAsset = null, int LayerIndex = 0)
+    {
+        this.State = State;
+        this.PathTileIndex = PathTileIndex;
+        this.PathTilePosition = PathTilePosition;
+        this.FilePathToAsset = FilePathToAsset;
+        this.LayerIndex = LayerIndex;
+    }
+
+    public TileState State;
+    public int PathTileIndex;
+    public Vector2Int PathTilePosition;
+    public string FilePathToAsset;
+    public int LayerIndex;
 }
 
 #endregion
@@ -101,15 +125,49 @@ public class Tile : MonoBehaviour
     /// Sets the tile's visual state to the given state
     /// </summary>
     /// <param name="state">State of the tile</param>
-    public void SetTileVisualsState(TileVisualState state)
+    public void SetTileVisualsState(TileVisualState state, string filePath = null)
     {
         for (int i = 0; i < m_TileArt.Count; i++)
         {
             if (m_TileArt[i].VisualState == state)
+            {
+                if (state == TileVisualState.PROP)
+                {
+                    print("set sprite");
+                    m_TileArt[i].VisualStateRenderer.sprite = Resources.Load<Sprite>(filePath);
+                }
                 m_TileArt[i].VisualStateRenderer.enabled = true;
+            }
             else
+            {
                 m_TileArt[i].VisualStateRenderer.enabled = false;
+            }
+
         }
+    }
+
+    public void SetPropLayer(int layer)
+    {
+        for (int i = 0; i < m_TileArt.Count; i++)
+        {
+            if(m_TileArt[i].VisualState == TileVisualState.PROP)
+            {
+                m_TileArt[i].VisualStateRenderer.sortingOrder = layer;
+            }
+        }
+    }
+
+    public int GetPropLayer()
+    {
+        for (int i = 0; i < m_TileArt.Count; i++)
+        {
+            if (m_TileArt[i].VisualState == TileVisualState.PROP)
+            {
+                return m_TileArt[i].VisualStateRenderer.sortingOrder;
+            }
+        }
+
+        return 0;
     }
 
     #endregion
