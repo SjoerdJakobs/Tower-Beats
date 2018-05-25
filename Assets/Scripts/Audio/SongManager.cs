@@ -64,8 +64,6 @@ public class SongManager : MonoBehaviour {
 
             //ResourceRequest remainingClips = Resources.LoadAsync(miscTracks);
             m_RemainingTracks = Resources.LoadAll<AudioClip>(miscTracks);
-
-
         }
     }
 
@@ -78,8 +76,6 @@ public class SongManager : MonoBehaviour {
         }
         else
         Destroy(gameObject);
-
-
 
         GameManager.s_OnGameStart += StartPlaylist;
         Sceneloader.s_OnSceneLoaded += SetSongUI;
@@ -107,7 +103,6 @@ public class SongManager : MonoBehaviour {
 
             SetSongTracks(songNumber);
             StartSong();
-
             SetSongUI();
 
             RefreshQueue(songNumber + 1, songLength: m_SongAudioSources[0].clip.length);
@@ -116,15 +111,19 @@ public class SongManager : MonoBehaviour {
         {
             if (s_OnPlaylistComplete != null)
             {
-                s_OnPlaylistComplete();
-                MenuManager.s_Instance.ShowMenu(MenuNames.VICTORY_MENU);
+                if(songNumber > 0)
+                {
+                    s_OnPlaylistComplete();
+                    MenuManager.s_Instance.ShowMenu(MenuNames.VICTORY_MENU);
+                }
+
             }
         }
     }
 
     void SetSongUI()
     {
-        if (s_OnChangeSong != null)
+        if (s_OnChangeSong != null && m_Songs != null)
         {
             s_OnChangeSong((m_SongNumber + 1), m_Songs.Length, m_Songs[m_SongNumber].Songname);
         }
@@ -229,6 +228,7 @@ public class SongManager : MonoBehaviour {
     private void OnLevelComplete()
     {
         Debug.Log("OnLevelComplete");
+        m_SongNumber = 0;
         m_SongQueue = null;
         m_SongAudioSources[0].clip = null;
         m_SongAudioSources[1].clip = null;
@@ -246,5 +246,6 @@ public class SongManager : MonoBehaviour {
         GameManager.s_OnGameStart -= StartPlaylist;
         Sceneloader.s_OnSceneLoaded -= SetSongUI;
         Sceneloader.s_OnSceneLoaded -= StartPlaylist;
+        s_OnPlaylistComplete -= OnLevelComplete;
     }
 }

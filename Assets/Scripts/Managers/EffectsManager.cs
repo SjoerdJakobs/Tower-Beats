@@ -8,9 +8,11 @@ public enum EffectType
 {
     ENEMY_SPAWN,
     ENEMY_HIT,
-    ELECTRO_TURRET_ATTACK,
+    BassTurretFX_Attack,
     LASER_TURRET_ATTACK,
-    SHOOT_TURRET_ATTACK
+    SHOOT_TURRET_ATTACK,
+    BassTurretFX_Spawn,
+    BassTurretFX_Disappear
 }
 
 public class EffectsManager : MonoBehaviour
@@ -78,6 +80,7 @@ public class EffectsManager : MonoBehaviour
         {
             if (effect == m_EffectsPool[i])
             {
+                Debug.Log("remove effect");
                 m_EffectsPool[i].gameObject.SetActive(false);
                 m_EffectsPool[i].InUse = false;
             }

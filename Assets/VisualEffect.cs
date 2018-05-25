@@ -31,10 +31,24 @@ public class VisualEffect : MonoBehaviour
             case EffectType.ENEMY_HIT:
                 m_Animation.AnimationName = "Hit FX";
                 break;
+            case EffectType.BassTurretFX_Spawn:
+                m_Animation.AnimationName = "BassTurretFX_Spawn";
+                break;
+            case EffectType.BassTurretFX_Attack:
+                m_Animation.AnimationName = "BassTurretFX_Attack";
+                break;
+            case EffectType.BassTurretFX_Disappear:
+                m_Animation.AnimationName = "BassTurretFX_Disappear";
+                break;
         }
 
         m_Animation.loop = loop;
         m_Animation.AnimationState.Complete += OnEffectComplete;
+    }
+
+    public void Stop()
+    {
+        m_Animation.state.ClearTracks();
     }
 
     private void OnEffectComplete(TrackEntry trackEntry)

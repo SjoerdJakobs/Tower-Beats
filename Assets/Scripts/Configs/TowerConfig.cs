@@ -18,7 +18,7 @@ public class TowerConfig
         }},
         {TowerTypeTags.LEAD_TOWER, new List<TowerData>()
         {
-            new TowerData(TowerTypeTags.LEAD_TOWER, 1, 3, 200, 200, 150,4f, 1.5f,0.4f),
+            new TowerData(TowerTypeTags.LEAD_TOWER, 1, 3, 200, 200, 150,4f, 1.5f, 0.4f),
             new TowerData(TowerTypeTags.LEAD_TOWER, 2, 3, 300, 0, 300, 6f, 2.25f, 0.3f),
             new TowerData(TowerTypeTags.LEAD_TOWER, 3, 3, 0, 0, 525, 8f, 2.75f, 0.2f)
         }}
