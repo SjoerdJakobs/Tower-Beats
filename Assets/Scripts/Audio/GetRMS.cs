@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.PostProcessing;
 
 public class GetRMS : MonoBehaviour {
 
@@ -9,6 +10,9 @@ public class GetRMS : MonoBehaviour {
     public static AudioCueEvent s_BassCue;
     public static AudioCueEvent s_DrumCue;
     public static AudioCueEvent s_LeadCue;
+
+    private PostProcessingProfile m_PostProcessingProfile;
+    private float m_BloomIntensity;
 
     //Used to identify the type of instrument
     public enum InstrumentGroup
@@ -40,10 +44,16 @@ public class GetRMS : MonoBehaviour {
     private void OnEnable()
     {
         Sceneloader.s_OnSceneLoaded += SetSlider;
+        if (Instrument == InstrumentGroup.Synth)
+        {
+            Sceneloader.s_OnSceneLoaded += GetPostPostProcessingBehaviour;
+        }
     }
 
     void Start()
     {
+
+        PostProcessingBehaviour filters = GetComponent<PostProcessingBehaviour>();
         samples = new float[qSamples];
     }
 
@@ -82,6 +92,11 @@ public class GetRMS : MonoBehaviour {
         }
     }
 
+    void GetPostPostProcessingBehaviour()
+    {
+        m_PostProcessingProfile = Camera.main.GetComponent<PostProcessingBehaviour>().profile;
+    }
+
     void SetSlider()
     {
         m_Slider = GameObject.Find(Instrument.ToString() + "Slider").GetComponent<Slider>();
@@ -93,6 +108,15 @@ public class GetRMS : MonoBehaviour {
         //transform.localScale.y = volume * rmsValue;
         if(m_Slider != null)
             m_Slider.value = (rmsValue * 6);
+        if(m_PostProcessingProfile != null && Instrument == InstrumentGroup.Synth)
+        {
+            m_BloomIntensity = Mathf.Clamp(rmsValue * 60, 3.3f, 5.5f);
+            //m_BloomIntensity = rmsValue * 60;
+            BloomModel.Settings NewBloomSettings = new BloomModel.Settings();
+            NewBloomSettings = m_PostProcessingProfile.bloom.settings;
+            NewBloomSettings.bloom.intensity = m_BloomIntensity;
+            m_PostProcessingProfile.bloom.settings = NewBloomSettings;
+        }
     }
 
     private void OnDisable()

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PauseCheck : MonoBehaviour {
-
+    
     public static PauseCheck s_Instance;
 
     [SerializeField]
@@ -52,6 +52,7 @@ public class PauseCheck : MonoBehaviour {
         m_onPause = !m_onPause;
         if (Pause != null)
         {
+            Resources.UnloadUnusedAssets();
             Pause(m_onPause);
         }
     }
