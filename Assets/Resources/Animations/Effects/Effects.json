@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "AJ1oRVQjG0DaW55KEDUJFYSviZ4", "spine": "3.6.52", "width": 312, "height": 365.61, "images": "" },
+"skeleton": { "hash": "fYnNGxE6E1jqvD64+UxjC4UKuDI", "spine": "3.6.52", "width": 312, "height": 365.61, "images": "" },
 "bones": [
 	{ "name": "root" },
 	{ "name": "SpawnFX", "parent": "root" },
@@ -692,7 +692,7 @@
 			}
 		]
 	},
-	"BassTurretFX_Dissapear": {
+	"BassTurretFX_Disappear": {
 		"slots": {
 			"Bullet/Bullet": {
 				"attachment": [
