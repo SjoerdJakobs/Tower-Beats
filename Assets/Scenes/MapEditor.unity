@@ -3536,8 +3536,8 @@ MonoBehaviour:
   m_MinY: 4.35
   m_MaxY: 13.8
   m_LerpSpeed: 0.2
-  m_ScreenOffset: 0
-  m_MoveSpeed: 1
+  m_ScreenOffset: 20
+  m_MoveSpeed: 40
   m_UseMouseInput: 1
   m_UseKeyInput: 1
   m_UseTouchInput: 0

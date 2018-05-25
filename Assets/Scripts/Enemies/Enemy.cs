@@ -38,20 +38,23 @@ public class Enemy : MonoBehaviour {
 
     public void TakeDamage(float damage)
     {
-        EffectsManager.s_Instance.SpawnEffect(EffectType.ENEMY_HIT, false, transform.position);
-        m_CurrentHealth -= damage;
-        m_EnemyHealthbar.ChangeEnemyHealthUI(m_CurrentHealth, damage);
-
-        if (m_CurrentHealth <= 0)
+        if (m_IsAlive)
         {
-            DOTween.Kill(10, true);
-            Death(true);
-        }
-        else if(m_CurrentHealth > 0)
-        {
-            m_SkeletonAnims.AnimationState.SetAnimation(0, "HIT_Electricity", false);
-            m_SkeletonAnims.AnimationState.AddAnimation(0, "MOVE", true,0);
+            EffectsManager.s_Instance.SpawnEffect(EffectType.ENEMY_HIT, false, new Vector2(transform.position.x, transform.position.y + 0.5f));
+            m_CurrentHealth -= damage;
+            m_EnemyHealthbar.ChangeEnemyHealthUI(m_CurrentHealth, damage);
 
+            if (m_CurrentHealth <= 0)
+            {
+                DOTween.Kill(10, true);
+                Death(true);
+            }
+            else if (m_CurrentHealth > 0)
+            {
+                m_SkeletonAnims.AnimationState.SetAnimation(0, "HIT_Electricity", false);
+                m_SkeletonAnims.AnimationState.AddAnimation(0, "MOVE", true, 0);
+
+            }
         }
     }
 

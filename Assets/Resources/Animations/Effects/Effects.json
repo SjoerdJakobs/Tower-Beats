@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "MIpTTFrgH+4uxEoXsxnyuMX67QY", "spine": "3.6.52", "width": 312, "height": 338.61, "images": "" },
+"skeleton": { "hash": "fYnNGxE6E1jqvD64+UxjC4UKuDI", "spine": "3.6.52", "width": 312, "height": 365.61, "images": "" },
 "bones": [
 	{ "name": "root" },
 	{ "name": "SpawnFX", "parent": "root" },
@@ -23,8 +23,10 @@
 	{ "name": "SpawnFX2", "parent": "SpawnFX", "length": 119.47, "rotation": 90.13, "x": 0.66, "y": 4.96 }
 ],
 "slots": [
+	{ "name": "root2", "bone": "root", "attachment": "Asset 3" },
 	{ "name": "Background", "bone": "root" },
-	{ "name": "Hit/HitEffect0001", "bone": "HitFX", "attachment": "Hit/HitEffect0005" },
+	{ "name": "root", "bone": "root" },
+	{ "name": "Hit/HitEffect0001", "bone": "HitFX" },
 	{ "name": "Shoot/ShootFX0001", "bone": "ShootFX", "attachment": "Shoot/ShootFX0001" },
 	{ "name": "Spawn/Hex", "bone": "Hex", "attachment": "Spawn/Hex" },
 	{ "name": "Spawn/Hex2", "bone": "Hex2", "attachment": "Spawn/Hex" },
@@ -139,12 +141,116 @@
 			"Spawn/TURRET_Synth": { "x": 0.07, "y": 54.39, "scaleX": 0.8, "scaleY": 0.8, "width": 147, "height": 232 }
 		},
 		"SpwanLine": {
-			"SpwanLine": { "x": 89.65, "y": 0.45, "rotation": -90.13, "width": 130, "height": 188 }
+			"SpwanLine": { "x": 89.65, "y": 0.45, "rotation": -90.13, "width": 176, "height": 242 }
+		},
+		"root2": {
+			"Asset 3": { "width": 157, "height": 130 }
 		}
 	}
 },
 "animations": {
-	"ElectroTurretAttack": {
+	"1_Empty": {
+		"slots": {
+			"Bullet/Bullet": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"ElectricLine": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"ElectricLine2": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"ElectricLine3": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"ElectricLine4": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Hit/HitEffect0001": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Shoot/ShootFX0001": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Spawn/Hex": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Spawn/Hex2": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Spawn/Hex3": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Spawn/Hex4": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Spawn/Hex5": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Spawn/Hex6": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Spawn/Hex7": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Spawn/HexHalf": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Spawn/TURRET_Synth": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"SpwanLine": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"root2": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			}
+		},
+		"bones": {
+			"HitFX": {
+				"translate": [
+					{ "time": 0, "x": 7.73, "y": -24.49 }
+				]
+			}
+		}
+	},
+	"BassTurretFX_Attack": {
 		"slots": {
 			"Bullet/Bullet": {
 				"attachment": [
@@ -370,6 +476,11 @@
 				"attachment": [
 					{ "time": 0, "name": null }
 				]
+			},
+			"root2": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
 			}
 		},
 		"bones": {
@@ -514,6 +625,11 @@
 				"scale": [
 					{ "time": 0, "x": 1.03, "y": 1.03 }
 				]
+			},
+			"SpawnFX": {
+				"scale": [
+					{ "time": 0, "x": 1.3, "y": 1.3 }
+				]
 			}
 		},
 		"drawOrder": [
@@ -575,6 +691,482 @@
 				]
 			}
 		]
+	},
+	"BassTurretFX_Disappear": {
+		"slots": {
+			"Bullet/Bullet": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"ElectricLine": {
+				"color": [
+					{ "time": 0, "color": "ffffffff" }
+				],
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"ElectricLine2": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"ElectricLine3": {
+				"color": [
+					{ "time": 0, "color": "ffffffff" }
+				],
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"ElectricLine4": {
+				"color": [
+					{ "time": 0, "color": "ffffffff" }
+				],
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Hit/HitEffect0001": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Shoot/ShootFX0001": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Spawn/Hex": {
+				"color": [
+					{ "time": 0, "color": "ffffffff" },
+					{ "time": 0.7667, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "time": 0, "name": "Spawn/Hex" }
+				]
+			},
+			"Spawn/Hex2": {
+				"color": [
+					{ "time": 0, "color": "ffffff2a" },
+					{ "time": 0.1, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "time": 0, "name": "Spawn/Hex" }
+				]
+			},
+			"Spawn/Hex3": {
+				"color": [
+					{ "time": 0, "color": "ffffff2a" },
+					{ "time": 0.2, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "time": 0, "name": "Spawn/Hex" }
+				]
+			},
+			"Spawn/Hex4": {
+				"color": [
+					{ "time": 0, "color": "ffffff2a" },
+					{ "time": 0.3333, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "time": 0, "name": "Spawn/Hex" }
+				]
+			},
+			"Spawn/Hex5": {
+				"color": [
+					{ "time": 0, "color": "ffffff2a" },
+					{ "time": 0.4333, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "time": 0, "name": "Spawn/Hex" }
+				]
+			},
+			"Spawn/Hex6": {
+				"color": [
+					{ "time": 0, "color": "ffffff2a" },
+					{ "time": 0.5333, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "time": 0, "name": "Spawn/Hex" }
+				]
+			},
+			"Spawn/Hex7": {
+				"color": [
+					{ "time": 0, "color": "ffffff3e" },
+					{ "time": 0.6333, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "time": 0, "name": "Spawn/Hex" }
+				]
+			},
+			"Spawn/HexHalf": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Spawn/TURRET_Synth": {
+				"color": [
+					{ "time": 0, "color": "ffffffff" }
+				]
+			},
+			"SpwanLine": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"root2": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			}
+		},
+		"bones": {
+			"SpawnFX2": {
+				"translate": [
+					{ "time": 0, "x": -1.16, "y": -1.16 }
+				],
+				"scale": [
+					{ "time": 0, "x": 0.466, "y": 0.078 }
+				]
+			},
+			"ElectricLine": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 35.8 }
+				]
+			},
+			"ElectricLine2": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 58.37 }
+				]
+			},
+			"HexHalf": {
+				"translate": [
+					{ "time": 0, "x": -1.3, "y": -30.5 }
+				],
+				"scale": [
+					{ "time": 0, "x": 0.221, "y": 0.085 }
+				]
+			},
+			"Hex": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": -34.4 }
+				],
+				"scale": [
+					{ "time": 0, "x": 0.75, "y": 0.75 }
+				]
+			},
+			"Hex2": {
+				"translate": [
+					{ "time": 0, "x": 58.64, "y": 37.28 }
+				],
+				"scale": [
+					{ "time": 0, "x": 0.75, "y": 0.75 }
+				]
+			},
+			"Hex3": {
+				"translate": [
+					{ "time": 0, "x": 116.63, "y": -35 }
+				],
+				"scale": [
+					{ "time": 0, "x": 0.75, "y": 0.75 }
+				]
+			},
+			"Hex4": {
+				"translate": [
+					{ "time": 0, "x": 57.86, "y": -106.74 }
+				],
+				"scale": [
+					{ "time": 0, "x": 0.75, "y": 0.75 }
+				]
+			},
+			"Hex5": {
+				"translate": [
+					{ "time": 0, "x": -58.71, "y": -106.67 }
+				],
+				"scale": [
+					{ "time": 0, "x": 0.75, "y": 0.75 }
+				]
+			},
+			"Hex6": {
+				"translate": [
+					{ "time": 0, "x": -116.56, "y": -34.4 }
+				],
+				"scale": [
+					{ "time": 0, "x": 0.75, "y": 0.75 }
+				]
+			},
+			"Hex7": {
+				"translate": [
+					{ "time": 0, "x": -57.86, "y": 37.15 }
+				],
+				"scale": [
+					{ "time": 0, "x": 0.75, "y": 0.75 }
+				]
+			},
+			"Electric2": {
+				"translate": [
+					{ "time": 0, "x": 119.97, "y": -12 }
+				]
+			},
+			"Electric3": {
+				"translate": [
+					{ "time": 0, "x": 18.66, "y": -82.65 }
+				]
+			},
+			"root": {
+				"scale": [
+					{ "time": 0, "x": 1.03, "y": 1.03 }
+				]
+			},
+			"SpawnFX": {
+				"scale": [
+					{ "time": 0, "x": 1.3, "y": 1.3 }
+				]
+			}
+		}
+	},
+	"BassTurretFX_Spawn": {
+		"slots": {
+			"Bullet/Bullet": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"ElectricLine": {
+				"color": [
+					{ "time": 0, "color": "ffffffff" }
+				],
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"ElectricLine2": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"ElectricLine3": {
+				"color": [
+					{ "time": 0, "color": "ffffffff" }
+				],
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"ElectricLine4": {
+				"color": [
+					{ "time": 0, "color": "ffffffff" }
+				],
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Hit/HitEffect0001": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Shoot/ShootFX0001": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Spawn/Hex": {
+				"color": [
+					{ "time": 0, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.4, "color": "ffffff00" },
+					{ "time": 0.4667, "color": "ffffffff" }
+				],
+				"attachment": [
+					{ "time": 0, "name": "Spawn/Hex" }
+				]
+			},
+			"Spawn/Hex2": {
+				"color": [
+					{ "time": 0, "color": "ffffff00" },
+					{ "time": 0.0667, "color": "ffffff2a" }
+				],
+				"attachment": [
+					{ "time": 0, "name": "Spawn/Hex" }
+				]
+			},
+			"Spawn/Hex3": {
+				"color": [
+					{ "time": 0, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.0667, "color": "ffffff00" },
+					{ "time": 0.1333, "color": "ffffff2a" }
+				],
+				"attachment": [
+					{ "time": 0, "name": "Spawn/Hex" }
+				]
+			},
+			"Spawn/Hex4": {
+				"color": [
+					{ "time": 0, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.1333, "color": "ffffff00" },
+					{ "time": 0.2, "color": "ffffff2a" }
+				],
+				"attachment": [
+					{ "time": 0, "name": "Spawn/Hex" }
+				]
+			},
+			"Spawn/Hex5": {
+				"color": [
+					{ "time": 0, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.2, "color": "ffffff00" },
+					{ "time": 0.2667, "color": "ffffff2a" }
+				],
+				"attachment": [
+					{ "time": 0, "name": "Spawn/Hex" }
+				]
+			},
+			"Spawn/Hex6": {
+				"color": [
+					{ "time": 0, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.2667, "color": "ffffff00" },
+					{ "time": 0.3333, "color": "ffffff2a" }
+				],
+				"attachment": [
+					{ "time": 0, "name": "Spawn/Hex" }
+				]
+			},
+			"Spawn/Hex7": {
+				"color": [
+					{ "time": 0, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.3333, "color": "ffffff00" },
+					{ "time": 0.4, "color": "ffffff2a" }
+				],
+				"attachment": [
+					{ "time": 0, "name": "Spawn/Hex" }
+				]
+			},
+			"Spawn/HexHalf": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Spawn/TURRET_Synth": {
+				"color": [
+					{ "time": 0, "color": "ffffffff" }
+				]
+			},
+			"SpwanLine": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"root2": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			}
+		},
+		"bones": {
+			"HexHalf": {
+				"translate": [
+					{ "time": 0, "x": -1.3, "y": -30.5 }
+				],
+				"scale": [
+					{ "time": 0, "x": 0.221, "y": 0.085 }
+				]
+			},
+			"Hex5": {
+				"translate": [
+					{ "time": 0, "x": -58.71, "y": -106.67 }
+				],
+				"scale": [
+					{ "time": 0, "x": 0.75, "y": 0.75 }
+				]
+			},
+			"Hex7": {
+				"translate": [
+					{ "time": 0, "x": -57.86, "y": 37.15 }
+				],
+				"scale": [
+					{ "time": 0, "x": 0.75, "y": 0.75 }
+				]
+			},
+			"Electric3": {
+				"translate": [
+					{ "time": 0, "x": 18.66, "y": -82.65 }
+				]
+			},
+			"Hex3": {
+				"translate": [
+					{ "time": 0, "x": 116.63, "y": -35 }
+				],
+				"scale": [
+					{ "time": 0, "x": 0.75, "y": 0.75 }
+				]
+			},
+			"SpawnFX2": {
+				"translate": [
+					{ "time": 0, "x": -1.16, "y": -1.16 }
+				],
+				"scale": [
+					{ "time": 0, "x": 0.466, "y": 0.078 }
+				]
+			},
+			"Hex6": {
+				"translate": [
+					{ "time": 0, "x": -116.56, "y": -34.4 }
+				],
+				"scale": [
+					{ "time": 0, "x": 0.75, "y": 0.75 }
+				]
+			},
+			"Hex2": {
+				"translate": [
+					{ "time": 0, "x": 58.64, "y": 37.28 }
+				],
+				"scale": [
+					{ "time": 0, "x": 0.75, "y": 0.75 }
+				]
+			},
+			"ElectricLine": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 35.8 }
+				]
+			},
+			"root": {
+				"scale": [
+					{ "time": 0, "x": 1.03, "y": 1.03 }
+				]
+			},
+			"Electric2": {
+				"translate": [
+					{ "time": 0, "x": 119.97, "y": -12 }
+				]
+			},
+			"Hex": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": -34.4 }
+				],
+				"scale": [
+					{ "time": 0, "x": 0.75, "y": 0.75 }
+				]
+			},
+			"Hex4": {
+				"translate": [
+					{ "time": 0, "x": 57.86, "y": -106.74 }
+				],
+				"scale": [
+					{ "time": 0, "x": 0.75, "y": 0.75 }
+				]
+			},
+			"ElectricLine2": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 58.37 }
+				]
+			},
+			"SpawnFX": {
+				"scale": [
+					{ "time": 0, "x": 1.3, "y": 1.3 }
+				]
+			}
+		}
 	},
 	"Hit FX": {
 		"slots": {
@@ -665,6 +1257,11 @@
 				]
 			},
 			"SpwanLine": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"root2": {
 				"attachment": [
 					{ "time": 0, "name": null }
 				]
@@ -775,6 +1372,11 @@
 				]
 			},
 			"SpwanLine": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"root2": {
 				"attachment": [
 					{ "time": 0, "name": null }
 				]
@@ -907,6 +1509,11 @@
 				]
 			},
 			"SpwanLine": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"root2": {
 				"attachment": [
 					{ "time": 0, "name": null }
 				]
@@ -1110,19 +1717,24 @@
 					{ "time": 0.5, "color": "ffffffff" },
 					{ "time": 0.7333, "color": "ffffff00" }
 				]
+			},
+			"root2": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
 			}
 		},
 		"bones": {
 			"SpawnFX2": {
 				"translate": [
-					{ "time": 0, "x": -1.16, "y": -1.16 },
-					{ "time": 0.0667, "x": 0, "y": 2.61, "curve": "stepped" },
-					{ "time": 0.2667, "x": 0, "y": 2.61 },
-					{ "time": 0.3333, "x": 0, "y": 15.11 },
-					{ "time": 0.3667, "x": 0, "y": 19.08 },
-					{ "time": 0.4333, "x": 0, "y": 16.22 },
-					{ "time": 0.5, "x": 0, "y": -3.33 },
-					{ "time": 0.7333, "x": 0, "y": -4.35 }
+					{ "time": 0, "x": -1.16, "y": -9.22 },
+					{ "time": 0.0667, "x": -1.16, "y": -14.86 },
+					{ "time": 0.2667, "x": 0, "y": -23.58 },
+					{ "time": 0.3333, "x": 0, "y": -46.55 },
+					{ "time": 0.3667, "x": 0, "y": -50.58 },
+					{ "time": 0.4333, "x": 0, "y": -47.86 },
+					{ "time": 0.5, "x": 0, "y": -9.78, "curve": "stepped" },
+					{ "time": 0.7333, "x": 0, "y": -9.78 }
 				],
 				"scale": [
 					{ "time": 0, "x": 0.466, "y": 0.078 },

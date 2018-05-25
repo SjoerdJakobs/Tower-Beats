@@ -10,8 +10,8 @@ public class CameraMovement : MonoBehaviour {
     [SerializeField] private float m_MinY;
     [SerializeField] private float m_MaxY;
     [SerializeField] private float m_LerpSpeed; // Lower value is faster
-    [SerializeField] private float m_ScreenOffset = 0;
-    [SerializeField] private float m_MoveSpeed = 1;
+    [SerializeField] private float m_ScreenOffset = 10;
+    [SerializeField] private float m_MoveSpeed = 40;
     [Space(20f)]
     [SerializeField] private bool m_UseMouseInput = true;
     [SerializeField] private bool m_UseKeyInput = true;
@@ -126,7 +126,7 @@ public class CameraMovement : MonoBehaviour {
 
     private void MoveCamera()
     {
-        transform.position = Vector3.Lerp(transform.position, m_MovePos, m_LerpSpeed);
+        transform.position = Vector3.Lerp(transform.position, m_MovePos, m_LerpSpeed * m_MoveSpeed * Time.deltaTime);
     }
 
     public void ScrollCameraToPosition(Tile tile, float duration, bool enableMoveCameraOnComplete, System.Action onComplete = null)
