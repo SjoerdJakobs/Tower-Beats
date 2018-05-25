@@ -2191,6 +2191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12062a28394284f4c983adf2963744b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_PathJSONFile: {fileID: 0}
 --- !u!4 &1651140785
 Transform:
   m_ObjectHideFlags: 0
@@ -2421,6 +2422,26 @@ Prefab:
       propertyPath: m_RootOrder
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 224771502129084716, guid: 2f7cee28495c40545bcf3d054c0bf310,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 224894187294856496, guid: 2f7cee28495c40545bcf3d054c0bf310,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 224534420957420686, guid: 2f7cee28495c40545bcf3d054c0bf310,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 224550811163223794, guid: 2f7cee28495c40545bcf3d054c0bf310,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 350
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2f7cee28495c40545bcf3d054c0bf310, type: 2}
   m_IsPrefabParent: 0
@@ -2615,6 +2636,16 @@ Prefab:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224897814563103980, guid: b682b91d8605c534b8865614730f3882,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224147967664331250, guid: b682b91d8605c534b8865614730f3882,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224178646513202322, guid: b682b91d8605c534b8865614730f3882,
         type: 2}
       propertyPath: m_AnchorMax.x
       value: 1
