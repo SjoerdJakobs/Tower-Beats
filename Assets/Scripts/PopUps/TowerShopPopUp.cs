@@ -39,7 +39,7 @@ public class TowerShopPopUp : PopUp {
         {
             //Gets the buy cost from the towers data
             PlayerData.s_Instance.ChangeCoinAmount(-TowerConfig.s_Towers[towerType][0].BuyCost);
-            EffectsManager.s_Instance.SpawnEffect(EffectType.ENEMY_SPAWN, false, HexGrid.s_Instance.SelectedTile.transform.position);
+            
             //Spawns a tower of the type (parameter) passed
             switch (towerType)
             {
@@ -60,6 +60,7 @@ public class TowerShopPopUp : PopUp {
 
     void SpawnTower(string towerType,int indexInList)
     {
+        EffectsManager.s_Instance.SpawnEffect(EffectType.ENEMY_SPAWN, false, HexGrid.s_Instance.SelectedTile.transform.position);
         Tower newTower;
         newTower = Instantiate(m_Towers[indexInList]);
         newTower.TowerData = TowerConfig.s_Towers[towerType][0];
