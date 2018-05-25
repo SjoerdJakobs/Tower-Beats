@@ -12,13 +12,13 @@ public class PropSelector : MonoBehaviour
     public static PropSelectorConfirm s_OnPropSelectorConfirm;
 
     [SerializeField] private Image m_Image;
-    private List<Sprite> m_Props = new List<Sprite>();
+    private Sprite[] m_Props;
 
     private int m_CurrentPropIndex;
 
     private void Start()
     {
-        m_Props = MapEditor.s_Instance.PropSprites;
+        m_Props = Resources.LoadAll<Sprite>("Background/Buildings");
         m_CurrentPropIndex = 0;
 
         UpdateProp();
@@ -27,7 +27,7 @@ public class PropSelector : MonoBehaviour
     public void MoveLeft()
     {
         if (m_CurrentPropIndex <= 0)
-            m_CurrentPropIndex = m_Props.Count - 1;
+            m_CurrentPropIndex = m_Props.Length - 1;
         else
             m_CurrentPropIndex--;
 
@@ -36,7 +36,7 @@ public class PropSelector : MonoBehaviour
 
     public void MoveRight()
     {
-        if (m_CurrentPropIndex >= m_Props.Count - 1)
+        if (m_CurrentPropIndex >= m_Props.Length - 1)
             m_CurrentPropIndex = 0;
         else
             m_CurrentPropIndex++;

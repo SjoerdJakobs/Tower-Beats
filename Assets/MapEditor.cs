@@ -1,29 +1,38 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 [System.Serializable]
 public class Map
 {
+    public string Name;
     public List<TileData> TilesData = new List<TileData>();
+}
+
+[System.Serializable]
+public class Maps
+{
+    public List<Map> MapsData = new List<Map>();
 }
 
 public class MapEditor : MonoBehaviour
 {
     public static MapEditor s_Instance;
 
-    [SerializeField] private List<Sprite> m_PropSprites = new List<Sprite>();
-    public List<Sprite> PropSprites { get { return m_PropSprites; } }
-
     public static Action s_OnTileDataAdded;
 
     public Tile CurrentSelectedTile { get; private set; }
+
+    private Maps m_Maps;
 
     private Map m_Map;
     private int m_PathCounter;
 
     private bool m_ShowHeadQuarters;
+
+    private string m_FilePath;
 
     private void Awake()
     {
@@ -45,7 +54,12 @@ public class MapEditor : MonoBehaviour
         else
             Destroy(gameObject);
 
+        m_FilePath = Path.Combine(Application.dataPath, "Data/Maps.json");
+
+        m_Maps = new Maps();
         m_Map = new Map();
+
+        LoadData();
     }
 
     private void TileClicked(Tile tile)
@@ -57,7 +71,7 @@ public class MapEditor : MonoBehaviour
 
     private void PropSelected(string propPath)
     {
-        m_Map.TilesData.Add(new TileData(TileState.NOT_USABLE, -1, CurrentSelectedTile.PositionInGrid, propPath));
+        m_Map.TilesData.Add(new TileData(TileState.PROP, -1, CurrentSelectedTile.PositionInGrid, propPath));
         CurrentSelectedTile.SetTileVisualsState(TileVisualState.PROP, propPath);
     }
 
@@ -137,6 +151,11 @@ public class MapEditor : MonoBehaviour
         }
     }
 
+    public void SetMapName(string name)
+    {
+        m_Map.Name = name;
+    }
+
     public void ResetTile()
     {
         TileData currentTileData = GetTileDataFromMap(CurrentSelectedTile.PositionInGrid);
@@ -182,4 +201,65 @@ public class MapEditor : MonoBehaviour
         }
         return null;
     }
+
+    public void SaveMap()
+    {
+        if(!MapNameAlreadyExists(m_Map.Name))
+        {
+            m_Maps.MapsData.Add(m_Map);
+            SaveData();
+            print("Map saved");
+        }
+        else
+        {
+            print("Could not save map, map name already exists");
+        }
+    }
+
+    private bool MapNameAlreadyExists(string mapName)
+    {
+        for (int i = 0; i < m_Maps.MapsData.Count; i++)
+        {
+            if (m_Maps.MapsData[i].Name.ToUpper() == mapName.ToUpper())
+                return true;
+        }
+        return false;
+    }
+
+    #region Save And Load Data
+
+    /// <summary>
+    /// Loads all the data
+    /// </summary>
+    public void LoadData()
+    {
+#if UNITY_EDITOR
+        TryCreateFile();
+#endif  
+
+        string jsonString = File.ReadAllText(m_FilePath);
+        JsonUtility.FromJsonOverwrite(jsonString, m_Maps);
+    }
+
+    /// <summary>
+    /// Saves all the data
+    /// </summary>
+    public void SaveData()
+    {
+        TryCreateFile();
+
+        string jsonString = JsonUtility.ToJson(m_Maps, true);
+        File.WriteAllText(m_FilePath, jsonString);
+    }
+
+    /// <summary>
+    /// Tries to create a .JSON file
+    /// </summary>
+    private void TryCreateFile()
+    {
+        if (!File.Exists(m_FilePath))
+            File.Create(m_FilePath).Dispose();
+    }
+
+    #endregion
 }

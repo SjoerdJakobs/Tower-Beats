@@ -15,7 +15,8 @@ public enum TileState
     PATH,
     OCCUPIED,
     TURRET_SPAWN,
-    HEADQUARTERS
+    HEADQUARTERS,
+    PROP
 }
 
 public enum TileVisualState
@@ -88,7 +89,7 @@ public class Tile : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        CurrentState = TileState.OPEN;
+        CurrentState = TileState.NOT_USABLE;
         Tower = null;
     }
 
@@ -99,7 +100,7 @@ public class Tile : MonoBehaviour
             if (s_OnTileClicked != null) s_OnTileClicked(this);
             switch (CurrentState)
         	{
-            	case TileState.OPEN:
+            	case TileState.TURRET_SPAWN:
                     if (PopUpManager.s_Instance != null)
                     {
                         PopUpManager.s_Instance.ShowPopUp(PopUpNames.TOWER_SHOP_MENU, new Vector2(transform.position.x,transform.position.y+1.5f));

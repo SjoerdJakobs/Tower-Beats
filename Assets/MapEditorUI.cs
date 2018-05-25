@@ -11,8 +11,10 @@ public class MapEditorUI : MonoBehaviour
     [SerializeField] private GameObject m_PropSelector;
     [SerializeField] private GameObject m_TileUtilities;
     [SerializeField] private GameObject m_Reset;
+    [SerializeField] private GameObject m_SaveAndLoad;
     [Space]
     [SerializeField] private Text m_CurrentLayerText;
+    [SerializeField] private InputField m_MapNameInput;
 
     private void Awake()
     {
@@ -52,6 +54,7 @@ public class MapEditorUI : MonoBehaviour
         m_PropSelector.SetActive(false);
         m_TileUtilities.SetActive(false);
         m_Reset.SetActive(false);
+        m_SaveAndLoad.SetActive(false);
     }
 
     public void ShowPropSelector()
@@ -60,6 +63,7 @@ public class MapEditorUI : MonoBehaviour
         m_PropSelector.SetActive(true);
         m_TileUtilities.SetActive(false);
         m_Reset.SetActive(false);
+        m_SaveAndLoad.SetActive(false);
     }
 
     public void ShowReset()
@@ -68,6 +72,7 @@ public class MapEditorUI : MonoBehaviour
         m_PropSelector.SetActive(false);
         m_TileUtilities.SetActive(false);
         m_Reset.SetActive(true);
+        m_SaveAndLoad.SetActive(false);
     }
 
     public void ShowTileUtilities()
@@ -76,8 +81,18 @@ public class MapEditorUI : MonoBehaviour
         m_PropSelector.SetActive(false);
         m_TileUtilities.SetActive(true);
         m_Reset.SetActive(false);
+        m_SaveAndLoad.SetActive(false);
 
         m_CurrentLayerText.text = MapEditor.s_Instance.CurrentSelectedTile.GetPropLayer().ToString();
+    }
+
+    public void ShowSaveAndLoad()
+    {
+        m_TypeSelector.SetActive(false);
+        m_PropSelector.SetActive(false);
+        m_TileUtilities.SetActive(false);
+        m_Reset.SetActive(false);
+        m_SaveAndLoad.SetActive(true);
     }
 
     public void UpPropLayer()
@@ -106,6 +121,18 @@ public class MapEditorUI : MonoBehaviour
         m_PropSelector.SetActive(false);
         m_TileUtilities.SetActive(false);
         m_Reset.SetActive(false);
+        m_SaveAndLoad.SetActive(false);
         m_CurrentSelectedTileInfo.text = "Select a Tile";
+    }
+
+    public void SaveMap()
+    {
+        MapEditor.s_Instance.SetMapName(m_MapNameInput.text);
+        MapEditor.s_Instance.SaveMap();
+    }
+
+    public void LoadMap()
+    {
+        MapLoader.s_Instance.LoadMap(m_MapNameInput.text);
     }
 }
