@@ -133,10 +133,8 @@ public class Tile : MonoBehaviour
             if (m_TileArt[i].VisualState == state)
             {
                 if (state == TileVisualState.PROP)
-                {
-                    print("set sprite");
                     m_TileArt[i].VisualStateRenderer.sprite = Resources.Load<Sprite>(filePath);
-                }
+
                 m_TileArt[i].VisualStateRenderer.enabled = true;
             }
             else

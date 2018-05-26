@@ -12,6 +12,8 @@ public class MapEditorUI : MonoBehaviour
     [SerializeField] private GameObject m_TileUtilities;
     [SerializeField] private GameObject m_Reset;
     [SerializeField] private GameObject m_SaveAndLoad;
+    [SerializeField] private GameObject m_Saved;
+    [SerializeField] private GameObject m_CopiedToClipboard;
     [Space]
     [SerializeField] private Text m_CurrentLayerText;
     [SerializeField] private InputField m_MapNameInput;
@@ -55,6 +57,8 @@ public class MapEditorUI : MonoBehaviour
         m_TileUtilities.SetActive(false);
         m_Reset.SetActive(false);
         m_SaveAndLoad.SetActive(false);
+        m_Saved.SetActive(false);
+        m_CopiedToClipboard.SetActive(false);
     }
 
     public void ShowPropSelector()
@@ -64,6 +68,8 @@ public class MapEditorUI : MonoBehaviour
         m_TileUtilities.SetActive(false);
         m_Reset.SetActive(false);
         m_SaveAndLoad.SetActive(false);
+        m_Saved.SetActive(false);
+        m_CopiedToClipboard.SetActive(false);
     }
 
     public void ShowReset()
@@ -73,6 +79,8 @@ public class MapEditorUI : MonoBehaviour
         m_TileUtilities.SetActive(false);
         m_Reset.SetActive(true);
         m_SaveAndLoad.SetActive(false);
+        m_Saved.SetActive(false);
+        m_CopiedToClipboard.SetActive(false);
     }
 
     public void ShowTileUtilities()
@@ -82,6 +90,8 @@ public class MapEditorUI : MonoBehaviour
         m_TileUtilities.SetActive(true);
         m_Reset.SetActive(false);
         m_SaveAndLoad.SetActive(false);
+        m_Saved.SetActive(false);
+        m_CopiedToClipboard.SetActive(false);
 
         m_CurrentLayerText.text = MapEditor.s_Instance.CurrentSelectedTile.GetPropLayer().ToString();
     }
@@ -93,6 +103,19 @@ public class MapEditorUI : MonoBehaviour
         m_TileUtilities.SetActive(false);
         m_Reset.SetActive(false);
         m_SaveAndLoad.SetActive(true);
+        m_Saved.SetActive(false);
+        m_CopiedToClipboard.SetActive(false);
+    }
+
+    public void ShowSaved()
+    {
+        m_TypeSelector.SetActive(false);
+        m_PropSelector.SetActive(false);
+        m_TileUtilities.SetActive(false);
+        m_Reset.SetActive(false);
+        m_SaveAndLoad.SetActive(false);
+        m_Saved.SetActive(true);
+        m_CopiedToClipboard.SetActive(false);
     }
 
     public void UpPropLayer()
@@ -134,5 +157,16 @@ public class MapEditorUI : MonoBehaviour
     public void LoadMap()
     {
         MapLoader.s_Instance.LoadMap(m_MapNameInput.text);
+    }
+
+    public void ShowCopiedToClipboard()
+    {
+        m_TypeSelector.SetActive(false);
+        m_PropSelector.SetActive(false);
+        m_TileUtilities.SetActive(false);
+        m_Reset.SetActive(false);
+        m_SaveAndLoad.SetActive(false);
+        m_Saved.SetActive(false);
+        m_CopiedToClipboard.SetActive(true);
     }
 }

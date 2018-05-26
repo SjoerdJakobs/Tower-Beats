@@ -101,6 +101,15 @@ public class HexGrid : MonoBehaviour
     /// <summary>
     /// Creates a Grid with the values entered in the inspector and overwrites the width and the height
     /// </summary>
+    /// <param name="gridSize"></param>
+    public void CreateGrid(Vector2Int gridSize)
+    {
+        CreateGrid(gridSize.x, gridSize.y);
+    }
+
+    /// <summary>
+    /// Creates a Grid with the values entered in the inspector and overwrites the width and the height
+    /// </summary>
     /// <param name="width">Width of the Grid (x-axis)</param>
     /// <param name="height">Height of the Grid (y-axis)</param>
     public void CreateGrid(int width, int height)
@@ -129,6 +138,10 @@ public class HexGrid : MonoBehaviour
 
         // Fill the Grid
         m_Grid = new Tile[width, height];
+
+        // Update the values
+        m_GridWidth = width;
+        m_GridHeight = height;
 
         for (int x = 0; x < width; x++)
         {

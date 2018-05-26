@@ -8,6 +8,7 @@ using UnityEngine;
 public class Map
 {
     public string Name;
+    public Vector2Int GridSize;
     public List<TileData> TilesData = new List<TileData>();
 }
 
@@ -122,6 +123,17 @@ public class MapEditor : MonoBehaviour
         TileDataAdded();
     }
 
+    public void LoadMapData()
+    {
+        m_Map = MapLoader.s_Instance.MapData;
+    }
+
+    public void ClearEditor()
+    {
+        m_Map = new Map();
+        HexGrid.s_Instance.ClearGrid();
+    }
+
     private void TileDataAdded()
     {
         CurrentSelectedTile = null;
@@ -206,6 +218,7 @@ public class MapEditor : MonoBehaviour
     {
         if(!MapNameAlreadyExists(m_Map.Name))
         {
+            m_Map.GridSize = HexGrid.s_Instance.GridSize;
             m_Maps.MapsData.Add(m_Map);
             SaveData();
             print("Map saved");
@@ -224,6 +237,22 @@ public class MapEditor : MonoBehaviour
                 return true;
         }
         return false;
+    }
+
+    private void CopyToClipboard(string s)
+    {
+        TextEditor te = new TextEditor
+        {
+            text = s
+        };
+
+        te.SelectAll();
+        te.Copy();
+    }
+
+    public void CopyMapToClipboard()
+    {
+        CopyToClipboard(JsonUtility.ToJson(m_Map, true));
     }
 
     #region Save And Load Data
