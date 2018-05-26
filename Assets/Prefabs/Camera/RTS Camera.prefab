@@ -112,7 +112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_UseBounderies: 1
   m_MinX: 8.2
-  m_MaxX: 18
+  m_MaxX: 21.3
   m_MinY: 4.35
   m_MaxY: 13.8
   m_LerpSpeed: 0.2

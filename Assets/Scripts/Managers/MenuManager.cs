@@ -42,7 +42,6 @@ public class MenuManager : MonoBehaviour
         if (s_Instance == null)
         {
             s_Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {

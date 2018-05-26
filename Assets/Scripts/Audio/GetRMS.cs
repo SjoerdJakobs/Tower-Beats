@@ -34,7 +34,7 @@ public class GetRMS : MonoBehaviour {
     }
 
     private int qSamples = 1024;  // array size
-    private float refValue = 0.1f; // RMS value for 0 dB
+    //private float refValue = 0.1f; // RMS value for 0 dB
     private float rmsValue;   // sound level - RMS
 
     private float[] samples; // audio samples
@@ -53,7 +53,7 @@ public class GetRMS : MonoBehaviour {
     void Start()
     {
 
-        PostProcessingBehaviour filters = GetComponent<PostProcessingBehaviour>();
+        //PostProcessingBehaviour filters = GetComponent<PostProcessingBehaviour>();
         samples = new float[qSamples];
     }
 

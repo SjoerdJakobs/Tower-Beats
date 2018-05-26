@@ -42,13 +42,13 @@ public class Tower : MonoBehaviour
 
     public Tower Self { get; set; } //Reference to itself
 
-    private LineRenderer m_LineRenderer;
+    //private LineRenderer m_LineRenderer;
 
     public virtual void Awake()
     {
         PauseCheck.Pause += TogglePause;
         Enemy.s_OnDestroyEnemy += RemoveEnemyFromList;
-        m_LineRenderer = GetComponent<LineRenderer>();
+        //m_LineRenderer = GetComponent<LineRenderer>();
     }
 
     private void Update()

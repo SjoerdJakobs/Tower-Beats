@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        MapLoader.s_Instance.LoadMap("level1");
         StartCoroutine(ShowTutorial(() => {
             StartCoroutine(StartPreparationTime(() => {
                 print("start spawning enemies");
@@ -58,11 +59,12 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator ShowTutorial(System.Action callback)
     {
+        yield return new WaitUntil(() => MapLoader.s_Instance != null);
         NotificationManager.s_Instance.EnqueueNotification("Your objective is to defend this tower in Hexagonia.", 2);
-        CameraMovement.s_Instance.ScrollCameraToPosition(HexGrid.s_Instance.GetTile(10, 5).transform, 1, false);
+        CameraMovement.s_Instance.ScrollCameraToPosition(MapLoader.s_Instance.HeadQuartersPosition, 1, false);
         yield return new WaitForSeconds(2.5f);
         NotificationManager.s_Instance.EnqueueNotification("Enemies will spawn from here", 2);
-        CameraMovement.s_Instance.ScrollCameraToPosition(PathManager.s_Instance.CurrentPathNodes[0], 1, false);
+        CameraMovement.s_Instance.ScrollCameraToPosition(MapLoader.s_Instance.Path[0], 1, false);
         yield return new WaitForSeconds(2.5f);
         CameraMovement.s_Instance.CanMoveCamera = true;
         if (callback != null) callback();

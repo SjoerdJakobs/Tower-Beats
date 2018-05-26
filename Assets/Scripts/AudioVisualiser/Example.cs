@@ -36,7 +36,7 @@ public class Example : MonoBehaviour
     private float _fadeMod;
     [SerializeField]
     private int _emmisionPillar;
-    private bool _startMusicEmmision = false;
+    //private bool _startMusicEmmision = false;
     Color baseColor;
 
     void Start ()
@@ -48,21 +48,7 @@ public class Example : MonoBehaviour
         //processor.onBeat.AddListener (onOnbeatDetected);
         _backPlaneMat = _backPlane.GetComponent<Renderer>().material;
 		processor.onSpectrum.AddListener (onSpectrum);
-        StartCoroutine(lightenUp());
 	}
-
-    IEnumerator lightenUp()
-    {
-        float emission = 0;
-        float counter = 0;
-        while (counter / _fadeInTime >= 1)
-        {
-            emission = Mathf.Lerp(0, 1.0f * _fadeMod, counter / _fadeInTime);
-            
-            yield return new WaitForEndOfFrame();
-        }
-        _startMusicEmmision = true;
-    }
 
     /*
 	void onOnbeatDetected ()

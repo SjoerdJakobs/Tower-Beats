@@ -132,8 +132,16 @@ public class Tile : MonoBehaviour
         {
             if (m_TileArt[i].VisualState == state)
             {
-                if (state == TileVisualState.PROP)
-                    m_TileArt[i].VisualStateRenderer.sprite = Resources.Load<Sprite>(filePath);
+                switch(state)
+                {
+                    case TileVisualState.PROP:
+                        m_TileArt[i].VisualStateRenderer.sprite = Resources.Load<Sprite>(filePath);
+                        SetLayer(TileVisualState.PROP, HexGrid.s_Instance.GridSize.y - PositionInGrid.y);
+                        break;
+                    case TileVisualState.HEADQUARTERS:
+                        SetLayer(TileVisualState.HEADQUARTERS, HexGrid.s_Instance.GridSize.y - PositionInGrid.y);
+                        break;
+                }
 
                 m_TileArt[i].VisualStateRenderer.enabled = true;
             }
@@ -145,27 +153,40 @@ public class Tile : MonoBehaviour
         }
     }
 
-    public void SetPropLayer(int layer)
+    /// <summary>
+    /// Set the layer of the tile's art
+    /// </summary>
+    /// <param name="state">State of the tile</param>
+    /// <param name="layer">Layer index</param>
+    public void SetLayer(TileVisualState state, int layer)
     {
         for (int i = 0; i < m_TileArt.Count; i++)
         {
-            if(m_TileArt[i].VisualState == TileVisualState.PROP)
+            switch (state)
             {
-                m_TileArt[i].VisualStateRenderer.sortingOrder = layer;
+                case TileVisualState.PROP:
+                case TileVisualState.HEADQUARTERS:
+                    m_TileArt[i].VisualStateRenderer.sortingOrder = layer;
+                    break;
             }
         }
     }
 
-    public int GetPropLayer()
+    /// <summary>
+    /// Get the layer of the tile's art
+    /// </summary>
+    /// <param name="state">State of the tile</param>
+    public int GetLayer(TileVisualState state)
     {
         for (int i = 0; i < m_TileArt.Count; i++)
         {
-            if (m_TileArt[i].VisualState == TileVisualState.PROP)
+            switch (state)
             {
-                return m_TileArt[i].VisualStateRenderer.sortingOrder;
+                case TileVisualState.PROP:
+                case TileVisualState.HEADQUARTERS:
+                    return m_TileArt[i].VisualStateRenderer.sortingOrder;
             }
         }
-
         return 0;
     }
 

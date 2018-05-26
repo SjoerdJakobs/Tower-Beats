@@ -31,7 +31,7 @@ public class EnemySpawner : MonoBehaviour {
         int randomEnemy = UnityEngine.Random.Range(0, m_Enemies.Count);
         Enemy newEnemy = Instantiate(m_Enemies[randomEnemy]);
         SpawnedEnemies.Add(newEnemy);
-        newEnemy.transform.position = PathManager.s_Instance.CurrentPathNodes[0];
+        newEnemy.transform.position = MapLoader.s_Instance.Path[0].transform.position;//PathManager.s_Instance.CurrentPathNodes[0];
         newEnemy.transform.SetParent(transform);
         //EffectsManager.s_Instance.SpawnEffect(EffectType.ENEMY_SPAWN, false, PathManager.s_Instance.CurrentPathNodes[0]);
         newEnemy.Move();
