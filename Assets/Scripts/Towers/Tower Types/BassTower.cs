@@ -27,6 +27,11 @@ public class BassTower : Tower
         VisualEffect.s_OnEffectCompleted += EffectCompleted;
     }
 
+    private void Start()
+    {
+        m_VisualEffect.SetLayer(GetComponent<Renderer>().sortingOrder - 1);
+    }
+
     private void EffectCompleted(VisualEffect effect)
     {
         if(effect == m_VisualEffect)

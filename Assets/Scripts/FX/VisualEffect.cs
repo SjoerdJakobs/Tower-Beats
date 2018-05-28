@@ -8,6 +8,7 @@ using System;
 public class VisualEffect : MonoBehaviour
 {
     private SkeletonAnimation m_Animation;
+    private MeshRenderer m_Renderer;
 
     public delegate void EffectCompleted(VisualEffect effect);
     public static EffectCompleted s_OnEffectCompleted;
@@ -17,6 +18,7 @@ public class VisualEffect : MonoBehaviour
     private void Awake()
     {
         m_Animation = GetComponent<SkeletonAnimation>();
+        m_Renderer = GetComponent<MeshRenderer>();
     }
 
     public void Init(EffectType type, bool loop)
@@ -51,6 +53,11 @@ public class VisualEffect : MonoBehaviour
 
         m_Animation.loop = loop;
         m_Animation.AnimationState.Complete += OnEffectComplete;
+    }
+
+    public void SetLayer(int layer)
+    {
+        m_Renderer.sortingOrder = layer;
     }
 
     public void Stop()
