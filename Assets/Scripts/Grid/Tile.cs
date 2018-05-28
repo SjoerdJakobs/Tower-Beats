@@ -15,7 +15,8 @@ public enum TileState
     PATH,
     OCCUPIED,
     TURRET_SPAWN,
-    HEADQUARTERS
+    HEADQUARTERS,
+    PROP
 }
 
 public enum TileVisualState
@@ -88,7 +89,7 @@ public class Tile : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        CurrentState = TileState.OPEN;
+        CurrentState = TileState.NOT_USABLE;
         Tower = null;
     }
 
@@ -99,7 +100,7 @@ public class Tile : MonoBehaviour
             if (s_OnTileClicked != null) s_OnTileClicked(this);
             switch (CurrentState)
         	{
-            	case TileState.OPEN:
+            	case TileState.TURRET_SPAWN:
                     if (PopUpManager.s_Instance != null)
                     {
                         PopUpManager.s_Instance.ShowPopUp(PopUpNames.TOWER_SHOP_MENU, new Vector2(transform.position.x,transform.position.y+1.5f));
@@ -131,11 +132,17 @@ public class Tile : MonoBehaviour
         {
             if (m_TileArt[i].VisualState == state)
             {
-                if (state == TileVisualState.PROP)
+                switch(state)
                 {
-                    print("set sprite");
-                    m_TileArt[i].VisualStateRenderer.sprite = Resources.Load<Sprite>(filePath);
+                    case TileVisualState.PROP:
+                        m_TileArt[i].VisualStateRenderer.sprite = Resources.Load<Sprite>(filePath);
+                        SetLayer(TileVisualState.PROP, HexGrid.s_Instance.GridSize.y - PositionInGrid.y);
+                        break;
+                    case TileVisualState.HEADQUARTERS:
+                        SetLayer(TileVisualState.HEADQUARTERS, HexGrid.s_Instance.GridSize.y - PositionInGrid.y);
+                        break;
                 }
+
                 m_TileArt[i].VisualStateRenderer.enabled = true;
             }
             else
@@ -146,27 +153,40 @@ public class Tile : MonoBehaviour
         }
     }
 
-    public void SetPropLayer(int layer)
+    /// <summary>
+    /// Set the layer of the tile's art
+    /// </summary>
+    /// <param name="state">State of the tile</param>
+    /// <param name="layer">Layer index</param>
+    public void SetLayer(TileVisualState state, int layer)
     {
         for (int i = 0; i < m_TileArt.Count; i++)
         {
-            if(m_TileArt[i].VisualState == TileVisualState.PROP)
+            switch (state)
             {
-                m_TileArt[i].VisualStateRenderer.sortingOrder = layer;
+                case TileVisualState.PROP:
+                case TileVisualState.HEADQUARTERS:
+                    m_TileArt[i].VisualStateRenderer.sortingOrder = layer;
+                    break;
             }
         }
     }
 
-    public int GetPropLayer()
+    /// <summary>
+    /// Get the layer of the tile's art
+    /// </summary>
+    /// <param name="state">State of the tile</param>
+    public int GetLayer(TileVisualState state)
     {
         for (int i = 0; i < m_TileArt.Count; i++)
         {
-            if (m_TileArt[i].VisualState == TileVisualState.PROP)
+            switch (state)
             {
-                return m_TileArt[i].VisualStateRenderer.sortingOrder;
+                case TileVisualState.PROP:
+                case TileVisualState.HEADQUARTERS:
+                    return m_TileArt[i].VisualStateRenderer.sortingOrder;
             }
         }
-
         return 0;
     }
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public struct TowerData
 { 
@@ -30,6 +31,7 @@ public struct TowerData
 
 public class Tower : MonoBehaviour
 {
+    public static Action s_OnTargetsEmpty;
     protected TowerData m_TowerData;
     public TowerData TowerData { get; set; }
     [SerializeField]protected List<Enemy> m_EnemiesInRange = new List<Enemy>();
@@ -42,14 +44,14 @@ public class Tower : MonoBehaviour
 
     public Tower Self { get; set; } //Reference to itself
 
-    private LineRenderer m_LineRenderer;
+    //private LineRenderer m_LineRenderer;
 
 
     public virtual void Awake()
     {
         PauseCheck.Pause += TogglePause;
         Enemy.s_OnDestroyEnemy += RemoveEnemyFromList;
-        m_LineRenderer = GetComponent<LineRenderer>();
+        //m_LineRenderer = GetComponent<LineRenderer>();
     }
 
     private void Update()
@@ -73,6 +75,8 @@ public class Tower : MonoBehaviour
         else
         {
             m_Target = null;
+            if (s_OnTargetsEmpty != null)
+                s_OnTargetsEmpty();
             return null;
         }
     }

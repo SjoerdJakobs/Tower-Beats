@@ -227,7 +227,6 @@ public class SongManager : MonoBehaviour {
     /// </summary>
     private void OnLevelComplete()
     {
-        Debug.Log("OnLevelComplete");
         m_SongNumber = 0;
         m_SongQueue = null;
         m_SongAudioSources[0].clip = null;

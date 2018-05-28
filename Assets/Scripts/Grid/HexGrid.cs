@@ -47,7 +47,7 @@ public class HexGrid : MonoBehaviour
         set { m_Grid = value; }
     }
     public Tile SelectedTile { get; set; }
-    private bool m_GridCreated;
+    public bool GridCreated { get; private set; }
 
     #endregion
 
@@ -101,6 +101,15 @@ public class HexGrid : MonoBehaviour
     /// <summary>
     /// Creates a Grid with the values entered in the inspector and overwrites the width and the height
     /// </summary>
+    /// <param name="gridSize"></param>
+    public void CreateGrid(Vector2Int gridSize)
+    {
+        CreateGrid(gridSize.x, gridSize.y);
+    }
+
+    /// <summary>
+    /// Creates a Grid with the values entered in the inspector and overwrites the width and the height
+    /// </summary>
     /// <param name="width">Width of the Grid (x-axis)</param>
     /// <param name="height">Height of the Grid (y-axis)</param>
     public void CreateGrid(int width, int height)
@@ -119,8 +128,8 @@ public class HexGrid : MonoBehaviour
     /// <param name="offRowOffset">The offset of the off-row (uneven rows)</param>
     public void CreateGrid(int width, int height, float tileOffsetX, float tileOffsetY, OffsetAxis offsetAxis, float offRowOffset)
     {
-        if (!m_GridCreated)
-            m_GridCreated = true;
+        if (!GridCreated)
+            GridCreated = true;
         else
             return;
 
@@ -129,6 +138,10 @@ public class HexGrid : MonoBehaviour
 
         // Fill the Grid
         m_Grid = new Tile[width, height];
+
+        // Update the values
+        m_GridWidth = width;
+        m_GridHeight = height;
 
         for (int x = 0; x < width; x++)
         {
@@ -204,7 +217,7 @@ public class HexGrid : MonoBehaviour
         }
 
         // Set values
-        m_GridCreated = false;
+        GridCreated = false;
         m_Grid = null;
         m_TilePrefab.gameObject.SetActive(true);
 
@@ -238,14 +251,15 @@ public class HexGrid : MonoBehaviour
     }
 
     /// <summary>
-    /// Clears all the path tiles
+    /// Clears the Grid
     /// </summary>
-    public void ClearPathTiles()
+    public void ClearGrid()
     {
         for (int i = 0; i < m_Grid.GetLength(0); i++)
         {
             for (int j = 0; j < m_Grid.GetLength(1); j++)
             {
+                m_Grid[i, j].CurrentState = TileState.NOT_USABLE;
                 m_Grid[i, j].SetTileVisualsState(TileVisualState.BASE);
             }
         }

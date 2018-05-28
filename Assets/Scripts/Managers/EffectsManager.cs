@@ -12,7 +12,9 @@ public enum EffectType
     LASER_TURRET_ATTACK,
     SHOOT_TURRET_ATTACK,
     BassTurretFX_Spawn,
-    BassTurretFX_Disappear
+    BassTurretFX_Disappear,
+    TURRET_SPAWN,
+    EMPTY
 }
 
 public class EffectsManager : MonoBehaviour

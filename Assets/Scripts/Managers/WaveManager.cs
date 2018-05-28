@@ -5,8 +5,7 @@ using UnityEngine;
 public class WaveManager : MonoBehaviour
 {
     public static WaveManager s_Instance;
-    private int m_CurrentWaveIndex;
-    public int CurrentWaveIndex { get { return m_CurrentWaveIndex; } }
+    public int CurrentWaveIndex { get; private set; }
     private Dictionary<int, List<Enemy>> m_WaveData = new Dictionary<int, List<Enemy>>();
     public Dictionary<int, List<Enemy>> WaveData { get { return m_WaveData; } }
 

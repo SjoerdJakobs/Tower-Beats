@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour {
     private SkeletonAnimation m_SkeletonAnims;
     private AnimationState m_Anim;
     private EnemyHealthbar m_EnemyHealthbar;
+    private MeshRenderer m_Renderer;
 
     [SerializeField] private float m_MoveSpeed;
     [SerializeField] private float m_CoinsToGive;
@@ -28,6 +29,7 @@ public class Enemy : MonoBehaviour {
     {
         m_CurrentHealth = m_MaxHealth;
         m_SkeletonAnims = GetComponent<SkeletonAnimation>();
+        m_Renderer = GetComponent<MeshRenderer>();
         SongManager.s_OnPlaylistComplete += Death;
         PauseCheck.Pause += TogglePause;
 
@@ -36,11 +38,10 @@ public class Enemy : MonoBehaviour {
         m_EnemyHealthbar.SetHealthbarValue(m_MaxHealth);
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, string towerType)
     {
         if (m_IsAlive)
         {
-            EffectsManager.s_Instance.SpawnEffect(EffectType.ENEMY_HIT, false, new Vector2(transform.position.x, transform.position.y + 0.5f));
             m_CurrentHealth -= damage;
             m_EnemyHealthbar.ChangeEnemyHealthUI(m_CurrentHealth, damage);
 
@@ -51,9 +52,19 @@ public class Enemy : MonoBehaviour {
             }
             else if (m_CurrentHealth > 0)
             {
-                m_SkeletonAnims.AnimationState.SetAnimation(0, "HIT_Electricity", false);
-                m_SkeletonAnims.AnimationState.AddAnimation(0, "MOVE", true, 0);
-
+                switch (towerType)
+                {
+                    case "Bass":
+                        m_SkeletonAnims.AnimationState.SetAnimation(0, "HIT_Electricity", false);
+                        m_SkeletonAnims.AnimationState.AddAnimation(0, "MOVE", true, 0);
+                        break;
+                    case "Drum":
+                        EffectsManager.s_Instance.SpawnEffect(EffectType.ENEMY_HIT, false, new Vector2(transform.position.x, transform.position.y + 0.5f));
+                        break;
+                    case "Lead":
+                        EffectsManager.s_Instance.SpawnEffect(EffectType.ENEMY_HIT, false, new Vector2(transform.position.x, transform.position.y + 0.5f));
+                        break;
+                }
             }
         }
     }
@@ -107,8 +118,8 @@ public class Enemy : MonoBehaviour {
     {
         if (m_IsAlive)
         {
-            Vector3[] pathArray = PathManager.s_Instance.CurrentPathNodes.ToArray();
-            m_dopath = transform.DOPath(pathArray, pathArray.Length / m_MoveSpeed, PathType.CatmullRom).SetEase(Ease.Linear).OnComplete(() => DamageObjective());
+            Vector3[] pathArray = MapLoader.s_Instance.GetWaypointsFromPath();
+            m_dopath = transform.DOPath(pathArray, pathArray.Length / m_MoveSpeed, PathType.CatmullRom).SetEase(Ease.Linear).OnComplete(() => DamageObjective()).OnWaypointChange(UpdateEnemyLayering);
         }
         //Invoke("PausePath",1);
         //Invoke("PlayPath",2);
@@ -116,6 +127,11 @@ public class Enemy : MonoBehaviour {
         //m_CurrentNodeIndex = 1;
 
         //MoveToNextNode();
+    }
+
+    private void UpdateEnemyLayering(int waypointIndex)
+    {
+        m_Renderer.sortingOrder = HexGrid.s_Instance.GridSize.y - MapLoader.s_Instance.Path[waypointIndex].PositionInGrid.y;
     }
 
 
@@ -137,20 +153,6 @@ public class Enemy : MonoBehaviour {
         }
     }
 
-    //TEMP
-    private void MoveToNextNode()
-    {
-        if (m_CurrentNodeIndex < PathManager.s_Instance.CurrentPathNodes.Count)
-        {
-            transform.DOMove(PathManager.s_Instance.CurrentPathNodes[m_CurrentNodeIndex], m_MoveSpeed).SetEase(Ease.Linear).OnComplete(() => MoveToNextNode());
-            m_CurrentNodeIndex++;
-        }
-        else
-        {
-            DamageObjective();
-        }
-    }
-
     private void OnDestroy()
     {
         SongManager.s_OnPlaylistComplete -= Death;
@@ -160,5 +162,4 @@ public class Enemy : MonoBehaviour {
     {
         
     }
-
 }

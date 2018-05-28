@@ -35,7 +35,7 @@ public class TowerShopPopUp : PopUp {
     public void PurchaseTower(string towerType)
     {
         //If player has enough coins
-        if(TowerConfig.s_Towers[towerType][0].BuyCost <= PlayerData.s_Instance.Coins && HexGrid.s_Instance.SelectedTile.CurrentState == TileState.OPEN)
+        if(TowerConfig.s_Towers[towerType][0].BuyCost <= PlayerData.s_Instance.Coins && HexGrid.s_Instance.SelectedTile.CurrentState == TileState.TURRET_SPAWN)
         {
             //Gets the buy cost from the towers data
             PlayerData.s_Instance.ChangeCoinAmount(-TowerConfig.s_Towers[towerType][0].BuyCost);
@@ -60,7 +60,7 @@ public class TowerShopPopUp : PopUp {
 
     void SpawnTower(string towerType,int indexInList)
     {
-        EffectsManager.s_Instance.SpawnEffect(EffectType.ENEMY_SPAWN, false, HexGrid.s_Instance.SelectedTile.transform.position);
+        EffectsManager.s_Instance.SpawnEffect(EffectType.TURRET_SPAWN, false, HexGrid.s_Instance.SelectedTile.transform.position);
         Tower newTower;
         newTower = Instantiate(m_Towers[indexInList]);
         newTower.TowerData = TowerConfig.s_Towers[towerType][0];

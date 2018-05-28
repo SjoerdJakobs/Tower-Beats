@@ -7,7 +7,7 @@ public class ObjectPool : MonoBehaviour
     //private Queue<GameObject> m_DeadList;
     private Queue<PoolObj> m_DeadList;
     private PooledSubObject m_objEnum;
-    private Object m_GenericObj;
+    //private Object m_GenericObj;
 
     private int m_ObjectsInPool;
     private int m_ObjectsAliveInPool;
@@ -63,7 +63,7 @@ public class ObjectPool : MonoBehaviour
                     poolObj.GenericObj = poolObj.gameObject.GetComponent<AnimProjectile>();
                     break;
                 default:
-                    m_GenericObj = null;
+                    //m_GenericObj = null;
                     break;
             }
             m_DeadList.Enqueue(poolObj);
@@ -112,7 +112,7 @@ public class ObjectPool : MonoBehaviour
                         poolObj.GenericObj = poolObj.gameObject.GetComponent<AnimProjectile>();
                         break;
                     default:
-                        m_GenericObj = null;
+                        //m_GenericObj = null;
                         break;
                 }
                 m_DeadList.Enqueue(poolObj);
