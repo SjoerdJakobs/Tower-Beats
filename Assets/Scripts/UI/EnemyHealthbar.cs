@@ -14,6 +14,7 @@ public class EnemyHealthbar : MonoBehaviour {
     private bool m_IsAnimating;
 
     private float m_Modulo;
+    private int m_BarsToAnimate = 0;
 
     private Sequence m_HealthbarSqn;
 
@@ -33,21 +34,39 @@ public class EnemyHealthbar : MonoBehaviour {
             AnimateHealthbar(damageTaken);
     }
 
-    private int BarsToAnimate(float damage)
+    private void CalculateBarsToAnimate(float damage)
     {
+        int Rounded = 0;
+
+        if(m_Modulo >= 1)
+        {
+            m_Modulo -= 1;
+            Rounded = 1;
+        }
+
         float decimalValue = damage / m_HealthPerBar;
-        float Rounded = Mathf.RoundToInt(damage / m_HealthPerBar);
+        Rounded += Mathf.FloorToInt(decimalValue);
 
-        m_Modulo = decimalValue - Rounded;
+        float numberToAdd = (decimalValue - Rounded);
 
-        return (int)Rounded;
+
+        m_Modulo += CalculateAddedValue(numberToAdd);
+
+        m_BarsToAnimate = Rounded;
+    }
+
+    private float CalculateAddedValue(float value)
+    {
+        if(value < 0){return Mathf.Abs(value);}
+        else {return value;}
     }
 
     void AnimateHealthbar(float damage)
     {
+        CalculateBarsToAnimate(damage);
         float animSpeed = 0.15f;
 
-        for (int i = 0; i < BarsToAnimate(damage); i++)
+        for (int i = 0; i < m_BarsToAnimate; i++)
         {
             if (m_CurrentHealthbar > 0)
                 m_CurrentHealthbar -= 1;
@@ -75,6 +94,7 @@ public class EnemyHealthbar : MonoBehaviour {
                 m_HealthbarSqn.OnComplete(AnimateBarCallback);
             }
         }
+        m_BarsToAnimate = 0;
     }
 
     void AnimateBarCallback()
