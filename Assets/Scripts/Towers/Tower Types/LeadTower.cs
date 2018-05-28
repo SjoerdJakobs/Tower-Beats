@@ -4,12 +4,23 @@ using UnityEngine;
 
 public class LeadTower : Tower
 {
-    private TowerProjectile m_towerProjectileData;
+    private GameObject m_Laser;
+    private TowerLaser m_LaserData;
     private ObjectPool m_pool;
+
+    public Transform laserOrgin;
+
     public override void Awake()
     {
         base.Awake();
-        m_pool = ObjectPoolManager.s_Instance.GetObjectPool(attackProjectile, 20, 5, 5, 20, true);
+        if(m_Laser == null)
+        {
+            m_Laser = Instantiate(attackProjectile);
+        }
+        m_LaserData = m_Laser.GetComponent<TowerLaser>();
+        m_Laser.transform.position = transform.position + new Vector3(0.5f, 1, 0);
+        m_LaserData.m_ShootPos = laserOrgin;
+        //m_pool = ObjectPoolManager.s_Instance.GetObjectPool(attackProjectile, 20, 5, 5, 20, true,PooledSubObject.TowerProjectile);
         GetRMS.s_LeadCue += Attack;
     }
 
@@ -19,8 +30,8 @@ public class LeadTower : Tower
 
         if (m_ReadyToAttack && m_Target != null)
         {
-            m_towerProjectileData = m_pool.GetFromPool().GetComponent<TowerProjectile>();
-            m_towerProjectileData.SetNewVars(transform.position, m_Target, TowerData.AttackDamage, 5);
+            m_LaserData.SetTarget(m_Target);
+            //m_towerProjectileData.SetNewVars(transform.position, m_Target, TowerData.AttackDamage, 5);
             //m_Target.TakeDamage(TowerData.AttackDamage);
             m_ReadyToAttack = false;
             m_StartedCooldown = false;

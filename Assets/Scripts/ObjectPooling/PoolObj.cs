@@ -36,11 +36,13 @@ public struct PoolObjDataStruct
 }*/
 
 
-public enum PooledSubObject : byte
+public enum PooledSubObject
 {
     Default = 0,
     GameObject = 1,
     VisualEffect = 2,
     Enemy = 3,
-    Rigidbody = 4
+    Rigidbody = 4,
+    TowerProjectile = 5,
+    AnimProjectile = 6
 }

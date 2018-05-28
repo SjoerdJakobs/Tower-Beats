@@ -28,7 +28,6 @@ public class TowerProjectile : PoolObj {
         m_movSpeed = newSpeed;
         m_targetObj = newTarget.gameObject;
         StartCoroutine(MoveToTarget());
-
     }
 
     private IEnumerator MoveToTarget()

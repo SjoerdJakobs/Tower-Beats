@@ -44,6 +44,7 @@ public class Tower : MonoBehaviour
 
     private LineRenderer m_LineRenderer;
 
+
     public virtual void Awake()
     {
         PauseCheck.Pause += TogglePause;
