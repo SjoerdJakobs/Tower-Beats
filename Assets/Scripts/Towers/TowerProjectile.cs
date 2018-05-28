@@ -59,7 +59,7 @@ public class TowerProjectile : PoolObj {
         }
         if(m_targetObj != null)
         {
-            m_target.TakeDamage(m_damage);
+            m_target.TakeDamage(m_damage, "Drum");
         }
         //impact
         //yield return new WaitForSeconds(impact anim time?);

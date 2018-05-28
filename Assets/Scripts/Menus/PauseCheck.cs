@@ -16,6 +16,11 @@ public class PauseCheck : MonoBehaviour {
         Init();
     }
 
+    private void OnEnable()
+    {
+        SongManager.s_OnPlaylistComplete += PauseOn;
+    }
+
     private void Init()
     {
         if (s_Instance == null)
@@ -55,5 +60,10 @@ public class PauseCheck : MonoBehaviour {
             Resources.UnloadUnusedAssets();
             Pause(m_onPause);
         }
+    }
+
+    private void OnDisable()
+    {
+        SongManager.s_OnPlaylistComplete -= PauseOn;
     }
 }

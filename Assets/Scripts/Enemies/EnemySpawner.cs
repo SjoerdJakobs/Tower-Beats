@@ -29,6 +29,9 @@ public class EnemySpawner : MonoBehaviour {
     public void SpawnEnemy()
     {
         int randomEnemy = UnityEngine.Random.Range(0, m_Enemies.Count);
+        if (m_Enemies[randomEnemy] == null)
+            return;
+
         Enemy newEnemy = Instantiate(m_Enemies[randomEnemy]);
         SpawnedEnemies.Add(newEnemy);
         newEnemy.transform.position = MapLoader.s_Instance.Path[0].transform.position;//PathManager.s_Instance.CurrentPathNodes[0];
@@ -51,7 +54,9 @@ public class EnemySpawner : MonoBehaviour {
     {
         for (int i = 0; i < amountOfEnemies; i++)
         {
-            SpawnEnemy();
+            if(!m_Paused)
+                SpawnEnemy();
+
             float timer = 0;
             while (timer <= interval)
             {

@@ -60,7 +60,7 @@ public class TowerShopPopUp : PopUp {
 
     void SpawnTower(string towerType,int indexInList)
     {
-        EffectsManager.s_Instance.SpawnEffect(EffectType.ENEMY_SPAWN, false, HexGrid.s_Instance.SelectedTile.transform.position);
+        EffectsManager.s_Instance.SpawnEffect(EffectType.TURRET_SPAWN, false, HexGrid.s_Instance.SelectedTile.transform.position);
         Tower newTower;
         newTower = Instantiate(m_Towers[indexInList]);
         newTower.TowerData = TowerConfig.s_Towers[towerType][0];

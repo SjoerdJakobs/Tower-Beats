@@ -38,11 +38,10 @@ public class Enemy : MonoBehaviour {
         m_EnemyHealthbar.SetHealthbarValue(m_MaxHealth);
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, string towerType)
     {
         if (m_IsAlive)
         {
-            EffectsManager.s_Instance.SpawnEffect(EffectType.ENEMY_HIT, false, new Vector2(transform.position.x, transform.position.y + 0.5f));
             m_CurrentHealth -= damage;
             m_EnemyHealthbar.ChangeEnemyHealthUI(m_CurrentHealth, damage);
 
@@ -53,9 +52,19 @@ public class Enemy : MonoBehaviour {
             }
             else if (m_CurrentHealth > 0)
             {
-                m_SkeletonAnims.AnimationState.SetAnimation(0, "HIT_Electricity", false);
-                m_SkeletonAnims.AnimationState.AddAnimation(0, "MOVE", true, 0);
-
+                switch (towerType)
+                {
+                    case "Bass":
+                        m_SkeletonAnims.AnimationState.SetAnimation(0, "HIT_Electricity", false);
+                        m_SkeletonAnims.AnimationState.AddAnimation(0, "MOVE", true, 0);
+                        break;
+                    case "Drum":
+                        EffectsManager.s_Instance.SpawnEffect(EffectType.ENEMY_HIT, false, new Vector2(transform.position.x, transform.position.y + 0.5f));
+                        break;
+                    case "Lead":
+                        EffectsManager.s_Instance.SpawnEffect(EffectType.ENEMY_HIT, false, new Vector2(transform.position.x, transform.position.y + 0.5f));
+                        break;
+                }
             }
         }
     }

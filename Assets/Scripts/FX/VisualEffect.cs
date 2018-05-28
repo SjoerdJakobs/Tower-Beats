@@ -35,10 +35,17 @@ public class VisualEffect : MonoBehaviour
                 m_Animation.AnimationName = "BassTurretFX_Spawn";
                 break;
             case EffectType.BassTurretFX_Attack:
-                m_Animation.AnimationName = "BassTurretFX_Attack";
+                m_Animation.state.SetAnimation(0, "BassTurretFX_Attack", loop);
                 break;
             case EffectType.BassTurretFX_Disappear:
                 m_Animation.AnimationName = "BassTurretFX_Disappear";
+                break;
+            case EffectType.TURRET_SPAWN:
+                m_Animation.AnimationName = "Spawn_Turret FX";
+                break;
+            case EffectType.EMPTY:
+            default:
+                m_Animation.state.SetAnimation(0, "1_Empty", loop);
                 break;
         }
 
