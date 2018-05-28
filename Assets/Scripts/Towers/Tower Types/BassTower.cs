@@ -24,6 +24,7 @@ public class BassTower : Tower
         base.Awake();
         m_pool = ObjectPoolManager.s_Instance.GetObjectPool(attackProjectile, 20, 5, 5, 20, true);
         GetRMS.s_BassCue += Attack;
+        GetRMS.s_OnBassLost += ResetAnimation;
         VisualEffect.s_OnEffectCompleted += EffectCompleted;
     }
 
@@ -71,13 +72,20 @@ public class BassTower : Tower
         }
         else if (m_Target == null)
         {
-            if(m_State != States.IDLE && m_State == States.ATTACKING)
+            if(m_State != States.IDLE && m_State == States.ATTACKING || m_State != States.IDLE && m_State == States.STARTUP)
             {
                 m_VisualEffect.Init(EffectType.BassTurretFX_Disappear, false);
                 m_State = States.REMOVING;
             }
         }
     }
+
+    private void ResetAnimation()
+    {
+        m_VisualEffect.Init(EffectType.BassTurretFX_Disappear, false);
+        m_State = States.REMOVING;
+    }
+
 
     private void AoEDamage()
     {
@@ -90,5 +98,6 @@ public class BassTower : Tower
     private void OnDestroy()
     {
         GetRMS.s_BassCue -= Attack;
+        GetRMS.s_OnBassLost -= ResetAnimation;
     }
 }

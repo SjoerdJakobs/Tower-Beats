@@ -11,8 +11,12 @@ public class GetRMS : MonoBehaviour {
     public static AudioCueEvent s_DrumCue;
     public static AudioCueEvent s_LeadCue;
 
+    public static AudioCueEvent s_OnBassLost;
+
     private PostProcessingProfile m_PostProcessingProfile;
     private float m_BloomIntensity;
+
+    private float m_Timer;
 
     //Used to identify the type of instrument
     public enum InstrumentGroup
@@ -59,6 +63,8 @@ public class GetRMS : MonoBehaviour {
 
     void GetVolume()
     {
+        m_Timer += Time.deltaTime;
+
         m_Source.GetOutputData(samples, 0); // fill array with samples
         int i;
         float sum = 0;
@@ -75,6 +81,7 @@ public class GetRMS : MonoBehaviour {
             {
                 case InstrumentGroup.Bass:
                     //Debug.Log("Bass cue");
+                    m_Timer = 0f;
                     if(s_BassCue != null)
                         s_BassCue();
                     break;
@@ -88,6 +95,14 @@ public class GetRMS : MonoBehaviour {
                     if (s_LeadCue != null)
                         s_LeadCue();
                     break;
+            }
+        }
+        else
+        {
+            if(Instrument == InstrumentGroup.Bass)
+            {
+                if(m_Timer > 0.5f && s_OnBassLost != null)
+                    s_OnBassLost();
             }
         }
     }
