@@ -2305,6 +2305,960 @@
                     "LayerIndex": 0
                 }
             ]
+        },
+        {
+            "Name": "testthing",
+            "GridSize": {
+                "x": 20,
+                "y": 20
+            },
+            "TilesData": [
+                {
+                    "State": 2,
+                    "PathTileIndex": 0,
+                    "PathTilePosition": {
+                        "x": 0,
+                        "y": 0
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 1,
+                    "PathTilePosition": {
+                        "x": 0,
+                        "y": 1
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 2,
+                    "PathTilePosition": {
+                        "x": 1,
+                        "y": 2
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 3,
+                    "PathTilePosition": {
+                        "x": 1,
+                        "y": 3
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 4,
+                    "PathTilePosition": {
+                        "x": 2,
+                        "y": 4
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                }
+            ]
+        },
+        {
+            "Name": "test12",
+            "GridSize": {
+                "x": 20,
+                "y": 20
+            },
+            "TilesData": [
+                {
+                    "State": 2,
+                    "PathTileIndex": 0,
+                    "PathTilePosition": {
+                        "x": 0,
+                        "y": 0
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 1,
+                    "PathTilePosition": {
+                        "x": 0,
+                        "y": 1
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 2,
+                    "PathTilePosition": {
+                        "x": 1,
+                        "y": 2
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 3,
+                    "PathTilePosition": {
+                        "x": 1,
+                        "y": 3
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 4,
+                    "PathTilePosition": {
+                        "x": 2,
+                        "y": 4
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                }
+            ]
+        },
+        {
+            "Name": "test123",
+            "GridSize": {
+                "x": 20,
+                "y": 20
+            },
+            "TilesData": [
+                {
+                    "State": 2,
+                    "PathTileIndex": 0,
+                    "PathTilePosition": {
+                        "x": 0,
+                        "y": 0
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 1,
+                    "PathTilePosition": {
+                        "x": 0,
+                        "y": 1
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 2,
+                    "PathTilePosition": {
+                        "x": 1,
+                        "y": 2
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 3,
+                    "PathTilePosition": {
+                        "x": 1,
+                        "y": 3
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 4,
+                    "PathTilePosition": {
+                        "x": 2,
+                        "y": 4
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 5,
+                    "PathTilePosition": {
+                        "x": 2,
+                        "y": 5
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 4,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 2,
+                        "y": 1
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 4,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 0,
+                        "y": 3
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                }
+            ]
+        },
+        {
+            "Name": "test321",
+            "GridSize": {
+                "x": 20,
+                "y": 20
+            },
+            "TilesData": [
+                {
+                    "State": 6,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 0,
+                        "y": 0
+                    },
+                    "FilePathToAsset": "Background/Buildings/BUILDING_Special_001",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 0,
+                    "PathTilePosition": {
+                        "x": 1,
+                        "y": 2
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 1,
+                    "PathTilePosition": {
+                        "x": 1,
+                        "y": 3
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 2,
+                    "PathTilePosition": {
+                        "x": 2,
+                        "y": 3
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 3,
+                    "PathTilePosition": {
+                        "x": 3,
+                        "y": 2
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 4,
+                    "PathTilePosition": {
+                        "x": 2,
+                        "y": 1
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 5,
+                    "PathTilePosition": {
+                        "x": 3,
+                        "y": 0
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 6,
+                    "PathTilePosition": {
+                        "x": 4,
+                        "y": 0
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 7,
+                    "PathTilePosition": {
+                        "x": 4,
+                        "y": 1
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 8,
+                    "PathTilePosition": {
+                        "x": 5,
+                        "y": 2
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 9,
+                    "PathTilePosition": {
+                        "x": 5,
+                        "y": 3
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 10,
+                    "PathTilePosition": {
+                        "x": 5,
+                        "y": 4
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 11,
+                    "PathTilePosition": {
+                        "x": 4,
+                        "y": 5
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 12,
+                    "PathTilePosition": {
+                        "x": 3,
+                        "y": 5
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 13,
+                    "PathTilePosition": {
+                        "x": 2,
+                        "y": 5
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 14,
+                    "PathTilePosition": {
+                        "x": 2,
+                        "y": 6
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 4,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 2,
+                        "y": 0
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 4,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 3,
+                        "y": 1
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 4,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 4,
+                        "y": 4
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 6,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 0,
+                        "y": 4
+                    },
+                    "FilePathToAsset": "Background/Buildings/BUILDING_Special_002",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 6,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 7,
+                        "y": 4
+                    },
+                    "FilePathToAsset": "Background/Buildings/BUILDING_Special_003",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 6,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 6,
+                        "y": 5
+                    },
+                    "FilePathToAsset": "Background/Buildings/BUILDING_Special_004",
+                    "LayerIndex": 0
+                }
+            ]
+        },
+        {
+            "Name": "test456",
+            "GridSize": {
+                "x": 20,
+                "y": 20
+            },
+            "TilesData": [
+                {
+                    "State": 2,
+                    "PathTileIndex": 0,
+                    "PathTilePosition": {
+                        "x": 0,
+                        "y": 0
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 1,
+                    "PathTilePosition": {
+                        "x": 0,
+                        "y": 1
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 2,
+                    "PathTilePosition": {
+                        "x": 1,
+                        "y": 2
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 3,
+                    "PathTilePosition": {
+                        "x": 1,
+                        "y": 3
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 4,
+                    "PathTilePosition": {
+                        "x": 2,
+                        "y": 4
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 5,
+                    "PathTilePosition": {
+                        "x": 2,
+                        "y": 5
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 4,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 0,
+                        "y": 3
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 4,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 2,
+                        "y": 2
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                }
+            ]
+        },
+        {
+            "Name": "level2small",
+            "GridSize": {
+                "x": 20,
+                "y": 20
+            },
+            "TilesData": [
+                {
+                    "State": 2,
+                    "PathTileIndex": 0,
+                    "PathTilePosition": {
+                        "x": 0,
+                        "y": 0
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 1,
+                    "PathTilePosition": {
+                        "x": 0,
+                        "y": 1
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 2,
+                    "PathTilePosition": {
+                        "x": 1,
+                        "y": 1
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 3,
+                    "PathTilePosition": {
+                        "x": 2,
+                        "y": 1
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 4,
+                    "PathTilePosition": {
+                        "x": 3,
+                        "y": 2
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 4,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 2,
+                        "y": 2
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 5,
+                    "PathTilePosition": {
+                        "x": 3,
+                        "y": 3
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 6,
+                    "PathTilePosition": {
+                        "x": 4,
+                        "y": 4
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 7,
+                    "PathTilePosition": {
+                        "x": 4,
+                        "y": 5
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 8,
+                    "PathTilePosition": {
+                        "x": 5,
+                        "y": 6
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 9,
+                    "PathTilePosition": {
+                        "x": 5,
+                        "y": 7
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 10,
+                    "PathTilePosition": {
+                        "x": 5,
+                        "y": 8
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 11,
+                    "PathTilePosition": {
+                        "x": 4,
+                        "y": 8
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 12,
+                    "PathTilePosition": {
+                        "x": 3,
+                        "y": 7
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 13,
+                    "PathTilePosition": {
+                        "x": 4,
+                        "y": 6
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 14,
+                    "PathTilePosition": {
+                        "x": 5,
+                        "y": 4
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 15,
+                    "PathTilePosition": {
+                        "x": 5,
+                        "y": 3
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 16,
+                    "PathTilePosition": {
+                        "x": 6,
+                        "y": 3
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 17,
+                    "PathTilePosition": {
+                        "x": 7,
+                        "y": 4
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 18,
+                    "PathTilePosition": {
+                        "x": 6,
+                        "y": 5
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 19,
+                    "PathTilePosition": {
+                        "x": 6,
+                        "y": 6
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 20,
+                    "PathTilePosition": {
+                        "x": 4,
+                        "y": 9
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 21,
+                    "PathTilePosition": {
+                        "x": 5,
+                        "y": 10
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 22,
+                    "PathTilePosition": {
+                        "x": 6,
+                        "y": 10
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 23,
+                    "PathTilePosition": {
+                        "x": 6,
+                        "y": 9
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 24,
+                    "PathTilePosition": {
+                        "x": 7,
+                        "y": 9
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 25,
+                    "PathTilePosition": {
+                        "x": 8,
+                        "y": 9
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 26,
+                    "PathTilePosition": {
+                        "x": 9,
+                        "y": 10
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 4,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 4,
+                        "y": 7
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 4,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 5,
+                        "y": 5
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 4,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 6,
+                        "y": 4
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 6,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 2,
+                        "y": 11
+                    },
+                    "FilePathToAsset": "Background/Buildings/BUILDING_Standard_Pink",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 6,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 3,
+                        "y": 11
+                    },
+                    "FilePathToAsset": "Background/Buildings/BUILDING_Standard_Purple",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 6,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 4,
+                        "y": 12
+                    },
+                    "FilePathToAsset": "Background/Buildings/BUILDING_Standard_Orange",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 6,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 1,
+                        "y": 5
+                    },
+                    "FilePathToAsset": "Background/Buildings/BUILDING_Tall_Orange",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 6,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 2,
+                        "y": 6
+                    },
+                    "FilePathToAsset": "Background/Buildings/BUILDING_Tall_Pink",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 6,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 1,
+                        "y": 4
+                    },
+                    "FilePathToAsset": "Background/Buildings/BUILDING_Tall_Purple",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 6,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 2,
+                        "y": 4
+                    },
+                    "FilePathToAsset": "Background/Buildings/BUILDING_Standard_Pink",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 6,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 9,
+                        "y": 4
+                    },
+                    "FilePathToAsset": "Background/Buildings/BUILDING_Special_002",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 6,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 8,
+                        "y": 5
+                    },
+                    "FilePathToAsset": "Background/Buildings/BUILDING_Special_002",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 6,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 8,
+                        "y": 4
+                    },
+                    "FilePathToAsset": "Background/Buildings/BUILDING_Special_001",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 4,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 5,
+                        "y": 9
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                }
+            ]
         }
     ]
 }

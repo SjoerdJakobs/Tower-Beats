@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 [System.Serializable]
 public class Map
@@ -279,6 +282,9 @@ public class MapEditor : MonoBehaviour
 
         string jsonString = JsonUtility.ToJson(m_Maps, true);
         File.WriteAllText(m_FilePath, jsonString);
+#if UNITY_EDITOR
+        AssetDatabase.Refresh();
+#endif
     }
 
     /// <summary>
