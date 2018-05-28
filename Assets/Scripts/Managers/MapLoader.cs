@@ -59,7 +59,7 @@ public class MapLoader : MonoBehaviour
         m_Map = m_MapsData.MapsData.Find(x => x.Name.ToUpper() == mapName.ToUpper());
 
         StartCoroutine(UpdateVisuals(() => {
-            Debug.Log("<color=orange>[MapLoader]</color> Map loaded succesfully. It took " + (Time.time - startLoadTime) + " second(s) to load the map.");
+            Debug.Log("<color=orange>[MapLoader]</color> Map (" + mapName + ") loaded succesfully. It took " + (Time.time - startLoadTime) + " second(s) to load the map.");
         }));
     }
 
@@ -199,6 +199,11 @@ public class MapLoader : MonoBehaviour
         JsonUtility.FromJsonOverwrite(jsonString, m_MapsData);
     }
 
+    /// <summary>
+    /// Get the waypoints from the path
+    /// </summary>
+    /// <param name="reversed">Get the array reversed?</param>
+    /// <returns>An array with the waypoints from the path</returns>
     public Vector3[] GetWaypointsFromPath(bool reversed = false)
     {
         Vector3[] temp = new Vector3[m_Path.Count];
