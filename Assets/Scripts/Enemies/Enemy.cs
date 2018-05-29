@@ -30,7 +30,8 @@ public class Enemy : MonoBehaviour {
         m_CurrentHealth = m_MaxHealth;
         m_SkeletonAnims = GetComponent<SkeletonAnimation>();
         m_Renderer = GetComponent<MeshRenderer>();
-        SongManager.s_OnPlaylistComplete += Death;
+        GameManager.s_OnGameStop += Death;
+
         PauseCheck.Pause += TogglePause;
 
         m_EnemyHealthbar = GetComponent<EnemyHealthbar>();
@@ -153,7 +154,7 @@ public class Enemy : MonoBehaviour {
 
     private void OnDestroy()
     {
-        SongManager.s_OnPlaylistComplete -= Death;
+        GameManager.s_OnGameStop -= Death;
     }
 
     void DeathRoutine()

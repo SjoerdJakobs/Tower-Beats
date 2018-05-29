@@ -5,9 +5,6 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour {
 
-    public delegate void StopSpawning();
-    public static StopSpawning s_OnStopSpawning;
-
     public static EnemySpawner s_Instance;
 
     [SerializeField] private List<Enemy> m_Enemies = new List<Enemy>();
@@ -23,7 +20,7 @@ public class EnemySpawner : MonoBehaviour {
         }
 
         Enemy.s_OnDestroyEnemy += RemoveEnemyFromList;
-        s_OnStopSpawning += StopEnemySpawning;
+        GameManager.s_OnGameStop += StopEnemySpawning;
         PauseCheck.Pause += TogglePause;
     }
 
@@ -89,7 +86,7 @@ public class EnemySpawner : MonoBehaviour {
 
     private void OnDestroy()
     {
-        s_OnStopSpawning -= StopEnemySpawning;
+        GameManager.s_OnGameStop -= StopEnemySpawning;
         Enemy.s_OnDestroyEnemy -= RemoveEnemyFromList;
     }
 }
