@@ -44,7 +44,7 @@ public class CameraMovement : MonoBehaviour {
 
     private void Start()
     {
-        SetCameraBounderies();
+        SetCameraBoundaries();
     }
 
     private void Update()
@@ -52,7 +52,7 @@ public class CameraMovement : MonoBehaviour {
         if (CanMoveCamera)
         {
             GetInput();
-            SetCameraBounderies();
+            SetCameraBoundaries();
             MoveCamera();
         }
 
@@ -74,9 +74,9 @@ public class CameraMovement : MonoBehaviour {
     }
 
     /// <summary>
-    /// Set the camera bounderies to the size of the grid
+    /// Set the camera boundaries to the size of the grid
     /// </summary>
-    public void SetCameraBounderies()
+    public void SetCameraBoundaries()
     {
         Tile minTile = HexGrid.s_Instance.Grid[0, 0];
         Tile maxTile = HexGrid.s_Instance.Grid[HexGrid.s_Instance.GridSize.x - 1, HexGrid.s_Instance.GridSize.y - 1];
@@ -92,11 +92,11 @@ public class CameraMovement : MonoBehaviour {
     }
 
     /// <summary>
-    /// Convert a world position to an acceptable position within the bounderies
+    /// Convert a world position to an acceptable position within the boundaries
     /// </summary>
     /// <param name="position">Position to convert</param>
-    /// <returns>A world position to an acceptable position within the bounderies</returns>
-    public Vector3 GetPositionWithinBounderies(Vector3 position)
+    /// <returns>A world position to an acceptable position within the boundaries</returns>
+    public Vector3 GetPositionWithinBoundaries(Vector3 position)
     {
         return new Vector3(Mathf.Clamp(position.x, m_MinX, m_MaxX), Mathf.Clamp(position.y, m_MinY, m_MaxY), position.z);
     }
@@ -195,7 +195,7 @@ public class CameraMovement : MonoBehaviour {
     public void ScrollCameraToPosition(Vector2 position, float duration, bool enableMoveCameraOnComplete, System.Action onComplete = null)
     {
         CanMoveCamera = false;
-        Vector3 movePos = GetPositionWithinBounderies(new Vector3(position.x, position.y, transform.position.z));
+        Vector3 movePos = GetPositionWithinBoundaries(new Vector3(position.x, position.y, transform.position.z));
 
         if (duration == 0)
         {
