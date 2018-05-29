@@ -70,6 +70,7 @@ public class SongManager : MonoBehaviour {
     private void OnEnable()
     {
         GameManager.s_OnGameStart += StartPlaylist;
+        GameManager.s_OnGameStop += ClearAudio;
         Sceneloader.s_OnSceneLoaded += SetSongUI;
         ClearAudioClips.s_OnClearAudio += ClearAudio;
         s_OnPlaylistComplete += OnLevelComplete;
@@ -119,7 +120,6 @@ public class SongManager : MonoBehaviour {
                 {
                     s_OnPlaylistComplete();
                 }
-
             }
         }
     }
@@ -230,7 +230,7 @@ public class SongManager : MonoBehaviour {
     /// </summary>
     private void OnLevelComplete()
     {
-        EnemySpawner.s_OnStopSpawning();
+        GameManager.s_OnGameStop();
         m_SongNumber = 0;
         /*m_SongQueue = null;
         m_SongAudioSources[0].clip = null;
@@ -243,6 +243,10 @@ public class SongManager : MonoBehaviour {
 
     void ClearAudio()
     {
+        for (int i = 0; i < m_SongAudioSources.Length; i++)
+        {
+            m_SongAudioSources[i].Stop();
+        }
         m_SongQueue = null;
         m_SongAudioSources[0].clip = null;
         m_SongAudioSources[1].clip = null;
@@ -258,6 +262,7 @@ public class SongManager : MonoBehaviour {
     private void OnDisable()
     {
         GameManager.s_OnGameStart -= StartPlaylist;
+        GameManager.s_OnGameStop -= ClearAudio;
         Sceneloader.s_OnSceneLoaded -= SetSongUI;
         Sceneloader.s_OnSceneLoaded -= StartPlaylist;
         ClearAudioClips.s_OnClearAudio -= ClearAudio;

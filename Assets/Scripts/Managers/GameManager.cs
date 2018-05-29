@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
     public delegate void GameStarted();
     public static GameStarted s_OnGameStart;
 
+    public delegate void GameStop();
+    public static GameStop s_OnGameStop;
+
     private void Start()
     {
         Init();
