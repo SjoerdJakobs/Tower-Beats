@@ -28,7 +28,7 @@ public class VisualEffect : MonoBehaviour
         switch (type)
         {
             case EffectType.ENEMY_SPAWN:
-                m_Animation.AnimationName = "Spawn FX";
+                m_Animation.AnimationName = "Spawn_Enemy FX";
                 break;
             case EffectType.ENEMY_HIT:
                 m_Animation.AnimationName = "Hit FX";
