@@ -230,6 +230,7 @@ public class SongManager : MonoBehaviour {
     /// </summary>
     private void OnLevelComplete()
     {
+        EnemySpawner.s_OnStopSpawning();
         m_SongNumber = 0;
         /*m_SongQueue = null;
         m_SongAudioSources[0].clip = null;

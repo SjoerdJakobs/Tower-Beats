@@ -23,6 +23,8 @@ public class TowerLaser : MonoBehaviour {
 
     private ObjectPool m_pool;
 
+    private LeadTower m_Tower;
+
     private Material m_Mat;
 
     private bool m_Pause;
@@ -36,6 +38,7 @@ public class TowerLaser : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        m_Tower = GetComponent<LeadTower>();
         m_pool = ObjectPoolManager.s_Instance.GetObjectPool(m_AnimProjectile.gameObject, 15, 5, 5, 20, false, PooledSubObject.AnimProjectile);
         m_Mat = GetComponent<Renderer>().material;
 	}

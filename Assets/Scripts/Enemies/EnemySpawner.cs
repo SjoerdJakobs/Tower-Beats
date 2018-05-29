@@ -5,11 +5,15 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour {
 
+    public delegate void StopSpawning();
+    public static StopSpawning s_OnStopSpawning;
+
     public static EnemySpawner s_Instance;
 
     [SerializeField] private List<Enemy> m_Enemies = new List<Enemy>();
     public List<Enemy> SpawnedEnemies = new List<Enemy>();
     private bool m_Paused;
+    private Coroutine m_SpawnEnemies;
 
     private void Awake()
     {
@@ -19,6 +23,7 @@ public class EnemySpawner : MonoBehaviour {
         }
 
         Enemy.s_OnDestroyEnemy += RemoveEnemyFromList;
+        s_OnStopSpawning += StopEnemySpawning;
         PauseCheck.Pause += TogglePause;
     }
 
@@ -29,6 +34,7 @@ public class EnemySpawner : MonoBehaviour {
     public void SpawnEnemy()
     {
         int randomEnemy = UnityEngine.Random.Range(0, m_Enemies.Count);
+
         if (m_Enemies[randomEnemy] == null)
             return;
 
@@ -47,15 +53,14 @@ public class EnemySpawner : MonoBehaviour {
 
     public void SpawnWave(int amountOfEnemies, float interval, Action callback = null)
     {
-        StartCoroutine(SpawnEnemies(amountOfEnemies, interval, callback));
+        m_SpawnEnemies = StartCoroutine(SpawnEnemies(amountOfEnemies, interval, callback));
     }
 
     private IEnumerator SpawnEnemies(int amountOfEnemies, float interval, Action callback = null)
     {
         for (int i = 0; i < amountOfEnemies; i++)
         {
-            if(!m_Paused)
-                SpawnEnemy();
+            SpawnEnemy();
 
             float timer = 0;
             while (timer <= interval)
@@ -77,8 +82,14 @@ public class EnemySpawner : MonoBehaviour {
         SpawnedEnemies.Remove(enemy);
     }
 
+    void StopEnemySpawning()
+    {
+        StopCoroutine(m_SpawnEnemies);
+    }
+
     private void OnDestroy()
     {
+        s_OnStopSpawning -= StopEnemySpawning;
         Enemy.s_OnDestroyEnemy -= RemoveEnemyFromList;
     }
 }

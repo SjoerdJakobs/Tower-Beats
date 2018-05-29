@@ -34,8 +34,6 @@ public class Enemy : MonoBehaviour {
         PauseCheck.Pause += TogglePause;
 
         m_EnemyHealthbar = GetComponent<EnemyHealthbar>();
-
-        m_EnemyHealthbar.SetHealthbarValue(m_MaxHealth);
     }
 
     public void TakeDamage(float damage, string towerType)
@@ -43,7 +41,7 @@ public class Enemy : MonoBehaviour {
         if (m_IsAlive)
         {
             m_CurrentHealth -= damage;
-            m_EnemyHealthbar.ChangeEnemyHealthUI(m_CurrentHealth, damage);
+            m_EnemyHealthbar.ChangeEnemyHealthUI(m_CurrentHealth / m_MaxHealth);
 
             if (m_CurrentHealth <= 0)
             {
