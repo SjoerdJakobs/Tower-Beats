@@ -1,0 +1,478 @@
+{
+"skeleton": { "hash": "Pt41eaVh/mAa1ApFAVEV5PEkMNs", "spine": "3.6.52", "width": 194.81, "height": 640.21, "images": "" },
+"bones": [
+	{ "name": "root" },
+	{ "name": "Drum_Turret", "parent": "root", "length": 100, "rotation": 90.29, "x": 0.5, "y": 0.86 },
+	{ "name": "ShootFX", "parent": "root", "length": 108.38, "rotation": 91.3, "x": -39.85, "y": 107.31 }
+],
+"slots": [
+	{
+		"name": "Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0001",
+		"bone": "Drum_Turret",
+		"attachment": "Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0001"
+	},
+	{ "name": "Drum_Turret", "bone": "Drum_Turret", "attachment": "Turret_Anims/TURRET_Drum_Spawn/TURRET_Drum_Spawn0015" },
+	{ "name": "Drum_Turret2", "bone": "Drum_Turret", "attachment": "Turret_Anims/TURRET_Drum_Sell/TURRET_Drum_Sell0015" },
+	{ "name": "Drum_Turret3", "bone": "Drum_Turret", "attachment": "Turret_Anims/TURRET_Drum_Fire_Right/TURRET_Drum_Fire_Right0001" },
+	{ "name": "Drum_Turret4", "bone": "Drum_Turret", "attachment": "Turret_Anims/TURRET_Drum_Fire_Left/TURRET_Drum_Fire_Left0012" },
+	{ "name": "ShootFX", "bone": "ShootFX", "attachment": "Turret_Anims/Fire0005" }
+],
+"skins": {
+	"default": {
+		"Drum_Turret": {
+			"Turret_Anims/TURRET_Drum_Spawn/TURRET_Drum_Spawn0001": { "width": 137, "height": 480 },
+			"Turret_Anims/TURRET_Drum_Spawn/TURRET_Drum_Spawn0002": { "rotation": -90.29, "width": 137, "height": 480 },
+			"Turret_Anims/TURRET_Drum_Spawn/TURRET_Drum_Spawn0003": { "rotation": -90.29, "width": 137, "height": 480 },
+			"Turret_Anims/TURRET_Drum_Spawn/TURRET_Drum_Spawn0004": { "rotation": -90.29, "width": 137, "height": 480 },
+			"Turret_Anims/TURRET_Drum_Spawn/TURRET_Drum_Spawn0005": { "rotation": -90.29, "width": 137, "height": 480 },
+			"Turret_Anims/TURRET_Drum_Spawn/TURRET_Drum_Spawn0006": { "rotation": -90.29, "width": 137, "height": 480 },
+			"Turret_Anims/TURRET_Drum_Spawn/TURRET_Drum_Spawn0007": { "rotation": -90.29, "width": 137, "height": 480 },
+			"Turret_Anims/TURRET_Drum_Spawn/TURRET_Drum_Spawn0008": { "rotation": -90.29, "width": 137, "height": 480 },
+			"Turret_Anims/TURRET_Drum_Spawn/TURRET_Drum_Spawn0009": { "rotation": -90.29, "width": 137, "height": 480 },
+			"Turret_Anims/TURRET_Drum_Spawn/TURRET_Drum_Spawn0010": { "rotation": -90.29, "width": 137, "height": 480 },
+			"Turret_Anims/TURRET_Drum_Spawn/TURRET_Drum_Spawn0011": { "rotation": -90.29, "width": 137, "height": 480 },
+			"Turret_Anims/TURRET_Drum_Spawn/TURRET_Drum_Spawn0012": { "rotation": -90.29, "width": 137, "height": 480 },
+			"Turret_Anims/TURRET_Drum_Spawn/TURRET_Drum_Spawn0013": { "rotation": -90.29, "width": 137, "height": 480 },
+			"Turret_Anims/TURRET_Drum_Spawn/TURRET_Drum_Spawn0014": { "rotation": -90.29, "width": 137, "height": 480 },
+			"Turret_Anims/TURRET_Drum_Spawn/TURRET_Drum_Spawn0015": { "x": -0.86, "y": 0.5, "rotation": -90.29, "width": 137, "height": 480 }
+		},
+		"Drum_Turret2": {
+			"Turret_Anims/TURRET_Drum_Sell/TURRET_Drum_Sell0001": { "rotation": -90.29, "width": 135, "height": 480 },
+			"Turret_Anims/TURRET_Drum_Sell/TURRET_Drum_Sell0002": { "rotation": -90.29, "width": 135, "height": 480 },
+			"Turret_Anims/TURRET_Drum_Sell/TURRET_Drum_Sell0003": { "rotation": -90.29, "width": 135, "height": 480 },
+			"Turret_Anims/TURRET_Drum_Sell/TURRET_Drum_Sell0004": { "rotation": -90.29, "width": 135, "height": 480 },
+			"Turret_Anims/TURRET_Drum_Sell/TURRET_Drum_Sell0005": { "rotation": -90.29, "width": 135, "height": 480 },
+			"Turret_Anims/TURRET_Drum_Sell/TURRET_Drum_Sell0006": { "rotation": -90.29, "width": 135, "height": 480 },
+			"Turret_Anims/TURRET_Drum_Sell/TURRET_Drum_Sell0007": { "rotation": -90.29, "width": 135, "height": 480 },
+			"Turret_Anims/TURRET_Drum_Sell/TURRET_Drum_Sell0008": { "rotation": -90.29, "width": 135, "height": 480 },
+			"Turret_Anims/TURRET_Drum_Sell/TURRET_Drum_Sell0009": { "rotation": -90.29, "width": 135, "height": 480 },
+			"Turret_Anims/TURRET_Drum_Sell/TURRET_Drum_Sell0010": { "rotation": -90.29, "width": 135, "height": 480 },
+			"Turret_Anims/TURRET_Drum_Sell/TURRET_Drum_Sell0011": { "rotation": -90.29, "width": 135, "height": 480 },
+			"Turret_Anims/TURRET_Drum_Sell/TURRET_Drum_Sell0012": { "rotation": -90.29, "width": 135, "height": 480 },
+			"Turret_Anims/TURRET_Drum_Sell/TURRET_Drum_Sell0013": { "rotation": -90.29, "width": 135, "height": 480 },
+			"Turret_Anims/TURRET_Drum_Sell/TURRET_Drum_Sell0014": { "rotation": -90.29, "width": 135, "height": 480 },
+			"Turret_Anims/TURRET_Drum_Sell/TURRET_Drum_Sell0015": { "y": 0.5, "rotation": -90.29, "width": 135, "height": 480 }
+		},
+		"Drum_Turret3": {
+			"Turret_Anims/TURRET_Drum_Fire_Right/TURRET_Drum_Fire_Right0001": { "rotation": -90.29, "width": 136, "height": 252 },
+			"Turret_Anims/TURRET_Drum_Fire_Right/TURRET_Drum_Fire_Right0002": { "rotation": -90.29, "width": 136, "height": 252 },
+			"Turret_Anims/TURRET_Drum_Fire_Right/TURRET_Drum_Fire_Right0003": { "rotation": -90.29, "width": 136, "height": 252 },
+			"Turret_Anims/TURRET_Drum_Fire_Right/TURRET_Drum_Fire_Right0004": { "rotation": -90.29, "width": 136, "height": 252 },
+			"Turret_Anims/TURRET_Drum_Fire_Right/TURRET_Drum_Fire_Right0005": { "rotation": -90.29, "width": 136, "height": 252 },
+			"Turret_Anims/TURRET_Drum_Fire_Right/TURRET_Drum_Fire_Right0006": { "rotation": -90.29, "width": 136, "height": 252 },
+			"Turret_Anims/TURRET_Drum_Fire_Right/TURRET_Drum_Fire_Right0007": { "rotation": -90.29, "width": 136, "height": 252 },
+			"Turret_Anims/TURRET_Drum_Fire_Right/TURRET_Drum_Fire_Right0008": { "rotation": -90.29, "width": 136, "height": 252 },
+			"Turret_Anims/TURRET_Drum_Fire_Right/TURRET_Drum_Fire_Right0009": { "rotation": -90.29, "width": 136, "height": 252 },
+			"Turret_Anims/TURRET_Drum_Fire_Right/TURRET_Drum_Fire_Right0010": { "rotation": -90.29, "width": 136, "height": 252 },
+			"Turret_Anims/TURRET_Drum_Fire_Right/TURRET_Drum_Fire_Right0011": { "rotation": -90.29, "width": 136, "height": 252 },
+			"Turret_Anims/TURRET_Drum_Fire_Right/TURRET_Drum_Fire_Right0012": { "rotation": -90.29, "width": 136, "height": 252 }
+		},
+		"Drum_Turret4": {
+			"Turret_Anims/TURRET_Drum_Fire_Left/TURRET_Drum_Fire_Left0001": { "rotation": -90.29, "width": 139, "height": 217 },
+			"Turret_Anims/TURRET_Drum_Fire_Left/TURRET_Drum_Fire_Left0002": { "rotation": -90.29, "width": 139, "height": 217 },
+			"Turret_Anims/TURRET_Drum_Fire_Left/TURRET_Drum_Fire_Left0003": { "rotation": -90.29, "width": 139, "height": 217 },
+			"Turret_Anims/TURRET_Drum_Fire_Left/TURRET_Drum_Fire_Left0004": { "rotation": -90.29, "width": 139, "height": 217 },
+			"Turret_Anims/TURRET_Drum_Fire_Left/TURRET_Drum_Fire_Left0005": { "rotation": -90.29, "width": 139, "height": 217 },
+			"Turret_Anims/TURRET_Drum_Fire_Left/TURRET_Drum_Fire_Left0006": { "rotation": -90.29, "width": 139, "height": 217 },
+			"Turret_Anims/TURRET_Drum_Fire_Left/TURRET_Drum_Fire_Left0007": { "rotation": -90.29, "width": 139, "height": 217 },
+			"Turret_Anims/TURRET_Drum_Fire_Left/TURRET_Drum_Fire_Left0008": { "rotation": -90.29, "width": 139, "height": 217 },
+			"Turret_Anims/TURRET_Drum_Fire_Left/TURRET_Drum_Fire_Left0009": { "rotation": -90.29, "width": 139, "height": 217 },
+			"Turret_Anims/TURRET_Drum_Fire_Left/TURRET_Drum_Fire_Left0010": { "rotation": -90.29, "width": 139, "height": 217 },
+			"Turret_Anims/TURRET_Drum_Fire_Left/TURRET_Drum_Fire_Left0011": { "rotation": -90.29, "width": 139, "height": 217 },
+			"Turret_Anims/TURRET_Drum_Fire_Left/TURRET_Drum_Fire_Left0012": { "rotation": -90.29, "width": 139, "height": 217 }
+		},
+		"ShootFX": {
+			"Turret_Anims/Fire0001": { "x": 121.77, "y": 2.63, "rotation": -90, "width": 153, "height": 327 },
+			"Turret_Anims/Fire0002": { "x": 121.77, "y": 2.63, "rotation": -90, "width": 153, "height": 327 },
+			"Turret_Anims/Fire0003": { "x": 121.77, "y": 2.63, "rotation": -90, "width": 153, "height": 327 },
+			"Turret_Anims/Fire0004": { "x": 121.77, "y": 2.63, "rotation": -90, "width": 153, "height": 327 },
+			"Turret_Anims/Fire0005": { "x": 127.77, "y": 1.85, "rotation": -90, "width": 153, "height": 327 }
+		},
+		"Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0001": {
+			"Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0001": { "rotation": -90, "width": 135, "height": 211 },
+			"Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0002": { "rotation": -90, "width": 135, "height": 211 },
+			"Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0003": { "rotation": -90, "width": 135, "height": 211 },
+			"Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0004": { "rotation": -90, "width": 135, "height": 211 },
+			"Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0005": { "rotation": -90, "width": 135, "height": 211 },
+			"Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0006": { "rotation": -90, "width": 135, "height": 211 },
+			"Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0007": { "rotation": -90, "width": 135, "height": 211 },
+			"Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0008": { "rotation": -90, "width": 135, "height": 211 },
+			"Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0009": { "rotation": -90, "width": 135, "height": 211 },
+			"Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0010": { "rotation": -90, "width": 135, "height": 211 },
+			"Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0011": { "rotation": -90, "width": 135, "height": 211 },
+			"Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0012": { "rotation": -90, "width": 135, "height": 211 },
+			"Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0013": { "rotation": -90, "width": 135, "height": 211 },
+			"Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0014": { "rotation": -90, "width": 135, "height": 211 },
+			"Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0015": { "rotation": -90, "width": 135, "height": 211 },
+			"Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0016": { "rotation": -90, "width": 135, "height": 211 },
+			"Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0017": { "rotation": -90, "width": 135, "height": 211 },
+			"Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0018": { "rotation": -90, "width": 135, "height": 211 },
+			"Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0019": { "rotation": -90, "width": 135, "height": 211 },
+			"Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0020": { "rotation": -90, "width": 135, "height": 211 },
+			"Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0021": { "rotation": -90, "width": 135, "height": 211 },
+			"Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0022": { "rotation": -90, "width": 135, "height": 211 },
+			"Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0023": { "rotation": -90, "width": 135, "height": 211 },
+			"Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0024": { "rotation": -90, "width": 135, "height": 211 },
+			"Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0025": { "rotation": -90, "width": 135, "height": 211 },
+			"Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0026": { "rotation": -90, "width": 135, "height": 211 },
+			"Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0027": { "rotation": -90, "width": 135, "height": 211 },
+			"Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0028": { "rotation": -90, "width": 135, "height": 211 },
+			"Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0029": { "rotation": -90, "width": 135, "height": 211 },
+			"Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0030": { "rotation": -90, "width": 135, "height": 211 },
+			"Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0031": { "rotation": -90, "width": 135, "height": 211 },
+			"Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0032": { "rotation": -90, "width": 135, "height": 211 },
+			"Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0033": { "rotation": -90, "width": 135, "height": 211 },
+			"Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0034": { "rotation": -90, "width": 135, "height": 211 },
+			"Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0035": { "rotation": -90, "width": 135, "height": 211 },
+			"Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0036": { "rotation": -90, "width": 135, "height": 211 }
+		}
+	}
+},
+"animations": {
+	"1_Empty": {
+		"slots": {
+			"Drum_Turret": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Drum_Turret2": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Drum_Turret3": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Drum_Turret4": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"ShootFX": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0001": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			}
+		}
+	},
+	"Drum_Turret_ATTACK_LEFT": {
+		"slots": {
+			"Drum_Turret": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Drum_Turret2": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Drum_Turret3": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Drum_Turret4": {
+				"attachment": [
+					{ "time": 0, "name": "Turret_Anims/TURRET_Drum_Fire_Left/TURRET_Drum_Fire_Left0001" },
+					{ "time": 0.0333, "name": "Turret_Anims/TURRET_Drum_Fire_Left/TURRET_Drum_Fire_Left0002" },
+					{ "time": 0.0667, "name": "Turret_Anims/TURRET_Drum_Fire_Left/TURRET_Drum_Fire_Left0003" },
+					{ "time": 0.1, "name": "Turret_Anims/TURRET_Drum_Fire_Left/TURRET_Drum_Fire_Left0004" },
+					{ "time": 0.1333, "name": "Turret_Anims/TURRET_Drum_Fire_Left/TURRET_Drum_Fire_Left0005" },
+					{ "time": 0.1667, "name": "Turret_Anims/TURRET_Drum_Fire_Left/TURRET_Drum_Fire_Left0006" },
+					{ "time": 0.2, "name": "Turret_Anims/TURRET_Drum_Fire_Left/TURRET_Drum_Fire_Left0007" },
+					{ "time": 0.2333, "name": "Turret_Anims/TURRET_Drum_Fire_Left/TURRET_Drum_Fire_Left0008" },
+					{ "time": 0.2667, "name": "Turret_Anims/TURRET_Drum_Fire_Left/TURRET_Drum_Fire_Left0009" },
+					{ "time": 0.3, "name": "Turret_Anims/TURRET_Drum_Fire_Left/TURRET_Drum_Fire_Left0010" },
+					{ "time": 0.3333, "name": "Turret_Anims/TURRET_Drum_Fire_Left/TURRET_Drum_Fire_Left0011" },
+					{ "time": 0.3667, "name": "Turret_Anims/TURRET_Drum_Fire_Left/TURRET_Drum_Fire_Left0012" }
+				]
+			},
+			"ShootFX": {
+				"attachment": [
+					{ "time": 0, "name": "Turret_Anims/Fire0001" },
+					{ "time": 0.0333, "name": "Turret_Anims/Fire0001" },
+					{ "time": 0.0667, "name": "Turret_Anims/Fire0002" },
+					{ "time": 0.1, "name": "Turret_Anims/Fire0003" },
+					{ "time": 0.1333, "name": "Turret_Anims/Fire0004" },
+					{ "time": 0.1667, "name": "Turret_Anims/Fire0005" },
+					{ "time": 0.2, "name": null }
+				]
+			},
+			"Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0001": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			}
+		},
+		"bones": {
+			"Drum_Turret": {
+				"translate": [
+					{ "time": 0, "x": 7.29, "y": 93.96 }
+				]
+			},
+			"ShootFX": {
+				"translate": [
+					{ "time": 0, "x": 87.44, "y": 61.5 },
+					{ "time": 0.0333, "x": 85.22, "y": 94.11 },
+					{ "time": 0.0667, "x": 91.14, "y": 30.38 }
+				]
+			}
+		}
+	},
+	"Drum_Turret_ATTACK_RIGHT": {
+		"slots": {
+			"Drum_Turret": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Drum_Turret2": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Drum_Turret3": {
+				"attachment": [
+					{ "time": 0, "name": "Turret_Anims/TURRET_Drum_Fire_Right/TURRET_Drum_Fire_Right0001" },
+					{ "time": 0.0333, "name": "Turret_Anims/TURRET_Drum_Fire_Right/TURRET_Drum_Fire_Right0002" },
+					{ "time": 0.0667, "name": "Turret_Anims/TURRET_Drum_Fire_Right/TURRET_Drum_Fire_Right0003" },
+					{ "time": 0.1, "name": "Turret_Anims/TURRET_Drum_Fire_Right/TURRET_Drum_Fire_Right0004" },
+					{ "time": 0.1333, "name": "Turret_Anims/TURRET_Drum_Fire_Right/TURRET_Drum_Fire_Right0005" },
+					{ "time": 0.1667, "name": "Turret_Anims/TURRET_Drum_Fire_Right/TURRET_Drum_Fire_Right0006" },
+					{ "time": 0.2, "name": "Turret_Anims/TURRET_Drum_Fire_Right/TURRET_Drum_Fire_Right0007" },
+					{ "time": 0.2333, "name": "Turret_Anims/TURRET_Drum_Fire_Right/TURRET_Drum_Fire_Right0008" },
+					{ "time": 0.2667, "name": "Turret_Anims/TURRET_Drum_Fire_Right/TURRET_Drum_Fire_Right0009" },
+					{ "time": 0.3, "name": "Turret_Anims/TURRET_Drum_Fire_Right/TURRET_Drum_Fire_Right0010" },
+					{ "time": 0.3333, "name": "Turret_Anims/TURRET_Drum_Fire_Right/TURRET_Drum_Fire_Right0011" },
+					{ "time": 0.3667, "name": "Turret_Anims/TURRET_Drum_Fire_Right/TURRET_Drum_Fire_Right0012" }
+				]
+			},
+			"Drum_Turret4": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"ShootFX": {
+				"attachment": [
+					{ "time": 0, "name": "Turret_Anims/Fire0001" },
+					{ "time": 0.0333, "name": "Turret_Anims/Fire0001" },
+					{ "time": 0.0667, "name": "Turret_Anims/Fire0002" },
+					{ "time": 0.1, "name": "Turret_Anims/Fire0003" },
+					{ "time": 0.1333, "name": "Turret_Anims/Fire0004" },
+					{ "time": 0.1667, "name": "Turret_Anims/Fire0005" },
+					{ "time": 0.2, "name": null }
+				]
+			},
+			"Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0001": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			}
+		},
+		"bones": {
+			"Drum_Turret": {
+				"translate": [
+					{ "time": 0, "x": 5.67, "y": 110.97 }
+				]
+			},
+			"ShootFX": {
+				"translate": [
+					{ "time": 0, "x": 8.64, "y": 97.06 },
+					{ "time": 0.0333, "x": 11.52, "y": 127.81 },
+					{ "time": 0.0667, "x": 7.68, "y": 67.27 }
+				]
+			}
+		}
+	},
+	"Drum_Turret_IDLE": {
+		"slots": {
+			"Drum_Turret": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Drum_Turret2": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Drum_Turret3": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Drum_Turret4": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"ShootFX": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0001": {
+				"attachment": [
+					{ "time": 0, "name": "Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0001" },
+					{ "time": 0.0333, "name": "Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0002" },
+					{ "time": 0.0667, "name": "Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0003" },
+					{ "time": 0.1, "name": "Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0004" },
+					{ "time": 0.1333, "name": "Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0005" },
+					{ "time": 0.1667, "name": "Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0006" },
+					{ "time": 0.2, "name": "Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0007" },
+					{ "time": 0.2333, "name": "Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0008" },
+					{ "time": 0.2667, "name": "Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0009" },
+					{ "time": 0.3, "name": "Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0010" },
+					{ "time": 0.3333, "name": "Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0011" },
+					{ "time": 0.3667, "name": "Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0012" },
+					{ "time": 0.4, "name": "Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0013" },
+					{ "time": 0.4333, "name": "Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0014" },
+					{ "time": 0.4667, "name": "Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0015" },
+					{ "time": 0.5, "name": "Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0016" },
+					{ "time": 0.5333, "name": "Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0017" },
+					{ "time": 0.5667, "name": "Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0018" },
+					{ "time": 0.6, "name": "Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0019" },
+					{ "time": 0.6333, "name": "Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0020" },
+					{ "time": 0.6667, "name": "Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0021" },
+					{ "time": 0.7, "name": "Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0022" },
+					{ "time": 0.7333, "name": "Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0023" },
+					{ "time": 0.7667, "name": "Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0024" },
+					{ "time": 0.8, "name": "Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0025" },
+					{ "time": 0.8333, "name": "Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0026" },
+					{ "time": 0.8667, "name": "Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0027" },
+					{ "time": 0.9, "name": "Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0028" },
+					{ "time": 0.9333, "name": "Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0029" },
+					{ "time": 0.9667, "name": "Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0030" },
+					{ "time": 1, "name": "Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0031" },
+					{ "time": 1.0333, "name": "Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0032" },
+					{ "time": 1.0667, "name": "Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0033" },
+					{ "time": 1.1, "name": "Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0034" },
+					{ "time": 1.1333, "name": "Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0035" },
+					{ "time": 1.1667, "name": "Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0036" }
+				]
+			}
+		},
+		"bones": {
+			"Drum_Turret": {
+				"translate": [
+					{ "time": 0, "x": 5.67, "y": 90.72 }
+				]
+			}
+		}
+	},
+	"Drum_Turret_SELL": {
+		"slots": {
+			"Drum_Turret": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Drum_Turret2": {
+				"attachment": [
+					{ "time": 0, "name": "Turret_Anims/TURRET_Drum_Sell/TURRET_Drum_Sell0001" },
+					{ "time": 0.0333, "name": "Turret_Anims/TURRET_Drum_Sell/TURRET_Drum_Sell0002" },
+					{ "time": 0.0667, "name": "Turret_Anims/TURRET_Drum_Sell/TURRET_Drum_Sell0003" },
+					{ "time": 0.1, "name": "Turret_Anims/TURRET_Drum_Sell/TURRET_Drum_Sell0004" },
+					{ "time": 0.1333, "name": "Turret_Anims/TURRET_Drum_Sell/TURRET_Drum_Sell0005" },
+					{ "time": 0.1667, "name": "Turret_Anims/TURRET_Drum_Sell/TURRET_Drum_Sell0006" },
+					{ "time": 0.2, "name": "Turret_Anims/TURRET_Drum_Sell/TURRET_Drum_Sell0007" },
+					{ "time": 0.2333, "name": "Turret_Anims/TURRET_Drum_Sell/TURRET_Drum_Sell0008" },
+					{ "time": 0.2667, "name": "Turret_Anims/TURRET_Drum_Sell/TURRET_Drum_Sell0009" },
+					{ "time": 0.3, "name": "Turret_Anims/TURRET_Drum_Sell/TURRET_Drum_Sell0010" },
+					{ "time": 0.3333, "name": "Turret_Anims/TURRET_Drum_Sell/TURRET_Drum_Sell0011" },
+					{ "time": 0.3667, "name": "Turret_Anims/TURRET_Drum_Sell/TURRET_Drum_Sell0012" },
+					{ "time": 0.4, "name": "Turret_Anims/TURRET_Drum_Sell/TURRET_Drum_Sell0013" },
+					{ "time": 0.4333, "name": "Turret_Anims/TURRET_Drum_Sell/TURRET_Drum_Sell0014" },
+					{ "time": 0.4667, "name": "Turret_Anims/TURRET_Drum_Sell/TURRET_Drum_Sell0015" },
+					{ "time": 0.5, "name": null }
+				]
+			},
+			"Drum_Turret3": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Drum_Turret4": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"ShootFX": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0001": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			}
+		},
+		"bones": {
+			"Drum_Turret": {
+				"translate": [
+					{ "time": 0, "x": 5.67, "y": 225.18 }
+				]
+			}
+		}
+	},
+	"Drum_Turret_SPAWN": {
+		"slots": {
+			"Drum_Turret": {
+				"attachment": [
+					{ "time": 0, "name": "Turret_Anims/TURRET_Drum_Spawn/TURRET_Drum_Spawn0015" },
+					{ "time": 0.0333, "name": "Turret_Anims/TURRET_Drum_Spawn/TURRET_Drum_Spawn0002" },
+					{ "time": 0.0667, "name": "Turret_Anims/TURRET_Drum_Spawn/TURRET_Drum_Spawn0003" },
+					{ "time": 0.1, "name": "Turret_Anims/TURRET_Drum_Spawn/TURRET_Drum_Spawn0004" },
+					{ "time": 0.1333, "name": "Turret_Anims/TURRET_Drum_Spawn/TURRET_Drum_Spawn0005" },
+					{ "time": 0.1667, "name": "Turret_Anims/TURRET_Drum_Spawn/TURRET_Drum_Spawn0006" },
+					{ "time": 0.2, "name": "Turret_Anims/TURRET_Drum_Spawn/TURRET_Drum_Spawn0007" },
+					{ "time": 0.2333, "name": "Turret_Anims/TURRET_Drum_Spawn/TURRET_Drum_Spawn0008" },
+					{ "time": 0.2667, "name": "Turret_Anims/TURRET_Drum_Spawn/TURRET_Drum_Spawn0009" },
+					{ "time": 0.3, "name": "Turret_Anims/TURRET_Drum_Spawn/TURRET_Drum_Spawn0010" },
+					{ "time": 0.3333, "name": "Turret_Anims/TURRET_Drum_Spawn/TURRET_Drum_Spawn0011" },
+					{ "time": 0.3667, "name": "Turret_Anims/TURRET_Drum_Spawn/TURRET_Drum_Spawn0012" },
+					{ "time": 0.4, "name": "Turret_Anims/TURRET_Drum_Spawn/TURRET_Drum_Spawn0013" },
+					{ "time": 0.4333, "name": "Turret_Anims/TURRET_Drum_Spawn/TURRET_Drum_Spawn0014" }
+				]
+			},
+			"Drum_Turret3": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Drum_Turret4": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"ShootFX": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			},
+			"Turret_Anims/TURRET_Drum_Idle/TURRET_Drum_Idle0001": {
+				"attachment": [
+					{ "time": 0, "name": null }
+				]
+			}
+		},
+		"bones": {
+			"Drum_Turret": {
+				"translate": [
+					{ "time": 0, "x": 7.29, "y": 225.99 }
+				]
+			}
+		}
+	}
+}
+}
