@@ -3,12 +3,8 @@ using DG.Tweening;
 
 public class CameraMovement : MonoBehaviour {
 
-    [SerializeField] private bool m_UseBounderies = true;
+    [SerializeField] private bool m_UseBoundaries = true;
     [Space(10f)]
-    [SerializeField] private float m_MinX;
-    [SerializeField] private float m_MaxX;
-    [SerializeField] private float m_MinY;
-    [SerializeField] private float m_MaxY;
     [SerializeField] private float m_LerpSpeed; // Lower value is faster
     [SerializeField] private float m_ScreenOffset = 10;
     [SerializeField] private float m_MoveSpeed = 40;
@@ -17,7 +13,12 @@ public class CameraMovement : MonoBehaviour {
     [SerializeField] private bool m_UseKeyInput = true;
     [SerializeField] private bool m_UseTouchInput = false;
 
+    private float minOrthographicSize = 5f;
+    private float maxOrthographicSize = 8.5f;
+
     public static CameraMovement s_Instance;
+
+    private float m_MinX, m_MaxX, m_MinY, m_MaxY;
 
     private Vector3 m_MovePos;
 
@@ -37,8 +38,13 @@ public class CameraMovement : MonoBehaviour {
         else
             Destroy(gameObject);
 
-        if(!m_UseBounderies)
+        if (!m_UseBoundaries)
             CanMoveCamera = true;
+    }
+
+    private void Start()
+    {
+        SetCameraBoundaries();
     }
 
     private void Update()
@@ -46,9 +52,53 @@ public class CameraMovement : MonoBehaviour {
         if (CanMoveCamera)
         {
             GetInput();
+            SetCameraBoundaries();
             MoveCamera();
         }
 
+    }
+
+    /// <summary>
+    /// Zoom the camera
+    /// </summary>
+    /// <param name="value">0 is fully zoomed in, 1 is fully zoomed out</param>
+    /// <param name="duration">Duration in seconds</param>
+    public void Zoom(int value, int duration, Ease easing = Ease.Linear)
+    {
+        float mappedOrtohraphicSize = (value * (maxOrthographicSize - minOrthographicSize) / 1 + minOrthographicSize);
+
+        if (duration == 0)
+            Camera.main.orthographicSize = mappedOrtohraphicSize;
+        else
+            Camera.main.DOOrthoSize(mappedOrtohraphicSize, duration).SetEase(easing);
+    }
+
+    /// <summary>
+    /// Set the camera boundaries to the size of the grid
+    /// </summary>
+    public void SetCameraBoundaries()
+    {
+        Tile minTile = HexGrid.s_Instance.Grid[0, 0];
+        Tile maxTile = HexGrid.s_Instance.Grid[HexGrid.s_Instance.GridSize.x - 1, HexGrid.s_Instance.GridSize.y - 1];
+
+        float vertExtent = Camera.main.orthographicSize;
+        float horzExtent = vertExtent * Screen.width / Screen.height;
+
+        // Calculations assume map is position at the origin
+        m_MinX = minTile.transform.position.x + horzExtent;
+        m_MaxX = maxTile.transform.position.x - horzExtent;
+        m_MinY = (minTile.transform.position.y + vertExtent) - 0.2f;
+        m_MaxY = (maxTile.transform.position.y - vertExtent) + 0.2f;
+    }
+
+    /// <summary>
+    /// Convert a world position to an acceptable position within the boundaries
+    /// </summary>
+    /// <param name="position">Position to convert</param>
+    /// <returns>A world position to an acceptable position within the boundaries</returns>
+    public Vector3 GetPositionWithinBoundaries(Vector3 position)
+    {
+        return new Vector3(Mathf.Clamp(position.x, m_MinX, m_MaxX), Mathf.Clamp(position.y, m_MinY, m_MaxY), position.z);
     }
 
     /// <summary>
@@ -62,7 +112,7 @@ public class CameraMovement : MonoBehaviour {
         float currentX = transform.position.x;
         float currentY = transform.position.y;
 
-        if(m_UseBounderies)
+        if(m_UseBoundaries)
         {
             currentX = Mathf.Clamp(currentX, m_MinX, m_MaxX);
             currentY = Mathf.Clamp(currentY, m_MinY, m_MaxY);
@@ -121,9 +171,12 @@ public class CameraMovement : MonoBehaviour {
             }
         }
 
-        m_MovePos = new Vector3((m_UseBounderies ? Mathf.Clamp(m_MovePos.x, m_MinX, m_MaxX) : m_MovePos.x), (m_UseBounderies ? Mathf.Clamp(m_MovePos.y, m_MinY, m_MaxY) : m_MovePos.y), transform.position.z);   
+        m_MovePos = new Vector3((m_UseBoundaries ? Mathf.Clamp(m_MovePos.x, m_MinX, m_MaxX) : m_MovePos.x), (m_UseBoundaries ? Mathf.Clamp(m_MovePos.y, m_MinY, m_MaxY) : m_MovePos.y), transform.position.z);   
     }
 
+    /// <summary>
+    /// Moves the camera to the latest selected Move Position. (Gets called every frame when the player has control over the camera)
+    /// </summary>
     private void MoveCamera()
     {
         transform.position = Vector3.Lerp(transform.position, m_MovePos, m_LerpSpeed * m_MoveSpeed * Time.deltaTime);
@@ -142,6 +195,15 @@ public class CameraMovement : MonoBehaviour {
     public void ScrollCameraToPosition(Vector2 position, float duration, bool enableMoveCameraOnComplete, System.Action onComplete = null)
     {
         CanMoveCamera = false;
-        transform.DOMove(new Vector3(position.x, position.y, transform.position.z), duration).SetEase(Ease.InOutQuad).OnComplete(delegate { if(onComplete != null) onComplete(); CanMoveCamera = enableMoveCameraOnComplete; });
+        Vector3 movePos = GetPositionWithinBoundaries(new Vector3(position.x, position.y, transform.position.z));
+
+        if (duration == 0)
+        {
+            transform.position = movePos;
+            if (onComplete != null) onComplete();
+            CanMoveCamera = enableMoveCameraOnComplete;
+        }
+        else
+            transform.DOMove(movePos, duration).SetEase(Ease.InOutQuad).OnComplete(delegate { if (onComplete != null) onComplete(); CanMoveCamera = enableMoveCameraOnComplete; });
     }
 }

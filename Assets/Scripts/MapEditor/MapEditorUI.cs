@@ -156,7 +156,7 @@ public class MapEditorUI : MonoBehaviour
 
     public void LoadMap()
     {
-        MapLoader.s_Instance.LoadMap(m_MapNameInput.text);
+        MapLoader.s_Instance.LoadMap(m_MapNameInput.text, false);
     }
 
     public void ShowCopiedToClipboard()
