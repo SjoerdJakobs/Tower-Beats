@@ -19,7 +19,7 @@ public class LeadTower : Tower
         }
         m_LaserData = m_Laser.GetComponent<TowerLaser>();
         m_Laser.transform.position = transform.position + new Vector3(0.5f, 1, 0);
-        m_LaserData.m_ShootPos = laserOrgin;
+        m_LaserData.ShootPos = laserOrgin;
         //m_pool = ObjectPoolManager.s_Instance.GetObjectPool(attackProjectile, 20, 5, 5, 20, true,PooledSubObject.TowerProjectile);
         GetRMS.s_LeadCue += Attack;
     }
