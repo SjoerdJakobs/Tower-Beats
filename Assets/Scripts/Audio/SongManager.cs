@@ -67,6 +67,14 @@ public class SongManager : MonoBehaviour {
         }
     }
 
+    private void OnEnable()
+    {
+        GameManager.s_OnGameStart += StartPlaylist;
+        Sceneloader.s_OnSceneLoaded += SetSongUI;
+        ClearAudioClips.s_OnClearAudio += ClearAudio;
+        s_OnPlaylistComplete += OnLevelComplete;
+    }
+
     private void Awake()
     {
         if (s_Instance == null)
@@ -76,10 +84,6 @@ public class SongManager : MonoBehaviour {
         }
         else
         Destroy(gameObject);
-
-        GameManager.s_OnGameStart += StartPlaylist;
-        Sceneloader.s_OnSceneLoaded += SetSongUI;
-        s_OnPlaylistComplete += OnLevelComplete;
     }
 
     /// <summary>
@@ -227,12 +231,22 @@ public class SongManager : MonoBehaviour {
     private void OnLevelComplete()
     {
         m_SongNumber = 0;
+        /*m_SongQueue = null;
+        m_SongAudioSources[0].clip = null;
+        m_SongAudioSources[1].clip = null;
+        m_SongAudioSources[2].clip = null;
+        RemoveExcessiveTracks();*/
+        ClearAudio();
+        MenuManager.s_Instance.ShowMenu(MenuNames.VICTORY_MENU);
+    }
+
+    void ClearAudio()
+    {
         m_SongQueue = null;
         m_SongAudioSources[0].clip = null;
         m_SongAudioSources[1].clip = null;
         m_SongAudioSources[2].clip = null;
         RemoveExcessiveTracks();
-        MenuManager.s_Instance.ShowMenu(MenuNames.VICTORY_MENU);
     }
 
     public void SkipSong()
@@ -245,6 +259,8 @@ public class SongManager : MonoBehaviour {
         GameManager.s_OnGameStart -= StartPlaylist;
         Sceneloader.s_OnSceneLoaded -= SetSongUI;
         Sceneloader.s_OnSceneLoaded -= StartPlaylist;
+        ClearAudioClips.s_OnClearAudio -= ClearAudio;
         s_OnPlaylistComplete -= OnLevelComplete;
+        Debug.Log("disabled");
     }
 }
