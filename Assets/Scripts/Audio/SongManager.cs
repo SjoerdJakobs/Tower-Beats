@@ -114,7 +114,6 @@ public class SongManager : MonoBehaviour {
                 if(songNumber > 0)
                 {
                     s_OnPlaylistComplete();
-                    MenuManager.s_Instance.ShowMenu(MenuNames.VICTORY_MENU);
                 }
 
             }
@@ -233,6 +232,7 @@ public class SongManager : MonoBehaviour {
         m_SongAudioSources[1].clip = null;
         m_SongAudioSources[2].clip = null;
         RemoveExcessiveTracks();
+        MenuManager.s_Instance.ShowMenu(MenuNames.VICTORY_MENU);
     }
 
     public void SkipSong()
