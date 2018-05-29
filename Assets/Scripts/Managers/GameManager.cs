@@ -36,8 +36,10 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        Tile.s_OnSetTileClickableState(false);
         MapLoader.s_Instance.LoadMap("level1", true);
         StartCoroutine(ShowTutorial(() => {
+            Tile.s_OnSetTileClickableState(true);
             StartCoroutine(StartPreparationTime(() => {
                 print("start spawning enemies");
                 if (s_OnGameStart != null) s_OnGameStart();
