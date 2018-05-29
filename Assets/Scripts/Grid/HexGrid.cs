@@ -251,6 +251,15 @@ public class HexGrid : MonoBehaviour
     }
 
     /// <summary>
+    /// Get a Tile in the middle of the Grid
+    /// </summary>
+    /// <returns>The Tile in the middle point of the Grid</returns>
+    public Tile GetMiddlepointTile()
+    {
+        return m_Grid[Mathf.RoundToInt(GridSize.x / 2), Mathf.RoundToInt(GridSize.y / 2)];
+    }
+
+    /// <summary>
     /// Clears the Grid
     /// </summary>
     public void ClearGrid()

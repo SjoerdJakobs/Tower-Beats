@@ -73,6 +73,7 @@ public class Tile : MonoBehaviour
     public int X { get { return PositionInGrid.x; } set { PositionInGrid = new Vector2Int(value, PositionInGrid.y); } }
     public int Y { get { return PositionInGrid.y; } set { PositionInGrid = new Vector2Int(PositionInGrid.x, value); } }
 
+    private bool m_MoveCameraToTileOnClick = true;
     [SerializeField]private List<TileArt> m_TileArt = new List<TileArt>();
 
     public delegate void TileClicked(Tile tile);
@@ -99,6 +100,7 @@ public class Tile : MonoBehaviour
         if (!EventSystem.current.IsPointerOverGameObject()) 
         {
             if (s_OnTileClicked != null) s_OnTileClicked(this);
+
             switch (CurrentState)
         	{
             	case TileState.TURRET_SPAWN:
@@ -106,15 +108,19 @@ public class Tile : MonoBehaviour
                     {
                         PopUpManager.s_Instance.ShowPopUp(PopUpNames.TOWER_SHOP_MENU, new Vector2(transform.position.x,transform.position.y+1.5f));
                     }
-                	//Open tower shop menu
-                	break;
+                    if (m_MoveCameraToTileOnClick)
+                        CameraMovement.s_Instance.ScrollCameraToPosition(this, 0.5f, true);
+                    //Open tower shop menu
+                    break;
             	case TileState.OCCUPIED:
                     //Open tower menu and shows the stats of the tower on this tile
                     if (PopUpManager.s_Instance != null)
                     {
                         PopUpManager.s_Instance.ShowPopUp(PopUpNames.TOWER_MENU, transform.position);
                     }
-                	break;
+                    if (m_MoveCameraToTileOnClick)
+                        CameraMovement.s_Instance.ScrollCameraToPosition(this, 0.5f, true);
+                    break;
         	}
 		}
     }

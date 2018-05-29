@@ -16,6 +16,8 @@ public class MapLoader : MonoBehaviour
     public List<Tile> Path { get { return m_Path; } }
     public Tile HeadQuarters { get; private set; }
     public Vector2 HeadQuartersPosition { get { return HeadQuarters.transform.position; } }
+    
+    public bool MapLoaded { get; private set; }
 
     private void Awake()
     {
@@ -41,7 +43,8 @@ public class MapLoader : MonoBehaviour
     /// Load a Map
     /// </summary>
     /// <param name="mapName">Name of the map</param>
-    public void LoadMap(string mapName)
+    /// <param name="animate">Animate the loading?</param>
+    public void LoadMap(string mapName, bool animate)
     {
         // Check if the HexGrid instance is present
         if (HexGrid.s_Instance == null)
@@ -49,6 +52,9 @@ public class MapLoader : MonoBehaviour
             Debug.LogError("<color=orange>[MapLoader]</color> Could not load map. HexGrid does not exist yet.");
             return;
         }
+
+        // Set map loaded to false;
+        MapLoaded = false;
 
         // Set the starting time of the loading
         float startLoadTime = Time.time;
@@ -59,12 +65,14 @@ public class MapLoader : MonoBehaviour
         // Load the entered map
         m_Map = m_MapsData.MapsData.Find(x => x.Name.ToUpper() == mapName.ToUpper());
 
-        StartCoroutine(UpdateVisuals(() => {
+        StartCoroutine(UpdateVisuals(animate, () => {
             Debug.Log("<color=orange>[MapLoader]</color> Map (" + mapName + ") loaded succesfully. It took " + (Time.time - startLoadTime) + " second(s) to load the map.");
+            if(!animate)
+                MapLoaded = true;
         }));
     }
 
-    private IEnumerator UpdateVisuals(Action onComplete)
+    private IEnumerator UpdateVisuals(bool animate, Action onComplete)
     {
         // Update the HexGrid
         bool gridUpdated = UpdateGrid();
@@ -73,7 +81,7 @@ public class MapLoader : MonoBehaviour
         yield return new WaitUntil(() => gridUpdated);
 
         // Update the Tiles
-        bool tilesUpdated = UpdateTiles(true);
+        bool tilesUpdated = UpdateTiles(animate);
 
         yield return new WaitUntil(() => tilesUpdated);
 
@@ -198,10 +206,12 @@ public class MapLoader : MonoBehaviour
         m_Path = tempPath;
         if (animate)
         {
-            StartCoroutine(AnimateLoadPath(tempPath));
+            // Invoke all the animations
+            StartCoroutine(AnimateLoadPath(tempPath, delegate { MapLoaded = true; }));
             StartCoroutine(AnimateLoadSpawns(tempSpawns));
             StartCoroutine(AnimateLoadProps(tempProps));
         }
+
         return true;
     }
 
