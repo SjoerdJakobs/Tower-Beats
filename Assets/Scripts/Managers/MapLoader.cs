@@ -14,7 +14,8 @@ public class MapLoader : MonoBehaviour
 
     private List<Tile> m_Path = new List<Tile>();
     public List<Tile> Path { get { return m_Path; } }
-    public Vector2 HeadQuartersPosition { get; private set; }
+    public Tile HeadQuarters { get; private set; }
+    public Vector2 HeadQuartersPosition { get { return HeadQuarters.transform.position; } }
 
     private void Awake()
     {
@@ -72,7 +73,7 @@ public class MapLoader : MonoBehaviour
         yield return new WaitUntil(() => gridUpdated);
 
         // Update the Tiles
-        bool tilesUpdated = UpdateTiles();
+        bool tilesUpdated = UpdateTiles(true);
 
         yield return new WaitUntil(() => tilesUpdated);
 
@@ -114,7 +115,7 @@ public class MapLoader : MonoBehaviour
     /// Updates the Tiles to match the map data's values
     /// </summary>
     /// <returns>Is updating the Tiles successful?</returns>
-    private bool UpdateTiles()
+    private bool UpdateTiles(bool animate = false)
     {
         if(m_Map == null)
         {
@@ -124,6 +125,8 @@ public class MapLoader : MonoBehaviour
 
         // Create a temp list to hold the path's tiles
         List<Tile> tempPath = new List<Tile>();
+        List<Tile> tempProps = new List<Tile>();
+        List<Tile> tempSpawns = new List<Tile>();
 
         // Loop through all the tiles in the map's tilesdata
         for (int i = 0; i < m_Map.TilesData.Count; i++)
@@ -143,17 +146,23 @@ public class MapLoader : MonoBehaviour
 
                     // If the index of the path tile is 0, set the tile visual state as an enemy spawner. The other path tiles will just be normal path visual wise
                     if (m_Map.TilesData[i].PathTileIndex == 0)
-                        tile.SetTileVisualsState(TileVisualState.ENEMY_SPAWN);
+                        tile.SetTileVisualsState(TileVisualState.ENEMY_SPAWN, !animate);
                     else
-                        tile.SetTileVisualsState(TileVisualState.PATH);
+                        tile.SetTileVisualsState(TileVisualState.PATH, !animate);
                     break;
                 case TileState.TURRET_SPAWN:
+                    // Add the tile to the temp turret spawn list
+                    tempSpawns.Add(tile);
+
                     // Set the visual state of the turret spawns
-                    tile.SetTileVisualsState(TileVisualState.TURRET_SPAWN);
+                    tile.SetTileVisualsState(TileVisualState.TURRET_SPAWN, !animate);
                     break;
                 case TileState.PROP:
+                    // Add the tile to the temp prop list
+                    tempProps.Add(tile);
+
                     // Set the visual state of the props
-                    tile.SetTileVisualsState(TileVisualState.PROP, m_Map.TilesData[i].FilePathToAsset);
+                    tile.SetTileVisualsState(TileVisualState.PROP, !animate, m_Map.TilesData[i].FilePathToAsset);
                     break;
             }
         }
@@ -175,8 +184,8 @@ public class MapLoader : MonoBehaviour
                 // Set the visuals for the headquarters and set the rest back to default
                 if (counter == 0)
                 {
-                    HeadQuartersPosition = tile.transform.position;
-                    tile.SetTileVisualsState(TileVisualState.HEADQUARTERS);
+                    HeadQuarters = tile;
+                    tile.SetTileVisualsState(TileVisualState.HEADQUARTERS, !animate);
                 }
                 else
                     tile.SetTileVisualsState(TileVisualState.BASE);
@@ -187,7 +196,48 @@ public class MapLoader : MonoBehaviour
 
         // Set the pathdata
         m_Path = tempPath;
+        if (animate)
+        {
+            StartCoroutine(AnimateLoadPath(tempPath));
+            StartCoroutine(AnimateLoadSpawns(tempSpawns));
+            StartCoroutine(AnimateLoadProps(tempProps));
+        }
         return true;
+    }
+
+    private IEnumerator AnimateLoadPath(List<Tile> path, Action onComplete = null)
+    {
+        HeadQuarters.AnimateFadeScaleIn(TileVisualState.HEADQUARTERS);
+        for (int i = path.Count - 1; i >= 0; i--)
+        {
+            if(i == 0)
+                path[i].AnimateFadeScaleIn(TileVisualState.ENEMY_SPAWN);
+            else
+                path[i].AnimateFadeScaleIn(TileVisualState.PATH);
+
+            yield return new WaitForSeconds(0.025f);
+        }
+        if (onComplete != null) onComplete();
+    }
+
+    private IEnumerator AnimateLoadSpawns(List<Tile> spawns, Action onComplete = null)
+    {
+        for (int i = 0; i < spawns.Count; i++)
+        {
+            spawns[i].AnimateFadeScaleIn(TileVisualState.TURRET_SPAWN);
+            yield return new WaitForSeconds(0.1f);
+        }
+        if (onComplete != null) onComplete();
+    }
+
+    private IEnumerator AnimateLoadProps(List<Tile> props, Action onComplete = null)
+    {
+        for (int i = 0; i < props.Count; i++)
+        {
+            props[i].AnimateScaleBounceIn(TileVisualState.PROP);
+            yield return new WaitForSeconds(0.025f);
+        }
+        if (onComplete != null) onComplete();
     }
 
     /// <summary>
@@ -217,7 +267,6 @@ public class MapLoader : MonoBehaviour
             for (int i = 0; i < m_Path.Count; i++)
                 temp[i] = m_Path[i].transform.position;
         }
-
 
         return temp;
     }

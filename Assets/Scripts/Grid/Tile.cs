@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 #region Enums
 
@@ -126,30 +127,71 @@ public class Tile : MonoBehaviour
     /// Sets the tile's visual state to the given state
     /// </summary>
     /// <param name="state">State of the tile</param>
-    public void SetTileVisualsState(TileVisualState state, string filePath = null)
+    public void SetTileVisualsState(TileVisualState state, bool visible = true, string filePath = null)
+    {
+        if (state == TileVisualState.BASE)
+        {
+            ResetTileVisuals();
+            return;
+        }
+
+        SpriteRenderer renderer = GetRenderer(state);
+
+        if (renderer == null)
+        {
+            Debug.LogWarning("<color=orange>[Tile]</color> Could not find renderer of state: " + state.ToString());
+            return;
+        }
+
+        if (!visible)
+            renderer.color = new Color(renderer.color.r, renderer.color.g, renderer.color.b, 0);
+
+        renderer.enabled = true;
+
+        switch (state)
+        {
+            case TileVisualState.PROP:
+                renderer.sprite = Resources.Load<Sprite>(filePath);
+                SetLayer(TileVisualState.PROP, HexGrid.s_Instance.GridSize.y - PositionInGrid.y);
+                break;
+            case TileVisualState.HEADQUARTERS:
+                SetLayer(TileVisualState.HEADQUARTERS, HexGrid.s_Instance.GridSize.y - PositionInGrid.y);
+                break;
+        }
+    }
+
+    private void ResetTileVisuals()
     {
         for (int i = 0; i < m_TileArt.Count; i++)
+            m_TileArt[i].VisualStateRenderer.enabled = false;
+    }
+
+    private SpriteRenderer GetRenderer(TileVisualState state)
+    {
+        return m_TileArt.Find(x => x.VisualState == state).VisualStateRenderer;
+    }
+
+    public void AnimateFadeScaleIn(TileVisualState state)
+    {
+        SpriteRenderer renderer = GetRenderer(state);
+
+        if(renderer != null)
         {
-            if (m_TileArt[i].VisualState == state)
-            {
-                switch(state)
-                {
-                    case TileVisualState.PROP:
-                        m_TileArt[i].VisualStateRenderer.sprite = Resources.Load<Sprite>(filePath);
-                        SetLayer(TileVisualState.PROP, HexGrid.s_Instance.GridSize.y - PositionInGrid.y);
-                        break;
-                    case TileVisualState.HEADQUARTERS:
-                        SetLayer(TileVisualState.HEADQUARTERS, HexGrid.s_Instance.GridSize.y - PositionInGrid.y);
-                        break;
-                }
+            renderer.DOFade(1f, 0.2f);
+            renderer.transform.localScale = new Vector2(1.4f, 1.4f);
+            renderer.transform.DOScale(1, 0.5f).SetEase(Ease.OutExpo);
+        }
+    }
 
-                m_TileArt[i].VisualStateRenderer.enabled = true;
-            }
-            else
-            {
-                m_TileArt[i].VisualStateRenderer.enabled = false;
-            }
+    public void AnimateScaleBounceIn(TileVisualState state)
+    {
+        SpriteRenderer renderer = GetRenderer(state);
 
+        if(renderer != null)
+        {
+            renderer.transform.localScale = Vector2.zero;
+            renderer.DOFade(1f, 0.2f).SetEase(Ease.InQuad);
+            renderer.transform.DOScale(1f, 0.5f).SetEase(Ease.OutBounce);
         }
     }
 

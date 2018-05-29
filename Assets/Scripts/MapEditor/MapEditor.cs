@@ -76,7 +76,7 @@ public class MapEditor : MonoBehaviour
     private void PropSelected(string propPath)
     {
         m_Map.TilesData.Add(new TileData(TileState.PROP, -1, CurrentSelectedTile.PositionInGrid, propPath));
-        CurrentSelectedTile.SetTileVisualsState(TileVisualState.PROP, propPath);
+        CurrentSelectedTile.SetTileVisualsState(TileVisualState.PROP, true, propPath);
     }
 
     public void SelectPath()
