@@ -69,6 +69,7 @@ public class GameManager : MonoBehaviour
         CameraMovement.s_Instance.Zoom(1, 0, DG.Tweening.Ease.Linear);
         yield return new WaitUntil(() => MapLoader.s_Instance != null);
         yield return new WaitUntil(() => MapLoader.s_Instance.MapLoaded);
+        yield return new WaitForSeconds(0.5f);
         CameraMovement.s_Instance.Zoom(0, 1, DG.Tweening.Ease.InOutQuad);
         NotificationManager.s_Instance.EnqueueNotification("Your objective is to defend this tower in Hexagonia.", 2);
         CameraMovement.s_Instance.ScrollCameraToPosition(MapLoader.s_Instance.HeadQuartersPosition, 1, false);

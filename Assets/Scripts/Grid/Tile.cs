@@ -135,11 +135,10 @@ public class Tile : MonoBehaviour
     /// <param name="state">State of the tile</param>
     public void SetTileVisualsState(TileVisualState state, bool visible = true, string filePath = null)
     {
-        if (state == TileVisualState.BASE)
-        {
-            ResetTileVisuals();
-            return;
-        }
+        ResetTileVisuals();
+
+        if (state == TileVisualState.BASE) return;
+
 
         SpriteRenderer renderer = GetRenderer(state);
 
@@ -149,10 +148,10 @@ public class Tile : MonoBehaviour
             return;
         }
 
+        renderer.enabled = true;
+
         if (!visible)
             renderer.color = new Color(renderer.color.r, renderer.color.g, renderer.color.b, 0);
-
-        renderer.enabled = true;
 
         switch (state)
         {

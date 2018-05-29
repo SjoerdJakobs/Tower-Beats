@@ -4902,11 +4902,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da66d9cc90499a43947427b2a65ccf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UseBounderies: 0
-  m_MinX: 8.2
-  m_MaxX: 18
-  m_MinY: 4.35
-  m_MaxY: 13.8
+  m_UseBoundaries: 0
   m_LerpSpeed: 0.2
   m_ScreenOffset: 20
   m_MoveSpeed: 40
