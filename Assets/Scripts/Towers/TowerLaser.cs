@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TowerLaser : MonoBehaviour {
-    
+
+    [SerializeField]
+    private GameObject m_HitObjectPrefab;
+    private GameObject m_HitObject;
     [SerializeField]
     private Transform m_Target;
     [SerializeField]
@@ -19,6 +22,10 @@ public class TowerLaser : MonoBehaviour {
     private float m_Offset;
     private float m_AnimCooldown = 1.1f;
     private float m_AnimCooldownCounter;
+    private float m_RotationZ;
+    private float m_XScaleOrginValue;
+    private float m_XScaleModTimer;
+    private float m_XScaleModValue;
 
     private LeadTower m_Tower;
     private Material m_Mat;
@@ -33,6 +40,9 @@ public class TowerLaser : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        m_HitObject = Instantiate(m_HitObjectPrefab);
+        m_HitObject.SetActive(false);
+        m_XScaleOrginValue = 0.6f;
         m_Tower = GetComponent<LeadTower>();
         m_Mat = GetComponent<Renderer>().material;
 	}
@@ -58,7 +68,14 @@ public class TowerLaser : MonoBehaviour {
                 m_Offset = 0;
             }
 
-            transform.localScale = new Vector3(0.6f, m_Distance, 0.6f);
+            m_XScaleOrginValue += Time.deltaTime;
+            if (m_XScaleModTimer >= 0.06f)
+            {
+                m_XScaleModValue = m_XScaleOrginValue + Random.Range(-0.05f, 0.05f);
+                m_XScaleModTimer = 0;
+            }
+
+            transform.localScale = new Vector3(m_XScaleModValue, m_Distance, 1);
             transform.position = Vector3.Lerp(new Vector3(ShootPos.position.x, ShootPos.position.y, -1), new Vector3(m_Target.transform.position.x, m_Target.transform.position.y, -1), 0.5f);
 
             m_Distance = Vector3.Distance(new Vector3(ShootPos.position.x, ShootPos.position.y, -1), new Vector3(m_Target.transform.position.x, m_Target.transform.position.y, -1));
@@ -70,11 +87,18 @@ public class TowerLaser : MonoBehaviour {
             }
 
             m_Difference = m_Target.transform.position - ShootPos.position;
-            float rotationZ = Mathf.Atan2(m_Difference.y, m_Difference.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0, 0, (rotationZ + 90));
+            m_RotationZ = Mathf.Atan2(m_Difference.y, m_Difference.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0, 0, (m_RotationZ + 90));
+
+            if(!m_HitObject.activeInHierarchy)
+            {
+                m_HitObject.SetActive(true);
+            }
+            //m_HitObject.transform.position;
         }
         else if (m_Distance > 0)
         {
+            m_HitObject.SetActive(false);
             m_Distance = 0;
             transform.localScale = new Vector3(1, 0, 1);
         }
