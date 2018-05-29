@@ -1882,9 +1882,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Playlist:
-  - Songname: Through The Fire And Flames
+  - Songname: We Are Number One
   - Songname: Self Esteem
-  - Songname: We are Number One
+  - Songname: Through The Fire And Flames
 --- !u!114 &1437353308
 MonoBehaviour:
   m_ObjectHideFlags: 0
