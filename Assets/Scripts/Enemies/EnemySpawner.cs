@@ -7,7 +7,7 @@ public class EnemySpawner : MonoBehaviour {
 
     public static EnemySpawner s_Instance;
 
-    [SerializeField] private List<Enemy> m_Enemies = new List<Enemy>();
+    /*[SerializeField]*/ public List<Enemy> m_Enemies = new List<Enemy>();
 
     [SerializeField]
     private GameObject m_Enemy;
