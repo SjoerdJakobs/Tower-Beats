@@ -329,6 +329,10 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Show
       objectReference: {fileID: 0}
+    - target: {fileID: 1401799121432706, guid: b682b91d8605c534b8865614730f3882, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b682b91d8605c534b8865614730f3882, type: 2}
   m_IsPrefabParent: 0
@@ -556,6 +560,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Enemies:
   - {fileID: 1235958448}
+  m_Bosses:
+  - {fileID: 114679981700593664, guid: 133f72803a402fd46b9ecfc677d7b507, type: 2}
   SpawnedEnemies: []
 --- !u!4 &755499778
 Transform:

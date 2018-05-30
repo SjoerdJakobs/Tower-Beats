@@ -21,7 +21,6 @@ public class Enemy : MonoBehaviour {
 
     [SerializeField] private float m_MoveSpeed;
     [SerializeField] private float m_CoinsToGive;
-    [SerializeField] private int m_CoinsToSteal;
 
     private int m_CurrentNodeIndex;
 
@@ -46,7 +45,6 @@ public class Enemy : MonoBehaviour {
 
             if (m_CurrentHealth <= 0)
             {
-                DOTween.Kill(10, true);
                 Death(true);
             }
             else if (m_CurrentHealth > 0)
@@ -104,9 +102,7 @@ public class Enemy : MonoBehaviour {
 
         if (PlayerData.s_Instance.Lives > 0)
         {
-            PlayerData.s_Instance.ChangeLivesAmount(-1);
-            PlayerData.s_Instance.ChangeCoinAmount(-m_CoinsToSteal);
-            
+            PlayerData.s_Instance.ChangeLivesAmount(-1);            
             Destroy(this.gameObject);
         }
     }

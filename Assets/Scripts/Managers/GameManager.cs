@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
 
     private void SpawnContinuousWaves()
     {
-        EnemySpawner.s_Instance.SpawnWave(10, 1.5f, () => { SpawnContinuousWaves(); });
+        EnemySpawner.s_Instance.SpawnWave(2, 1.5f, () => { SpawnContinuousWaves(); });
     }
 
     private IEnumerator StartPreparationTime(System.Action callback)
