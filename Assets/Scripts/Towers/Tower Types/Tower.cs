@@ -91,7 +91,7 @@ public class Tower : MonoBehaviour
         {
             Enemy enemy = EnemySpawner.s_Instance.SpawnedEnemies[i];
 
-            if(enemy != null)
+            if(enemy != null && enemy.IsAlive)
             {
                 float distance = Vector3.Distance(transform.position, enemy.transform.position);
 

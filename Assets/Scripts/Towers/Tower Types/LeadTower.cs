@@ -30,7 +30,7 @@ public class LeadTower : Tower
 
         if (m_ReadyToAttack && m_Target != null)
         {
-            m_LaserData.SetTarget(m_Target);
+            m_LaserData.SetTarget(m_Target, TowerData.AttackInterval);
             Debug.Log("Damage");
             //m_towerProjectileData.SetNewVars(transform.position, m_Target, TowerData.AttackDamage, 5);
             m_Target.TakeDamage(TowerData.AttackDamage, "Lead");

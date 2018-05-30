@@ -52,12 +52,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b27c592a4ad027443901a0797f9474af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ShootPos: {fileID: 0}
-  m_Damage: 0
-  m_Target: {fileID: 0}
-  m_RaySpeed: 3
-  m_AnimProjectile: {fileID: 114606252127409396, guid: 2ff2175174ed36548af822f2c80c8ce1,
+  m_HitObjectPrefab: {fileID: 1812950898429692, guid: 4206422f2a146bf4586ea42ce6cbe8a0,
     type: 2}
+  m_Target: {fileID: 0}
+  ShootPos: {fileID: 0}
+  m_Damage: 0
+  m_RaySpeed: 3
 --- !u!212 &212351488948634950
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -91,12 +91,12 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 32767
+  m_SortingOrder: 31000
   m_Sprite: {fileID: 21300000, guid: 7dd88f296817d4bca817f5ff9accfec6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 2
+  m_DrawMode: 0
   m_Size: {x: 0.71487606, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 1

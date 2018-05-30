@@ -556,7 +556,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Enemies:
   - {fileID: 1235958448}
+  m_Enemy: {fileID: 1350565606244240, guid: 6070b2b6ce613c74ca956f892c914407, type: 2}
   SpawnedEnemies: []
+  EnemyPool: {fileID: 0}
 --- !u!4 &755499778
 Transform:
   m_ObjectHideFlags: 0

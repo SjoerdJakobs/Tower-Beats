@@ -4,19 +4,19 @@ using UnityEngine;
 using Spine.Unity;
 using DG.Tweening;
 
-public class Enemy : MonoBehaviour {
+public class Enemy : PoolObj {
 
     public delegate void DestroyEvent(Enemy enemy);
     public static DestroyEvent s_OnDestroyEnemy;
-    [SerializeField] private float m_MaxHealth;
-    private float m_CurrentHealth;
-    private bool m_IsAlive = true;
+    public float MaxHealth { get; set; }
+    public float CurrentHealth { get; set; }
+    public bool IsAlive { get; set; }
 
     //TEMP
     private Tween m_dopath;
-    private SkeletonAnimation m_SkeletonAnims;
+    public SkeletonAnimation SkeletonAnims { get; set; }
     private AnimationState m_Anim;
-    private EnemyHealthbar m_EnemyHealthbar;
+    public EnemyHealthbar EnemyHealthbar { get; set; }
     private MeshRenderer m_Renderer;
 
     [SerializeField] private float m_MoveSpeed;
@@ -27,35 +27,36 @@ public class Enemy : MonoBehaviour {
 
     private void Awake()
     {
-        m_CurrentHealth = m_MaxHealth;
-        m_SkeletonAnims = GetComponent<SkeletonAnimation>();
+        MaxHealth = 20;
+        CurrentHealth = MaxHealth;
+        SkeletonAnims = GetComponent<SkeletonAnimation>();
         m_Renderer = GetComponent<MeshRenderer>();
         GameManager.s_OnGameStop += Death;
 
         PauseCheck.Pause += TogglePause;
 
-        m_EnemyHealthbar = GetComponent<EnemyHealthbar>();
+        EnemyHealthbar = GetComponent<EnemyHealthbar>();
     }
 
     public void TakeDamage(float damage, string towerType)
     {
-        if (m_IsAlive)
+        if (IsAlive)
         {
-            m_CurrentHealth -= damage;
-            m_EnemyHealthbar.ChangeEnemyHealthUI(m_CurrentHealth / m_MaxHealth);
+            CurrentHealth -= damage;
+            EnemyHealthbar.ChangeEnemyHealthUI(CurrentHealth / MaxHealth);
 
-            if (m_CurrentHealth <= 0)
+            if (CurrentHealth <= 0)
             {
                 DOTween.Kill(10, true);
                 Death(true);
             }
-            else if (m_CurrentHealth > 0)
+            else if (CurrentHealth > 0)
             {
                 switch (towerType)
                 {
                     case "Bass":
-                        m_SkeletonAnims.AnimationState.SetAnimation(0, "HIT_Electricity", false);
-                        m_SkeletonAnims.AnimationState.AddAnimation(0, "MOVE", true, 0);
+                        SkeletonAnims.AnimationState.SetAnimation(0, "HIT_Electricity", false);
+                        SkeletonAnims.AnimationState.AddAnimation(0, "MOVE", true, 0);
                         break;
                     case "Drum":
                         EffectsManager.s_Instance.SpawnEffect(EffectType.ENEMY_HIT, false, new Vector2(transform.position.x, transform.position.y + 0.5f));
@@ -78,12 +79,11 @@ public class Enemy : MonoBehaviour {
 
     public void Death(bool killedByPlayer)
     {
-        PausePath();
         if(s_OnDestroyEnemy != null)
         {
             s_OnDestroyEnemy(this);
         }
-        m_IsAlive = false;
+        IsAlive = false;
         
         //If player kills the enemy
         if (killedByPlayer)
@@ -91,10 +91,14 @@ public class Enemy : MonoBehaviour {
             //Give coins
             PlayerData.s_Instance.ChangeCoinAmount(m_CoinsToGive);
         }
-        m_SkeletonAnims.AnimationState.SetAnimation(0, "DEATH", false);
-        m_SkeletonAnims.AnimationState.Complete += delegate
+        SkeletonAnims.AnimationState.SetAnimation(0, "DEATH", false);
+        SkeletonAnims.AnimationState.Complete += delegate
         {
-            Destroy(this.gameObject);
+            if (SkeletonAnims.AnimationName == "DEATH")
+            {
+                m_dopath.Kill();
+                ReturnToPool();
+            }
         };
     }
 
@@ -106,26 +110,22 @@ public class Enemy : MonoBehaviour {
         {
             PlayerData.s_Instance.ChangeLivesAmount(-1);
             PlayerData.s_Instance.ChangeCoinAmount(-m_CoinsToSteal);
-            
-            Destroy(this.gameObject);
+
+
+            m_dopath.Kill();
+
+            ReturnToPool();
         }
     }
 
-
-    //TEMP
-    public void Move()
+    public void Move(Vector3 startPos)
     {
-        if (m_IsAlive)
+        if (IsAlive)
         {
+            transform.position = startPos;
             Vector3[] pathArray = MapLoader.s_Instance.GetWaypointsFromPath();
             m_dopath = transform.DOPath(pathArray, pathArray.Length / m_MoveSpeed, PathType.CatmullRom).SetEase(Ease.Linear).OnComplete(() => DamageObjective()).OnWaypointChange(UpdateEnemyLayering);
         }
-        //Invoke("PausePath",1);
-        //Invoke("PlayPath",2);
-        //dopath.Play();
-        //m_CurrentNodeIndex = 1;
-
-        //MoveToNextNode();
     }
 
     private void UpdateEnemyLayering(int waypointIndex)
@@ -133,12 +133,6 @@ public class Enemy : MonoBehaviour {
         m_Renderer.sortingOrder = HexGrid.s_Instance.GridSize.y - MapLoader.s_Instance.Path[waypointIndex].PositionInGrid.y;
     }
 
-
-    //TEMP
-    private void PausePath()
-    {
-        m_dopath.Pause();
-    }
 
     public void TogglePause(bool pause)
     {

@@ -10,6 +10,7 @@ public class PoolObj : MonoBehaviour
     {
         if (Pool != null && this != null)
         {
+            Debug.Log("return to pool" );
             Pool.AddObjectToPool(this);
         }
         else if(this != null)
