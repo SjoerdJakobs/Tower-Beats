@@ -8,15 +8,15 @@ public class Enemy : PoolObj {
 
     public delegate void DestroyEvent(Enemy enemy);
     public static DestroyEvent s_OnDestroyEnemy;
-    public float MaxHealth { get; set; }
+    [SerializeField]
+    private float m_MaxHealth = 20;
     public float CurrentHealth { get; set; }
     public bool IsAlive { get; set; }
 
-    //TEMP
-    private Tween m_dopath;
     public SkeletonAnimation SkeletonAnims { get; set; }
+    private Tween m_dopath;
     private AnimationState m_Anim;
-    public EnemyHealthbar EnemyHealthbar { get; set; }
+    private EnemyHealthbar m_EnemyHealthbar;
     private MeshRenderer m_Renderer;
 
     [SerializeField] private float m_MoveSpeed;
@@ -26,15 +26,20 @@ public class Enemy : PoolObj {
 
     private void Awake()
     {
-        MaxHealth = 20;
-        CurrentHealth = MaxHealth;
+        CurrentHealth = m_MaxHealth;
         SkeletonAnims = GetComponent<SkeletonAnimation>();
         m_Renderer = GetComponent<MeshRenderer>();
         GameManager.s_OnGameStop += Death;
 
         PauseCheck.Pause += TogglePause;
 
-        EnemyHealthbar = GetComponent<EnemyHealthbar>();
+        m_EnemyHealthbar = GetComponent<EnemyHealthbar>();
+    }
+
+    public void RestoreHealth()
+    {
+        CurrentHealth = m_MaxHealth;
+        m_EnemyHealthbar.ChangeEnemyHealthUI(CurrentHealth / m_MaxHealth);
     }
 
     public void TakeDamage(float damage, string towerType)
@@ -42,7 +47,7 @@ public class Enemy : PoolObj {
         if (IsAlive)
         {
             CurrentHealth -= damage;
-            EnemyHealthbar.ChangeEnemyHealthUI(CurrentHealth / MaxHealth);
+            m_EnemyHealthbar.ChangeEnemyHealthUI(CurrentHealth / m_MaxHealth);
 
             if (CurrentHealth <= 0)
             {
@@ -77,7 +82,8 @@ public class Enemy : PoolObj {
 
     public void Death(bool killedByPlayer)
     {
-        if(s_OnDestroyEnemy != null)
+        m_dopath.Kill();
+        if (s_OnDestroyEnemy != null)
         {
             s_OnDestroyEnemy(this);
         }
@@ -94,7 +100,6 @@ public class Enemy : PoolObj {
         {
             if (SkeletonAnims.AnimationName == "DEATH")
             {
-                m_dopath.Kill();
                 ReturnToPool();
             }
         };
