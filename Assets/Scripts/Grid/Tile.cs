@@ -93,6 +93,7 @@ public class Tile : MonoBehaviour
     private void Awake()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
+        HexGrid.s_OnSelectedTileChanged += OnSelectedTileChanged;
         s_OnSetTileClickableState += SetTileClickableState;
         CanClick = true;
     }
@@ -100,6 +101,7 @@ public class Tile : MonoBehaviour
     private void OnDestroy()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
+        HexGrid.s_OnSelectedTileChanged -= OnSelectedTileChanged;
         s_OnSetTileClickableState -= SetTileClickableState;
     }
 
@@ -133,6 +135,7 @@ public class Tile : MonoBehaviour
                     if (PopUpManager.s_Instance != null)
                     {
                         PopUpManager.s_Instance.ShowPopUp(PopUpNames.TOWER_MENU, transform.position);
+                        SetTileVisualsState(TileVisualState.TURRET_SELECTED);
                     }
                     if (m_MoveCameraToTileOnClick)
                         CameraMovement.s_Instance.ScrollCameraToPosition(this, 0.5f, true);
@@ -178,6 +181,15 @@ public class Tile : MonoBehaviour
             case TileVisualState.HEADQUARTERS:
                 SetLayer(TileVisualState.HEADQUARTERS, HexGrid.s_Instance.GridSize.y - PositionInGrid.y);
                 break;
+        }
+    }
+
+    private void OnSelectedTileChanged(Tile lastSelected, Tile currentSelected)
+    {
+        if(lastSelected == this)
+        {
+            if(lastSelected.CurrentState == TileState.OCCUPIED)
+                SetTileVisualsState(TileVisualState.TURRET_SPAWN);
         }
     }
 
