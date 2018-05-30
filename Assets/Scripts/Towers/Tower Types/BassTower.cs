@@ -82,8 +82,11 @@ public class BassTower : Tower
 
     private void ResetAnimation()
     {
-        m_VisualEffect.Init(EffectType.BassTurretFX_Disappear, false);
-        m_State = States.REMOVING;
+        if(m_State != States.IDLE && m_State != States.REMOVING)
+        {
+            m_VisualEffect.Init(EffectType.BassTurretFX_Disappear, false);
+            m_State = States.REMOVING;
+        }
     }
 
 

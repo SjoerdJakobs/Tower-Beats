@@ -4,7 +4,8 @@ using UnityEngine;
 using Spine.Unity;
 using DG.Tweening;
 
-public class Enemy : PoolObj {
+public class Enemy : PoolObj
+{
 
     public delegate void DestroyEvent(Enemy enemy);
     public static DestroyEvent s_OnDestroyEnemy;
@@ -26,13 +27,7 @@ public class Enemy : PoolObj {
 
     private void Awake()
     {
-<<<<<<< HEAD
         CurrentHealth = m_MaxHealth;
-=======
-        IsAlive = true;
-        MaxHealth = 20;
-        CurrentHealth = MaxHealth;
->>>>>>> V0.3 Enemy movement
         SkeletonAnims = GetComponent<SkeletonAnimation>();
         m_Renderer = GetComponent<MeshRenderer>();
         GameManager.s_OnGameStop += Death;
@@ -94,7 +89,7 @@ public class Enemy : PoolObj {
             s_OnDestroyEnemy(this);
         }
         IsAlive = false;
-        
+
         //If player kills the enemy
         if (killedByPlayer)
         {
@@ -113,7 +108,7 @@ public class Enemy : PoolObj {
 
     public void DamageObjective()
     {
-        Effects.s_Screenshake(0.2f,20);
+        Effects.s_Screenshake(0.2f, 20);
 
         if (PlayerData.s_Instance.Lives > 0)
         {
@@ -143,7 +138,7 @@ public class Enemy : PoolObj {
 
     public void TogglePause(bool pause)
     {
-        if(pause)
+        if (pause)
         {
             m_dopath.Pause();
         }
@@ -160,6 +155,6 @@ public class Enemy : PoolObj {
 
     void DeathRoutine()
     {
-        
+
     }
 }
