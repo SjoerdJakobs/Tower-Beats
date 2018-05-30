@@ -81,19 +81,15 @@ public class EnemySpawner : MonoBehaviour {
     {
         if (m_Wave < 3)
         {
+            //Only spawn regular enemies
             m_SpawnEnemies = StartCoroutine(SpawnEnemies(amountOfEnemies, interval, callback));
             m_Wave++;
-            Debug.Log("spawn normal wave");
         }
         else if(m_Wave >= 3)
         {
+            //Spawn a wave with a boss
             m_SpawnEnemies = StartCoroutine(SpawnBossWave(amountOfEnemies, interval, callback));
             m_Wave = 0; //resets wave count
-            Debug.Log("spawn boss wave");
-        }
-        else
-        {
-            Debug.Log("spawn no wave");
         }
     }
 
@@ -115,8 +111,10 @@ public class EnemySpawner : MonoBehaviour {
             }
         }
 
-        if(callback != null)
+        if (callback != null)
+        {
             callback();
+        }
     }
 
     private IEnumerator SpawnBossWave(int amountOfEnemies, float interval, Action callback = null)
@@ -134,7 +132,6 @@ public class EnemySpawner : MonoBehaviour {
         {
             callback();
         }
-
     }
 
     void RemoveEnemyFromList(Enemy enemy)
