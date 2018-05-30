@@ -104,9 +104,11 @@ public class MapEditor : MonoBehaviour
     {
         m_ShowHeadQuarters = !m_ShowHeadQuarters;
 
+        print(m_ShowHeadQuarters);
         int counter = 0;
         for (int i = m_Map.TilesData.Count - 1; i >= 0; i--)
         {
+            print(m_Map.TilesData[i].State);
             if(m_Map.TilesData[i].State == TileState.PATH)
             {
                 if (counter < 2)

@@ -28,22 +28,22 @@ public class VisualEffect : MonoBehaviour
         switch (type)
         {
             case EffectType.ENEMY_SPAWN:
-                m_Animation.AnimationName = "Spawn_Enemy FX";
+                m_Animation.state.SetAnimation(0,"Spawn_Enemy FX",loop);
                 break;
             case EffectType.ENEMY_HIT:
-                m_Animation.AnimationName = "Hit FX";
+                m_Animation.state.SetAnimation(0,"Hit FX",loop);
                 break;
             case EffectType.BassTurretFX_Spawn:
-                m_Animation.AnimationName = "BassTurretFX_Spawn";
+                m_Animation.state.SetAnimation(0, "BassTurretFX_Spawn",loop);
                 break;
             case EffectType.BassTurretFX_Attack:
                 m_Animation.state.SetAnimation(0, "BassTurretFX_Attack", loop);
                 break;
             case EffectType.BassTurretFX_Disappear:
-                m_Animation.AnimationName = "BassTurretFX_Disappear";
+                m_Animation.state.SetAnimation(0, "BassTurretFX_Disappear", loop);
                 break;
             case EffectType.TURRET_SPAWN:
-                m_Animation.AnimationName = "Spawn_Turret FX";
+                m_Animation.state.SetAnimation(0, "Spawn_Turret FX",loop);
                 break;
             case EffectType.EMPTY:
             default:

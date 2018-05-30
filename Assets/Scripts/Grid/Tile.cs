@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
+using System;
 
 #region Enums
 
@@ -76,8 +77,13 @@ public class Tile : MonoBehaviour
     private bool m_MoveCameraToTileOnClick = true;
     [SerializeField]private List<TileArt> m_TileArt = new List<TileArt>();
 
+    public delegate void SetClickableState(bool state);
+    public static SetClickableState s_OnSetTileClickableState;
+
     public delegate void TileClicked(Tile tile);
     public static TileClicked s_OnTileClicked;
+
+    public bool CanClick { get; set; }
 
     public Tower Tower { get; set; } //The tower on this tile
 
@@ -87,6 +93,14 @@ public class Tile : MonoBehaviour
     private void Awake()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
+        s_OnSetTileClickableState += SetTileClickableState;
+        CanClick = true;
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+        s_OnSetTileClickableState -= SetTileClickableState;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -99,6 +113,8 @@ public class Tile : MonoBehaviour
     {
         if (!EventSystem.current.IsPointerOverGameObject()) 
         {
+            if (!CanClick) return;
+
             if (s_OnTileClicked != null) s_OnTileClicked(this);
 
             switch (CurrentState)
@@ -135,11 +151,10 @@ public class Tile : MonoBehaviour
     /// <param name="state">State of the tile</param>
     public void SetTileVisualsState(TileVisualState state, bool visible = true, string filePath = null)
     {
-        if (state == TileVisualState.BASE)
-        {
-            ResetTileVisuals();
-            return;
-        }
+        ResetTileVisuals();
+
+        if (state == TileVisualState.BASE) return;
+
 
         SpriteRenderer renderer = GetRenderer(state);
 
@@ -149,10 +164,10 @@ public class Tile : MonoBehaviour
             return;
         }
 
+        renderer.enabled = true;
+
         if (!visible)
             renderer.color = new Color(renderer.color.r, renderer.color.g, renderer.color.b, 0);
-
-        renderer.enabled = true;
 
         switch (state)
         {
@@ -164,6 +179,11 @@ public class Tile : MonoBehaviour
                 SetLayer(TileVisualState.HEADQUARTERS, HexGrid.s_Instance.GridSize.y - PositionInGrid.y);
                 break;
         }
+    }
+
+    private void SetTileClickableState(bool state)
+    {
+        CanClick = state;
     }
 
     private void ResetTileVisuals()

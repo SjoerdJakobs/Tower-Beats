@@ -36,8 +36,10 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        Tile.s_OnSetTileClickableState(false);
         MapLoader.s_Instance.LoadMap("level1", true);
         StartCoroutine(ShowTutorial(() => {
+            Tile.s_OnSetTileClickableState(true);
             StartCoroutine(StartPreparationTime(() => {
                 print("start spawning enemies");
                 if (s_OnGameStart != null) s_OnGameStart();
@@ -48,7 +50,7 @@ public class GameManager : MonoBehaviour
 
     private void SpawnContinuousWaves()
     {
-        EnemySpawner.s_Instance.SpawnWave(10, 1.5f, () => { SpawnContinuousWaves(); });
+        EnemySpawner.s_Instance.SpawnWave(2, 1.5f, () => { SpawnContinuousWaves(); });
     }
 
     private IEnumerator StartPreparationTime(System.Action callback)
@@ -69,6 +71,7 @@ public class GameManager : MonoBehaviour
         CameraMovement.s_Instance.Zoom(1, 0, DG.Tweening.Ease.Linear);
         yield return new WaitUntil(() => MapLoader.s_Instance != null);
         yield return new WaitUntil(() => MapLoader.s_Instance.MapLoaded);
+        yield return new WaitForSeconds(0.5f);
         CameraMovement.s_Instance.Zoom(0, 1, DG.Tweening.Ease.InOutQuad);
         NotificationManager.s_Instance.EnqueueNotification("Your objective is to defend this tower in Hexagonia.", 2);
         CameraMovement.s_Instance.ScrollCameraToPosition(MapLoader.s_Instance.HeadQuartersPosition, 1, false);

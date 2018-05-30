@@ -267,6 +267,5 @@ public class SongManager : MonoBehaviour {
         Sceneloader.s_OnSceneLoaded -= StartPlaylist;
         ClearAudioClips.s_OnClearAudio -= ClearAudio;
         s_OnPlaylistComplete -= OnLevelComplete;
-        Debug.Log("disabled");
     }
 }

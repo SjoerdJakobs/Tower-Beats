@@ -21,7 +21,6 @@ public class Enemy : PoolObj {
 
     [SerializeField] private float m_MoveSpeed;
     [SerializeField] private float m_CoinsToGive;
-    [SerializeField] private int m_CoinsToSteal;
 
     private int m_CurrentNodeIndex;
 
@@ -47,7 +46,6 @@ public class Enemy : PoolObj {
 
             if (CurrentHealth <= 0)
             {
-                DOTween.Kill(10, true);
                 Death(true);
             }
             else if (CurrentHealth > 0)
@@ -109,8 +107,6 @@ public class Enemy : PoolObj {
         if (PlayerData.s_Instance.Lives > 0)
         {
             PlayerData.s_Instance.ChangeLivesAmount(-1);
-            PlayerData.s_Instance.ChangeCoinAmount(-m_CoinsToSteal);
-
 
             m_dopath.Kill();
 
