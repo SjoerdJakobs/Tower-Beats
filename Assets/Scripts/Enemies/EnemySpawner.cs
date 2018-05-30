@@ -112,6 +112,7 @@ public class EnemySpawner : MonoBehaviour {
 
     private IEnumerator SpawnEnemies(int amountOfEnemies, float interval, Action callback = null)
     {
+        yield return new WaitForSeconds(2);
         for (int i = 0; i < amountOfEnemies; i++)
         {
             SpawnEnemy(false);
@@ -133,6 +134,7 @@ public class EnemySpawner : MonoBehaviour {
 
     private IEnumerator SpawnBossWave(int amountOfEnemies, float interval, Action callback = null)
     {
+        yield return new WaitForSeconds(2);
         for (int i = 0; i < amountOfEnemies; i++)
         {
             SpawnEnemy(false);
