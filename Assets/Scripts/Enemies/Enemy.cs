@@ -26,7 +26,13 @@ public class Enemy : PoolObj {
 
     private void Awake()
     {
+<<<<<<< HEAD
         CurrentHealth = m_MaxHealth;
+=======
+        IsAlive = true;
+        MaxHealth = 20;
+        CurrentHealth = MaxHealth;
+>>>>>>> V0.3 Enemy movement
         SkeletonAnims = GetComponent<SkeletonAnimation>();
         m_Renderer = GetComponent<MeshRenderer>();
         GameManager.s_OnGameStop += Death;
