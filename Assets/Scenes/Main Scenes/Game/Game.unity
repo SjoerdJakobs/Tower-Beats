@@ -1679,12 +1679,12 @@ Prefab:
     - target: {fileID: 114701671668187320, guid: f2907c649997e88439857aff58027a77,
         type: 2}
       propertyPath: m_UseKeyInput
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114701671668187320, guid: f2907c649997e88439857aff58027a77,
         type: 2}
       propertyPath: m_UseMouseInput
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114641646844091530, guid: f2907c649997e88439857aff58027a77,
         type: 2}
