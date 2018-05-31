@@ -144,6 +144,11 @@ public class Tower : MonoBehaviour
         m_ReadyToAttack = true;
     }
 
+    public virtual void Sell()
+    {
+        Destroy(gameObject);
+    }
+
     private void OnDestroy()
     {
         Enemy.s_OnDestroyEnemy -= RemoveEnemyFromList;

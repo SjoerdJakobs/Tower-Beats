@@ -69,6 +69,6 @@ public class TowerShopPopUp : PopUp {
 
         int orderInLayer = (HexGrid.s_Instance.GridSize.y - HexGrid.s_Instance.SelectedTile.Y);
 
-        newTower.GetComponent<SpriteRenderer>().sortingOrder = orderInLayer;
+        newTower.GetComponent<Renderer>().sortingOrder = orderInLayer;
     }
 }

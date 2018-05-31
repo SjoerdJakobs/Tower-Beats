@@ -26,6 +26,9 @@ public class HexGrid : MonoBehaviour
     public static Action s_OnHexGridCreated;
     public static Action s_OnHexGridDestroyed;
 
+    public delegate void SelectedTileChanged(Tile lastSelected, Tile currentSelected);
+    public static SelectedTileChanged s_OnSelectedTileChanged;
+
     [Header("Prefab")]
     [SerializeField] private Tile m_TilePrefab;
     [Space]
@@ -46,6 +49,7 @@ public class HexGrid : MonoBehaviour
         get { return m_Grid; }
         set { m_Grid = value; }
     }
+    private Tile m_LastSelectedTile;
     public Tile SelectedTile { get; set; }
     public bool GridCreated { get; private set; }
 
@@ -61,7 +65,7 @@ public class HexGrid : MonoBehaviour
 
     private void OnDestroy()
     {
-        Tile.s_OnTileClicked -= delegate (Tile tile) { SelectedTile = tile; };
+        Tile.s_OnTileClicked -= delegate (Tile tile) { m_LastSelectedTile = SelectedTile; SelectedTile = tile; if (s_OnSelectedTileChanged != null) s_OnSelectedTileChanged(m_LastSelectedTile, tile); };
     }
 
     #endregion
@@ -82,7 +86,7 @@ public class HexGrid : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        Tile.s_OnTileClicked += delegate (Tile tile) { SelectedTile = tile; };
+        Tile.s_OnTileClicked += delegate (Tile tile) { m_LastSelectedTile = SelectedTile; SelectedTile = tile; if (s_OnSelectedTileChanged != null) s_OnSelectedTileChanged(m_LastSelectedTile, tile); };
         CreateGrid();
     }
 
