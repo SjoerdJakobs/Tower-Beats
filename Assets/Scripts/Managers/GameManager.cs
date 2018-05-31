@@ -85,8 +85,10 @@ public class GameManager : MonoBehaviour
         NotificationManager.s_Instance.EnqueueNotification("You can place towers by clicking on a white tile",2);
         CameraMovement.s_Instance.ScrollCameraToPosition(HexGrid.s_Instance.GetTurretSpawnpoints()[0],1,false);
         yield return new WaitForSeconds(2.5f);
-        NotificationManager.s_Instance.EnqueueNotification("Towers react to the music, each tower responds to a different instrument", 2);
-        yield return new WaitForSeconds(2.5f);
+        NotificationManager.s_Instance.EnqueueNotification("Towers react to the music, each tower responds to a different instrument.", 5);
+        yield return new WaitForSeconds(5f);
+        NotificationManager.s_Instance.EnqueueNotification("In the top left corner you can see indicators for when the towers will shoot.",5);
+        yield return new WaitForSeconds(5f);
         CameraMovement.s_Instance.CanMoveCamera = true;
         if (callback != null) callback();
     }

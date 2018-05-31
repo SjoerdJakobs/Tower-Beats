@@ -1617,7 +1617,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: We are number one
+  m_Text: People say
 --- !u!222 &1316499904
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1882,7 +1882,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Playlist:
-  - Songname: We Are Number One
+  - Songname: People Say
   - Songname: Self Esteem
   - Songname: Through The Fire And Flames
 --- !u!114 &1437353308
