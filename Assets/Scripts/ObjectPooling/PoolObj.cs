@@ -10,11 +10,6 @@ public class PoolObj : MonoBehaviour
     {
         if (Pool != null && this != null)
         {
-            if (GenericObj is Enemy)
-            {
-                Enemy testEnemy = GenericObj as Enemy;
-                Debug.Log("return to pool" + testEnemy.IsAlive);
-            }
             Pool.AddObjectToPool(this);
         }
         else if(this != null)
