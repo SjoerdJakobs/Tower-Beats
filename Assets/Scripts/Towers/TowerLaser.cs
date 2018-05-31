@@ -47,7 +47,7 @@ public class TowerLaser : MonoBehaviour {
     {
         m_Target = enemyTarget.transform;
         m_IntervalValue = interval;
-        print(interval);
+        //print(interval);
     }
 
     public void TogglePause(bool pause)

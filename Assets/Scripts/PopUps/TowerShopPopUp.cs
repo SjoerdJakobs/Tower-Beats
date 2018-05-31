@@ -54,7 +54,7 @@ public class TowerShopPopUp : PopUp {
                     break;
             }
             HexGrid.s_Instance.SelectedTile.CurrentState = TileState.OCCUPIED;
-            Debug.Log(HexGrid.s_Instance.SelectedTile.CurrentState);
+            //Debug.Log(HexGrid.s_Instance.SelectedTile.CurrentState);
         }
     }
 

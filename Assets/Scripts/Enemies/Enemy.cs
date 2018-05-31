@@ -14,7 +14,7 @@ public class Enemy : PoolObj {
     public bool IsAlive { get; set; }
 
     public SkeletonAnimation SkeletonAnims { get; set; }
-    private Tween m_dopath;
+    //private Tween m_dopath;
     private AnimationState m_Anim;
     private EnemyHealthbar m_EnemyHealthbar;
     private MeshRenderer m_Renderer;
@@ -82,7 +82,7 @@ public class Enemy : PoolObj {
 
     public void Death(bool killedByPlayer)
     {
-        m_dopath.Kill();
+        DOTween.Kill(this);
         if (s_OnDestroyEnemy != null)
         {
             s_OnDestroyEnemy(this);
@@ -113,7 +113,7 @@ public class Enemy : PoolObj {
         {
             PlayerData.s_Instance.ChangeLivesAmount(-1);
 
-            m_dopath.Kill();
+            DOTween.Kill(this);
 
             ReturnToPool();
         }
@@ -123,9 +123,10 @@ public class Enemy : PoolObj {
     {
         if (IsAlive)
         {
+            DOTween.Kill(this);
             transform.position = startPos;
             Vector3[] pathArray = MapLoader.s_Instance.GetWaypointsFromPath();
-            m_dopath = transform.DOPath(pathArray, pathArray.Length / m_MoveSpeed, PathType.CatmullRom).SetEase(Ease.Linear).OnComplete(() => DamageObjective()).OnWaypointChange(UpdateEnemyLayering);
+            transform.DOPath(pathArray, pathArray.Length / m_MoveSpeed, PathType.CatmullRom).SetEase(Ease.Linear).SetId(this).OnComplete(() => DamageObjective()).OnWaypointChange(UpdateEnemyLayering);
         }
     }
 
@@ -139,11 +140,11 @@ public class Enemy : PoolObj {
     {
         if(pause)
         {
-            m_dopath.Pause();
+            DOTween.Pause(this);
         }
         else
         {
-            m_dopath.Play();
+            DOTween.Play(this);
         }
     }
 

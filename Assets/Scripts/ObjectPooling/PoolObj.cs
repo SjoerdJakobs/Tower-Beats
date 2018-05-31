@@ -19,22 +19,6 @@ public class PoolObj : MonoBehaviour
         }
     }
 }
-/*
-public struct PoolObjDataStruct
-{
-    public ObjectPool Pool;
-    public GameObject GameObj;
-    public Object GenericObj;
-
-    
-
-    public PoolObjDataStruct(ObjectPool pool = null, GameObject gameObj = null, Object genericObj = null)
-    {
-        Pool = pool;
-        GameObj = gameObj;
-        GenericObj = genericObj;
-    }
-}*/
 
 
 public enum PooledSubObject

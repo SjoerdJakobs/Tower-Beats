@@ -37,11 +37,11 @@ public class EnemySpawner : MonoBehaviour {
     {
         for (int i = 0; i < m_EnemyPrefabs.Count; i++)
         {
-            EnemyPools.Add(ObjectPoolManager.s_Instance.GetObjectPool(m_EnemyPrefabs[i].gameObject, 1, 1, int.MaxValue, int.MaxValue, false, PooledSubObject.Enemy));
+            EnemyPools.Add(ObjectPoolManager.s_Instance.GetObjectPool(m_EnemyPrefabs[i].gameObject, 5, 5, int.MaxValue, int.MaxValue, false, PooledSubObject.Enemy));
         }
         for (int i = 0; i < m_Bosses.Count; i++)
         {
-            BossPools.Add(ObjectPoolManager.s_Instance.GetObjectPool(m_Bosses[i].gameObject, 1, 1, int.MaxValue, int.MaxValue, false, PooledSubObject.Enemy));
+            BossPools.Add(ObjectPoolManager.s_Instance.GetObjectPool(m_Bosses[i].gameObject, 5, 5, int.MaxValue, int.MaxValue, false, PooledSubObject.Enemy));
         }
     }
 
@@ -83,17 +83,17 @@ public class EnemySpawner : MonoBehaviour {
         {
             m_SpawnEnemies = StartCoroutine(SpawnEnemies(amountOfEnemies, interval, callback));
             m_Wave++;
-            Debug.Log("spawn normal wave");
+            //Debug.Log("spawn normal wave");
         }
         else if(m_Wave >= 3)
         {
             m_SpawnEnemies = StartCoroutine(SpawnBossWave(amountOfEnemies, interval, callback));
             m_Wave = 0; //resets wave count
-            Debug.Log("spawn boss wave");
+            //Debug.Log("spawn boss wave");
         }
         else
         {
-            Debug.Log("spawn no wave");
+            //Debug.Log("spawn no wave");
         }
     }
 

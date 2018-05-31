@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(ShowTutorial(() => {
             Tile.s_OnSetTileClickableState(true);
             StartCoroutine(StartPreparationTime(() => {
-                print("start spawning enemies");
+                //print("start spawning enemies");
                 if (s_OnGameStart != null) s_OnGameStart();
                 SpawnContinuousWaves();
             }));

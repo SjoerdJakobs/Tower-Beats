@@ -66,7 +66,7 @@ public class MapLoader : MonoBehaviour
         m_Map = m_MapsData.MapsData.Find(x => x.Name.ToUpper() == mapName.ToUpper());
 
         StartCoroutine(UpdateVisuals(animate, () => {
-            Debug.Log("<color=orange>[MapLoader]</color> Map (" + mapName + ") loaded succesfully. It took " + (Time.time - startLoadTime) + " second(s) to load the map.");
+            //Debug.Log("<color=orange>[MapLoader]</color> Map (" + mapName + ") loaded succesfully. It took " + (Time.time - startLoadTime) + " second(s) to load the map.");
             if(!animate)
                 MapLoaded = true;
         }));
