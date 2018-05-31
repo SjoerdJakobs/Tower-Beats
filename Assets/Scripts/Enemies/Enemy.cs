@@ -112,7 +112,7 @@ public class Enemy : PoolObj
             PlayerData.s_Instance.ChangeLivesAmount(-1);
 
             DOTween.Kill(this);
-
+            ReturnToPool();
         }
     }
 

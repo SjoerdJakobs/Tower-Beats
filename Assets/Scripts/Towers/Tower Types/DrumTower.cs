@@ -42,6 +42,13 @@ public class DrumTower : Tower
         if (m_ReadyToAttack && m_Target != null)
         {
             m_towerProjectileData = m_pool.GetFromPool().GenericObj as TowerProjectile;
+
+            if(m_towerProjectileData == null)
+            {
+                print("m_towerProjectileData was null");
+                return;
+            }
+
             Transform selectedMuzzle;
 
             if (m_ShotLastWithLeft)
