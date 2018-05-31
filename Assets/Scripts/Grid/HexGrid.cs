@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 #region Enums
@@ -276,6 +277,24 @@ public class HexGrid : MonoBehaviour
                 m_Grid[i, j].SetTileVisualsState(TileVisualState.BASE);
             }
         }
+    }
+
+    /// <summary>
+    /// Gets all the tiles on which you can build a turret
+    /// </summary>
+    /// <returns></returns>
+    public List<Tile> GetTurretSpawnpoints()
+    {
+        List<Tile> temp = new List<Tile>();
+        for (int i = 0; i < m_Grid.GetLength(0); i++)
+        {
+            for (int j = 0; j < m_Grid.GetLength(1); j++)
+            {
+                if(m_Grid[i, j].CurrentState == TileState.TURRET_SPAWN)
+                    temp.Add(m_Grid[i, j]);
+            }
+        }
+        return temp;
     }
 
     #endregion

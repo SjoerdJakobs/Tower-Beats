@@ -67,6 +67,9 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator ShowTutorial(System.Action callback)
     {
+        yield return new WaitUntil(() =>HexGrid.s_Instance != null);
+        yield return new WaitUntil(() => HexGrid.s_Instance.GridCreated == true);
+
         CameraMovement.s_Instance.ScrollCameraToPosition(HexGrid.s_Instance.GetMiddlepointTile(), 0f, false);
         CameraMovement.s_Instance.Zoom(1, 0, DG.Tweening.Ease.Linear);
         yield return new WaitUntil(() => MapLoader.s_Instance != null);
@@ -76,9 +79,16 @@ public class GameManager : MonoBehaviour
         NotificationManager.s_Instance.EnqueueNotification("Your objective is to defend this tower in Hexagonia.", 2);
         CameraMovement.s_Instance.ScrollCameraToPosition(MapLoader.s_Instance.HeadQuartersPosition, 1, false);
         yield return new WaitForSeconds(2.5f);
-        NotificationManager.s_Instance.EnqueueNotification("Enemies will spawn from here", 2);
+        NotificationManager.s_Instance.EnqueueNotification("Enemies will spawn from this red tile", 2);
         CameraMovement.s_Instance.ScrollCameraToPosition(MapLoader.s_Instance.Path[0], 1, false);
         yield return new WaitForSeconds(2.5f);
+        NotificationManager.s_Instance.EnqueueNotification("You can place towers by clicking on a white tile",2);
+        CameraMovement.s_Instance.ScrollCameraToPosition(HexGrid.s_Instance.GetTurretSpawnpoints()[0],1,false);
+        yield return new WaitForSeconds(2.5f);
+        NotificationManager.s_Instance.EnqueueNotification("Towers react to the music, each tower responds to a different instrument.", 5);
+        yield return new WaitForSeconds(5f);
+        NotificationManager.s_Instance.EnqueueNotification("In the top left corner you can see indicators for when the towers will shoot.",5);
+        yield return new WaitForSeconds(5f);
         CameraMovement.s_Instance.CanMoveCamera = true;
         if (callback != null) callback();
     }

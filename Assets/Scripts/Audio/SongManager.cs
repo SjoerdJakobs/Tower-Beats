@@ -59,7 +59,7 @@ public class SongManager : MonoBehaviour {
             string miscTracks = "Audio/" + songName + "/MiscTracks";
 
             m_Bass = Resources.Load<AudioClip>(songPath + " Bass");
-            m_Drum = Resources.Load<AudioClip>(songPath + " Drum");
+            m_Drum = Resources.Load<AudioClip>(songPath + " Drums");
             m_Lead = Resources.Load<AudioClip>(songPath + " Lead");
 
             //ResourceRequest remainingClips = Resources.LoadAsync(miscTracks);
