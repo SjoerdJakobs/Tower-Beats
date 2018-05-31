@@ -15,14 +15,12 @@ public class BassTower : Tower
 
     [SerializeField]private States m_State = States.IDLE;
     private TowerProjectile m_towerProjectileData;
-    private ObjectPool m_pool;
 
     [SerializeField] private VisualEffect m_VisualEffect;
 
     public override void Awake()
     {
         base.Awake();
-        m_pool = ObjectPoolManager.s_Instance.GetObjectPool(attackProjectile, 20, 5, 5, 20, true);
         GetRMS.s_BassCue += Attack;
         GetRMS.s_OnBassLost += ResetAnimation;
         VisualEffect.s_OnEffectCompleted += EffectCompleted;
