@@ -4,6 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.PostProcessing;
 
+//Used to identify the type of instrument
+public enum InstrumentGroup
+{
+    Bass,
+    Drum,
+    Lead
+}
+
 public class GetRMS : MonoBehaviour {
 
     public delegate void AudioCueEvent();
@@ -18,24 +26,9 @@ public class GetRMS : MonoBehaviour {
 
     private float m_Timer;
 
-    //Used to identify the type of instrument
-    public enum InstrumentGroup
-    {
-        Bass,
-        Drum,
-        Synth,
-        Vocal
-    }
-
     public InstrumentGroup Instrument;
 
-    private Slider m_Slider;
-
-    public Slider Slider
-    {
-        get { return m_Slider; }
-        set { m_Slider = value; }
-    }
+    public RMSSlider Slider { get; set; }
 
     private int qSamples = 1024;  // array size
     //private float refValue = 0.1f; // RMS value for 0 dB
@@ -48,7 +41,7 @@ public class GetRMS : MonoBehaviour {
     private void OnEnable()
     {
         Sceneloader.s_OnSceneLoaded += SetSlider;
-        if (Instrument == InstrumentGroup.Synth)
+        if (Instrument == InstrumentGroup.Lead)
         {
             Sceneloader.s_OnSceneLoaded += GetPostPostProcessingBehaviour;
         }
@@ -90,7 +83,7 @@ public class GetRMS : MonoBehaviour {
                     if(s_DrumCue != null)
                         s_DrumCue();
                     break;
-                case InstrumentGroup.Synth:
+                case InstrumentGroup.Lead:
                     //Debug.Log("Synth cue");
                     if (s_LeadCue != null)
                         s_LeadCue();
@@ -114,16 +107,17 @@ public class GetRMS : MonoBehaviour {
 
     void SetSlider()
     {
-        m_Slider = GameObject.Find(Instrument.ToString() + "Slider").GetComponent<Slider>();
+        Slider = FindObjectOfType<RMSSliders>().GetSlider(Instrument);
+        Slider.SetThreshold(0.06f * 6f);
     }
 
     void Update()
     {
         GetVolume();
         //transform.localScale.y = volume * rmsValue;
-        if(m_Slider != null)
-            m_Slider.value = (rmsValue * 6);
-        if(m_PostProcessingProfile != null && Instrument == InstrumentGroup.Synth)
+        if (Slider != null)
+            Slider.SetFill((rmsValue * 6));
+        if(m_PostProcessingProfile != null && Instrument == InstrumentGroup.Lead)
         {
             m_BloomIntensity = Mathf.Clamp(rmsValue * 60, 3.3f, 5.5f);
             //m_BloomIntensity = rmsValue * 60;
