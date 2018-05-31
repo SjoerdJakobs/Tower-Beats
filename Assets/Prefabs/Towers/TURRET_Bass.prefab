@@ -67,7 +67,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1282822669313948}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.586975, y: 10.289777, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4677174359044076}
@@ -169,6 +169,7 @@ MonoBehaviour:
   m_EnemiesInRange: []
   attackProjectile: {fileID: 1172778507945960, guid: 04e3ee5bccfd5de439910a2b7e5f621e,
     type: 2}
+  m_State: 3
   m_VisualEffect: {fileID: 114281461604760504}
 --- !u!212 &212732730437248908
 SpriteRenderer:
