@@ -513,7 +513,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_EnemyPrefabs:
   - {fileID: 1350565606244240, guid: 6070b2b6ce613c74ca956f892c914407, type: 2}
-  - {fileID: 1547730397164050, guid: 133f72803a402fd46b9ecfc677d7b507, type: 2}
   m_Bosses:
   - {fileID: 1547730397164050, guid: 133f72803a402fd46b9ecfc677d7b507, type: 2}
   SpawnedEnemies: []

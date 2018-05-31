@@ -52,7 +52,7 @@ public class Enemy : PoolObj
 
             if (CurrentHealth <= 0)
             {
-                Death(true);
+                StartCoroutine(Death(true));
             }
             else if (CurrentHealth > 0)
             {
@@ -78,10 +78,10 @@ public class Enemy : PoolObj
     /// </summary>
     public void Death()
     {
-        Death(false);
+        StartCoroutine(Death(false));
     }
 
-    public void Death(bool killedByPlayer)
+    public IEnumerator Death(bool killedByPlayer)
     {
         DOTween.Kill(this);
         if (s_OnDestroyEnemy != null)
@@ -97,13 +97,10 @@ public class Enemy : PoolObj
             PlayerData.s_Instance.ChangeCoinAmount(m_CoinsToGive);
         }
         SkeletonAnims.AnimationState.SetAnimation(0, "DEATH", false);
-        SkeletonAnims.AnimationState.Complete += delegate
-        {
-            if (SkeletonAnims.AnimationName == "DEATH")
-            {
-                ReturnToPool();
-            }
-        };
+
+        yield return new WaitForSeconds(1.7f);
+
+        ReturnToPool();
     }
 
     public void DamageObjective()
@@ -116,7 +113,6 @@ public class Enemy : PoolObj
 
             DOTween.Kill(this);
 
-            ReturnToPool();
         }
     }
 

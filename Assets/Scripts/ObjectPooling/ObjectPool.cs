@@ -23,6 +23,10 @@ public class ObjectPool : MonoBehaviour
 
     public void Init(PooledSubObject GenericObj, int PoolStartSize = 20, int IncreaseIncrement = 5, int ManagerTicksBeforeClean = 5, int CleanThreshold = 20)
     {
+        //temp
+        m_ObjectsAliveInPool = 0;
+
+
         m_objEnum = GenericObj;
         PoolObj TempData = ObjectPrefab.GetComponent<PoolObj>();
         TempData.Pool = this;
@@ -30,8 +34,6 @@ public class ObjectPool : MonoBehaviour
         this.m_IncreaseIncrement = IncreaseIncrement;
         this.m_anagerTicksBeforeClean = ManagerTicksBeforeClean;
 
-        //temp
-        m_ObjectsAliveInPool = 0;
         //m_DeadList = new Queue<GameObject>();
         m_DeadList = new Queue<PoolObj>();
 
@@ -140,7 +142,7 @@ public class ObjectPool : MonoBehaviour
                     Destroy(returnObject.gameObject);
                     m_ObjectsInPool--;
                 }
-                m_CurrentTick = 5;
+                m_CurrentTick = m_anagerTicksBeforeClean;
             }
             else
             {
@@ -152,8 +154,7 @@ public class ObjectPool : MonoBehaviour
 
     public void AddObjectToPool(PoolObj obj)
     {
-        MonoBehaviour addObj = obj as MonoBehaviour;
-        addObj.gameObject.SetActive(false);
+        obj.gameObject.SetActive(false);
         m_DeadList.Enqueue(obj);
         m_ObjectsAliveInPool--;
     }
