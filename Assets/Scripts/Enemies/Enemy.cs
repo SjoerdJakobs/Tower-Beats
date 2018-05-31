@@ -30,11 +30,15 @@ public class Enemy : PoolObj
         CurrentHealth = m_MaxHealth;
         SkeletonAnims = GetComponent<SkeletonAnimation>();
         m_Renderer = GetComponent<MeshRenderer>();
-        GameManager.s_OnGameStop += Death;
 
         PauseCheck.Pause += TogglePause;
 
         m_EnemyHealthbar = GetComponent<EnemyHealthbar>();
+    }
+
+    private void OnEnable()
+    {
+        GameManager.s_OnGameStop += Death;
     }
 
     public void RestoreHealth()
@@ -145,7 +149,7 @@ public class Enemy : PoolObj
         }
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         GameManager.s_OnGameStop -= Death;
     }
