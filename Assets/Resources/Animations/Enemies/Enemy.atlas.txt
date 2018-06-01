@@ -1,0 +1,818 @@
+
+Enemy.png
+size: 6575,702
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+BitTrail/BitTrail0001
+  rotate: false
+  xy: 652, 2
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+BitTrail/BitTrail0002
+  rotate: false
+  xy: 952, 2
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+BitTrail/BitTrail0003
+  rotate: false
+  xy: 1252, 2
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+BitTrail/BitTrail0004
+  rotate: false
+  xy: 1552, 2
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+BitTrail/BitTrail0005
+  rotate: false
+  xy: 1852, 2
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+BitTrail/BitTrail0006
+  rotate: false
+  xy: 2152, 2
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+BitTrail/BitTrail0007
+  rotate: false
+  xy: 2452, 2
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+BitTrail/BitTrail0008
+  rotate: false
+  xy: 2750, 402
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+BitTrail/BitTrail0009
+  rotate: false
+  xy: 2752, 2
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+BitTrail/BitTrail0010
+  rotate: false
+  xy: 3050, 402
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+BitTrail/BitTrail0011
+  rotate: false
+  xy: 3052, 6
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+BitTrail/BitTrail0012
+  rotate: false
+  xy: 3350, 402
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+BitTrail/BitTrail0013
+  rotate: false
+  xy: 3352, 21
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+BitTrail/BitTrail0014
+  rotate: false
+  xy: 3650, 402
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+BitTrail/BitTrail0015
+  rotate: false
+  xy: 3652, 31
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+BitTrail/BitTrail0016
+  rotate: false
+  xy: 3950, 402
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+BitTrail/BitTrail0017
+  rotate: false
+  xy: 3952, 41
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+BitTrail/BitTrail0018
+  rotate: false
+  xy: 4252, 41
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+BitTrail/BitTrail0019
+  rotate: false
+  xy: 4250, 402
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+BitTrail/BitTrail0020
+  rotate: false
+  xy: 4550, 402
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+BitTrail/BitTrail0021
+  rotate: false
+  xy: 4552, 45
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+Distort1
+  rotate: false
+  xy: 0, 12
+  size: 326, 290
+  orig: 326, 290
+  offset: 0, 0
+  index: -1
+Distort2
+  rotate: false
+  xy: 326, 12
+  size: 326, 290
+  orig: 326, 290
+  offset: 0, 0
+  index: -1
+Enemy2/AngryScreen
+  rotate: false
+  xy: 3214, 318
+  size: 136, 84
+  orig: 136, 84
+  offset: 0, 0
+  index: -1
+Enemy2/Electric10001
+  rotate: false
+  xy: 4850, 402
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+Enemy2/Electric10002
+  rotate: false
+  xy: 4852, 49
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+Enemy2/Electric10003
+  rotate: false
+  xy: 4852, 49
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+Enemy2/Electric10004
+  rotate: false
+  xy: 5150, 402
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+Enemy2/Electric10005
+  rotate: false
+  xy: 5152, 102
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+Enemy2/Electric10010
+  rotate: false
+  xy: 5152, 102
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+Enemy2/Electric10006
+  rotate: false
+  xy: 5450, 402
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+Enemy2/Electric10007
+  rotate: false
+  xy: 5452, 102
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+Enemy2/Electric10008
+  rotate: false
+  xy: 5750, 402
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+Enemy2/Electric10009
+  rotate: false
+  xy: 5750, 402
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+Enemy2/Electric10011
+  rotate: false
+  xy: 5752, 102
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+Enemy2/Electric10012
+  rotate: false
+  xy: 6050, 402
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+Enemy2/Electric10013
+  rotate: false
+  xy: 6050, 402
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+Enemy2/Finger_1
+  rotate: false
+  xy: 4045, 349
+  size: 74, 53
+  orig: 74, 53
+  offset: 0, 0
+  index: -1
+Enemy2/Finger_1_silhouette
+  rotate: false
+  xy: 4302, 353
+  size: 69, 49
+  orig: 69, 49
+  offset: 0, 0
+  index: -1
+Enemy2/Finger_2
+  rotate: false
+  xy: 4542, 345
+  size: 55, 57
+  orig: 55, 57
+  offset: 0, 0
+  index: -1
+Enemy2/Finger_2_silhouette
+  rotate: false
+  xy: 4708, 350
+  size: 50, 52
+  orig: 50, 52
+  offset: 0, 0
+  index: -1
+Enemy2/Finger_3
+  rotate: false
+  xy: 4812, 349
+  size: 41, 53
+  orig: 41, 53
+  offset: 0, 0
+  index: -1
+Enemy2/Finger_3_silhouette
+  rotate: false
+  xy: 5033, 3
+  size: 36, 46
+  orig: 36, 46
+  offset: 0, 0
+  index: -1
+Enemy2/L_Antenne
+  rotate: false
+  xy: 6350, 442
+  size: 93, 135
+  orig: 93, 135
+  offset: 0, 0
+  index: -1
+Enemy2/L_Antenne_silhouette
+  rotate: false
+  xy: 6487, 209
+  size: 88, 129
+  orig: 88, 129
+  offset: 0, 0
+  index: -1
+Enemy2/L_Elbow
+  rotate: false
+  xy: 4207, 9
+  size: 33, 32
+  orig: 33, 32
+  offset: 0, 0
+  index: -1
+Enemy2/L_Elbow_silhouette
+  rotate: false
+  xy: 4240, 9
+  size: 33, 32
+  orig: 33, 32
+  offset: 0, 0
+  index: -1
+Enemy2/L_FootBack
+  rotate: false
+  xy: 4064, 3
+  size: 59, 38
+  orig: 59, 38
+  offset: 0, 0
+  index: -1
+Enemy2/L_FootBack_silhouette
+  rotate: false
+  xy: 4123, 3
+  size: 58, 38
+  orig: 58, 38
+  offset: 0, 0
+  index: -1
+Enemy2/L_FootFront
+  rotate: false
+  xy: 3652, 8
+  size: 44, 23
+  orig: 44, 23
+  offset: 0, 0
+  index: -1
+Enemy2/L_FootFront_silhouette
+  rotate: false
+  xy: 3696, 8
+  size: 44, 23
+  orig: 44, 23
+  offset: 0, 0
+  index: -1
+Enemy2/L_LegJoint
+  rotate: false
+  xy: 4119, 341
+  size: 61, 61
+  orig: 61, 61
+  offset: 0, 0
+  index: -1
+Enemy2/L_LegJoint_silhouette
+  rotate: false
+  xy: 4371, 345
+  size: 57, 57
+  orig: 57, 57
+  offset: 0, 0
+  index: -1
+Enemy2/L_Lower_Arm
+  rotate: false
+  xy: 6505, 577
+  size: 55, 125
+  orig: 55, 125
+  offset: 0, 0
+  index: -1
+Enemy2/L_Lower_Arm_silhouette
+  rotate: false
+  xy: 6443, 459
+  size: 52, 122
+  orig: 52, 122
+  offset: 0, 0
+  index: -1
+Enemy2/L_Lower_Leg
+  rotate: false
+  xy: 3620, 331
+  size: 131, 71
+  orig: 131, 71
+  offset: 0, 0
+  index: -1
+Enemy2/L_Lower_Leg_silhouette
+  rotate: false
+  xy: 3751, 333
+  size: 128, 69
+  orig: 128, 69
+  offset: 0, 0
+  index: -1
+Enemy2/L_Upper_Arm
+  rotate: false
+  xy: 3350, 321
+  size: 136, 81
+  orig: 136, 81
+  offset: 0, 0
+  index: -1
+Enemy2/L_Upper_Arm_silhouette
+  rotate: false
+  xy: 3486, 323
+  size: 134, 79
+  orig: 134, 79
+  offset: 0, 0
+  index: -1
+Enemy2/L_Upper_Leg
+  rotate: false
+  xy: 6228, 6
+  size: 76, 63
+  orig: 76, 63
+  offset: 0, 0
+  index: -1
+Enemy2/L_Upper_Leg_silhouette
+  rotate: false
+  xy: 6304, 6
+  size: 76, 63
+  orig: 76, 63
+  offset: 0, 0
+  index: -1
+Enemy2/Nob
+  rotate: false
+  xy: 6015, 14
+  size: 67, 88
+  orig: 67, 88
+  offset: 0, 0
+  index: -1
+Enemy2/Nob_silhouette
+  rotate: false
+  xy: 6198, 151
+  size: 62, 82
+  orig: 62, 82
+  offset: 0, 0
+  index: -1
+Enemy2/Pelvis
+  rotate: false
+  xy: 2908, 306
+  size: 157, 96
+  orig: 157, 96
+  offset: 0, 0
+  index: -1
+Enemy2/Pelvis_silhouette
+  rotate: false
+  xy: 3065, 311
+  size: 149, 91
+  orig: 149, 91
+  offset: 0, 0
+  index: -1
+Enemy2/R_Antenne
+  rotate: false
+  xy: 6284, 267
+  size: 94, 135
+  orig: 94, 135
+  offset: 0, 0
+  index: -1
+Enemy2/R_Antenne_silhouette
+  rotate: false
+  xy: 6487, 79
+  size: 87, 130
+  orig: 87, 130
+  offset: 0, 0
+  index: -1
+Enemy2/R_Elbow
+  rotate: false
+  xy: 4428, 345
+  size: 57, 57
+  orig: 57, 57
+  offset: 0, 0
+  index: -1
+Enemy2/R_Elbow_silhouette
+  rotate: false
+  xy: 4656, 349
+  size: 52, 53
+  orig: 52, 53
+  offset: 0, 0
+  index: -1
+Enemy2/R_FootBack
+  rotate: false
+  xy: 3952, 0
+  size: 56, 41
+  orig: 56, 41
+  offset: 0, 0
+  index: -1
+Enemy2/R_FootBack_silhouette
+  rotate: false
+  xy: 4008, 0
+  size: 56, 41
+  orig: 56, 41
+  offset: 0, 0
+  index: -1
+Enemy2/R_FootFront
+  rotate: false
+  xy: 3740, 9
+  size: 45, 22
+  orig: 45, 22
+  offset: 0, 0
+  index: -1
+Enemy2/R_FootFront_silhouette
+  rotate: false
+  xy: 3785, 9
+  size: 43, 22
+  orig: 43, 22
+  offset: 0, 0
+  index: -1
+Enemy2/R_LegJoint
+  rotate: false
+  xy: 4180, 341
+  size: 61, 61
+  orig: 61, 61
+  offset: 0, 0
+  index: -1
+Enemy2/R_LegJoint_silhouette
+  rotate: false
+  xy: 4485, 345
+  size: 57, 57
+  orig: 57, 57
+  offset: 0, 0
+  index: -1
+Enemy2/R_Lower_Arm
+  rotate: false
+  xy: 6450, 588
+  size: 48, 114
+  orig: 48, 114
+  offset: 0, 0
+  index: -1
+Enemy2/R_Lower_Arm_silhouette
+  rotate: false
+  xy: 6495, 463
+  size: 48, 114
+  orig: 48, 114
+  offset: 0, 0
+  index: -1
+Enemy2/R_Lower_Leg
+  rotate: false
+  xy: 5426, 16
+  size: 120, 86
+  orig: 120, 86
+  offset: 0, 0
+  index: -1
+Enemy2/R_Lower_Leg_silhouette
+  rotate: false
+  xy: 5546, 18
+  size: 117, 84
+  orig: 117, 84
+  offset: 0, 0
+  index: -1
+Enemy2/R_Shoulder
+  rotate: false
+  xy: 6380, 4
+  size: 65, 65
+  orig: 65, 65
+  offset: 0, 0
+  index: -1
+Enemy2/R_Shoulder_silhouette
+  rotate: false
+  xy: 4241, 341
+  size: 61, 61
+  orig: 61, 61
+  offset: 0, 0
+  index: -1
+Enemy2/R_Upper_Arm
+  rotate: false
+  xy: 5663, 7
+  size: 89, 95
+  orig: 89, 95
+  offset: 0, 0
+  index: -1
+Enemy2/R_Upper_Arm_silhouette
+  rotate: false
+  xy: 5752, 7
+  size: 89, 95
+  orig: 89, 95
+  offset: 0, 0
+  index: -1
+Enemy2/R_Upper_LEg
+  rotate: false
+  xy: 3879, 341
+  size: 83, 61
+  orig: 83, 61
+  offset: 0, 0
+  index: -1
+Enemy2/R_Upper_LEg_silhouette
+  rotate: false
+  xy: 3962, 341
+  size: 83, 61
+  orig: 83, 61
+  offset: 0, 0
+  index: -1
+Enemy2/ScreenStort1
+  rotate: false
+  xy: 5152, 4
+  size: 152, 98
+  orig: 152, 98
+  offset: 0, 0
+  index: -1
+Enemy2/ScreenStort2
+  rotate: false
+  xy: 2750, 302
+  size: 158, 100
+  orig: 158, 100
+  offset: 0, 0
+  index: -1
+Enemy2/ScreenStort3
+  rotate: false
+  xy: 6052, 124
+  size: 146, 109
+  orig: 146, 109
+  offset: 0, 0
+  index: -1
+Enemy2/ScreenStort4
+  rotate: false
+  xy: 6082, 21
+  size: 146, 103
+  orig: 146, 103
+  offset: 0, 0
+  index: -1
+Enemy2/SmileScreen
+  rotate: false
+  xy: 5304, 14
+  size: 122, 88
+  orig: 122, 88
+  offset: 0, 0
+  index: -1
+Enemy2/Thumb_1
+  rotate: false
+  xy: 4597, 350
+  size: 59, 52
+  orig: 59, 52
+  offset: 0, 0
+  index: -1
+Enemy2/Thumb_1_silhouette
+  rotate: false
+  xy: 4758, 355
+  size: 54, 47
+  orig: 54, 47
+  offset: 0, 0
+  index: -1
+Enemy2/Thumb_2
+  rotate: false
+  xy: 6378, 313
+  size: 50, 65
+  orig: 50, 65
+  offset: 0, 0
+  index: -1
+Enemy2/Thumb_2_Silhouette
+  rotate: false
+  xy: 6505, 21
+  size: 44, 58
+  orig: 44, 58
+  offset: 0, 0
+  index: -1
+Enemy2/Torso
+  rotate: false
+  xy: 6052, 233
+  size: 232, 169
+  orig: 232, 169
+  offset: 0, 0
+  index: -1
+Enemy2/Torso_Silhouette
+  rotate: false
+  xy: 6260, 69
+  size: 227, 164
+  orig: 227, 164
+  offset: 0, 0
+  index: -1
+Enemy_1_Eye
+  rotate: false
+  xy: 4928, 0
+  size: 35, 49
+  orig: 35, 49
+  offset: 0, 0
+  index: -1
+Enemy_1_Eye_Hit
+  rotate: false
+  xy: 4963, 0
+  size: 35, 49
+  orig: 35, 49
+  offset: 0, 0
+  index: -1
+Enemy_1_Pulse
+  rotate: false
+  xy: 4998, 0
+  size: 35, 49
+  orig: 35, 49
+  offset: 0, 0
+  index: -1
+Enemy_1_Right_wing
+  rotate: false
+  xy: 6350, 581
+  size: 100, 121
+  orig: 100, 121
+  offset: 0, 0
+  index: -1
+Enemy_1_Right_wing_hit
+  rotate: false
+  xy: 6443, 338
+  size: 100, 121
+  orig: 100, 121
+  offset: 0, 0
+  index: -1
+Enemy_1_left_truster
+  rotate: false
+  xy: 4273, 4
+  size: 28, 37
+  orig: 28, 37
+  offset: 0, 0
+  index: -1
+Enemy_1_left_truster_hit
+  rotate: false
+  xy: 4301, 4
+  size: 28, 37
+  orig: 28, 37
+  offset: 0, 0
+  index: -1
+Enemy_1_left_wing
+  rotate: false
+  xy: 5841, 21
+  size: 87, 81
+  orig: 87, 81
+  offset: 0, 0
+  index: -1
+Enemy_1_left_wing_hit
+  rotate: false
+  xy: 5928, 21
+  size: 87, 81
+  orig: 87, 81
+  offset: 0, 0
+  index: -1
+Enemy_1_middelpiece
+  rotate: false
+  xy: 6445, 5
+  size: 60, 64
+  orig: 60, 64
+  offset: 0, 0
+  index: -1
+Enemy_1_middelpiece_hit
+  rotate: false
+  xy: 6378, 378
+  size: 60, 64
+  orig: 60, 64
+  offset: 0, 0
+  index: -1
+Enemy_1_pupil
+  rotate: false
+  xy: 4181, 0
+  size: 26, 41
+  orig: 26, 41
+  offset: 0, 0
+  index: -1
+Enemy_1_righttruster
+  rotate: false
+  xy: 4852, 2
+  size: 38, 47
+  orig: 38, 47
+  offset: 0, 0
+  index: -1
+Enemy_1_righttruster_hit
+  rotate: false
+  xy: 4890, 2
+  size: 38, 47
+  orig: 38, 47
+  offset: 0, 0
+  index: -1
+PvB_Effects0001
+  rotate: false
+  xy: 0, 302
+  size: 550, 400
+  orig: 550, 400
+  offset: 0, 0
+  index: -1
+PvB_Effects0002
+  rotate: false
+  xy: 550, 302
+  size: 550, 400
+  orig: 550, 400
+  offset: 0, 0
+  index: -1
+PvB_Effects0003
+  rotate: false
+  xy: 1100, 302
+  size: 550, 400
+  orig: 550, 400
+  offset: 0, 0
+  index: -1
+PvB_Effects0004
+  rotate: false
+  xy: 1100, 302
+  size: 550, 400
+  orig: 550, 400
+  offset: 0, 0
+  index: -1
+PvB_Effects0005
+  rotate: false
+  xy: 1650, 302
+  size: 550, 400
+  orig: 550, 400
+  offset: 0, 0
+  index: -1
+PvB_Effects0006
+  rotate: false
+  xy: 2200, 302
+  size: 550, 400
+  orig: 550, 400
+  offset: 0, 0
+  index: -1
