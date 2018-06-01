@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4704094453025156}
   - component: {fileID: 198072309110653910}
   - component: {fileID: 199878056134893244}
-  - component: {fileID: 95390458253985566}
   m_Layer: 0
   m_Name: FX_EnemyDeath_BigEnemy
   m_TagString: Untagged
@@ -42,23 +41,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &95390458253985566
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1275256226782102}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2ad4f9e9e396d49e4b143e58ea02e4b7, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!198 &198072309110653910
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -119,7 +101,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -301135870
+  randomSeed: -66715202
   InitialModule:
     serializedVersion: 3
     enabled: 1
