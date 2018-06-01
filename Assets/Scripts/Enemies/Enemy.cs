@@ -94,6 +94,7 @@ public class Enemy : PoolObj
     public IEnumerator Death(bool killedByPlayer)
     {
         DOTween.Kill(this);
+
         if (s_OnDestroyEnemy != null)
         {
             s_OnDestroyEnemy(this);
@@ -106,11 +107,21 @@ public class Enemy : PoolObj
             //Give coins
             PlayerData.s_Instance.ChangeCoinAmount(m_CoinsToGive);
         }
+
         m_DeathParticle.gameObject.SetActive(true);
         m_DeathParticle.Play();
-        SkeletonAnims.AnimationState.SetAnimation(0, m_EnemyString + "DEATH", false);
 
-        yield return new WaitForSeconds(1.7f);
+        SkeletonAnims.AnimationState.SetAnimation(0, m_EnemyString + "DEATH", false).OnComplete();
+
+        float animTime = SkeletonAnims.skeleton.data.FindAnimation(m_EnemyString + "DEATH").duration;
+
+        yield return new WaitForSeconds(animTime);
+
+        DeathCallback();
+    }
+
+    private void DeathCallback()
+    {
         m_DeathParticle.gameObject.SetActive(false);
         ReturnToPool();
     }

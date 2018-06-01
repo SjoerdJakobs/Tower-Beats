@@ -63,7 +63,6 @@ public class EnemySpawner : MonoBehaviour {
         }
         newEnemy.RestoreHealth();
         newEnemy.IsAlive = true;
-        Debug.Log(newEnemy.EnemyString);
         newEnemy.SkeletonAnims.AnimationState.SetAnimation(0, newEnemy.EnemyString + "MOVE", true);
         SpawnedEnemies.Add(newEnemy);
               
