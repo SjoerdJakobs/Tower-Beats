@@ -133,7 +133,7 @@ public class Tile : MonoBehaviour
                 case TileState.TURRET_SPAWN:
                     if (PopUpManager.s_Instance != null)
                     {
-                        PopUpManager.s_Instance.ShowPopUp(PopUpNames.TOWER_SHOP_MENU, this);
+                        PopUpManager.s_Instance.ShowPopUp(PopUpNames.TOWER_SHOP_MENU, transform.position);
                     }
                     if (m_MoveCameraToTileOnClick)
                         CameraMovement.s_Instance.ScrollCameraToPosition(this, 0.5f, true);
@@ -143,7 +143,7 @@ public class Tile : MonoBehaviour
                     //Open tower menu and shows the stats of the tower on this tile
                     if (PopUpManager.s_Instance != null)
                     {
-                        PopUpManager.s_Instance.ShowPopUp(PopUpNames.TOWER_MENU, this);
+                        PopUpManager.s_Instance.ShowPopUp(PopUpNames.TOWER_MENU, transform.position);
                         SetTileVisualsState(TileVisualState.TURRET_SELECTED);
                     }
                     if (m_MoveCameraToTileOnClick)
