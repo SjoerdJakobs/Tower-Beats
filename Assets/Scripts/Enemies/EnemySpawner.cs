@@ -101,7 +101,7 @@ public class EnemySpawner : MonoBehaviour {
 
     private IEnumerator SpawnEnemies(int amountOfEnemies, float interval, Action callback = null)
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1f);
         for (int i = 0; i < amountOfEnemies; i++)
         {
             SpawnEnemy(false);

@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "wEQ+HK5RIxB5D2HRIQTSzWvV/Eg", "spine": "3.6.52", "width": 612.68, "height": 552.86, "images": "../../Enemies/Enemy1/" },
+"skeleton": { "hash": "oqH7QBmcIqC9eWR0gci9oMr44U8", "spine": "3.6.52", "width": 612.68, "height": 552.86, "images": "../../Enemies/Enemy1/" },
 "bones": [
 	{ "name": "root" },
 	{ "name": "Robo1", "parent": "root", "x": 1.31, "y": 54.22 },
@@ -13736,7 +13736,7 @@
 			}
 		}
 	},
-	"Enemy2_MOVE1": {
+	"Enemy2_MOVE": {
 		"slots": {
 			"BitTrail": {
 				"color": [
@@ -16835,7 +16835,7 @@
 				"rotate": [
 					{
 						"time": 0,
-						"angle": 22.59,
+						"angle": 44.92,
 						"curve": [ 0.29, 0.68, 0.304, 0.81 ]
 					},
 					{ "time": 0.3333, "angle": 35.59 },
@@ -16847,7 +16847,7 @@
 					{ "time": 0.9, "angle": 47.53 },
 					{ "time": 0.9333, "angle": 49.24 },
 					{ "time": 0.9667, "angle": 38.71 },
-					{ "time": 1.2, "angle": 22.59 }
+					{ "time": 1.2, "angle": 44.92 }
 				],
 				"translate": [
 					{ "time": 0, "x": 0, "y": 5.07, "curve": "stepped" },
