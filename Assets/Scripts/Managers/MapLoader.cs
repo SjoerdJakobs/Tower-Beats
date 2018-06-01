@@ -15,7 +15,6 @@ public class MapLoader : MonoBehaviour
     private List<Tile> m_Path = new List<Tile>();
     public List<Tile> Path { get { return m_Path; } }
     public Tile HeadQuarters { get; private set; }
-    public Vector2 HeadQuartersPosition { get { return HeadQuarters.transform.position; } }
     
     public bool MapLoaded { get; private set; }
 

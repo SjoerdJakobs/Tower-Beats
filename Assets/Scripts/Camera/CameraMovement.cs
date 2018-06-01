@@ -1,17 +1,14 @@
 ﻿using UnityEngine;
 using DG.Tweening;
+using UnityEngine.EventSystems;
 
+[RequireComponent(typeof(Camera))]
 public class CameraMovement : MonoBehaviour {
 
     [SerializeField] private bool m_UseBoundaries = true;
     [Space(10f)]
-    [SerializeField] private float m_LerpSpeed; // Lower value is faster
-    [SerializeField] private float m_ScreenOffset = 10;
-    [SerializeField] private float m_MoveSpeed = 40;
-    [Space(20f)]
-    [SerializeField] private bool m_UseMouseInput = true;
-    [SerializeField] private bool m_UseKeyInput = true;
-    [SerializeField] private bool m_UseTouchInput = false;
+    [SerializeField] private float m_PanSpeed = 40;
+    [SerializeField] private float m_ZoomSpeed = 10;
 
     private float minOrthographicSize = 5f;
     private float maxOrthographicSize = 8.5f;
@@ -20,11 +17,14 @@ public class CameraMovement : MonoBehaviour {
 
     private float m_MinX, m_MaxX, m_MinY, m_MaxY;
 
-    private Vector3 m_MovePos;
-
-    private bool m_GotMouseInput;
+    private Camera m_Camera;
 
     public bool CanMoveCamera { get; set; }
+
+    private Vector3 m_LastPanPosition;
+    private int m_PanFingerID;
+    private bool m_WasZoomingLastFrame;
+    private Vector2[] m_LastZoomPositions;
 
     private void Awake()
     {
@@ -40,6 +40,8 @@ public class CameraMovement : MonoBehaviour {
 
         if (!m_UseBoundaries)
             CanMoveCamera = true;
+
+        m_Camera = GetComponent<Camera>();
     }
 
     private void Start()
@@ -51,11 +53,99 @@ public class CameraMovement : MonoBehaviour {
     {
         if (CanMoveCamera)
         {
-            GetInput();
-            SetCameraBoundaries();
-            MoveCamera();
+            if (!EventSystem.current.IsPointerOverGameObject())
+            {
+                if (Input.touchSupported && Application.isMobilePlatform)
+                    HandleTouch();
+                else
+                    HandleMouse();
+
+                SetCameraBoundaries();
+            }
+        }
+    }
+
+    private void HandleTouch()
+    {
+        switch(Input.touchCount)
+        {
+            case 1:
+                m_WasZoomingLastFrame = false;
+
+                Touch touch = Input.GetTouch(0);
+                if(touch.phase == TouchPhase.Began)
+                {
+                    m_LastPanPosition = touch.position;
+                    m_PanFingerID = touch.fingerId;
+                }
+                else if(touch.fingerId == m_PanFingerID && touch.phase == TouchPhase.Moved)
+                {
+                    PanCamera(touch.position);
+                }
+                break;
+
+            case 2:
+                Vector2[] newPositions = new Vector2[] { Input.GetTouch(0).position, Input.GetTouch(1).position };
+                if (!m_WasZoomingLastFrame)
+                {
+                    m_LastZoomPositions = newPositions;
+                    m_WasZoomingLastFrame = true;
+                }
+                else
+                {
+                    float newDistance = Vector2.Distance(newPositions[0], newPositions[1]);
+                    float oldDistance = Vector2.Distance(m_LastZoomPositions[0], m_LastZoomPositions[1]);
+                    float offset = newDistance - oldDistance;
+
+                    ZoomCamera(offset, m_ZoomSpeed / 1000);
+
+                    m_LastZoomPositions = newPositions;
+                }
+                break;
+
+            default:
+                m_WasZoomingLastFrame = false;
+                break;
+        }
+    }
+
+    private void HandleMouse()
+    {
+        Vector3 movePosition = transform.position;
+        if(Input.GetMouseButtonDown(0))
+        {
+            m_LastPanPosition = Input.mousePosition;
+        }
+        else if (Input.GetMouseButton(0))
+        {
+            PanCamera(Input.mousePosition);
         }
 
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+        ZoomCamera(scroll, m_ZoomSpeed);
+    }
+
+    private void PanCamera(Vector3 newPanPosition)
+    {
+        Vector3 offset = m_Camera.ScreenToViewportPoint(m_LastPanPosition - newPanPosition);
+        Vector2 move = new Vector2(offset.x * m_PanSpeed, offset.y * m_PanSpeed);
+
+        transform.Translate(move, Space.World);
+
+        Vector3 fixedPosition = GetPositionWithinBoundaries(transform.position);
+
+        if(m_UseBoundaries)
+            transform.position = fixedPosition;
+
+        m_LastPanPosition = newPanPosition;
+    }
+
+    private void ZoomCamera(float offset, float speed)
+    {
+        if (offset == 0) return;
+
+        m_Camera.orthographicSize = Mathf.Clamp(m_Camera.orthographicSize - (offset * speed), minOrthographicSize, maxOrthographicSize);
+        transform.position = GetPositionWithinBoundaries(transform.position);
     }
 
     /// <summary>
@@ -63,7 +153,7 @@ public class CameraMovement : MonoBehaviour {
     /// </summary>
     /// <param name="value">0 is fully zoomed in, 1 is fully zoomed out</param>
     /// <param name="duration">Duration in seconds</param>
-    public void Zoom(int value, int duration, Ease easing = Ease.Linear)
+    public void ZoomAnimated(int value, int duration, Ease easing = Ease.Linear)
     {
         float mappedOrtohraphicSize = (value * (maxOrthographicSize - minOrthographicSize) / 1 + minOrthographicSize);
 
@@ -101,85 +191,14 @@ public class CameraMovement : MonoBehaviour {
         return new Vector3(Mathf.Clamp(position.x, m_MinX, m_MaxX), Mathf.Clamp(position.y, m_MinY, m_MaxY), position.z);
     }
 
-    /// <summary>
-    /// Allows the player to move the camera.
-    /// Movement is clamped between X and Y values to make sure the player stays in the map
-    /// </summary>
-    void GetInput()
+    public bool IsPositionOutOfBounds(Vector3 position)
     {
-        m_GotMouseInput = false;
+        if (position.x > m_MaxX || position.x < m_MinX)
+            return true;
+        else if (position.y > m_MaxY || position.y < m_MinY)
+            return true;
 
-        float currentX = transform.position.x;
-        float currentY = transform.position.y;
-
-        if(m_UseBoundaries)
-        {
-            currentX = Mathf.Clamp(currentX, m_MinX, m_MaxX);
-            currentY = Mathf.Clamp(currentY, m_MinY, m_MaxY);
-        }
-
-        float x = Input.GetAxis("Horizontal");
-        float y = Input.GetAxis("Vertical");
-
-        m_MovePos = transform.position;
-
-        if (m_UseMouseInput)
-        {
-            if (Input.mousePosition.x > Screen.width - m_ScreenOffset)
-            {
-                // Move Right
-                m_MovePos += Vector3.right;
-                m_GotMouseInput = true;
-            }
-            if (Input.mousePosition.x < m_ScreenOffset)
-            {
-                // Move Left
-                m_MovePos += Vector3.left;
-                m_GotMouseInput = true;
-            }
-            if (Input.mousePosition.y > Screen.height - m_ScreenOffset)
-            {
-                // Move Down
-                m_MovePos -= Vector3.down;
-                m_GotMouseInput = true;
-            }
-            if (Input.mousePosition.y < m_ScreenOffset)
-            {
-                // Move Up
-                m_MovePos -= Vector3.up;
-                m_GotMouseInput = true;
-            }
-        }
-
-        if (m_UseKeyInput)
-        {
-            // Use Key movement
-            if (!m_GotMouseInput)
-                m_MovePos = new Vector3(m_MovePos.x + x, m_MovePos.y + y, transform.position.z);
-        }
-
-        // NEEDS TO BE TESTED ON MOBILE
-        if (m_UseTouchInput)
-        {
-            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
-            {
-                // Get movement of the finger since last frame
-                Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
-
-                // Set movePos
-                m_MovePos = touchDeltaPosition;
-            }
-        }
-
-        m_MovePos = new Vector3((m_UseBoundaries ? Mathf.Clamp(m_MovePos.x, m_MinX, m_MaxX) : m_MovePos.x), (m_UseBoundaries ? Mathf.Clamp(m_MovePos.y, m_MinY, m_MaxY) : m_MovePos.y), transform.position.z);   
-    }
-
-    /// <summary>
-    /// Moves the camera to the latest selected Move Position. (Gets called every frame when the player has control over the camera)
-    /// </summary>
-    private void MoveCamera()
-    {
-        transform.position = Vector3.Lerp(transform.position, m_MovePos, m_LerpSpeed * m_MoveSpeed * Time.deltaTime);
+        return false;
     }
 
     public void ScrollCameraToPosition(Tile tile, float duration, bool enableMoveCameraOnComplete, System.Action onComplete = null)
@@ -204,6 +223,8 @@ public class CameraMovement : MonoBehaviour {
             CanMoveCamera = enableMoveCameraOnComplete;
         }
         else
+        {
             transform.DOMove(movePos, duration).SetEase(Ease.InOutQuad).OnComplete(delegate { if (onComplete != null) onComplete(); CanMoveCamera = enableMoveCameraOnComplete; });
+        }
     }
 }

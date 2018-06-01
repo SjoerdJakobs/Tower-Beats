@@ -71,13 +71,13 @@ public class GameManager : MonoBehaviour
         yield return new WaitUntil(() => HexGrid.s_Instance.GridCreated == true);
 
         CameraMovement.s_Instance.ScrollCameraToPosition(HexGrid.s_Instance.GetMiddlepointTile(), 0f, false);
-        CameraMovement.s_Instance.Zoom(1, 0, DG.Tweening.Ease.Linear);
+        CameraMovement.s_Instance.ZoomAnimated(1, 0, DG.Tweening.Ease.Linear);
         yield return new WaitUntil(() => MapLoader.s_Instance != null);
         yield return new WaitUntil(() => MapLoader.s_Instance.MapLoaded);
         yield return new WaitForSeconds(0.5f);
-        CameraMovement.s_Instance.Zoom(0, 1, DG.Tweening.Ease.InOutQuad);
+        CameraMovement.s_Instance.ZoomAnimated(0, 1, DG.Tweening.Ease.InOutQuad);
         NotificationManager.s_Instance.EnqueueNotification("Your objective is to defend this tower in Hexagonia.", 2);
-        CameraMovement.s_Instance.ScrollCameraToPosition(MapLoader.s_Instance.HeadQuartersPosition, 1, false);
+        CameraMovement.s_Instance.ScrollCameraToPosition(MapLoader.s_Instance.HeadQuarters, 1, false);
         yield return new WaitForSeconds(2.5f);
         NotificationManager.s_Instance.EnqueueNotification("Enemies will spawn from this red tile", 2);
         CameraMovement.s_Instance.ScrollCameraToPosition(MapLoader.s_Instance.Path[0], 1, false);

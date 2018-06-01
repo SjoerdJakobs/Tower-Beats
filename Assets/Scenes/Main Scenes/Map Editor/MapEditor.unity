@@ -4903,12 +4903,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UseBoundaries: 0
-  m_LerpSpeed: 0.2
-  m_ScreenOffset: 20
-  m_MoveSpeed: 40
-  m_UseMouseInput: 1
-  m_UseKeyInput: 1
-  m_UseTouchInput: 0
+  m_PanSpeed: 12
+  m_ZoomSpeed: 10
 --- !u!81 &2055541506
 AudioListener:
   m_ObjectHideFlags: 0

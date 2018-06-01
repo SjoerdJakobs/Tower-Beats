@@ -111,42 +111,47 @@ public class Tile : MonoBehaviour
         Tower = null;
     }
 
-    void OnMouseDown()
+    private void OnMouseUpAsButton()
     {
-        if (!EventSystem.current.IsPointerOverGameObject()) 
+        OnTileClick();
+    }
+
+    #endregion
+
+    #region Tile functions
+
+    public void OnTileClick()
+    {
+        if (!EventSystem.current.IsPointerOverGameObject())
         {
             if (!CanClick) return;
 
             if (s_OnTileClicked != null) s_OnTileClicked(this);
 
             switch (CurrentState)
-        	{
-            	case TileState.TURRET_SPAWN:
+            {
+                case TileState.TURRET_SPAWN:
                     if (PopUpManager.s_Instance != null)
                     {
-                        PopUpManager.s_Instance.ShowPopUp(PopUpNames.TOWER_SHOP_MENU, new Vector2(transform.position.x,transform.position.y+1.5f));
+                        PopUpManager.s_Instance.ShowPopUp(PopUpNames.TOWER_SHOP_MENU, this);
                     }
                     if (m_MoveCameraToTileOnClick)
                         CameraMovement.s_Instance.ScrollCameraToPosition(this, 0.5f, true);
                     //Open tower shop menu
                     break;
-            	case TileState.OCCUPIED:
+                case TileState.OCCUPIED:
                     //Open tower menu and shows the stats of the tower on this tile
                     if (PopUpManager.s_Instance != null)
                     {
-                        PopUpManager.s_Instance.ShowPopUp(PopUpNames.TOWER_MENU, transform.position);
+                        PopUpManager.s_Instance.ShowPopUp(PopUpNames.TOWER_MENU, this);
                         SetTileVisualsState(TileVisualState.TURRET_SELECTED);
                     }
                     if (m_MoveCameraToTileOnClick)
                         CameraMovement.s_Instance.ScrollCameraToPosition(this, 0.5f, true);
                     break;
-        	}
-		}
+            }
+        }
     }
-
-    #endregion
-
-    #region Tile functions
 
     /// <summary>
     /// Sets the tile's visual state to the given state
