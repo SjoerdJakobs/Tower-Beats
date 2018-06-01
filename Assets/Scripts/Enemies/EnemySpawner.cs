@@ -28,6 +28,7 @@ public class EnemySpawner : MonoBehaviour {
         {
             s_Instance = this;
         }
+
         Enemy.s_OnDestroyEnemy += RemoveEnemyFromList;
         GameManager.s_OnGameStop += StopEnemySpawning;
         PauseCheck.Pause += TogglePause;
@@ -62,7 +63,8 @@ public class EnemySpawner : MonoBehaviour {
         }
         newEnemy.RestoreHealth();
         newEnemy.IsAlive = true;
-        newEnemy.SkeletonAnims.AnimationState.SetAnimation(0, "MOVE", true);
+        Debug.Log(newEnemy.EnemyString);
+        newEnemy.SkeletonAnims.AnimationState.SetAnimation(0, newEnemy.EnemyString + "MOVE", true);
         SpawnedEnemies.Add(newEnemy);
               
         newEnemy.transform.position = MapLoader.s_Instance.Path[0].transform.position;

@@ -6,7 +6,13 @@ using DG.Tweening;
 
 public class Enemy : PoolObj
 {
+    [SerializeField] private string m_EnemyString;
+    public string EnemyString
+    {
+        get { return m_EnemyString; }
+    }
 
+    [SerializeField]private ParticleSystem m_DeathParticle;
     public delegate void DestroyEvent(Enemy enemy);
     public static DestroyEvent s_OnDestroyEnemy;
     [SerializeField]
@@ -63,8 +69,8 @@ public class Enemy : PoolObj
                 switch (towerType)
                 {
                     case "Bass":
-                        SkeletonAnims.AnimationState.SetAnimation(0, "HIT_Electricity", false);
-                        SkeletonAnims.AnimationState.AddAnimation(0, "MOVE", true, 0);
+                        SkeletonAnims.AnimationState.SetAnimation(0, m_EnemyString + "HIT_Electricity", false);
+                        SkeletonAnims.AnimationState.AddAnimation(0, m_EnemyString + "MOVE", true, 0);
                         break;
                     case "Drum":
                         EffectsManager.s_Instance.SpawnEffect(EffectType.ENEMY_HIT, false, new Vector2(transform.position.x, transform.position.y + 0.5f));
@@ -100,10 +106,12 @@ public class Enemy : PoolObj
             //Give coins
             PlayerData.s_Instance.ChangeCoinAmount(m_CoinsToGive);
         }
-        SkeletonAnims.AnimationState.SetAnimation(0, "DEATH", false);
+        m_DeathParticle.gameObject.SetActive(true);
+        m_DeathParticle.Play();
+        SkeletonAnims.AnimationState.SetAnimation(0, m_EnemyString + "DEATH", false);
 
         yield return new WaitForSeconds(1.7f);
-
+        m_DeathParticle.gameObject.SetActive(false);
         ReturnToPool();
     }
 
