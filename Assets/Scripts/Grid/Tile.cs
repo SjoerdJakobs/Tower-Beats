@@ -133,7 +133,7 @@ public class Tile : MonoBehaviour
                 case TileState.TURRET_SPAWN:
                     if (PopUpManager.s_Instance != null)
                     {
-                        PopUpManager.s_Instance.ShowPopUp(PopUpNames.TOWER_SHOP_MENU, transform.position);
+                        PopUpManager.s_Instance.ShowPopUp(PopUpNames.TOWER_SHOP_MENU,new Vector2(transform.position.x,transform.position.y +1));
                     }
                     if (m_MoveCameraToTileOnClick)
                         CameraMovement.s_Instance.ScrollCameraToPosition(this, 0.5f, true);

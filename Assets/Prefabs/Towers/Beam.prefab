@@ -56,7 +56,6 @@ MonoBehaviour:
     type: 2}
   m_Target: {fileID: 0}
   ShootPos: {fileID: 0}
-  m_Damage: 0
   m_RaySpeed: 3
 --- !u!212 &212351488948634950
 SpriteRenderer:
@@ -93,7 +92,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 31000
   m_Sprite: {fileID: 21300000, guid: 7dd88f296817d4bca817f5ff9accfec6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.58131486, g: 0.88235295, b: 0.50605536, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
