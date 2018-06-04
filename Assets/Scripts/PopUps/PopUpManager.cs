@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class PopUpNames
 {
-    public const string TOWER_SHOP_MENU = "TowerShopPopUp";
-    public const string TOWER_MENU = "TowerInfoPopUp";
+    public const string TOWER_SHOP_MENU = "Tower Shop";
+    public const string TOWER_MENU = "Tower Upgrades";
 }
 
 public class PopUpManager : MonoBehaviour {
@@ -30,21 +30,33 @@ public class PopUpManager : MonoBehaviour {
     /// </summary>
     /// <param name="popUpName">Pop up to open</param>
     /// <param name="position">Spawn position of the pop up</param>
-    public void ShowPopUp(string popUpName, Vector3 position)
+    public void ShowPopUp(string popUpName, Tile tile)
     {
-        Camera cam = Camera.main;
         for (int i = 0; i < m_PopUps.Count; i++)
         {
-            if (m_PopUps[i].name == popUpName)
+            if (m_PopUps[i].name.ToUpper() == popUpName.ToUpper())
             {
-                m_PopUps[i].gameObject.SetActive(true);
-                m_PopUps[i].transform.position = position; //Sets the position
+                m_PopUps[i].Show(tile);
             }
             else
             {
                 //Disable the other pop ups
-                m_PopUps[i].gameObject.SetActive(false);
+                m_PopUps[i].Hide();
             }
+        }
+    }
+
+    public void HidePopup(string popUpName)
+    {
+        m_PopUps.Find(x => x.name.ToUpper() == popUpName.ToUpper()).Hide();
+    }
+
+    public void HideAll()
+    {
+        for (int i = 0; i < m_PopUps.Count; i++)
+        {
+            if(m_PopUps[i].isActiveAndEnabled)
+                m_PopUps[i].Hide();
         }
     }
 }

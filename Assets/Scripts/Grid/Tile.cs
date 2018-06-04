@@ -128,26 +128,30 @@ public class Tile : MonoBehaviour
 
             if (s_OnTileClicked != null) s_OnTileClicked(this);
 
+            PopUpManager.s_Instance.HideAll();
+
             switch (CurrentState)
             {
                 case TileState.TURRET_SPAWN:
+                    if (m_MoveCameraToTileOnClick)
+                        CameraMovement.s_Instance.ScrollCameraToPosition(this, 0.5f, true, true);
                     if (PopUpManager.s_Instance != null)
                     {
-                        PopUpManager.s_Instance.ShowPopUp(PopUpNames.TOWER_SHOP_MENU,new Vector2(transform.position.x,transform.position.y +1));
+                        PopUpManager.s_Instance.ShowPopUp(PopUpNames.TOWER_SHOP_MENU, this);
                     }
-                    if (m_MoveCameraToTileOnClick)
-                        CameraMovement.s_Instance.ScrollCameraToPosition(this, 0.5f, true);
                     //Open tower shop menu
                     break;
                 case TileState.OCCUPIED:
+                    if (m_MoveCameraToTileOnClick)
+                        CameraMovement.s_Instance.ScrollCameraToPosition(this, 0.5f, true, true);
                     //Open tower menu and shows the stats of the tower on this tile
                     if (PopUpManager.s_Instance != null)
                     {
-                        PopUpManager.s_Instance.ShowPopUp(PopUpNames.TOWER_MENU, transform.position);
+                        PopUpManager.s_Instance.ShowPopUp(PopUpNames.TOWER_MENU, this);
                         SetTileVisualsState(TileVisualState.TURRET_SELECTED);
                     }
                     if (m_MoveCameraToTileOnClick)
-                        CameraMovement.s_Instance.ScrollCameraToPosition(this, 0.5f, true);
+                        CameraMovement.s_Instance.ScrollCameraToPosition(this, 0.5f, true, true);
                     break;
             }
         }
@@ -206,7 +210,10 @@ public class Tile : MonoBehaviour
     private void ResetTileVisuals()
     {
         for (int i = 0; i < m_TileArt.Count; i++)
-            m_TileArt[i].VisualStateRenderer.enabled = false;
+        {
+            if(m_TileArt[i].VisualStateRenderer != null)
+                m_TileArt[i].VisualStateRenderer.enabled = false;
+        }
     }
 
     private SpriteRenderer GetRenderer(TileVisualState state)

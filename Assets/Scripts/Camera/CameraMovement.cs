@@ -77,6 +77,7 @@ public class CameraMovement : MonoBehaviour {
                 {
                     m_LastPanPosition = touch.position;
                     m_PanFingerID = touch.fingerId;
+                    DOTween.Kill(transform);
                 }
                 else if(touch.fingerId == m_PanFingerID && touch.phase == TouchPhase.Moved)
                 {
@@ -115,6 +116,7 @@ public class CameraMovement : MonoBehaviour {
         if(Input.GetMouseButtonDown(0))
         {
             m_LastPanPosition = Input.mousePosition;
+            DOTween.Kill(transform);
         }
         else if (Input.GetMouseButton(0))
         {
@@ -153,14 +155,19 @@ public class CameraMovement : MonoBehaviour {
     /// </summary>
     /// <param name="value">0 is fully zoomed in, 1 is fully zoomed out</param>
     /// <param name="duration">Duration in seconds</param>
-    public void ZoomAnimated(int value, int duration, Ease easing = Ease.Linear)
+    public void ZoomAnimated(int value, float duration, Ease easing = Ease.Linear)
     {
-        float mappedOrtohraphicSize = (value * (maxOrthographicSize - minOrthographicSize) / 1 + minOrthographicSize);
+        float mappedOrtohraphicSize = MappedOrthographicSize(value);
 
         if (duration == 0)
-            Camera.main.orthographicSize = mappedOrtohraphicSize;
+            m_Camera.orthographicSize = mappedOrtohraphicSize;
         else
-            Camera.main.DOOrthoSize(mappedOrtohraphicSize, duration).SetEase(easing);
+            m_Camera.DOOrthoSize(mappedOrtohraphicSize, duration).SetEase(easing);
+    }
+
+    private float MappedOrthographicSize(float value)
+    {
+        return (value * (maxOrthographicSize - minOrthographicSize) / 1 + minOrthographicSize);
     }
 
     /// <summary>
@@ -201,19 +208,19 @@ public class CameraMovement : MonoBehaviour {
         return false;
     }
 
-    public void ScrollCameraToPosition(Tile tile, float duration, bool enableMoveCameraOnComplete, System.Action onComplete = null)
+    public void ScrollCameraToPosition(Tile tile, float duration, bool enableMoveCameraOnComplete, bool overwriteCanMoveCamera = false, System.Action onComplete = null)
     {
-        ScrollCameraToPosition(tile.transform, duration, enableMoveCameraOnComplete, onComplete);
+        ScrollCameraToPosition(tile.transform, duration, enableMoveCameraOnComplete, overwriteCanMoveCamera, onComplete);
     }
 
-    public void ScrollCameraToPosition(Transform transform, float duration, bool enableMoveCameraOnComplete, System.Action onComplete = null)
+    public void ScrollCameraToPosition(Transform transform, float duration, bool enableMoveCameraOnComplete, bool overwriteCanMoveCamera = false, System.Action onComplete = null)
     {
-        ScrollCameraToPosition(transform.position, duration, enableMoveCameraOnComplete, onComplete);
+        ScrollCameraToPosition(transform.position, duration, enableMoveCameraOnComplete, overwriteCanMoveCamera, onComplete);
     }
 
-    public void ScrollCameraToPosition(Vector2 position, float duration, bool enableMoveCameraOnComplete, System.Action onComplete = null)
+    public void ScrollCameraToPosition(Vector2 position, float duration, bool enableMoveCameraOnComplete, bool overwriteCanMoveCamera = false, System.Action onComplete = null)
     {
-        CanMoveCamera = false;
+        CanMoveCamera = overwriteCanMoveCamera;
         Vector3 movePos = GetPositionWithinBoundaries(new Vector3(position.x, position.y, transform.position.z));
 
         if (duration == 0)

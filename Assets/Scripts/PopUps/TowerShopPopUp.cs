@@ -12,18 +12,28 @@ public class TowerShopPopUp : PopUp {
     [SerializeField] private Text m_DrumTowerCost;
     [SerializeField] private Text m_LeadTowerCost;
 
-    private void OnEnable()
-    {
-        float coins = PlayerData.s_Instance.Coins;
+    private Tile m_CurrentTile;
 
-        CompareCostAndSetTextColor(coins, TowerConfig.s_Towers[TowerTypeTags.BASS_TOWER][0].BuyCost, m_BassTowerCost);
-        CompareCostAndSetTextColor(coins, TowerConfig.s_Towers[TowerTypeTags.DRUM_TOWER][0].BuyCost, m_DrumTowerCost);
-        CompareCostAndSetTextColor(coins, TowerConfig.s_Towers[TowerTypeTags.LEAD_TOWER][0].BuyCost,m_LeadTowerCost);
+    public override void Show(Tile calledFrom)
+    {
+        CompareCostAndSetText(TowerConfig.s_Towers[TowerTypeTags.BASS_TOWER][0].BuyCost, m_BassTowerCost);
+        CompareCostAndSetText(TowerConfig.s_Towers[TowerTypeTags.DRUM_TOWER][0].BuyCost, m_DrumTowerCost);
+        CompareCostAndSetText(TowerConfig.s_Towers[TowerTypeTags.LEAD_TOWER][0].BuyCost, m_LeadTowerCost);
+
+        m_CurrentTile = calledFrom;
+        base.Show(calledFrom);
     }
 
-    void CompareCostAndSetTextColor(float coins, float cost, Text textToColor)
+    public override void Hide()
     {
-        if(coins >= cost)
+        base.Hide();
+    }
+
+    void CompareCostAndSetText(float cost, Text textToColor)
+    {
+        float coins = PlayerData.s_Instance.Coins;
+        textToColor.text = cost.ToString();
+        if (coins >= cost)
         {
             textToColor.color = m_AvailableColor;
         }else
@@ -35,7 +45,7 @@ public class TowerShopPopUp : PopUp {
     public void PurchaseTower(string towerType)
     {
         //If player has enough coins
-        if(TowerConfig.s_Towers[towerType][0].BuyCost <= PlayerData.s_Instance.Coins && HexGrid.s_Instance.SelectedTile.CurrentState == TileState.TURRET_SPAWN)
+        if(TowerConfig.s_Towers[towerType][0].BuyCost <= PlayerData.s_Instance.Coins && m_CurrentTile.CurrentState == TileState.TURRET_SPAWN)
         {
             //Gets the buy cost from the towers data
             PlayerData.s_Instance.ChangeCoinAmount(-TowerConfig.s_Towers[towerType][0].BuyCost);
@@ -53,21 +63,22 @@ public class TowerShopPopUp : PopUp {
                     SpawnTower(towerType, 2);
                     break;
             }
-            HexGrid.s_Instance.SelectedTile.CurrentState = TileState.OCCUPIED;
-            //Debug.Log(HexGrid.s_Instance.SelectedTile.CurrentState);
+            m_CurrentTile.CurrentState = TileState.OCCUPIED;
         }
     }
 
     void SpawnTower(string towerType,int indexInList)
     {
-        EffectsManager.s_Instance.SpawnEffect(EffectType.TURRET_SPAWN, false, HexGrid.s_Instance.SelectedTile.transform.position);
+        EffectsManager.s_Instance.SpawnEffect(EffectType.TURRET_SPAWN, false, m_CurrentTile.transform.position);
         Tower newTower;
         newTower = Instantiate(m_Towers[indexInList]);
         newTower.TowerData = TowerConfig.s_Towers[towerType][0];
-        newTower.transform.position = HexGrid.s_Instance.SelectedTile.transform.position;
-        HexGrid.s_Instance.SelectedTile.Tower = newTower;
+        newTower.transform.position = m_CurrentTile.transform.position;
+        m_CurrentTile.Tower = newTower;
 
-        int orderInLayer = (HexGrid.s_Instance.GridSize.y - HexGrid.s_Instance.SelectedTile.Y);
+        PopUpManager.s_Instance.ShowPopUp(PopUpNames.TOWER_MENU, m_CurrentTile);
+
+        int orderInLayer = (HexGrid.s_Instance.GridSize.y - m_CurrentTile.Y);
 
         newTower.GetComponent<Renderer>().sortingOrder = orderInLayer;
     }
