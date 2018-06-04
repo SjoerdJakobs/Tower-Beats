@@ -9,6 +9,7 @@ public class TowerLaser : MonoBehaviour {
     [SerializeField]
     public Transform ShootPos;
     private Vector3 m_Difference;
+    private Vector3 m_TargetOffsetPoint = new Vector3(0.04f,0.47f,0);
 
     [SerializeField]
     private float m_RaySpeed = 3;
@@ -70,10 +71,11 @@ public class TowerLaser : MonoBehaviour {
                 m_XScaleModTimer = 0;
             }
 
-            transform.localScale = new Vector3(m_XScaleModValue, m_Distance, 1);
-            transform.position = Vector3.Lerp(new Vector3(ShootPos.position.x, ShootPos.position.y, -1), new Vector3(m_Target.transform.position.x, m_Target.transform.position.y, -1), 0.5f);
+            m_Distance = Vector3.Distance(new Vector3(ShootPos.position.x, ShootPos.position.y, -1), new Vector3(m_Target.transform.position.x, m_Target.transform.position.y, -1)+m_TargetOffsetPoint);
 
-            m_Distance = Vector3.Distance(new Vector3(ShootPos.position.x, ShootPos.position.y, -1), new Vector3(m_Target.transform.position.x, m_Target.transform.position.y, -1));
+            transform.localScale = new Vector3(m_XScaleModValue, m_Distance, 1);
+            transform.position = Vector3.Lerp(new Vector3(ShootPos.position.x, ShootPos.position.y, -1), new Vector3(m_Target.transform.position.x, m_Target.transform.position.y, -1) + m_TargetOffsetPoint, 0.5f);
+
             m_Mat.mainTextureScale = new Vector2(1, m_Distance);
 
             if (!m_Pause)
@@ -81,7 +83,7 @@ public class TowerLaser : MonoBehaviour {
                 m_Mat.mainTextureOffset = new Vector2(1, m_Offset * m_RaySpeed);
             }
 
-            m_Difference = m_Target.transform.position - ShootPos.position;
+            m_Difference = (m_Target.transform.position +m_TargetOffsetPoint) - ShootPos.position;
             m_RotationZ = Mathf.Atan2(m_Difference.y, m_Difference.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0, 0, (m_RotationZ + 90));
         }
