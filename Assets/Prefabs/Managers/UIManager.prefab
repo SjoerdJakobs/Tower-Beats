@@ -2863,9 +2863,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Towers:
-  - {fileID: 114708915816829724, guid: 7ce7f0f4226ae7449bbac31edc872b18, type: 2}
+  - {fileID: 114291778095374900, guid: 3b82731fbb6f9c24a8d7e4c16aa188ba, type: 2}
   - {fileID: 114974765478797822, guid: 604b886929821b74293b32253573284b, type: 2}
-  - {fileID: 114627308776494304, guid: 8ab5ee8723ebde9418efe8a95830d141, type: 2}
+  - {fileID: 114210788655275228, guid: acd94ecaf4e497b43963f2b668b7bf16, type: 2}
   m_AvailableColor: {r: 0.45478237, g: 0.8455882, b: 0.26735508, a: 1}
   m_UnavailableColor: {r: 0.9338235, g: 0.13046065, b: 0.13046065, a: 1}
   m_BassTowerCost: {fileID: 114306743137954866}

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Spine.Unity;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +10,9 @@ public class LeadTower : Tower
     private ObjectPool m_pool;
 
     public Transform laserOrgin;
+
+    private SkeletonAnimation m_Animation;
+    private bool m_CanShoot;
 
     public override void Awake()
     {
@@ -22,10 +26,24 @@ public class LeadTower : Tower
         m_LaserData.ShootPos = laserOrgin;
         //m_pool = ObjectPoolManager.s_Instance.GetObjectPool(attackProjectile, 20, 5, 5, 20, true,PooledSubObject.TowerProjectile);
         GetRMS.s_LeadCue += Attack;
+
+        m_Animation = GetComponent<SkeletonAnimation>();
+        StartCoroutine(SpawnEffect());
+    }
+
+    private IEnumerator SpawnEffect()
+    {
+        m_CanShoot = false;
+        m_Animation.state.SetAnimation(0, "Lead_Turret_SPAWN", false);
+        m_Animation.state.AddAnimation(0, "Lead_Turret_IDLE", true, 0);
+        yield return new WaitForSeconds(0.45f);
+        m_CanShoot = true;
     }
 
     public override void Attack()
     {
+        if (!m_CanShoot) return;
+
         base.Attack();
 
         if (m_ReadyToAttack && m_Target != null)
@@ -33,10 +51,32 @@ public class LeadTower : Tower
             m_LaserData.SetTarget(m_Target, TowerData.AttackInterval);
             //Debug.Log("Damage");
             //m_towerProjectileData.SetNewVars(transform.position, m_Target, TowerData.AttackDamage, 5);
+
+            m_Animation.state.SetAnimation(0, "Lead_Turret_ATTACK", true);
+
             m_Target.TakeDamage(TowerData.AttackDamage, "Lead");
             m_ReadyToAttack = false;
             m_StartedCooldown = false;
         }
+        else
+        {
+            m_Animation.state.SetAnimation(0, "Lead_Turret_IDLE", true);
+        }
+    }
+
+    public override void Sell()
+    {
+        StartCoroutine(SellAnimation(() => {
+            base.Sell();
+        }));
+    }
+
+    private IEnumerator SellAnimation(System.Action onComplete = null)
+    {
+        m_CanShoot = false;
+        m_Animation.state.SetAnimation(0, "Lead_Turret_SELL", false);
+        yield return new WaitForSeconds(0.45f);
+        if (onComplete != null) onComplete();
     }
 
     private void OnDestroy()
