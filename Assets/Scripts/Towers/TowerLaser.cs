@@ -3,10 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TowerLaser : MonoBehaviour {
-
-    [SerializeField]
-    private GameObject m_HitObjectPrefab;
-    private GameObject m_HitObject;
+    
     [SerializeField]
     private Transform m_Target;
     [SerializeField]
@@ -37,8 +34,6 @@ public class TowerLaser : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        m_HitObject = Instantiate(m_HitObjectPrefab);
-        m_HitObject.SetActive(false);
         m_XScaleOrginValue = 0.4f;
         m_Mat = GetComponent<Renderer>().material;
 	}
@@ -47,7 +42,6 @@ public class TowerLaser : MonoBehaviour {
     {
         m_Target = enemyTarget.transform;
         m_IntervalValue = interval;
-        //print(interval);
     }
 
     public void TogglePause(bool pause)
@@ -90,19 +84,9 @@ public class TowerLaser : MonoBehaviour {
             m_Difference = m_Target.transform.position - ShootPos.position;
             m_RotationZ = Mathf.Atan2(m_Difference.y, m_Difference.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0, 0, (m_RotationZ + 90));
-
-            if(!m_HitObject.activeInHierarchy)
-            {
-                m_HitObject.SetActive(true);
-            }
-            m_HitObject.transform.position = m_Target.position;
         }
         else if (m_Distance > 0)
         {
-            if(m_HitObject.activeInHierarchy)
-            {
-                m_HitObject.SetActive(false);
-            }
             m_Distance = 0;
             transform.localScale = new Vector3(1, 0, 1);
         }

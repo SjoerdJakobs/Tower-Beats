@@ -151,6 +151,7 @@ public class Enemy : PoolObj
 
     private void UpdateEnemyLayering(int waypointIndex)
     {
+        StartCoroutine(Callback());
         m_Renderer.sortingOrder = HexGrid.s_Instance.GridSize.y - MapLoader.s_Instance.Path[waypointIndex].PositionInGrid.y;
     }
 
@@ -191,5 +192,31 @@ public class Enemy : PoolObj
     private void OnDisable()
     {
         GameManager.s_OnGameStop -= Death;
+    }
+
+
+    void DeathRoutine()
+    {
+
+    }
+
+    IEnumerator Callback()
+    {
+        if(m_EnemyString == "Enemy2_")
+        {
+            int RNG = Random.Range(0, 101);
+
+            if(RNG < 10)
+            {
+                float animTime = SkeletonAnims.skeleton.data.FindAnimation(m_EnemyString + "MOVE2_DAB").duration;
+
+                SkeletonAnims.AnimationState.AddAnimation(0, m_EnemyString + "MOVE2_DAB", true, 0);
+
+                yield return new WaitForSeconds(animTime);
+
+                SkeletonAnims.AnimationState.AddAnimation(0, m_EnemyString + "MOVE", true, 0);
+            }
+        }
+        
     }
 }

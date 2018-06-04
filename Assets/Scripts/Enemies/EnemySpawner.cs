@@ -64,6 +64,7 @@ public class EnemySpawner : MonoBehaviour {
         newEnemy.RestoreHealth();
         newEnemy.IsAlive = true;
         newEnemy.SkeletonAnims.AnimationState.SetAnimation(0, newEnemy.EnemyString + "MOVE", true);
+
         SpawnedEnemies.Add(newEnemy);
               
         newEnemy.transform.position = MapLoader.s_Instance.Path[0].transform.position;
