@@ -11,6 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6b194f808b1af6499c93410e504af42, type: 3}
   m_Name: Turrets_Atlas
   m_EditorClassIdentifier: 
-  atlasFile: {fileID: 4900000, guid: 452db3255e55d4a90b6320f5629c6402, type: 3}
+  atlasFile: {fileID: 4900000, guid: f962bd581fbe24c2095a08523b292161, type: 3}
   materials:
   - {fileID: 2100000, guid: 88bd90f174fb2437f8f77e4fc2175fee, type: 2}
