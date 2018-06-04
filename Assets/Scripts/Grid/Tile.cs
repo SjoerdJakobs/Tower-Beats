@@ -122,7 +122,7 @@ public class Tile : MonoBehaviour
 
     public void OnTileClick()
     {
-        if (!EventSystem.current.IsPointerOverGameObject())
+        if (!GameManager.s_Instance.IsPointerOverUIObject())
         {
             if (!CanClick) return;
 

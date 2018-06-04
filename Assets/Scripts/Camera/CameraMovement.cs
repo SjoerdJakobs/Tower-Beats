@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using DG.Tweening;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(Camera))]
 public class CameraMovement : MonoBehaviour {
@@ -53,7 +54,7 @@ public class CameraMovement : MonoBehaviour {
     {
         if (CanMoveCamera)
         {
-            if (!EventSystem.current.IsPointerOverGameObject())
+            if (!GameManager.s_Instance.IsPointerOverUIObject())
             {
                 if (Input.touchSupported && Application.isMobilePlatform)
                     HandleTouch();
