@@ -21,7 +21,6 @@ public class Enemy : PoolObj
     public bool IsAlive { get; set; }
 
     public SkeletonAnimation SkeletonAnims { get; set; }
-    //private Tween m_dopath;
     private AnimationState m_Anim;
     private EnemyHealthbar m_EnemyHealthbar;
     private MeshRenderer m_Renderer;
@@ -146,13 +145,34 @@ public class Enemy : PoolObj
             DOTween.Kill(this);
             transform.position = startPos;
             Vector3[] pathArray = MapLoader.s_Instance.GetWaypointsFromPath();
-            transform.DOPath(pathArray, pathArray.Length / m_MoveSpeed, PathType.CatmullRom).SetEase(Ease.Linear).SetId(this).OnComplete(() => DamageObjective()).OnWaypointChange(UpdateEnemyLayering);
+            transform.DOPath(pathArray, pathArray.Length / m_MoveSpeed, PathType.CatmullRom).SetEase(Ease.Linear).SetId(this).OnComplete(() => DamageObjective()).OnWaypointChange(UpdateEnemyLayering).OnWaypointChange(UpdateEnemyRotation);
         }
     }
 
     private void UpdateEnemyLayering(int waypointIndex)
     {
         m_Renderer.sortingOrder = HexGrid.s_Instance.GridSize.y - MapLoader.s_Instance.Path[waypointIndex].PositionInGrid.y;
+    }
+
+    /// <summary>
+    /// Rotates the enemy to the right direction
+    /// </summary>
+    /// <param name="waypointIndex"></param>
+    private void UpdateEnemyRotation(int waypointIndex)
+    {
+        float currentX = MapLoader.s_Instance.Path[waypointIndex].transform.position.x;
+        float nextX = MapLoader.s_Instance.Path[waypointIndex + 1].transform.position.x;
+
+        //Checks if the X position of the next node in the path is higher or lower and rotates the enemy in the right direction
+        if(nextX < currentX)
+        {
+            transform.rotation = new Quaternion(0, 0, 0, 0);
+        }
+        else if(nextX > currentX)
+        {
+            transform.rotation = new Quaternion(0, 180,0,0);
+        }
+
     }
 
 
@@ -171,10 +191,5 @@ public class Enemy : PoolObj
     private void OnDisable()
     {
         GameManager.s_OnGameStop -= Death;
-    }
-
-    void DeathRoutine()
-    {
-
     }
 }
