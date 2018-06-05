@@ -12,8 +12,6 @@ public class Enemy : PoolObj
         get { return m_EnemyString; }
     }
 
-    public long l = 9;
-
     [SerializeField]private ParticleSystem m_DeathParticle;
     public delegate void DestroyEvent(Enemy enemy);
     public static DestroyEvent s_OnDestroyEnemy;
@@ -41,7 +39,7 @@ public class Enemy : PoolObj
     private void Awake()
     {
         CurrentHealth = m_MaxHealth;
-        m_Renderer = GetComponent<MeshRenderer>();
+        m_Renderer = GetComponentInChildren<MeshRenderer>();//GetComponent<MeshRenderer>();
 
         PauseCheck.Pause += TogglePause;
 

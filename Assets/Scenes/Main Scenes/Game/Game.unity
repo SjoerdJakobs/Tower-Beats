@@ -129,51 +129,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e86d775f3548cd7409a76ef19fd7524b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &188108444 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1361886295585442, guid: f2907c649997e88439857aff58027a77,
-    type: 2}
-  m_PrefabInternal: {fileID: 2008363400}
---- !u!114 &188108450
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 188108444}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6363bba448bf64e60a763433f9ddf81b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _threshold: 0.9
-  _softKnee: 0.4
-  _radius: 2.6
-  _intensity: 1
-  _highQuality: 0
-  _antiFlicker: 1
-  _shader: {fileID: 4800000, guid: 5a711a01011934ebcb58ef5ad52159d6, type: 3}
---- !u!114 &188108451
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 188108444}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 689a69a166f1ffb44b516f5f90d602cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  toneMapping: 1
-  colorMaterial: {fileID: 2100000, guid: 77186bd7b34e247499b027bcaa655dc3, type: 2}
-  shader: {fileID: 4800000, guid: 882e54c96926fba41a8f998a4d293b44, type: 3}
-  Exposure: 0.424
-  Contrast: 1.148
-  Saturation: 0
-  Gamma: 1
-  vignetteIntensity: 0.1
-  R: 100
-  G: 100
-  B: 100
 --- !u!1001 &385207776
 Prefab:
   m_ObjectHideFlags: 0
@@ -1042,24 +997,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 114752257900991132, guid: f2907c649997e88439857aff58027a77,
-        type: 2}
-      propertyPath: profile
-      value: 
-      objectReference: {fileID: 11400000, guid: c6eb9719334827a43a748b0886552b41,
-        type: 2}
-    - target: {fileID: 20364029334658954, guid: f2907c649997e88439857aff58027a77,
-        type: 2}
-      propertyPath: m_AllowMSAA
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114752257900991132, guid: f2907c649997e88439857aff58027a77,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114752257900991132, guid: f2907c649997e88439857aff58027a77, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f2907c649997e88439857aff58027a77, type: 2}
   m_IsPrefabParent: 0
 --- !u!20 &2008363401 stripped
