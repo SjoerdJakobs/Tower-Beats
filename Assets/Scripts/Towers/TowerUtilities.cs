@@ -5,6 +5,8 @@ public class TowerUtilities : MonoBehaviour {
     public delegate void UpgradeEvent();
     public static UpgradeEvent s_OnUpgrade;
 
+    public Tile CurrentTile { get; set; }
+
     private void OnDisable()
     {
         HideHighlightedTileVisuals();
@@ -12,7 +14,7 @@ public class TowerUtilities : MonoBehaviour {
 
     private void HideHighlightedTileVisuals()
     {
-        Tile selectedTile = HexGrid.s_Instance.SelectedTile;
+        Tile selectedTile = CurrentTile;
         if (selectedTile.CurrentState == TileState.OCCUPIED)
             selectedTile.SetTileVisualsState(TileVisualState.TURRET_SPAWN);
     }
@@ -22,11 +24,11 @@ public class TowerUtilities : MonoBehaviour {
     /// </summary>
     public void SellTower()
     {
-        PlayerData.s_Instance.ChangeCoinAmount(HexGrid.s_Instance.SelectedTile.Tower.TowerData.SellValue);
-        HexGrid.s_Instance.SelectedTile.Tower.Sell();
-        HexGrid.s_Instance.SelectedTile.Tower = null;
-        HexGrid.s_Instance.SelectedTile.CurrentState = TileState.TURRET_SPAWN;
-        MenuManager.s_Instance.HideMenu(MenuNames.TOWER_MENU);
+        PlayerData.s_Instance.ChangeCoinAmount(CurrentTile.Tower.TowerData.SellValue);
+        CurrentTile.Tower.Sell();
+        CurrentTile.Tower = null;
+        CurrentTile.CurrentState = TileState.TURRET_SPAWN;
+        PopUpManager.s_Instance.HidePopup(PopUpNames.TOWER_MENU);
         HideHighlightedTileVisuals();
     }
 
@@ -35,11 +37,11 @@ public class TowerUtilities : MonoBehaviour {
     /// </summary>
     public void Upgrade()
     {
-        if (HexGrid.s_Instance.SelectedTile.Tower.TowerData.Level < HexGrid.s_Instance.SelectedTile.Tower.TowerData.MaxLevel 
-            && PlayerData.s_Instance.Coins >= HexGrid.s_Instance.SelectedTile.Tower.TowerData.UpgradeCost)
+        if (CurrentTile.Tower.TowerData.Level < CurrentTile.Tower.TowerData.MaxLevel 
+            && PlayerData.s_Instance.Coins >= CurrentTile.Tower.TowerData.UpgradeCost)
         {
-            PlayerData.s_Instance.ChangeCoinAmount(-HexGrid.s_Instance.SelectedTile.Tower.TowerData.UpgradeCost);
-            HexGrid.s_Instance.SelectedTile.Tower.TowerData = TowerConfig.s_Towers[HexGrid.s_Instance.SelectedTile.Tower.TowerData.Type][HexGrid.s_Instance.SelectedTile.Tower.TowerData.Level];
+            PlayerData.s_Instance.ChangeCoinAmount(-CurrentTile.Tower.TowerData.UpgradeCost);
+            CurrentTile.Tower.TowerData = TowerConfig.s_Towers[CurrentTile.Tower.TowerData.Type][CurrentTile.Tower.TowerData.Level];
             if (s_OnUpgrade != null)
             {
                 s_OnUpgrade();

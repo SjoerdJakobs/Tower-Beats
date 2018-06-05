@@ -4,14 +4,28 @@ using UnityEngine.UI;
 public class TowerInfoPopUp : PopUp {
 
     [SerializeField] private Text m_DamageField;
-    [SerializeField] private Text m_RangeField;
     [SerializeField] private Text m_SellValue;
     [SerializeField] private Text m_UpgradeCost;
+    [SerializeField] private Text m_TowerName;
+    [SerializeField] private Text m_TowerLevel;
+    [Space]
+    [SerializeField] private TowerUtilities m_TowerUtilities;
 
-    private void OnEnable()
+    private Tile m_CurrentTile;
+
+    public override void Show(Tile calledFrom)
     {
         TowerUtilities.s_OnUpgrade += ShowTowerInfo;
+        m_TowerUtilities.CurrentTile = calledFrom;
+        m_CurrentTile = calledFrom;
+        base.Show(calledFrom);
         ShowTowerInfo();
+    }
+
+    public override void Hide()
+    {
+        TowerUtilities.s_OnUpgrade -= ShowTowerInfo;
+        base.Hide();
     }
 
     /// <summary>
@@ -19,10 +33,11 @@ public class TowerInfoPopUp : PopUp {
     // </summary>
     private void ShowTowerInfo()
     {
-        Tower tower = HexGrid.s_Instance.SelectedTile.Tower;
+        Tower tower = m_CurrentTile.Tower;
         m_DamageField.text = tower.TowerData.AttackDamage.ToString();
-        m_RangeField.text = tower.TowerData.AttackRange.ToString();
         m_SellValue.text = tower.TowerData.SellValue.ToString();
+        m_TowerName.text = (tower.TowerData.Type.ToString() + " Turret");
+        m_TowerLevel.text = ("Level " + tower.TowerData.Level.ToString());
         if (tower.TowerData.Level < tower.TowerData.MaxLevel)
         {
             m_UpgradeCost.text = tower.TowerData.UpgradeCost.ToString();
@@ -31,10 +46,5 @@ public class TowerInfoPopUp : PopUp {
         {
             m_UpgradeCost.text = "MAX";
         }
-    }
-
-    public void OnDisable()
-    {
-        TowerUtilities.s_OnUpgrade -= ShowTowerInfo;
     }
 }

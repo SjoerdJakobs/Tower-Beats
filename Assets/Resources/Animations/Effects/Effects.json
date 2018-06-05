@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "5Oit/vZ5EciW5yaQLimUuOzxBb8", "spine": "3.6.52", "width": 312, "height": 365.61, "images": "" },
+"skeleton": { "hash": "5+X2Sghr7sRmvdKCuhQ1DS0M4i0", "spine": "3.6.52", "width": 312, "height": 365.61, "images": "" },
 "bones": [
 	{ "name": "root" },
 	{ "name": "SpawnFX", "parent": "root" },
@@ -38,7 +38,6 @@
 ],
 "slots": [
 	{ "name": "root2", "bone": "root", "attachment": "Asset 3" },
-	{ "name": "Background", "bone": "root" },
 	{ "name": "root", "bone": "root" },
 	{ "name": "Hit/HitEffect0001", "bone": "HitFX" },
 	{ "name": "Shoot/ShootFX0001", "bone": "ShootFX", "attachment": "Shoot/ShootFX0001" },
@@ -74,9 +73,6 @@
 ],
 "skins": {
 	"default": {
-		"Background": {
-			"Background": { "x": 170.63, "y": -16, "scaleX": 0.766, "scaleY": 0.766, "width": 1468, "height": 992 }
-		},
 		"Bullet/Bullet": {
 			"Bullet/Beam": { "x": 27.56, "scaleX": 0.342, "scaleY": 0.342, "rotation": -90, "width": 173, "height": 242 }
 		},
@@ -2228,7 +2224,10 @@
 		"bones": {
 			"HitFX": {
 				"translate": [
-					{ "time": 0, "x": 7.73, "y": -24.49 }
+					{ "time": 0, "x": 21.9, "y": -17.41 }
+				],
+				"scale": [
+					{ "time": 0, "x": 2.419, "y": 2.419 }
 				]
 			}
 		}
