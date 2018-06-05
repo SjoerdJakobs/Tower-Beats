@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         Tile.s_OnSetTileClickableState(false);
-        MapLoader.s_Instance.LoadMap("tutorial", true);
+        MapLoader.s_Instance.LoadMap("level1", true);
         StartCoroutine(ShowTutorial(() => {
             Tile.s_OnSetTileClickableState(true);
             StartCoroutine(StartPreparationTime(() => {
