@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using DG.Tweening;
 
 public class GameManager : MonoBehaviour
 {
@@ -38,7 +39,7 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         Tile.s_OnSetTileClickableState(false);
-        MapLoader.s_Instance.LoadMap("level1", true);
+        MapLoader.s_Instance.LoadMap("tutorial", true);
         StartCoroutine(ShowTutorial(() => {
             Tile.s_OnSetTileClickableState(true);
             StartCoroutine(StartPreparationTime(() => {
@@ -75,21 +76,46 @@ public class GameManager : MonoBehaviour
         CameraMovement.s_Instance.ZoomAnimated(1, 0, DG.Tweening.Ease.Linear);
         yield return new WaitUntil(() => MapLoader.s_Instance != null);
         yield return new WaitUntil(() => MapLoader.s_Instance.MapLoaded);
+
+        //Base tutorial
         yield return new WaitForSeconds(0.5f);
         CameraMovement.s_Instance.ZoomAnimated(0, 1, DG.Tweening.Ease.InOutQuad);
         NotificationManager.s_Instance.EnqueueNotification("Your objective is to defend this tower in Hexagonia.", 2);
         CameraMovement.s_Instance.ScrollCameraToPosition(MapLoader.s_Instance.HeadQuarters, 1, false);
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(2.6f);
+        MapLoader.s_Instance.HeadQuarters.transform.DOScale(1.1f, 0.3f).SetLoops(4, LoopType.Yoyo);
+        yield return new WaitForSeconds(2f);
+
+        //Enemy spawning tutorial
         NotificationManager.s_Instance.EnqueueNotification("Enemies will spawn from this red tile", 2);
         CameraMovement.s_Instance.ScrollCameraToPosition(MapLoader.s_Instance.Path[0], 1, false);
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(2.6f);
+        MapLoader.s_Instance.Path[0].transform.DOScale(1.1f, 0.3f).SetLoops(4, LoopType.Yoyo);
+        yield return new WaitForSeconds(2f);
+
+        //Tower tutorial
         NotificationManager.s_Instance.EnqueueNotification("You can place towers by clicking on a white tile",2);
         CameraMovement.s_Instance.ScrollCameraToPosition(HexGrid.s_Instance.GetTurretSpawnpoints()[0],1,false);
-        yield return new WaitForSeconds(2.5f);
-        NotificationManager.s_Instance.EnqueueNotification("Towers react to the music, each tower responds to a different instrument.", 5);
+        yield return new WaitForSeconds(2.6f);
+        HexGrid.s_Instance.GetTurretSpawnpoints()[0].transform.DOScale(1.1f, 0.3f).SetLoops(4, LoopType.Yoyo);
+        yield return new WaitForSeconds(2f);
+        NotificationManager.s_Instance.EnqueueNotification("Clicking on the tower you bought will open a menu that will allow you to upgrade or sell the tower.", 6f);
+        yield return new WaitForSeconds(6f);
+
+        //Beat meter tutorial
+        NotificationManager.s_Instance.EnqueueNotification("Towers react to the music, each tower responds to a different sound.", 5);
         yield return new WaitForSeconds(5f);
-        NotificationManager.s_Instance.EnqueueNotification("In the top left corner you can see indicators for when the towers will shoot.",5);
-        yield return new WaitForSeconds(5f);
+        NotificationManager.s_Instance.EnqueueNotification("In the top left corner you can see which tower reacts to which sound.",5);
+        yield return new WaitForSeconds(6f);
+        if(RMSSliders.s_HighlightSlider != null)
+        {
+            RMSSliders.s_HighlightSlider();
+        }
+        yield return new WaitForSeconds(2f);
+        NotificationManager.s_Instance.EnqueueNotification("When the value of a sound reaches a threshold (white stripe in the bar) the matching towers will start shooting",6f);
+        yield return new WaitForSeconds(6f);
+
+        //Finish tutorial
         CameraMovement.s_Instance.CanMoveCamera = true;
         if (callback != null) callback();
     }
