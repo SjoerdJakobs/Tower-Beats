@@ -145,13 +145,28 @@ public class Enemy : PoolObj
             DOTween.Kill(this);
             transform.position = startPos;
             Vector3[] pathArray = MapLoader.s_Instance.GetWaypointsFromPath();
-            transform.DOPath(pathArray, pathArray.Length / m_MoveSpeed, PathType.CatmullRom).SetEase(Ease.Linear).SetId(this).OnComplete(() => DamageObjective()).OnWaypointChange(UpdateEnemyLayering).OnWaypointChange(UpdateEnemyRotation);
+            transform.DOPath(pathArray, pathArray.Length / m_MoveSpeed, PathType.CatmullRom).SetEase(Ease.Linear).SetId(this).OnComplete(() => DamageObjective()).OnWaypointChange(OnWaypointChange);
         }
     }
 
-    private void UpdateEnemyLayering(int waypointIndex)
+    /// <summary>
+    /// Gets called every time the enemy lands on a new path tile
+    /// </summary>
+    /// <param name="waypointIndex">Index of the path position</param>
+    private void OnWaypointChange(int waypointIndex)
     {
         StartCoroutine(Callback());
+
+        UpdateEnemyLayering(waypointIndex);
+        UpdateEnemyRotation(waypointIndex);
+    }
+
+    /// <summary>
+    /// Updates the enemy's sorting order based on the enemy's position in the grid
+    /// </summary>
+    /// <param name="waypointIndex">Index of the path position</param>
+    private void UpdateEnemyLayering(int waypointIndex)
+    {
         m_Renderer.sortingOrder = HexGrid.s_Instance.GridSize.y - MapLoader.s_Instance.Path[waypointIndex].PositionInGrid.y;
     }
 
