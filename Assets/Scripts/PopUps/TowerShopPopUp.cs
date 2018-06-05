@@ -11,6 +11,8 @@ public class TowerShopPopUp : PopUp {
     [SerializeField] private Text m_BassTowerCost;
     [SerializeField] private Text m_DrumTowerCost;
     [SerializeField] private Text m_LeadTowerCost;
+    [Space]
+    [SerializeField] private TowerShopAnimation m_Animation;
 
     private Tile m_CurrentTile;
 
@@ -22,11 +24,15 @@ public class TowerShopPopUp : PopUp {
 
         m_CurrentTile = calledFrom;
         base.Show(calledFrom);
+        m_Animation.AnimateIn();
     }
 
     public override void Hide()
     {
-        base.Hide();
+        ClearLastClickedTile();
+        m_Animation.AnimateOut(delegate {
+            base.Hide();
+        });
     }
 
     void CompareCostAndSetText(float cost, Text textToColor)

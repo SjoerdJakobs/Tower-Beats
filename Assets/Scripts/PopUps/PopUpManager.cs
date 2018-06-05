@@ -36,7 +36,8 @@ public class PopUpManager : MonoBehaviour {
         {
             if (m_PopUps[i].name.ToUpper() == popUpName.ToUpper())
             {
-                m_PopUps[i].Show(tile);
+                if(m_PopUps[i].LastClickedFromTile != tile)
+                    m_PopUps[i].Show(tile);
             }
             else
             {
@@ -46,17 +47,34 @@ public class PopUpManager : MonoBehaviour {
         }
     }
 
-    public void HidePopup(string popUpName)
+    public void HidePopUp(string popUpName)
     {
-        m_PopUps.Find(x => x.name.ToUpper() == popUpName.ToUpper()).Hide();
+        PopUp popup = m_PopUps.Find(x => x.name.ToUpper() == popUpName.ToUpper()) as PopUp;
+        HidePopUp(popup);
+    }
+
+    public void HidePopUp(PopUp popup)
+    {
+        popup.ClearLastClickedTile();
+        popup.Hide();
     }
 
     public void HideAll()
     {
         for (int i = 0; i < m_PopUps.Count; i++)
         {
-            if(m_PopUps[i].isActiveAndEnabled)
-                m_PopUps[i].Hide();
+            if (m_PopUps[i].isActiveAndEnabled)
+                HidePopUp(m_PopUps[i]);
         }
+    }
+
+    public bool IsPopUpOpenOnTile(Tile tile)
+    {
+        for (int i = 0; i < m_PopUps.Count; i++)
+        {
+            if (m_PopUps[i].LastClickedFromTile == tile)
+                return true;
+        }
+        return false;
     }
 }
