@@ -52,9 +52,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EnemyPrefabs:
-  - {fileID: 1350565606244240, guid: 70807755032b7f74f89719cd37005944, type: 2}
+  - {fileID: 1168953492235420, guid: 6a64bee686e0cbe4282e2f87fdc0e603, type: 2}
   m_Bosses:
-  - {fileID: 1547730397164050, guid: 6557ad35f65f8e84495f2d6ca85e19b6, type: 2}
+  - {fileID: 1028189119882858, guid: d86e29f0133bebc4a933eab1cf307794, type: 2}
   SpawnedEnemies: []
   EnemyPools: []
   BossPools: []
