@@ -25,6 +25,8 @@ public class Enemy : PoolObj
     private EnemyHealthbar m_EnemyHealthbar;
     private MeshRenderer m_Renderer;
 
+    private Transform m_CanvasObj;
+
     [SerializeField] private float m_MoveSpeed;
     [SerializeField] private float m_CoinsToGive;
 
@@ -39,6 +41,7 @@ public class Enemy : PoolObj
         PauseCheck.Pause += TogglePause;
 
         m_EnemyHealthbar = GetComponent<EnemyHealthbar>();
+        m_CanvasObj = transform.GetChild(0);
     }
 
     private void OnEnable()
@@ -168,10 +171,12 @@ public class Enemy : PoolObj
         if(nextX < currentX)
         {
             transform.rotation = new Quaternion(0, 0, 0, 0);
+            m_CanvasObj.rotation = new Quaternion(0, 180, 0, 0);
         }
         else if(nextX > currentX)
         {
             transform.rotation = new Quaternion(0, 180,0,0);
+            m_CanvasObj.rotation = new Quaternion(0, 0, 0, 0);
         }
 
     }
