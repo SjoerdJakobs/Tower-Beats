@@ -20,10 +20,16 @@ public class Enemy : PoolObj
     public float CurrentHealth { get; set; }
     public bool IsAlive { get; set; }
 
-    public SkeletonAnimation SkeletonAnims { get; set; }
+    [SerializeField]private SkeletonAnimation m_SkeletonAnims;
+    public SkeletonAnimation SkeletonAnims
+    {
+        get { return m_SkeletonAnims; }
+        set { m_SkeletonAnims = value; }
+    }
     private AnimationState m_Anim;
     private EnemyHealthbar m_EnemyHealthbar;
     private MeshRenderer m_Renderer;
+    [SerializeField] private Transform m_EnemyTransform; 
 
     private Transform m_CanvasObj;
 
@@ -35,7 +41,6 @@ public class Enemy : PoolObj
     private void Awake()
     {
         CurrentHealth = m_MaxHealth;
-        SkeletonAnims = GetComponent<SkeletonAnimation>();
         m_Renderer = GetComponent<MeshRenderer>();
 
         PauseCheck.Pause += TogglePause;
@@ -71,8 +76,8 @@ public class Enemy : PoolObj
                 switch (towerType)
                 {
                     case "Bass":
-                        SkeletonAnims.AnimationState.SetAnimation(0, m_EnemyString + "HIT_Electricity", false);
-                        SkeletonAnims.AnimationState.AddAnimation(0, m_EnemyString + "MOVE", true, 0);
+                        m_SkeletonAnims.AnimationState.SetAnimation(0, m_EnemyString + "HIT_Electricity", false);
+                        m_SkeletonAnims.AnimationState.AddAnimation(0, m_EnemyString + "MOVE", true, 0);
                         break;
                     case "Drum":
                         EffectsManager.s_Instance.SpawnEffect(EffectType.ENEMY_HIT, false, new Vector2(transform.position.x, transform.position.y + 0.5f));
@@ -113,9 +118,9 @@ public class Enemy : PoolObj
         m_DeathParticle.gameObject.SetActive(true);
         m_DeathParticle.Play();
 
-        SkeletonAnims.AnimationState.SetAnimation(0, m_EnemyString + "DEATH", false).OnComplete();
+        m_SkeletonAnims.AnimationState.SetAnimation(0, m_EnemyString + "DEATH", false).OnComplete();
 
-        float animTime = SkeletonAnims.skeleton.data.FindAnimation(m_EnemyString + "DEATH").duration;
+        float animTime = m_SkeletonAnims.skeleton.data.FindAnimation(m_EnemyString + "DEATH").duration;
 
         yield return new WaitForSeconds(animTime);
 
@@ -185,13 +190,13 @@ public class Enemy : PoolObj
         //Checks if the X position of the next node in the path is higher or lower and rotates the enemy in the right direction
         if(nextX < currentX)
         {
-            transform.rotation = new Quaternion(0, 0, 0, 0);
-            m_CanvasObj.rotation = new Quaternion(0, 180, 0, 0);
+            m_EnemyTransform.rotation = new Quaternion(0, 0, 0, 0);
+            //m_CanvasObj.rotation = new Quaternion(0, 180, 0, 0);
         }
         else if(nextX > currentX)
         {
-            transform.rotation = new Quaternion(0, 180,0,0);
-            m_CanvasObj.rotation = new Quaternion(0, 0, 0, 0);
+            m_EnemyTransform.rotation = new Quaternion(0, 180,0,0);
+            //m_CanvasObj.rotation = new Quaternion(0, 0, 0, 0);
         }
 
     }
@@ -228,13 +233,13 @@ public class Enemy : PoolObj
 
             if(RNG < 10)
             {
-                float animTime = SkeletonAnims.skeleton.data.FindAnimation(m_EnemyString + "MOVE2_DAB").duration;
+                float animTime = m_SkeletonAnims.skeleton.data.FindAnimation(m_EnemyString + "MOVE2_DAB").duration;
 
-                SkeletonAnims.AnimationState.AddAnimation(0, m_EnemyString + "MOVE2_DAB", true, 0);
+                m_SkeletonAnims.AnimationState.AddAnimation(0, m_EnemyString + "MOVE2_DAB", true, 0);
 
                 yield return new WaitForSeconds(animTime);
 
-                SkeletonAnims.AnimationState.AddAnimation(0, m_EnemyString + "MOVE", true, 0);
+                m_SkeletonAnims.AnimationState.AddAnimation(0, m_EnemyString + "MOVE", true, 0);
             }
         }
         
