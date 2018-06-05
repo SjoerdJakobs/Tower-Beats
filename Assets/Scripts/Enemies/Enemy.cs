@@ -12,6 +12,8 @@ public class Enemy : PoolObj
         get { return m_EnemyString; }
     }
 
+    public long l = 9;
+
     [SerializeField]private ParticleSystem m_DeathParticle;
     public delegate void DestroyEvent(Enemy enemy);
     public static DestroyEvent s_OnDestroyEnemy;
@@ -30,9 +32,7 @@ public class Enemy : PoolObj
     private EnemyHealthbar m_EnemyHealthbar;
     private MeshRenderer m_Renderer;
     [SerializeField] private Transform m_EnemyTransform; 
-
-    private Transform m_CanvasObj;
-
+    
     [SerializeField] private float m_MoveSpeed;
     [SerializeField] private float m_CoinsToGive;
 
@@ -46,7 +46,6 @@ public class Enemy : PoolObj
         PauseCheck.Pause += TogglePause;
 
         m_EnemyHealthbar = GetComponent<EnemyHealthbar>();
-        m_CanvasObj = transform.GetChild(0);
     }
 
     private void OnEnable()
@@ -164,11 +163,9 @@ public class Enemy : PoolObj
     private void OnWaypointChange(int waypointIndex)
     {
         StartCoroutine(Callback());
-
-        Debug.Log("yis");
-
-        UpdateEnemyLayering(waypointIndex);
         UpdateEnemyRotation(waypointIndex);
+        UpdateEnemyLayering(waypointIndex);
+
     }
 
     /// <summary>
@@ -193,12 +190,10 @@ public class Enemy : PoolObj
         if(nextX < currentX)
         {
             m_EnemyTransform.rotation = new Quaternion(0, 0, 0, 0);
-            //m_CanvasObj.rotation = new Quaternion(0, 180, 0, 0);
         }
         else if(nextX > currentX)
         {
             m_EnemyTransform.rotation = new Quaternion(0, 180,0,0);
-            //m_CanvasObj.rotation = new Quaternion(0, 0, 0, 0);
         }
 
     }
