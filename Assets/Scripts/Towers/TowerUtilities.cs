@@ -7,29 +7,19 @@ public class TowerUtilities : MonoBehaviour {
 
     public Tile CurrentTile { get; set; }
 
-    private void OnDisable()
-    {
-        HideHighlightedTileVisuals();
-    }
-
-    private void HideHighlightedTileVisuals()
-    {
-        Tile selectedTile = CurrentTile;
-        if (selectedTile.CurrentState == TileState.OCCUPIED)
-            selectedTile.SetTileVisualsState(TileVisualState.TURRET_SPAWN);
-    }
-
     /// <summary>
     /// Sells a tower and returns 75% of the coins invested in the tower
     /// </summary>
     public void SellTower()
     {
+        if (CurrentTile == null) return;
+
         PlayerData.s_Instance.ChangeCoinAmount(CurrentTile.Tower.TowerData.SellValue);
         CurrentTile.Tower.Sell();
         CurrentTile.Tower = null;
         CurrentTile.CurrentState = TileState.TURRET_SPAWN;
-        PopUpManager.s_Instance.HidePopup(PopUpNames.TOWER_MENU);
-        HideHighlightedTileVisuals();
+        CurrentTile.SetTileVisualsState(TileVisualState.TURRET_SPAWN);
+        PopUpManager.s_Instance.HidePopUp(PopUpNames.TOWER_MENU);
     }
 
     /// <summary>
@@ -37,6 +27,8 @@ public class TowerUtilities : MonoBehaviour {
     /// </summary>
     public void Upgrade()
     {
+        if (CurrentTile == null) return;
+
         if (CurrentTile.Tower.TowerData.Level < CurrentTile.Tower.TowerData.MaxLevel 
             && PlayerData.s_Instance.Coins >= CurrentTile.Tower.TowerData.UpgradeCost)
         {
@@ -47,6 +39,5 @@ public class TowerUtilities : MonoBehaviour {
                 s_OnUpgrade();
             }
         }
-        HideHighlightedTileVisuals();
     }
 }

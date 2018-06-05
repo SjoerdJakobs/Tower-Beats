@@ -10,6 +10,7 @@ public class TowerInfoPopUp : PopUp {
     [SerializeField] private Text m_TowerLevel;
     [Space]
     [SerializeField] private TowerUtilities m_TowerUtilities;
+    [SerializeField] private TowerUpgradesAnimation m_Animation;
 
     private Tile m_CurrentTile;
 
@@ -18,14 +19,22 @@ public class TowerInfoPopUp : PopUp {
         TowerUtilities.s_OnUpgrade += ShowTowerInfo;
         m_TowerUtilities.CurrentTile = calledFrom;
         m_CurrentTile = calledFrom;
+        m_CurrentTile.SetTileVisualsState(TileVisualState.TURRET_SELECTED);
         base.Show(calledFrom);
+        m_Animation.AnimateIn();
         ShowTowerInfo();
     }
 
     public override void Hide()
     {
         TowerUtilities.s_OnUpgrade -= ShowTowerInfo;
-        base.Hide();
+        if(LastClickedFromTile != null)
+            LastClickedFromTile.SetTileVisualsState(TileVisualState.TURRET_SPAWN);
+        ClearLastClickedTile();
+        m_Animation.AnimateOut(delegate {
+            base.Hide();
+        });
+
     }
 
     /// <summary>

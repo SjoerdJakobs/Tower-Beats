@@ -128,8 +128,6 @@ public class Tile : MonoBehaviour
 
             if (s_OnTileClicked != null) s_OnTileClicked(this);
 
-            PopUpManager.s_Instance.HideAll();
-
             switch (CurrentState)
             {
                 case TileState.TURRET_SPAWN:
@@ -148,10 +146,12 @@ public class Tile : MonoBehaviour
                     if (PopUpManager.s_Instance != null)
                     {
                         PopUpManager.s_Instance.ShowPopUp(PopUpNames.TOWER_MENU, this);
-                        SetTileVisualsState(TileVisualState.TURRET_SELECTED);
                     }
                     if (m_MoveCameraToTileOnClick)
                         CameraMovement.s_Instance.ScrollCameraToPosition(this, 0.5f, true, true);
+                    break;
+                default:
+                    PopUpManager.s_Instance.HideAll();
                     break;
             }
         }
