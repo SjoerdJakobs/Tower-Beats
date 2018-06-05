@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Kino;
 using UnityEngine.UI;
-using UnityEngine.PostProcessing;
 
 //Used to identify the type of instrument
 public enum InstrumentGroup
@@ -21,7 +21,7 @@ public class GetRMS : MonoBehaviour {
 
     public static AudioCueEvent s_OnBassLost;
 
-    private PostProcessingProfile m_PostProcessingProfile;
+    private Bloom m_BloomProfile;
     private float m_BloomIntensity;
 
     private float m_Timer;
@@ -102,7 +102,7 @@ public class GetRMS : MonoBehaviour {
 
     void GetPostPostProcessingBehaviour()
     {
-        m_PostProcessingProfile = Camera.main.GetComponent<PostProcessingBehaviour>().profile;
+        m_BloomProfile = Camera.main.GetComponent<Bloom>();
     }
 
     void SetSlider()
@@ -117,14 +117,11 @@ public class GetRMS : MonoBehaviour {
         //transform.localScale.y = volume * rmsValue;
         if (Slider != null)
             Slider.SetFill((rmsValue * 6));
-        if(m_PostProcessingProfile != null && Instrument == InstrumentGroup.Lead)
+        if(m_BloomProfile != null && Instrument == InstrumentGroup.Lead)
         {
-            m_BloomIntensity = Mathf.Clamp(rmsValue * 60, 3.3f, 5.5f);
+            m_BloomIntensity = Mathf.Clamp(1+(rmsValue * 6), 1f, 2f);
             //m_BloomIntensity = rmsValue * 60;
-            BloomModel.Settings NewBloomSettings = new BloomModel.Settings();
-            NewBloomSettings = m_PostProcessingProfile.bloom.settings;
-            NewBloomSettings.bloom.intensity = m_BloomIntensity;
-            m_PostProcessingProfile.bloom.settings = NewBloomSettings;
+            m_BloomProfile.intensity = m_BloomIntensity;
         }
     }
 
