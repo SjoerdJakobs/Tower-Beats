@@ -14,6 +14,7 @@ public enum EffectType
     BassTurretFX_Spawn,
     BassTurretFX_Disappear,
     TURRET_SPAWN,
+	LASERBEAM_HIT,
     EMPTY
 }
 
