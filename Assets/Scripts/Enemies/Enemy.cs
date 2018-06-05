@@ -83,7 +83,7 @@ public class Enemy : PoolObj
                         EffectsManager.s_Instance.SpawnEffect(EffectType.ENEMY_HIT, false, new Vector2(transform.position.x, transform.position.y + 0.5f));
                         break;
                     case "Lead":
-                        EffectsManager.s_Instance.SpawnEffect(EffectType.ENEMY_HIT, false, new Vector2(transform.position.x, transform.position.y + 0.5f));
+                        //EffectsManager.s_Instance.SpawnEffect(EffectType.ENEMY_HIT, false, new Vector2(transform.position.x, transform.position.y + 0.5f));
                         break;
                 }
             }
@@ -164,6 +164,8 @@ public class Enemy : PoolObj
     private void OnWaypointChange(int waypointIndex)
     {
         StartCoroutine(Callback());
+
+        Debug.Log("yis");
 
         UpdateEnemyLayering(waypointIndex);
         UpdateEnemyRotation(waypointIndex);

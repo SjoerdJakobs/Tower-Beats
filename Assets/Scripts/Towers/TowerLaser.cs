@@ -7,6 +7,10 @@ public class TowerLaser : MonoBehaviour {
     [SerializeField]
     private Transform m_Target;
     [SerializeField]
+    private GameObject m_ImpactArtPrefab;
+    private GameObject m_ImpactArt;
+
+    [SerializeField]
     public Transform ShootPos;
     private Vector3 m_Difference;
     private Vector3 m_TargetOffsetPoint = new Vector3(0.04f,0.47f,0);
@@ -35,6 +39,10 @@ public class TowerLaser : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        if (m_ImpactArt == null)
+        {
+            m_ImpactArt = Instantiate(m_ImpactArtPrefab, new Vector3(9999999, 9999999, 1),Quaternion.identity);
+        }
         m_XScaleOrginValue = 0.4f;
         m_Mat = GetComponent<Renderer>().material;
 	}
@@ -86,9 +94,12 @@ public class TowerLaser : MonoBehaviour {
             m_Difference = (m_Target.transform.position +m_TargetOffsetPoint) - ShootPos.position;
             m_RotationZ = Mathf.Atan2(m_Difference.y, m_Difference.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0, 0, (m_RotationZ + 90));
+
+            m_ImpactArt.transform.position = m_Target.transform.position + m_TargetOffsetPoint;
         }
         else if (m_Distance > 0)
         {
+            m_ImpactArt.transform.position = new Vector3(9999999, 9999999, 1);
             m_Distance = 0;
             transform.localScale = new Vector3(1, 0, 1);
         }

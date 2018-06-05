@@ -53,6 +53,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Target: {fileID: 0}
+  m_ImpactArtPrefab: {fileID: 1300243539556588, guid: 56495ca46cbd6f843ad530b69b382f6f,
+    type: 2}
   ShootPos: {fileID: 0}
   m_RaySpeed: 3
 --- !u!212 &212351488948634950
