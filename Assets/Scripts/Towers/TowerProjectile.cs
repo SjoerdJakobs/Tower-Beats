@@ -50,7 +50,7 @@ public class TowerProjectile : PoolObj
 
     [SerializeField] private AnimationCurve m_ProjectileArc;
     [SerializeField] private float m_ProjectileHeight = 4f;
-    [SerializeField] private float m_OffsetY = 0.5f;
+    [SerializeField] private float m_OffsetY = 0.6f;
 
     private bool m_Pause;
     public ProjectileData Data { get; private set; }
