@@ -21,7 +21,14 @@ public class ScrollLevels : MonoBehaviour {
         else
             Destroy(gameObject);
 
-        if (MapInfo.s_OnLevelChange != null)
+        StartCoroutine(LateStart());
+    }
+
+    IEnumerator LateStart()
+    {
+        yield return new WaitForEndOfFrame();
+
+        if(MapInfo.s_OnLevelChange != null)
             MapInfo.s_OnLevelChange(GetSelectedLevel());
     }
 
