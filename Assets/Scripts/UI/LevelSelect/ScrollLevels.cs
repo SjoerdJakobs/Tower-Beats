@@ -8,7 +8,6 @@ public class ScrollLevels : MonoBehaviour {
 
     [SerializeField] private Transform[] m_LevelPositions;
     [SerializeField] private List<GameObject> m_Levels = new List<GameObject>();
-    [SerializeField] private RectTransform m_SelectedLevelPosition;
 
     public static ScrollLevels s_Instance;
 
@@ -111,8 +110,40 @@ public class ScrollLevels : MonoBehaviour {
 
     public Level GetSelectedLevel()
     {
+        SetColors();
         Level selectedLevel = m_Levels[1].GetComponent<Level>();
         return selectedLevel;
+    }
+
+    private void SetColors()
+    {
+        for (int i = 0; i < m_Levels.Count; i++)
+        {
+            if(i != 2)
+            {
+                Image[] images = m_Levels[i].GetComponentsInChildren<Image>();
+
+                foreach (Image image in images)
+                {
+                   if(image != m_Levels[i].GetComponent<Image>())
+                    {
+                        image.color = Color.gray;
+                    } 
+                }
+            }
+            else
+            {
+                Image[] images = m_Levels[i].GetComponentsInChildren<Image>();
+
+                foreach (Image image in images)
+                {
+                    if (image != m_Levels[i].GetComponent<Image>())
+                    {
+                        image.color = Color.white;
+                    }
+                }
+            }
+        }
     }
 
     private void ResetButtonColors()
