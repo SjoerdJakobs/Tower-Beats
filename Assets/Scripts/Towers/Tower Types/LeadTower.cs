@@ -31,7 +31,6 @@ public class LeadTower : Tower
 
         m_Animation = GetComponent<SkeletonAnimation>();
         StartCoroutine(SpawnEffect());
-        m_TargetType = TargetTypes.FURTHEST;
     }
 
     private IEnumerator SpawnEffect()
