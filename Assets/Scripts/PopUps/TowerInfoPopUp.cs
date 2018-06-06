@@ -29,7 +29,9 @@ public class TowerInfoPopUp : PopUp {
     public override void Hide()
     {
         TowerUtilities.s_OnUpgrade -= ShowTowerInfo;
-        if(LastClickedFromTile != null)
+        m_TowerUtilities.CurrentTile = null;
+
+        if (LastClickedFromTile != null)
             LastClickedFromTile.SetTileVisualsState(TileVisualState.TURRET_SPAWN);
         ClearLastClickedTile();
         m_Animation.AnimateOut(delegate {

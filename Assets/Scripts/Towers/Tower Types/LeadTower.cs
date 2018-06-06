@@ -47,25 +47,30 @@ public class LeadTower : Tower
         if (!m_CanShoot) return;
 
         base.Attack();
-
-        if (m_ReadyToAttack && m_Target != null)
+        
+        if(m_Target != null)
         {
-            if(!m_IsShooting)
+            if (m_ReadyToAttack)
             {
-                print("Lead: Set to attack");
-                m_Animation.state.SetAnimation(0, "Lead_Turret_ATTACK", true);
-                m_IsShooting = true;
+                if (!m_IsShooting)
+                {
+                    print("Lead: Set to attack");
+                    m_Animation.state.SetAnimation(0, "Lead_Turret_ATTACK", true);
+                    m_IsShooting = true;
+                }
+                m_LaserData.SetTarget(m_Target, TowerData.AttackInterval);
+
+                m_Target.TakeDamage(TowerData.AttackDamage, "Lead");
+                m_ReadyToAttack = false;
+                m_StartedCooldown = false;
             }
-            m_LaserData.SetTarget(m_Target, TowerData.AttackInterval);
-            //Debug.Log("Damage");
-            //m_towerProjectileData.SetNewVars(transform.position, m_Target, TowerData.AttackDamage, 5);
-
-
-
-            m_Target.TakeDamage(TowerData.AttackDamage, "Lead");
-            m_ReadyToAttack = false;
-            m_StartedCooldown = false;
         }
+        else
+        {
+            Idle();
+        }
+
+
     }
 
     private void Idle()
