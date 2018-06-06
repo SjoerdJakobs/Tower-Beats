@@ -95,7 +95,7 @@ public class TowerUpgradesAnimation : MonoBehaviour
         m_UpgradeButton.DOFade(0, 0.2f).SetDelay(0.5f).SetId("TowerUpgradeAnimateOut");
 
         //targeting button animation
-        m_TowerTargeting.transform.DOScale(0, 0.5f).SetEase(Ease.InExpo).SetDelay(0.3f).OnComplete(delegate { if (gameObject.activeInHierarchy) { if (callback != null) callback(); AnimatedIn = false; }; }).SetId("TowerUpgradeAnimateOut");
+        m_TowerTargeting.transform.DOScale(0, 0.5f).SetEase(Ease.InExpo).SetDelay(0.3f).SetId("TowerUpgradeAnimateOut");
         m_TowerTargeting.DOFade(0, 0.2f).SetDelay(0.5f).SetId("TowerUpgradeAnimateOut");
     }
 

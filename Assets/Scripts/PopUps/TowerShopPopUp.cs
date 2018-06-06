@@ -18,21 +18,33 @@ public class TowerShopPopUp : PopUp {
 
     public override void Show(Tile calledFrom)
     {
-        CompareCostAndSetText(TowerConfig.s_Towers[TowerTypeTags.BASS_TOWER][0].BuyCost, m_BassTowerCost);
-        CompareCostAndSetText(TowerConfig.s_Towers[TowerTypeTags.DRUM_TOWER][0].BuyCost, m_DrumTowerCost);
-        CompareCostAndSetText(TowerConfig.s_Towers[TowerTypeTags.LEAD_TOWER][0].BuyCost, m_LeadTowerCost);
+        UpdateCosts();
 
         m_CurrentTile = calledFrom;
         base.Show(calledFrom);
+        PlayerData.s_OnUpdateCoins += OnPlayerCoinsUpdated;
         m_Animation.AnimateIn();
     }
 
     public override void Hide()
     {
+        PlayerData.s_OnUpdateCoins -= OnPlayerCoinsUpdated;
         ClearLastClickedTile();
         m_Animation.AnimateOut(delegate {
             base.Hide();
         });
+    }
+
+    private void OnPlayerCoinsUpdated(float value)
+    {
+        UpdateCosts();
+    }
+
+    private void UpdateCosts()
+    {
+        CompareCostAndSetText(TowerConfig.s_Towers[TowerTypeTags.BASS_TOWER][0].BuyCost, m_BassTowerCost);
+        CompareCostAndSetText(TowerConfig.s_Towers[TowerTypeTags.DRUM_TOWER][0].BuyCost, m_DrumTowerCost);
+        CompareCostAndSetText(TowerConfig.s_Towers[TowerTypeTags.LEAD_TOWER][0].BuyCost, m_LeadTowerCost);
     }
 
     void CompareCostAndSetText(float cost, Text textToColor)

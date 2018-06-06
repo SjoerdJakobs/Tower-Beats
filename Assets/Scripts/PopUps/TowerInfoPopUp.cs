@@ -12,23 +12,27 @@ public class TowerInfoPopUp : PopUp {
     [Space]
     [SerializeField] private TowerUtilities m_TowerUtilities;
     [SerializeField] private TowerUpgradesAnimation m_Animation;
+    [Space]
+    [SerializeField] private Color m_NotEnoughCoinsColor;
+    [SerializeField] private Color m_NormalColor;
 
     private Tile m_CurrentTile;
 
     public override void Show(Tile calledFrom)
     {
-        TowerUtilities.s_OnUpgrade += ShowTowerInfo;
+        TowerUtilities.s_OnUpgrade += UpdateTowerInfo;
+        PlayerData.s_OnUpdateCoins += OnPlayerCoinsUpdated;
         m_TowerUtilities.CurrentTile = calledFrom;
         m_CurrentTile = calledFrom;
         m_CurrentTile.SetTileVisualsState(TileVisualState.TURRET_SELECTED);
         base.Show(calledFrom);
         m_Animation.AnimateIn();
-        ShowTowerInfo();
+        UpdateTowerInfo();
     }
 
     public override void Hide()
     {
-        TowerUtilities.s_OnUpgrade -= ShowTowerInfo;
+        TowerUtilities.s_OnUpgrade -= UpdateTowerInfo;
         m_TowerUtilities.CurrentTile = null;
 
         if (LastClickedFromTile != null)
@@ -40,23 +44,36 @@ public class TowerInfoPopUp : PopUp {
 
     }
 
+    private void OnPlayerCoinsUpdated(float value)
+    {
+        if(m_CurrentTile.Tower != null)
+            UpdateTowerInfo();
+    }
+
     /// <summary>
     /// Shows the towers stats/info
     // </summary>
-    private void ShowTowerInfo()
+    private void UpdateTowerInfo()
     {
         Tower tower = m_CurrentTile.Tower;
+
         m_DamageField.text = tower.TowerData.AttackDamage.ToString();
         m_SellValue.text = tower.TowerData.SellValue.ToString();
         m_TowerName.text = (tower.TowerData.Type.ToString() + " Turret");
-        m_TowerLevel.text = ("Level " + tower.TowerData.Level.ToString());
+        m_TowerLevel.text = ("Level " + tower.TowerData.Level.ToString() + (tower.TowerData.Level >= 3 ? " (MAX)" : ""));
         m_TargetType.text = tower.TargetType.ToString();
         if (tower.TowerData.Level < tower.TowerData.MaxLevel)
         {
+            if (PlayerData.s_Instance.Coins >= tower.TowerData.UpgradeCost)
+                m_UpgradeCost.color = m_NormalColor;
+            else
+                m_UpgradeCost.color = m_NotEnoughCoinsColor;
+
             m_UpgradeCost.text = tower.TowerData.UpgradeCost.ToString();
         }
         else
         {
+            m_UpgradeCost.color = m_NormalColor;
             m_UpgradeCost.text = "MAX";
         }
     }
