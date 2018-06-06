@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LeadTower : Tower
 {
+
     private GameObject m_Laser;
     private TowerLaser m_LaserData;
     private ObjectPool m_pool;
@@ -12,6 +13,7 @@ public class LeadTower : Tower
 
     private SkeletonAnimation m_Animation;
     private bool m_CanShoot;
+    private bool m_IsShooting;
 
     public override void Awake()
     {
@@ -25,6 +27,7 @@ public class LeadTower : Tower
         m_LaserData.ShootPos = laserOrgin;
         //m_pool = ObjectPoolManager.s_Instance.GetObjectPool(attackProjectile, 20, 5, 5, 20, true,PooledSubObject.TowerProjectile);
         GetRMS.s_LeadCue += Attack;
+        GetRMS.s_OnLeadLost += Idle;
 
         m_Animation = GetComponent<SkeletonAnimation>();
         StartCoroutine(SpawnEffect());
@@ -47,19 +50,31 @@ public class LeadTower : Tower
 
         if (m_ReadyToAttack && m_Target != null)
         {
+            if(!m_IsShooting)
+            {
+                print("Lead: Set to attack");
+                m_Animation.state.SetAnimation(0, "Lead_Turret_ATTACK", true);
+                m_IsShooting = true;
+            }
             m_LaserData.SetTarget(m_Target, TowerData.AttackInterval);
             //Debug.Log("Damage");
             //m_towerProjectileData.SetNewVars(transform.position, m_Target, TowerData.AttackDamage, 5);
 
-            m_Animation.state.SetAnimation(0, "Lead_Turret_ATTACK", true);
+
 
             m_Target.TakeDamage(TowerData.AttackDamage, "Lead");
             m_ReadyToAttack = false;
             m_StartedCooldown = false;
         }
-        else
+    }
+
+    private void Idle()
+    {
+        if (m_IsShooting)
         {
+            print("Lead: Set to idle");
             m_Animation.state.SetAnimation(0, "Lead_Turret_IDLE", true);
+            m_IsShooting = false;
         }
     }
 
@@ -81,5 +96,6 @@ public class LeadTower : Tower
     private void OnDestroy()
     {
         GetRMS.s_LeadCue -= Attack;
+        GetRMS.s_OnLeadLost -= Idle;
     }
 }

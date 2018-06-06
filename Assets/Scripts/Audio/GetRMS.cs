@@ -20,6 +20,7 @@ public class GetRMS : MonoBehaviour {
     public static AudioCueEvent s_LeadCue;
 
     public static AudioCueEvent s_OnBassLost;
+    public static AudioCueEvent s_OnLeadLost;
 
     private Bloom m_BloomProfile;
     private float m_BloomIntensity;
@@ -92,10 +93,15 @@ public class GetRMS : MonoBehaviour {
         }
         else
         {
-            if(Instrument == InstrumentGroup.Bass)
+            switch (Instrument)
             {
-                if(m_Timer > 0.5f && s_OnBassLost != null)
-                    s_OnBassLost();
+                case InstrumentGroup.Bass:
+                    if (m_Timer > 0.5f && s_OnBassLost != null) s_OnBassLost();
+                    break;
+
+                case InstrumentGroup.Lead:
+                    if (s_OnLeadLost != null) s_OnLeadLost();
+                    break;
             }
         }
     }

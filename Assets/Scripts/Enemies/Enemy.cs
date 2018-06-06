@@ -66,7 +66,8 @@ public class Enemy : PoolObj
 
             if (CurrentHealth <= 0)
             {
-                StartCoroutine(Death(true));
+                if(gameObject.activeSelf)
+                    StartCoroutine(Death(true));
             }
             else if (CurrentHealth > 0)
             {
