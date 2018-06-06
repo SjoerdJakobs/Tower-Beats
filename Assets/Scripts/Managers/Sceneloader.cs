@@ -1,5 +1,9 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using UnityEngine;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
+using UnityEngine.UI;
 
 public class Sceneloader : MonoBehaviour
 {
@@ -7,6 +11,10 @@ public class Sceneloader : MonoBehaviour
     public delegate void OnSceneLoaded();
     public static OnSceneLoaded s_OnSceneLoaded;
     private static bool s_AddedCallback;
+
+    private bool m_Loading;
+    private bool m_Fading;
+    private Image m_Fader;
 
     private void OnEnable()
     {
@@ -22,14 +30,18 @@ public class Sceneloader : MonoBehaviour
         if (s_Instance == null)
         {
             s_Instance = this;
-            //DontDestroyOnLoad(this.gameObject);
+            DontDestroyOnLoad(this.gameObject);
         }
-        //else
-        //Destroy(gameObject);
+        else
+            Destroy(gameObject);
+
+        m_Fader = GetComponentInChildren<Image>();
     }
 
     private void OnSceneLoadedCallback(Scene scene, LoadSceneMode mode)
     {
+        m_Loading = false;
+        Fade(false, 0.5f, Ease.InOutSine);
         if(scene.name == "Game")
         {
             if(s_OnSceneLoaded != null)
@@ -43,7 +55,12 @@ public class Sceneloader : MonoBehaviour
     /// <param name="sceneName">Name of the scene to load</param>
     public void LoadScene(string sceneName)
     {
-        SceneManager.LoadSceneAsync(sceneName);
+        if (m_Loading) return;
+
+        m_Loading = true;
+        Fade(true, 0.5f, Ease.InOutSine, () => {
+            SceneManager.LoadSceneAsync(sceneName);
+        });
     }
 
     /// <summary>
@@ -53,5 +70,12 @@ public class Sceneloader : MonoBehaviour
     {
         string currentScene = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(currentScene);
+    }
+
+    private void Fade(bool state, float duration, Ease easing, Action onComplete = null)
+    {
+        if (m_Fading) return;
+        m_Fading = true;
+        m_Fader.DOFade(Convert.ToInt32(state), duration).SetEase(easing).OnComplete(delegate { m_Fading = false; if(onComplete != null) onComplete(); });
     }
 }
