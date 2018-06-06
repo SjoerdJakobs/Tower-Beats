@@ -386,7 +386,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1491033382668730
 GameObject:
   m_ObjectHideFlags: 1
@@ -1414,7 +1414,6 @@ MonoBehaviour:
   m_TargetType: {fileID: 114149302432326732}
   m_TowerUtilities: {fileID: 114461442910550752}
   m_Animation: {fileID: 114201849573487048}
-  m_EnoughCoinsColor: {r: 0, g: 1, b: 0, a: 1}
   m_NotEnoughCoinsColor: {r: 1, g: 0, b: 0, a: 1}
   m_NormalColor: {r: 1, g: 0.92156863, b: 0.03529412, a: 1}
 --- !u!114 &114226958584586008

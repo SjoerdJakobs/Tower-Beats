@@ -459,12 +459,12 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 2008363401}
-    - target: {fileID: 114607089504182574, guid: 2f7cee28495c40545bcf3d054c0bf310,
+    - target: {fileID: 114769635258323918, guid: 2f7cee28495c40545bcf3d054c0bf310,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 17685749}
-    - target: {fileID: 114769635258323918, guid: 2f7cee28495c40545bcf3d054c0bf310,
+    - target: {fileID: 114607089504182574, guid: 2f7cee28495c40545bcf3d054c0bf310,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
