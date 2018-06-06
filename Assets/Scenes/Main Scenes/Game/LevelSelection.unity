@@ -663,7 +663,7 @@ MonoBehaviour:
   Songs:
   - People Say
   - Through the fire and flames
-  - Cold Water
+  - Cold Waters
 --- !u!1 &89680942
 GameObject:
   m_ObjectHideFlags: 0
@@ -1714,7 +1714,7 @@ MonoBehaviour:
   MapDifficulty: 1
   Songs:
   - Through the fire and flames
-  - Cold Water
+  - Cold Waters
   - People Say
 --- !u!1 &524765616
 GameObject:
@@ -2721,7 +2721,7 @@ MonoBehaviour:
   MapSize: 2
   MapDifficulty: 2
   Songs:
-  - Cold Water
+  - Cold Waters
   - People Say
   - Through the fire and flames
 --- !u!1 &1032596973
@@ -3094,7 +3094,7 @@ MonoBehaviour:
   Songs:
   - Through the fire and flames
   - People Say
-  - Cold Water
+  - Cold Waters
 --- !u!1 &1168866525
 GameObject:
   m_ObjectHideFlags: 0
