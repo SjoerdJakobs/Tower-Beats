@@ -35,7 +35,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1172778507945960}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.227431, y: -2.5029256, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -52,8 +52,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d2b8c915105fcf4eada3bd6c28acdbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pool: {fileID: 0}
-  GenericObj: {fileID: 0}
+  m_ProjectileArc:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 6.3007917
+      outSlope: 6.3007917
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.4
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: -5.2582417
+      outSlope: -5.2582417
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  m_MoveDuration: 0.5
+  m_ProjectileHeight: 4
 --- !u!212 &212492586714560282
 SpriteRenderer:
   m_ObjectHideFlags: 1

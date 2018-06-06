@@ -2,8 +2,8 @@
 
 public class PoolObj : MonoBehaviour
 {
-    public ObjectPool Pool;
-    public Object GenericObj;
+    public ObjectPool Pool { get; set; }
+    public Object GenericObj { get; set; }
     //public PoolObjDataStruct ObjData { get; set; }
     
     public void ReturnToPool()

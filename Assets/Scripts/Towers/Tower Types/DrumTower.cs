@@ -5,8 +5,8 @@ using Spine.Unity;
 
 public class DrumTower : Tower
 {
-    private TowerProjectile m_towerProjectileData;
-    private ObjectPool m_pool;
+    private TowerProjectile m_TowerProjectileData;
+    private ObjectPool m_Pool;
     private SkeletonAnimation m_Animation;
     [Space]
     [SerializeField] private Transform m_LeftMuzzle;
@@ -18,7 +18,7 @@ public class DrumTower : Tower
     public override void Awake()
     {
         base.Awake();
-        m_pool = ObjectPoolManager.s_Instance.GetObjectPool(attackProjectile, 20, 5, 5, 20, true,PooledSubObject.TowerProjectile);
+        m_Pool = ObjectPoolManager.s_Instance.GetObjectPool(attackProjectile, 20, 5, 5, 20, true,PooledSubObject.TowerProjectile);
         GetRMS.s_DrumCue += Attack;
         m_Animation = GetComponent<SkeletonAnimation>();
         StartCoroutine(SpawnEffect());
@@ -41,7 +41,7 @@ public class DrumTower : Tower
 
         if (m_ReadyToAttack && m_Target != null)
         {
-            m_towerProjectileData = m_pool.GetFromPool() as TowerProjectile;
+            m_TowerProjectileData = m_Pool.GetFromPool() as TowerProjectile;
             Transform selectedMuzzle;
 
             if (m_ShotLastWithLeft)
@@ -52,7 +52,7 @@ public class DrumTower : Tower
             m_ShotLastWithLeft = !m_ShotLastWithLeft;
             m_Animation.state.SetAnimation(0, "Drum_Turret_ATTACK_" + (m_ShotLastWithLeft ? "RIGHT" : "LEFT"), false);
             m_Animation.state.AddAnimation(0, "Drum_Turret_IDLE", true, 0);
-            m_towerProjectileData.SetNewVars(selectedMuzzle.position, m_Target, TowerData.AttackDamage, 5);
+            m_TowerProjectileData.SetData(new ProjectileData(selectedMuzzle.position, m_Target, 0.5f, TowerData.AttackDamage));
             m_ReadyToAttack = false;
             m_StartedCooldown = false;
         }
