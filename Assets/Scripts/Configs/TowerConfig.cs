@@ -18,9 +18,9 @@ public class TowerConfig
         }},//4 DPS Single target
         {TowerTypeTags.LEAD_TOWER, new List<TowerData>()
         {  //10 DPS Single target
-            new TowerData(TowerTypeTags.LEAD_TOWER, 1, 3, 200, 200, 150, 0.25f, 3f, 0.025f),
-            new TowerData(TowerTypeTags.LEAD_TOWER, 2, 3, 300, 0, 300, 0.5f, 3.25f, 0.025f),
-            new TowerData(TowerTypeTags.LEAD_TOWER, 3, 3, 0, 0, 525, 0.75f, 3.5f, 0.025f)
+            new TowerData(TowerTypeTags.LEAD_TOWER, 1, 3, 200, 200, 150, 0.25f, 3.25f, 0.025f),
+            new TowerData(TowerTypeTags.LEAD_TOWER, 2, 3, 300, 0, 300, 0.5f, 3.5f, 0.025f),
+            new TowerData(TowerTypeTags.LEAD_TOWER, 3, 3, 0, 0, 525, 0.75f, 3.75f, 0.025f)
         }}
     };
 }//

@@ -40,4 +40,27 @@ public class TowerUtilities : MonoBehaviour {
             }
         }
     }
+
+    public void ChangeTowerTargeting()
+    {
+        if (CurrentTile == null) return;
+
+        switch (CurrentTile.Tower.TargetType)
+        {
+            case TargetTypes.NORMAL:
+                CurrentTile.Tower.TargetType = TargetTypes.FURTHEST;
+                break;
+            case TargetTypes.FURTHEST:
+                CurrentTile.Tower.TargetType = TargetTypes.CLOSEST;
+                break;
+            case TargetTypes.CLOSEST:
+                CurrentTile.Tower.TargetType = TargetTypes.NORMAL;
+                break;
+        }
+
+        if (s_OnUpgrade != null)
+        {
+            s_OnUpgrade();
+        }
+    }
 }

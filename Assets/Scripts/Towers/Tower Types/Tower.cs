@@ -2,6 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Linq;
+
+public enum TargetTypes
+{
+    NORMAL,
+    FURTHEST,
+    CLOSEST
+}
 
 public struct TowerData
 { 
@@ -31,6 +39,12 @@ public struct TowerData
 
 public class Tower : MonoBehaviour
 {
+    protected TargetTypes m_TargetType = TargetTypes.NORMAL;
+    public TargetTypes TargetType
+    {
+        get { return m_TargetType; }
+        set { m_TargetType = value; }
+    }
     public static Action s_OnTargetsEmpty;
     protected TowerData m_TowerData;
     public TowerData TowerData { get; set; }
@@ -56,7 +70,7 @@ public class Tower : MonoBehaviour
 
     private void Update()
     {
-        GetTarget();
+        GetTarget(m_TargetType);
     }
 
     /// <summary>
@@ -64,12 +78,24 @@ public class Tower : MonoBehaviour
     /// After that the first enemy in the list (enemy that entered after the first) will become the new target
     /// </summary>
     /// <returns></returns>
-    public Enemy GetTarget()
+    public Enemy GetTarget(TargetTypes targetType = TargetTypes.NORMAL)
     {
         GetEnemiesInRange();
         if (m_EnemiesInRange.Count > 0)
         {
-            m_Target = m_EnemiesInRange[0];
+            switch (targetType)
+            {
+                case TargetTypes.NORMAL:
+                    m_Target = m_EnemiesInRange[0];
+                    break;
+                case TargetTypes.CLOSEST:
+                    m_Target = GetTargetByDistance(TargetTypes.CLOSEST);
+                    break;
+                case TargetTypes.FURTHEST:
+                    m_Target = GetTargetByDistance(TargetTypes.FURTHEST);
+                    break;
+            }
+            
             return m_Target;
         }
         else
@@ -79,6 +105,38 @@ public class Tower : MonoBehaviour
                 s_OnTargetsEmpty();
             return null;
         }
+    }
+
+    private Enemy GetTargetByDistance(TargetTypes distance)
+    {
+        List<Enemy> enemies = GetEnemiesInRange();
+        List<float> distances = new List<float>();
+
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            if(distance == TargetTypes.CLOSEST)
+                distances.Add(Vector3.Distance(transform.position, enemies[i].transform.position));
+            else if(distance == TargetTypes.FURTHEST)
+                distances.Add(enemies[i].WaypointIndex);
+        }
+
+        float minValue = distances.Min();
+        float maxValue = distances.Max();
+
+        switch (distance)
+        {
+            case TargetTypes.CLOSEST:
+                for (int i = 0; i < distances.Count; i++)
+                    if (distances[i] == minValue)
+                        return enemies[i];
+                break;
+            case TargetTypes.FURTHEST:
+                for (int i = 0; i < distances.Count; i++)
+                    if (distances[i] == maxValue)
+                        return enemies[i];
+                break;
+        }
+        return null;
     }
 
     /// <summary>

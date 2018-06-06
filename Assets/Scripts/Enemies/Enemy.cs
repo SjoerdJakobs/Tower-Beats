@@ -26,6 +26,11 @@ public class Enemy : PoolObj
         get { return m_SkeletonAnims; }
         set { m_SkeletonAnims = value; }
     }
+    private int m_WaypointIndex;
+    public int WaypointIndex
+    {
+        get { return m_WaypointIndex; }
+    }
     private AnimationState m_Anim;
     private EnemyHealthbar m_EnemyHealthbar;
     private MeshRenderer m_Renderer;
@@ -161,10 +166,10 @@ public class Enemy : PoolObj
     /// <param name="waypointIndex">Index of the path position</param>
     private void OnWaypointChange(int waypointIndex)
     {
+        m_WaypointIndex = waypointIndex;
         StartCoroutine(Callback());
         UpdateEnemyRotation(waypointIndex);
         UpdateEnemyLayering(waypointIndex);
-
     }
 
     /// <summary>

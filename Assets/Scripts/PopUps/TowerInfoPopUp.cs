@@ -8,6 +8,7 @@ public class TowerInfoPopUp : PopUp {
     [SerializeField] private Text m_UpgradeCost;
     [SerializeField] private Text m_TowerName;
     [SerializeField] private Text m_TowerLevel;
+    [SerializeField] private Text m_TargetType;
     [Space]
     [SerializeField] private TowerUtilities m_TowerUtilities;
     [SerializeField] private TowerUpgradesAnimation m_Animation;
@@ -47,6 +48,7 @@ public class TowerInfoPopUp : PopUp {
         m_SellValue.text = tower.TowerData.SellValue.ToString();
         m_TowerName.text = (tower.TowerData.Type.ToString() + " Turret");
         m_TowerLevel.text = ("Level " + tower.TowerData.Level.ToString());
+        m_TargetType.text = tower.TargetType.ToString();
         if (tower.TowerData.Level < tower.TowerData.MaxLevel)
         {
             m_UpgradeCost.text = tower.TowerData.UpgradeCost.ToString();

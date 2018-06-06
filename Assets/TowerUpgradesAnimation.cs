@@ -14,6 +14,7 @@ public class TowerUpgradesAnimation : MonoBehaviour
     [SerializeField] private Text m_TurretLevel;
     [SerializeField] private Image m_Line;
     [SerializeField] private RectTransform m_DamageContainer;
+    [SerializeField] private CanvasGroup m_TowerTargeting;
 
     private Sequence m_IndicatorSeq;
 
@@ -28,6 +29,10 @@ public class TowerUpgradesAnimation : MonoBehaviour
 
         ResetToDefault();
         SetIndicatorState(true);
+
+        //Tower Targeting Animation
+        m_TowerTargeting.transform.DOScale(1, 0.5f).SetEase(Ease.OutExpo).SetId("TowerUpgradeAnimateIn");
+        m_TowerTargeting.DOFade(1, 0.2f).SetId("TowerUpgradeAnimateIn");
 
         //Upgrade button animation
         m_UpgradeButton.transform.DOScale(1, 0.5f).SetEase(Ease.OutExpo).SetId("TowerUpgradeAnimateIn");
@@ -88,6 +93,10 @@ public class TowerUpgradesAnimation : MonoBehaviour
         //Upgrade button animation
         m_UpgradeButton.transform.DOScale(0, 0.5f).SetEase(Ease.InExpo).SetDelay(0.3f).OnComplete(delegate { if (gameObject.activeInHierarchy) { if (callback != null) callback(); AnimatedIn = false; }; }).SetId("TowerUpgradeAnimateOut");
         m_UpgradeButton.DOFade(0, 0.2f).SetDelay(0.5f).SetId("TowerUpgradeAnimateOut");
+
+        //targeting button animation
+        m_TowerTargeting.transform.DOScale(0, 0.5f).SetEase(Ease.InExpo).SetDelay(0.3f).OnComplete(delegate { if (gameObject.activeInHierarchy) { if (callback != null) callback(); AnimatedIn = false; }; }).SetId("TowerUpgradeAnimateOut");
+        m_TowerTargeting.DOFade(0, 0.2f).SetDelay(0.5f).SetId("TowerUpgradeAnimateOut");
     }
 
     private void ResetToDefault()
@@ -95,6 +104,10 @@ public class TowerUpgradesAnimation : MonoBehaviour
         //Indicator
         m_Indicator.color = new Color(m_Indicator.color.r, m_Indicator.color.g, m_Indicator.color.b, 0);
         m_Indicator.rectTransform.anchoredPosition = new Vector2(m_Indicator.rectTransform.anchoredPosition.x, 100);
+
+        //targeting button
+        m_TowerTargeting.transform.localScale = new Vector2(1.3f, 1.3f);
+        m_TowerTargeting.alpha = 0;
 
         //Upgrade button
         m_UpgradeButton.transform.localScale = new Vector2(1.3f, 1.3f);
