@@ -12,7 +12,7 @@ public class TowerConfig
         }},//1 DPS(AoE)
         {TowerTypeTags.DRUM_TOWER, new List<TowerData>()
         {
-            new TowerData(TowerTypeTags.DRUM_TOWER, 1, 3, 200, 350, 225, 4f, 3f, 0.35f),
+            new TowerData(TowerTypeTags.DRUM_TOWER, 1, 3, 200, 300, 225, 4f, 3f, 0.35f),
             new TowerData(TowerTypeTags.DRUM_TOWER, 2, 3, 300, 0, 375, 5f,3.25f,0.3f),
             new TowerData(TowerTypeTags.DRUM_TOWER, 3, 3, 0, 0 , 600, 7f, 3.5f, 0.25f)
         }},//4 DPS Single target
