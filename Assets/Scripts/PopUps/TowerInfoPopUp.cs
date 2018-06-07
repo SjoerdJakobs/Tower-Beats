@@ -44,6 +44,11 @@ public class TowerInfoPopUp : PopUp {
 
     }
 
+    private void OnDestroy()
+    {
+        TowerUtilities.s_OnUpgrade -= UpdateTowerInfo;
+    }
+
     private void OnPlayerCoinsUpdated(float value)
     {
         if(m_CurrentTile.Tower != null)
@@ -62,6 +67,9 @@ public class TowerInfoPopUp : PopUp {
         m_TowerName.text = (tower.TowerData.Type.ToString() + " Turret");
         m_TowerLevel.text = ("Level " + tower.TowerData.Level.ToString() + (tower.TowerData.Level >= 3 ? " (MAX)" : ""));
         m_TargetType.text = tower.TargetType.ToString();
+
+        if (m_UpgradeCost == null) return;
+
         if (tower.TowerData.Level < tower.TowerData.MaxLevel)
         {
             if (PlayerData.s_Instance.Coins >= tower.TowerData.UpgradeCost)

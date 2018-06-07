@@ -459,6 +459,7 @@ GameObject:
   - component: {fileID: 169439762}
   - component: {fileID: 169439761}
   - component: {fileID: 169439760}
+  - component: {fileID: 169439764}
   m_Layer: 5
   m_Name: Main Menu
   m_TagString: Untagged
@@ -546,6 +547,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &169439764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 169439759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acdf94411e0d36e459a926d3563f875c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &511413439
 GameObject:
   m_ObjectHideFlags: 0
@@ -1193,12 +1205,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e6e0fd47b3f9995479ebe665e3f98107, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &1083373564 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114260326921534196, guid: e6e0fd47b3f9995479ebe665e3f98107,
-    type: 2}
-  m_PrefabInternal: {fileID: 1083373563}
-  m_Script: {fileID: 11500000, guid: 5d96262d94b0ec947b03adf3e39a137c, type: 3}
 --- !u!1 &1162355317
 GameObject:
   m_ObjectHideFlags: 0
@@ -1570,9 +1576,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1083373564}
-        m_MethodName: LoadScene
-        m_Mode: 5
+      - m_Target: {fileID: 169439764}
+        m_MethodName: LoadLevelSelect
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

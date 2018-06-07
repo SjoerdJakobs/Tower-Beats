@@ -35,6 +35,11 @@ public class TowerShopPopUp : PopUp {
         });
     }
 
+    private void OnDestroy()
+    {
+        PlayerData.s_OnUpdateCoins -= OnPlayerCoinsUpdated;
+    }
+
     private void OnPlayerCoinsUpdated(float value)
     {
         UpdateCosts();
