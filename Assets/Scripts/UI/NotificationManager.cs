@@ -23,6 +23,8 @@ public class NotificationManager : MonoBehaviour
     public static NotificationManager s_Instance;
     [SerializeField] private Text m_NotificationText;
 
+    [SerializeField] private Image m_DonDiablo;
+
     private List<Notification> m_NotificationQueue = new List<Notification>();
     private bool m_NotificationQueueActive;
     private bool m_ShowingNotification;
@@ -51,6 +53,18 @@ public class NotificationManager : MonoBehaviour
         }
         else
             Destroy(gameObject);
+    }
+
+    void ShowDon(float slideInDuration)
+    {
+        m_DonDiablo.gameObject.SetActive(true);
+        m_DonDiablo.rectTransform.DOAnchorPosX(-800, slideInDuration);
+    }
+
+    void HideDon(float slideOutDuration)
+    {
+        m_DonDiablo.rectTransform.DOAnchorPosX(-1100, slideOutDuration);
+        m_DonDiablo.gameObject.SetActive(false);
     }
 
     /// <summary>

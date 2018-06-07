@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 2a16646f61f1d964ab3dfde6e9b6eca0
-timeCreated: 1528196561
+guid: 629bd7b8fc9f5d049a03b8b7827f3618
+timeCreated: 1528360441
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
@@ -96,16 +96,6 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - buildTarget: Windows Store Apps
-    maxTextureSize: 1024
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
   - buildTarget: WebGL
     maxTextureSize: 1024
     resizeAlgorithm: 0
@@ -121,7 +111,7 @@ TextureImporter:
     sprites: []
     outline: []
     physicsShape: []
-  spritePackingTag: 
+  spritePackingTag: UI
   userData: 
   assetBundleName: 
   assetBundleVariant: 
