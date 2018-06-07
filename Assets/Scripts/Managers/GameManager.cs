@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
 
     private void Init()
     {
-        StartGame("level1", true);
+        StartGame("BeauTest", true);
     }
 
     private void Awake()
