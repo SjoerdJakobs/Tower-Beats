@@ -31,7 +31,7 @@ public class GetRMS : MonoBehaviour {
 
     public RMSSlider Slider { get; set; }
 
-    private int qSamples = 1024;  // array size
+    private int qSamples = 512;  // array size
     //private float refValue = 0.1f; // RMS value for 0 dB
     private float rmsValue;   // sound level - RMS
 
