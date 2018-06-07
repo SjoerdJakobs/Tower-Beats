@@ -20,6 +20,8 @@ public class EnemySpawner : MonoBehaviour {
     public List<ObjectPool> EnemyPools = new List<ObjectPool>();
     public List<ObjectPool> BossPools = new List<ObjectPool>();
 
+    [SerializeField] private ParticleSystem m_SpawnerParticles;
+
     private int m_BossWaveCounter = 0;
     private int m_WaveCounter = 0;
 
@@ -33,6 +35,7 @@ public class EnemySpawner : MonoBehaviour {
         Enemy.s_OnDestroyEnemy += RemoveEnemyFromList;
         GameManager.s_OnGameStop += StopEnemySpawning;
         PauseCheck.Pause += TogglePause;
+        MapLoader.s_OnMapLoaded += OnMapLoaded;
     }
 
     private void Start()
@@ -45,6 +48,13 @@ public class EnemySpawner : MonoBehaviour {
         {
             BossPools.Add(ObjectPoolManager.s_Instance.GetObjectPool(m_Bosses[i].gameObject, 5, 5, int.MaxValue, int.MaxValue, true, PooledSubObject.Enemy));
         }
+    }
+
+    private void OnMapLoaded()
+    {
+        print("maploaded");
+        m_SpawnerParticles.gameObject.transform.position = MapLoader.s_Instance.Path[0].transform.position;
+        MapLoader.s_OnMapLoaded -= OnMapLoaded;
     }
 
     /// <summary>

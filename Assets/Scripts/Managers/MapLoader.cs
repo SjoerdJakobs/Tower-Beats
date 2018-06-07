@@ -18,6 +18,8 @@ public class MapLoader : MonoBehaviour
     
     public bool MapLoaded { get; private set; }
 
+    public static Action s_OnMapLoaded;
+
     private void Awake()
     {
         // Initialize the MapLoader
@@ -67,7 +69,10 @@ public class MapLoader : MonoBehaviour
         StartCoroutine(UpdateVisuals(animate, () => {
             //Debug.Log("<color=orange>[MapLoader]</color> Map (" + mapName + ") loaded succesfully. It took " + (Time.time - startLoadTime) + " second(s) to load the map.");
             if(!animate)
+            {
+                if (s_OnMapLoaded != null) s_OnMapLoaded();
                 MapLoaded = true;
+            }
         }));
     }
 
@@ -206,7 +211,7 @@ public class MapLoader : MonoBehaviour
         if (animate)
         {
             // Invoke all the animations
-            StartCoroutine(AnimateLoadPath(tempPath, delegate { MapLoaded = true; }));
+            StartCoroutine(AnimateLoadPath(tempPath, delegate { MapLoaded = true; if (s_OnMapLoaded != null) s_OnMapLoaded(); }));
             StartCoroutine(AnimateLoadSpawns(tempSpawns));
             StartCoroutine(AnimateLoadProps(tempProps));
         }
