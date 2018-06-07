@@ -18,7 +18,9 @@ public class CameraMovement : MonoBehaviour {
 
     private float m_MinX, m_MaxX, m_MinY, m_MaxY;
 
-    private Camera m_Camera;
+    private Camera m_MainCamera;
+    [Space]
+    [SerializeField] private Camera m_UICamera;
 
     public bool CanMoveCamera { get; set; }
 
@@ -42,7 +44,7 @@ public class CameraMovement : MonoBehaviour {
         if (!m_UseBoundaries)
             CanMoveCamera = true;
 
-        m_Camera = GetComponent<Camera>();
+        m_MainCamera = GetComponent<Camera>();
     }
 
     private void Start()
@@ -131,7 +133,7 @@ public class CameraMovement : MonoBehaviour {
 
     private void PanCamera(Vector3 newPanPosition)
     {
-        Vector3 offset = m_Camera.ScreenToViewportPoint(m_LastPanPosition - newPanPosition);
+        Vector3 offset = m_MainCamera.ScreenToViewportPoint(m_LastPanPosition - newPanPosition);
         Vector2 move = new Vector2(offset.x * m_PanSpeed, offset.y * m_PanSpeed);
 
         transform.Translate(move, Space.World);
@@ -148,7 +150,9 @@ public class CameraMovement : MonoBehaviour {
     {
         if (offset == 0) return;
 
-        m_Camera.orthographicSize = Mathf.Clamp(m_Camera.orthographicSize - (offset * speed), minOrthographicSize, maxOrthographicSize);
+        float calcOrthographicSize = Mathf.Clamp(m_MainCamera.orthographicSize - (offset * speed), minOrthographicSize, maxOrthographicSize);
+        m_UICamera.orthographicSize = calcOrthographicSize;
+        m_MainCamera.orthographicSize = calcOrthographicSize;
 
         if (m_UseBoundaries)
             transform.position = GetPositionWithinBoundaries(transform.position);
@@ -164,9 +168,9 @@ public class CameraMovement : MonoBehaviour {
         float mappedOrtohraphicSize = MappedOrthographicSize(value);
 
         if (duration == 0)
-            m_Camera.orthographicSize = mappedOrtohraphicSize;
+            m_MainCamera.orthographicSize = mappedOrtohraphicSize;
         else
-            m_Camera.DOOrthoSize(mappedOrtohraphicSize, duration).SetEase(easing);
+            m_MainCamera.DOOrthoSize(mappedOrtohraphicSize, duration).SetEase(easing);
     }
 
     private float MappedOrthographicSize(float value)
