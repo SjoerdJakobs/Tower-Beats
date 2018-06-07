@@ -55,16 +55,15 @@ public class NotificationManager : MonoBehaviour
             Destroy(gameObject);
     }
 
-    void ShowDon(float slideInDuration)
+    public void ShowDon(float slideInDuration)
     {
         m_DonDiablo.gameObject.SetActive(true);
         m_DonDiablo.rectTransform.DOAnchorPosX(-800, slideInDuration);
     }
 
-    void HideDon(float slideOutDuration)
+    public void HideDon(float slideOutDuration)
     {
-        m_DonDiablo.rectTransform.DOAnchorPosX(-1100, slideOutDuration);
-        m_DonDiablo.gameObject.SetActive(false);
+        m_DonDiablo.rectTransform.DOAnchorPosX(-1150, slideOutDuration).OnComplete(() => m_DonDiablo.gameObject.SetActive(false));
     }
 
     /// <summary>

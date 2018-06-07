@@ -80,6 +80,8 @@ public class GameManager : MonoBehaviour
         //Base tutorial
         yield return new WaitForSeconds(0.5f);
         CameraMovement.s_Instance.ZoomAnimated(0, 1, DG.Tweening.Ease.InOutQuad);
+        NotificationManager.s_Instance.ShowDon(0.3f);
+        yield return new WaitForSeconds(0.3f);
         NotificationManager.s_Instance.EnqueueNotification("Your objective is to defend this tower in Hexagonia.", 2);
         CameraMovement.s_Instance.ScrollCameraToPosition(MapLoader.s_Instance.HeadQuarters, 1, false);
         yield return new WaitForSeconds(2.6f);
@@ -114,6 +116,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         NotificationManager.s_Instance.EnqueueNotification("When the value of a sound reaches a threshold (white stripe in the bar) the matching towers will start shooting",6f);
         yield return new WaitForSeconds(6f);
+        NotificationManager.s_Instance.HideDon(0.3f);
 
         //Finish tutorial
         CameraMovement.s_Instance.CanMoveCamera = true;
