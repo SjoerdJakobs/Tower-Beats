@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     public delegate void GameStop();
     public static GameStop s_OnGameStop;
 
-    private readonly string m_TutorialKey = "TUTORIAL";
+    private readonly string m_TutorialKey = "BeauTest";
 
     private void Start()
     {
