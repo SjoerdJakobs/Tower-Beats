@@ -44,6 +44,11 @@ public class TowerInfoPopUp : PopUp {
 
     }
 
+    private void OnDisable()
+    {
+        TowerUtilities.s_OnUpgrade -= UpdateTowerInfo;
+    }
+
     private void OnDestroy()
     {
         TowerUtilities.s_OnUpgrade -= UpdateTowerInfo;

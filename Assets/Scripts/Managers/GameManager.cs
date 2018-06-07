@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     public delegate void GameStop();
     public static GameStop s_OnGameStop;
 
+    private readonly string m_TutorialKey = "TUTORIAL";
+
     private void Start()
     {
         Init();
@@ -25,7 +27,7 @@ public class GameManager : MonoBehaviour
 
     private void Init()
     {
-        StartGame();
+        StartGame("level1", true);
     }
 
     private void Awake()
@@ -36,18 +38,39 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
     }
 
-    public void StartGame()
+    public void StartGame(string mapName, bool animateMap = true)
     {
         Tile.s_OnSetTileClickableState(false);
-        MapLoader.s_Instance.LoadMap("level1", true);
-        StartCoroutine(ShowTutorial(() => {
-            Tile.s_OnSetTileClickableState(true);
-            StartCoroutine(StartPreparationTime(() => {
-                //print("start spawning enemies");
-                if (s_OnGameStart != null) s_OnGameStart();
-                SpawnContinuousWaves();
-            }));
-        }));   
+        MapLoader.s_Instance.LoadMap(mapName, animateMap);
+
+        bool startGameWithTutorial = (mapName.ToUpper() == m_TutorialKey.ToUpper() ? true : false);
+
+        StartCoroutine(StartGameSequence(startGameWithTutorial));
+    }
+
+    private IEnumerator StartGameSequence(bool showTutorial = false)
+    {
+        yield return new WaitUntil(() => HexGrid.s_Instance != null);
+        yield return new WaitUntil(() => HexGrid.s_Instance.GridCreated == true);
+
+        CameraMovement.s_Instance.ScrollCameraToPosition(HexGrid.s_Instance.GetMiddlepointTile(), 0f, false);
+        CameraMovement.s_Instance.ZoomAnimated(1, 0, DG.Tweening.Ease.Linear);
+        yield return new WaitUntil(() => MapLoader.s_Instance != null);
+        yield return new WaitUntil(() => MapLoader.s_Instance.MapLoaded);
+
+        bool hasShownTutorial = false;
+        if(showTutorial)
+        {
+            StartCoroutine(ShowTutorial(() => hasShownTutorial = true ));
+            yield return new WaitUntil(() =>  hasShownTutorial == true );
+        }
+
+        Tile.s_OnSetTileClickableState(true);
+        CameraMovement.s_Instance.CanMoveCamera = true;
+        StartCoroutine(StartPreparationTime(() => {
+            if (s_OnGameStart != null) s_OnGameStart();
+            SpawnContinuousWaves();
+        }));
     }
 
     private void SpawnContinuousWaves()
@@ -67,21 +90,11 @@ public class GameManager : MonoBehaviour
         callback();
     }
 
-    private IEnumerator ShowTutorial(System.Action callback)
+    private IEnumerator ShowTutorial(System.Action callback = null)
     {
-        yield return new WaitUntil(() =>HexGrid.s_Instance != null);
-        yield return new WaitUntil(() => HexGrid.s_Instance.GridCreated == true);
-
-        CameraMovement.s_Instance.ScrollCameraToPosition(HexGrid.s_Instance.GetMiddlepointTile(), 0f, false);
-        CameraMovement.s_Instance.ZoomAnimated(1, 0, DG.Tweening.Ease.Linear);
-        yield return new WaitUntil(() => MapLoader.s_Instance != null);
-        yield return new WaitUntil(() => MapLoader.s_Instance.MapLoaded);
-
         //Base tutorial
         yield return new WaitForSeconds(0.5f);
         CameraMovement.s_Instance.ZoomAnimated(0, 1, DG.Tweening.Ease.InOutQuad);
-        NotificationManager.s_Instance.ShowDon(0.3f);
-        yield return new WaitForSeconds(0.3f);
         NotificationManager.s_Instance.EnqueueNotification("Your objective is to defend this tower in Hexagonia.", 2);
         CameraMovement.s_Instance.ScrollCameraToPosition(MapLoader.s_Instance.HeadQuarters, 1, false);
         yield return new WaitForSeconds(2.6f);
@@ -116,7 +129,6 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         NotificationManager.s_Instance.EnqueueNotification("When the value of a sound reaches a threshold (white stripe in the bar) the matching towers will start shooting",6f);
         yield return new WaitForSeconds(6f);
-        NotificationManager.s_Instance.HideDon(0.3f);
 
         //Finish tutorial
         CameraMovement.s_Instance.CanMoveCamera = true;
