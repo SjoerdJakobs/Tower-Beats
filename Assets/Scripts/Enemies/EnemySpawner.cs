@@ -38,11 +38,11 @@ public class EnemySpawner : MonoBehaviour {
     {
         for (int i = 0; i < m_EnemyPrefabs.Count; i++)
         {
-            EnemyPools.Add(ObjectPoolManager.s_Instance.GetObjectPool(m_EnemyPrefabs[i].gameObject, 5, 5, int.MaxValue, int.MaxValue, false, PooledSubObject.Enemy));
+            EnemyPools.Add(ObjectPoolManager.s_Instance.GetObjectPool(m_EnemyPrefabs[i].gameObject, 5, 5, int.MaxValue, int.MaxValue, true, PooledSubObject.Enemy));
         }
         for (int i = 0; i < m_Bosses.Count; i++)
         {
-            BossPools.Add(ObjectPoolManager.s_Instance.GetObjectPool(m_Bosses[i].gameObject, 5, 5, int.MaxValue, int.MaxValue, false, PooledSubObject.Enemy));
+            BossPools.Add(ObjectPoolManager.s_Instance.GetObjectPool(m_Bosses[i].gameObject, 5, 5, int.MaxValue, int.MaxValue, true, PooledSubObject.Enemy));
         }
     }
 
