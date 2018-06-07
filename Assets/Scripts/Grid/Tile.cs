@@ -122,11 +122,13 @@ public class Tile : MonoBehaviour
 
     public void OnTileClick()
     {
-        if (!GameManager.s_Instance.IsPointerOverUIObject())
+        if (!CameraMovement.s_Instance.IsPointerOverUIObject())
         {
             if (!CanClick) return;
 
             if (s_OnTileClicked != null) s_OnTileClicked(this);
+
+            if (PopUpManager.s_Instance == null) return;
 
             switch (CurrentState)
             {

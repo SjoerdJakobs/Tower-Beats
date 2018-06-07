@@ -54,14 +54,15 @@ public class CameraMovement : MonoBehaviour {
     {
         if (CanMoveCamera)
         {
-            if (!GameManager.s_Instance.IsPointerOverUIObject())
+            if (!IsPointerOverUIObject())
             {
                 if (Input.touchSupported && Application.isMobilePlatform)
                     HandleTouch();
                 else
                     HandleMouse();
 
-                SetCameraBoundaries();
+                if(m_UseBoundaries)
+                    SetCameraBoundaries();
             }
         }
     }
@@ -148,7 +149,9 @@ public class CameraMovement : MonoBehaviour {
         if (offset == 0) return;
 
         m_Camera.orthographicSize = Mathf.Clamp(m_Camera.orthographicSize - (offset * speed), minOrthographicSize, maxOrthographicSize);
-        transform.position = GetPositionWithinBoundaries(transform.position);
+
+        if (m_UseBoundaries)
+            transform.position = GetPositionWithinBoundaries(transform.position);
     }
 
     /// <summary>
@@ -234,5 +237,16 @@ public class CameraMovement : MonoBehaviour {
         {
             transform.DOMove(movePos, duration).SetEase(Ease.InOutQuad).OnComplete(delegate { if (onComplete != null) onComplete(); CanMoveCamera = enableMoveCameraOnComplete; });
         }
+    }
+
+    public bool IsPointerOverUIObject()
+    {
+        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current)
+        {
+            position = new Vector2(Input.mousePosition.x, Input.mousePosition.y)
+        };
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+        return results.Count > 0;
     }
 }
