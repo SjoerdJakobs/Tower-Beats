@@ -20,7 +20,8 @@ public class EnemySpawner : MonoBehaviour {
     public List<ObjectPool> EnemyPools = new List<ObjectPool>();
     public List<ObjectPool> BossPools = new List<ObjectPool>();
 
-    private int m_Wave = 0;
+    private int m_BossWaveCounter = 0;
+    private int m_WaveCounter = 0;
 
     private void Awake()
     {
@@ -53,13 +54,21 @@ public class EnemySpawner : MonoBehaviour {
     public void SpawnEnemy(bool isBoss)
     {
         Enemy newEnemy = null;
-        if(!isBoss)
+        if (!isBoss)
         {
             newEnemy = EnemyPools[UnityEngine.Random.Range(0, EnemyPools.Count)].GetFromPool().GenericObj as Enemy;
+            if (m_WaveCounter > 2)
+            {
+                newEnemy.SetMaxHealth(20 + (m_WaveCounter - 2) * 3);
+            }
         }
         else
         {
             newEnemy = BossPools[UnityEngine.Random.Range(0, BossPools.Count)].GetFromPool().GenericObj as Enemy;
+            if (m_WaveCounter > 2)
+            {
+                newEnemy.SetMaxHealth(40 + (m_WaveCounter - 2) * 8);
+            }
         }
         newEnemy.RestoreHealth();
         newEnemy.IsAlive = true;
@@ -81,16 +90,18 @@ public class EnemySpawner : MonoBehaviour {
 
     public void SpawnWave(int amountOfEnemies, float interval, Action callback = null)
     {
-        if (m_Wave < 3)
+        if (m_BossWaveCounter < 3)
         {
             m_SpawnEnemies = StartCoroutine(SpawnEnemies(amountOfEnemies, interval, callback));
-            m_Wave++;
+            m_BossWaveCounter++;
+            m_WaveCounter++;
             //Debug.Log("spawn normal wave");
         }
-        else if(m_Wave >= 3)
+        else if(m_BossWaveCounter >= 3)
         {
             m_SpawnEnemies = StartCoroutine(SpawnBossWave(amountOfEnemies, interval, callback));
-            m_Wave = 0; //resets wave count
+            m_BossWaveCounter = 0; //resets wave count
+            m_WaveCounter++;
             //Debug.Log("spawn boss wave");
         }
         else

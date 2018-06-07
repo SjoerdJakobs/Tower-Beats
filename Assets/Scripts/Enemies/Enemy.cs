@@ -56,6 +56,11 @@ public class Enemy : PoolObj
         GameManager.s_OnGameStop += Death;
     }
 
+    public void SetMaxHealth(int NewMaxInt)
+    {
+        m_MaxHealth = NewMaxInt;
+    }
+
     public void RestoreHealth()
     {
         CurrentHealth = m_MaxHealth;
