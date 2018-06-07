@@ -79,14 +79,10 @@ public class HexGrid : MonoBehaviour
     private void Init()
     {
         if (s_Instance == null)
-        {
             s_Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
         else
-        {
             Destroy(gameObject);
-        }
+
         Tile.s_OnTileClicked += delegate (Tile tile) { m_LastSelectedTile = SelectedTile; SelectedTile = tile; if (s_OnSelectedTileChanged != null) s_OnSelectedTileChanged(m_LastSelectedTile, tile); };
         CreateGrid();
     }
