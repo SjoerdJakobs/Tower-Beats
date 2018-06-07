@@ -131,4 +131,9 @@ public class MenuManager : MonoBehaviour
             if (s_OnMenuOpened != null) s_OnMenuOpened(menu);
         }
     }
+
+    public void LoadScene(string sceneName)
+    {
+        Sceneloader.s_Instance.LoadScene(sceneName);
+    }
 }

@@ -15,6 +15,11 @@ public class RMSSliders : MonoBehaviour
         s_HighlightSlider += HighlightSlider;
     }
 
+    private void OnDestroy()
+    {
+        s_HighlightSlider -= HighlightSlider;
+    }
+
     public RMSSlider GetSlider(InstrumentGroup instrument)
     {
         return m_Sliders.Find(x => x.Instrument == instrument);
