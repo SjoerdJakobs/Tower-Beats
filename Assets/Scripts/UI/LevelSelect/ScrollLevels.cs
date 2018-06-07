@@ -49,7 +49,7 @@ public class ScrollLevels : MonoBehaviour {
             for (int i = 0; i < m_Levels.Count; i++)
             {
                 if (i <= 0)
-                    m_Levels[i].transform.DOMove(m_LevelPositions[m_LevelPositions.Length - 1].transform.position, 0.1f);
+                    m_Levels[i].transform.DOMove(m_LevelPositions[m_LevelPositions.Length - 1].transform.position, 0.05f);
                 else
                     m_Levels[i].transform.DOMove(m_LevelPositions[i - 1].transform.position, 0.2f);
             }
@@ -59,7 +59,7 @@ public class ScrollLevels : MonoBehaviour {
             for (int i = 0; i < m_Levels.Count; i++)
             {
                 if(i >= m_Levels.Count - 1)
-                    m_Levels[i].transform.DOMove(m_LevelPositions[0].transform.position, 0.1f);
+                    m_Levels[i].transform.DOMove(m_LevelPositions[0].transform.position, 0.05f);
                 else
                     m_Levels[i].transform.DOMove(m_LevelPositions[i + 1].transform.position, 0.2f);
             }

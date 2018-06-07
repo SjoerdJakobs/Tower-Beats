@@ -54,6 +54,8 @@ public class TowerShopPopUp : PopUp {
 
     void CompareCostAndSetText(float cost, Text textToColor)
     {
+        if (textToColor == null) return;
+
         float coins = PlayerData.s_Instance.Coins;
         textToColor.text = cost.ToString();
         if (coins >= cost)

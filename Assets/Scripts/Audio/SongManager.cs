@@ -231,9 +231,9 @@ public class SongManager : MonoBehaviour {
     private void OnLevelComplete()
     {
         GameManager.s_OnGameStop();
-        m_SongNumber = 0;
-        /*m_SongQueue = null;
-        m_SongAudioSources[0].clip = null;
+        //m_SongNumber = 0;
+        //m_SongQueue = null;
+        /*m_SongAudioSources[0].clip = null;
         m_SongAudioSources[1].clip = null;
         m_SongAudioSources[2].clip = null;
         RemoveExcessiveTracks();*/
@@ -247,11 +247,15 @@ public class SongManager : MonoBehaviour {
         {
             m_SongAudioSources[i].Stop();
         }
+        if(m_SongQueue != null)
+            StopCoroutine(m_SongQueue);
+
         m_SongQueue = null;
         m_SongAudioSources[0].clip = null;
         m_SongAudioSources[1].clip = null;
         m_SongAudioSources[2].clip = null;
         RemoveExcessiveTracks();
+        m_SongNumber = 0;
     }
 
     public void SkipSong()
