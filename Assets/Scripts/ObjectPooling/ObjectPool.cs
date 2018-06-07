@@ -4,6 +4,7 @@ using UnityEngine;
 public class ObjectPool : MonoBehaviour
 {
     public GameObject ObjectPrefab { get; set; }
+    public ObjectPoolManager ObjectPoolManager { get; set; }
     //private Queue<GameObject> m_DeadList;
     private Queue<PoolObj> m_DeadList;
     private PooledSubObject m_objEnum;
@@ -157,5 +158,10 @@ public class ObjectPool : MonoBehaviour
         obj.gameObject.SetActive(false);
         m_DeadList.Enqueue(obj);
         m_ObjectsAliveInPool--;
+    }
+
+    private void OnDestroy()
+    {
+        ObjectPoolManager.ObjectPools.Remove(this);
     }
 }

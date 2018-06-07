@@ -71,6 +71,7 @@ public class ObjectPoolManager : MonoBehaviour {
 
             ObjectPool newPool = newPoolObj.GetComponent<ObjectPool>();
             newPool.ObjectPrefab = Prefab;
+            newPool.ObjectPoolManager = this;
             OnTick += newPool.OnTick;
             newPool.Init(generic,PoolStartSize,IncreaseIncrement,ManagerTicksBeforeClean,CleanThreshold);
             ObjectPools.Add(newPool);
