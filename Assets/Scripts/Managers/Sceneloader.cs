@@ -16,6 +16,8 @@ public class Sceneloader : MonoBehaviour
     private bool m_Fading;
     private Image m_Fader;
 
+    private string m_LevelToLoad;
+
     private void OnEnable()
     {
         if (!s_AddedCallback)
@@ -46,6 +48,9 @@ public class Sceneloader : MonoBehaviour
         {
             if(s_OnSceneLoaded != null)
                 s_OnSceneLoaded();
+
+            GameManager.s_Instance.StartGame(m_LevelToLoad);
+            m_LevelToLoad = null;
         }
     }
 
@@ -61,6 +66,12 @@ public class Sceneloader : MonoBehaviour
         Fade(true, 0.5f, Ease.InOutSine, () => {
             SceneManager.LoadSceneAsync(sceneName);
         });
+    }
+
+    public void LoadGameSceneWithLevel(string level)
+    {
+        LoadScene("Game");
+        m_LevelToLoad = level;
     }
 
     /// <summary>

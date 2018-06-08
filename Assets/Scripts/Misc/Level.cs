@@ -27,6 +27,9 @@ public class Level : MonoBehaviour {
     [Header("Map difficulty")]
     public MapDifficulties MapDifficulty;
 
+    [Header("Map name")]
+    public string MapName;
+
     [Space(5)]
     public string[] Songs = new string[3];
 }
