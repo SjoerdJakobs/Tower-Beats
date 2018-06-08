@@ -1,9 +1,6 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using DG.Tweening;
-using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -64,11 +61,19 @@ public class GameManager : MonoBehaviour
         }));
     }
 
+    /// <summary>
+    /// Keeps spawning waves
+    /// </summary>
     private void SpawnContinuousWaves()
     {
         EnemySpawner.s_Instance.SpawnWave(6, 1.5f, () => { SpawnContinuousWaves(); });
     }
 
+    /// <summary>
+    /// Shows the countdown till enemies start spawning
+    /// </summary>
+    /// <param name="callback"></param>
+    /// <returns></returns>
     private IEnumerator StartPreparationTime(System.Action callback)
     {
         for (int i = m_PreparationTime; i >= 0; i--)
@@ -88,6 +93,11 @@ public class GameManager : MonoBehaviour
         callback();
     }
 
+    /// <summary>
+    /// Shows a small notification of Don Diablo saying that enemies are incoming
+    /// </summary>
+    /// <param name="showDuration"></param>
+    /// <returns></returns>
     private IEnumerator ShowEnemiesIncoming(float showDuration)
     {
         NotificationManager.s_Instance.ShowDon();
@@ -96,6 +106,11 @@ public class GameManager : MonoBehaviour
         NotificationManager.s_Instance.HideDon();
     }
 
+    /// <summary>
+    /// Shows the player the basics of the game at the start of the tutorial level
+    /// </summary>
+    /// <param name="callback">A callback for what happens when the tutorial is finished, null by default</param>
+    /// <returns></returns>
     private IEnumerator ShowTutorial(System.Action callback = null)
     {
         //Base tutorial

@@ -9,6 +9,8 @@ public class ScrollLevels : MonoBehaviour {
     [SerializeField] private Transform[] m_LevelPositions;
     [SerializeField] private List<GameObject> m_Levels = new List<GameObject>();
 
+    private bool m_IsAnimating;
+
     public static ScrollLevels s_Instance;
 
     private void Awake()
@@ -34,40 +36,52 @@ public class ScrollLevels : MonoBehaviour {
 
     public void NextLevel()
     {
-        RepositionLevels(1);
+        RepositionLevels(-1);
     }
 
     public void PreviousLevel()
     {
-        RepositionLevels(-1);
+        RepositionLevels(1);
+    }
+
+    IEnumerator WaitForTween()
+    {
+        m_IsAnimating = true;
+        yield return new WaitForSeconds(0.15f);
+        m_IsAnimating = false;
     }
 
     void RepositionLevels(int direction)
     {
-        SoundManager.s_Instance.PlaySound(SoundNames.LEVELSELECTSCROLLSOUND);
-
-        if(direction == 1)
+        if (!m_IsAnimating)
         {
-            for (int i = 0; i < m_Levels.Count; i++)
-            {
-                if (i <= 0)
-                    m_Levels[i].transform.DOMove(m_LevelPositions[m_LevelPositions.Length - 1].transform.position, 0.05f);
-                else
-                    m_Levels[i].transform.DOMove(m_LevelPositions[i - 1].transform.position, 0.2f);
-            }
-        }
-        else
-        {
-            for (int i = 0; i < m_Levels.Count; i++)
-            {
-                if(i >= m_Levels.Count - 1)
-                    m_Levels[i].transform.DOMove(m_LevelPositions[0].transform.position, 0.05f);
-                else
-                    m_Levels[i].transform.DOMove(m_LevelPositions[i + 1].transform.position, 0.2f);
-            }
-        }
+            SoundManager.s_Instance.PlaySound(SoundNames.LEVELSELECTSCROLLSOUND);
 
-        RepositionList(direction);
+            StartCoroutine(WaitForTween());
+
+            if (direction == 1)
+            {
+                for (int i = 0; i < m_Levels.Count; i++)
+                {
+                    if (i <= 0)
+                        m_Levels[i].transform.DOMove(m_LevelPositions[m_LevelPositions.Length - 1].transform.position, 0.05f);
+                    else
+                        m_Levels[i].transform.DOMove(m_LevelPositions[i - 1].transform.position, 0.2f);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < m_Levels.Count; i++)
+                {
+                    if (i >= m_Levels.Count - 1)
+                        m_Levels[i].transform.DOMove(m_LevelPositions[0].transform.position, 0.05f);
+                    else
+                        m_Levels[i].transform.DOMove(m_LevelPositions[i + 1].transform.position, 0.2f);
+                }
+            }
+
+            RepositionList(direction);
+        }
     }
 
     /// <summary>
@@ -120,7 +134,7 @@ public class ScrollLevels : MonoBehaviour {
     public Level GetSelectedLevel()
     {
         SetColors();
-        Level selectedLevel = m_Levels[1].GetComponent<Level>();
+        Level selectedLevel = m_Levels[2].GetComponent<Level>();
         return selectedLevel;
     }
 

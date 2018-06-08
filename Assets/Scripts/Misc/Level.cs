@@ -32,4 +32,7 @@ public class Level : MonoBehaviour {
 
     [Space(5)]
     public string[] Songs = new string[3];
+
+    [Space(5)]
+    public bool Locked;
 }
