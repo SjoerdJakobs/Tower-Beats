@@ -68,7 +68,7 @@ public class EnemySpawner : MonoBehaviour {
             newEnemy = EnemyPools[UnityEngine.Random.Range(0, EnemyPools.Count)].GetFromPool().GenericObj as Enemy;
             if (m_WaveCounter > 2)
             {
-                newEnemy.SetMaxHealth((int)(20 + ((m_WaveCounter - 2) * 3)+((m_WaveCounter*m_WaveCounter)/20)));
+                newEnemy.SetMaxHealth((int)(20 + ((m_WaveCounter - 2) * 3)+((m_WaveCounter*m_WaveCounter)/40)));
             }
         }
         else
@@ -76,7 +76,7 @@ public class EnemySpawner : MonoBehaviour {
             newEnemy = BossPools[UnityEngine.Random.Range(0, BossPools.Count)].GetFromPool().GenericObj as Enemy;
             if (m_WaveCounter > 2)
             {
-                newEnemy.SetMaxHealth((int)(40 + ((m_WaveCounter - 2) * 8) + ((m_WaveCounter * m_WaveCounter) / 10)));
+                newEnemy.SetMaxHealth((int)(40 + ((m_WaveCounter - 2) * 8) + ((m_WaveCounter * m_WaveCounter) / 20)));
             }
         }
         newEnemy.RestoreHealth();
