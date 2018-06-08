@@ -58,13 +58,21 @@ public class PlayerInfo : MonoBehaviour {
 
     private void UpdatePreparationTime(int time)
     {
+        m_PreparationTimer.color = new Color(m_PreparationTimer.color.r, m_PreparationTimer.color.g, m_PreparationTimer.color.b, 0);
+        m_PreparationTimer.transform.localScale = new Vector3(1.3f, 1.3f);
+
+        m_PreparationTimer.transform.DOScale(1, 0.2f).SetEase(Ease.OutExpo);
+        m_PreparationTimer.DOFade(1, 0.1f);
+
+        m_PreparationTimer.transform.DOScale(0.7f, 0.2f).SetEase(Ease.InExpo).SetDelay(0.55f);
+        m_PreparationTimer.DOFade(0, 0.1f).SetDelay(0.65f);
+
         if(time == 0)
         {
             m_PreparationTimer.text = "";
-            m_PreparationTimer.gameObject.SetActive(false);
         }
         else
-            m_PreparationTimer.text = "Prepare your defenses.\nSpawning in: " + time + " second(s)";
+            m_PreparationTimer.text = time.ToString();
     }
 
     private void OnDestroy()

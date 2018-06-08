@@ -14,7 +14,7 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private float m_ZoomSpeed = 10;
 
     private float minOrthographicSize = 5f;
-    private float maxOrthographicSize = 8.5f;
+    private float maxOrthographicSize = 8f;
 
     public static CameraMovement s_Instance;
 
