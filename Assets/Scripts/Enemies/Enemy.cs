@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Spine.Unity;
 using DG.Tweening;
@@ -15,11 +14,15 @@ public class Enemy : PoolObj
     [SerializeField]private ParticleSystem m_DeathParticle;
     public delegate void DestroyEvent(Enemy enemy);
     public static DestroyEvent s_OnDestroyEnemy;
-    [SerializeField]
-    private float m_MaxHealth = 20;
+
+    [Header("Stats")]
+    [SerializeField] private float m_MaxHealth;
+    [SerializeField] private float m_MoveSpeed;
+    [SerializeField] private float m_CoinsToGive;
     public float CurrentHealth { get; set; }
     public bool IsAlive { get; set; }
 
+    [Header("Object and animations")]
     [SerializeField]private SkeletonAnimation m_SkeletonAnims;
     public SkeletonAnimation SkeletonAnims
     {
@@ -34,10 +37,7 @@ public class Enemy : PoolObj
     private AnimationState m_Anim;
     private EnemyHealthbar m_EnemyHealthbar;
     private MeshRenderer m_Renderer;
-    [SerializeField] private Transform m_EnemyTransform; 
-    
-    [SerializeField] private float m_MoveSpeed;
-    [SerializeField] private float m_CoinsToGive;
+    [SerializeField] private Transform m_EnemyTransform;
 
     private int m_CurrentNodeIndex;
 
@@ -89,9 +89,6 @@ public class Enemy : PoolObj
                         break;
                     case "Drum":
                         EffectsManager.s_Instance.SpawnEffect(EffectType.ENEMY_HIT, false, new Vector2(transform.position.x, transform.position.y + 0.5f));
-                        break;
-                    case "Lead":
-                        //EffectsManager.s_Instance.SpawnEffect(EffectType.ENEMY_HIT, false, new Vector2(transform.position.x, transform.position.y + 0.5f));
                         break;
                 }
             }
@@ -224,13 +221,7 @@ public class Enemy : PoolObj
     {
         GameManager.s_OnGameStop -= Death;
     }
-
-
-    void DeathRoutine()
-    {
-
-    }
-
+    
     IEnumerator Callback()
     {
         if(m_EnemyString == "Enemy2_")
@@ -247,7 +238,6 @@ public class Enemy : PoolObj
 
                 m_SkeletonAnims.AnimationState.AddAnimation(0, m_EnemyString + "MOVE", true, 0);
             }
-        }
-        
+        }        
     }
 }

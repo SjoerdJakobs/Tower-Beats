@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class MapInfo : MonoBehaviour {
@@ -8,9 +6,12 @@ public class MapInfo : MonoBehaviour {
     public delegate void OnLevelChange(Level selectedLevel);
     public static OnLevelChange s_OnLevelChange;
 
+    [Header("General level info")]
     [SerializeField] private Text m_TurretPlacement;
     [SerializeField] private Text m_MapSize;
     [SerializeField] private Text m_MapDifficulty;
+
+    [Header("Song names")]
     [SerializeField] private Text[] m_Songs = new Text[3];
 
     private void OnEnable()
