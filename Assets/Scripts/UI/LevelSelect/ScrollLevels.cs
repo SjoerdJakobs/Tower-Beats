@@ -44,6 +44,8 @@ public class ScrollLevels : MonoBehaviour {
 
     void RepositionLevels(int direction)
     {
+        SoundManager.s_Instance.PlaySound(SoundNames.LEVELSELECTSCROLLSOUND);
+
         if(direction == 1)
         {
             for (int i = 0; i < m_Levels.Count; i++)

@@ -6,7 +6,8 @@ using UnityEngine.Audio;
 public enum SoundNames
 {
     BUTTON_CLICK,
-    BACKGROUND_MUSIC
+    BACKGROUND_MUSIC,
+    LEVELSELECTSCROLLSOUND
 }
 
 [System.Serializable]
