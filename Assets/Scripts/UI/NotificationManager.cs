@@ -22,7 +22,8 @@ public class NotificationManager : MonoBehaviour
 {
     public static NotificationManager s_Instance;
     [SerializeField] private Text m_NotificationText;
-
+    [SerializeField] private CanvasGroup m_NotificationTextAlpha;
+    [SerializeField] private Image m_Background;
     [SerializeField] private Image m_DonDiablo;
 
     private List<Notification> m_NotificationQueue = new List<Notification>();
@@ -55,15 +56,18 @@ public class NotificationManager : MonoBehaviour
             Destroy(gameObject);
     }
 
-    public void ShowDon(float slideInDuration)
+    public void ShowDon()
     {
-        m_DonDiablo.gameObject.SetActive(true);
-        m_DonDiablo.rectTransform.DOAnchorPosX(0, slideInDuration);
+        m_DonDiablo.color = new Color(m_DonDiablo.color.r, m_DonDiablo.color.g, m_DonDiablo.color.b, 0);
+        m_DonDiablo.rectTransform.DOAnchorPosX(0, 0.33f).SetEase(Ease.OutExpo);
+        m_DonDiablo.DOFade(1, 0.2f);
     }
 
-    public void HideDon(float slideOutDuration)
+    public void HideDon()
     {
-        m_DonDiablo.rectTransform.DOAnchorPosX(-706, slideOutDuration).OnComplete(() => m_DonDiablo.gameObject.SetActive(false));
+        m_DonDiablo.color = new Color(m_DonDiablo.color.r, m_DonDiablo.color.g, m_DonDiablo.color.b, 1);
+        m_DonDiablo.rectTransform.DOAnchorPosX(-100, 0.33f).SetEase(Ease.InExpo);
+        m_DonDiablo.DOFade(0, 0.2f).SetDelay(0.13f);
     }
 
     /// <summary>
@@ -129,7 +133,7 @@ public class NotificationManager : MonoBehaviour
 
             yield return new WaitWhile(() => m_ShowingNotification);
             ShowAnimation();
-            m_NotificationText.text = m_NotificationQueue[0].Text;
+            m_NotificationText.text = "<color=#40FFFF>Don Diablo: </color>" + m_NotificationQueue[0].Text;
             m_NotificationText.color = m_NotificationQueue[0].Color;
             yield return new WaitForSeconds(m_NotificationQueue[0].Duration);
             m_NotificationQueue.RemoveAt(0);
@@ -148,13 +152,13 @@ public class NotificationManager : MonoBehaviour
         m_ShowingNotification = true;
 
         //Just to be sure
-        m_NotificationText.transform.localScale = new Vector2(0.7f, 0.7f);
-        m_NotificationText.color = new Color(m_NotificationText.color.r, m_NotificationText.color.g, m_NotificationText.color.b, 0);
+        m_Background.color = new Color(m_Background.color.r, m_Background.color.g, m_Background.color.b, 0);
+        m_NotificationTextAlpha.alpha = 0;
 
         //Animation
         Sequence showSequence = DOTween.Sequence();
-        showSequence.Append(m_NotificationText.transform.DOScale(1f, 0.33f).SetEase(Ease.OutQuad));
-        showSequence.Join(m_NotificationText.DOFade(1, 0.2f).SetEase(Ease.OutQuad));
+        showSequence.Append(m_Background.DOFade(0.5f, 0.2f).SetEase(Ease.OutQuad));
+        showSequence.Join(m_NotificationTextAlpha.DOFade(1, 0.33f).SetEase(Ease.OutQuad));
     }
 
     /// <summary>
@@ -163,13 +167,13 @@ public class NotificationManager : MonoBehaviour
     private void HideAnimation()
     {
         //Just to be sure
-        m_NotificationText.transform.localScale = Vector2.one;
-        m_NotificationText.color = new Color(m_NotificationText.color.r, m_NotificationText.color.g, m_NotificationText.color.b, 1);
+        m_Background.color = new Color(m_Background.color.r, m_Background.color.g, m_Background.color.b, 0.5f);
+        m_NotificationTextAlpha.alpha = 1;
 
         //Animation
         Sequence hideSequence = DOTween.Sequence();
-        hideSequence.Append(m_NotificationText.transform.DOScale(0.7f, 0.33f).SetEase(Ease.InQuad));
-        hideSequence.Join(m_NotificationText.DOFade(0, 0.2f).SetEase(Ease.InQuad)).OnComplete(() => m_ShowingNotification = false);
+        hideSequence.Append(m_Background.DOFade(0f, 0.2f).SetEase(Ease.InQuad));
+        hideSequence.Join(m_NotificationTextAlpha.DOFade(0f, 0.33f).SetEase(Ease.InQuad)).OnComplete(() => m_ShowingNotification = false);
     }
 
 

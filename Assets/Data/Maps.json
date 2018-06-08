@@ -5610,8 +5610,8 @@
         {
             "Name": "BeauTest",
             "GridSize": {
-                "x": 20,
-                "y": 20
+                "x": 21,
+                "y": 21
             },
             "TilesData": [
                 {
