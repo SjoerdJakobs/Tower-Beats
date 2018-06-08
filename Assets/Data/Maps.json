@@ -7313,6 +7313,16 @@
                     },
                     "FilePathToAsset": "Background/Buildings/BUILDINGS_Streetlight",
                     "LayerIndex": 0
+                },
+				{
+                    "State": 4,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 16,
+                        "y": 13
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
                 }
             ]
         }

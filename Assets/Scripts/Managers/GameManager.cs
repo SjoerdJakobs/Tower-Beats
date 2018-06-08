@@ -21,16 +21,6 @@ public class GameManager : MonoBehaviour
 
     private readonly string m_TutorialKey = "TUTORIAL";
 
-    private void Start()
-    {
-        Init();
-    }
-
-    private void Init()
-    {
-        StartGame("BeauTest", true);
-    }
-
     private void Awake()
     {
         if (s_Instance == null)
