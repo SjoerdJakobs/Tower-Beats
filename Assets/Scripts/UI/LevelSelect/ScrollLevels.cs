@@ -46,7 +46,7 @@ public class ScrollLevels : MonoBehaviour {
     IEnumerator WaitForTween()
     {
         m_IsAnimating = true;
-        yield return new WaitForSeconds(0.15f);
+        yield return new WaitForSeconds(0.2f);
         m_IsAnimating = false;
     }
 
@@ -63,7 +63,7 @@ public class ScrollLevels : MonoBehaviour {
                 for (int i = 0; i < m_Levels.Count; i++)
                 {
                     if (i <= 0)
-                        m_Levels[i].transform.DOMove(m_LevelPositions[m_LevelPositions.Length - 1].transform.position, 0.05f);
+                        m_Levels[i].transform.position = m_LevelPositions[m_LevelPositions.Length - 1].transform.position;
                     else
                         m_Levels[i].transform.DOMove(m_LevelPositions[i - 1].transform.position, 0.2f);
                 }
@@ -73,7 +73,7 @@ public class ScrollLevels : MonoBehaviour {
                 for (int i = 0; i < m_Levels.Count; i++)
                 {
                     if (i >= m_Levels.Count - 1)
-                        m_Levels[i].transform.DOMove(m_LevelPositions[0].transform.position, 0.05f);
+                        m_Levels[i].transform.position = m_LevelPositions[0].transform.position;
                     else
                         m_Levels[i].transform.DOMove(m_LevelPositions[i + 1].transform.position, 0.2f);
                 }
@@ -133,7 +133,7 @@ public class ScrollLevels : MonoBehaviour {
     public Level GetSelectedLevel()
     {
         SetColors();
-        Level selectedLevel = m_Levels[2].GetComponent<Level>();
+        Level selectedLevel = m_Levels[3].GetComponent<Level>();
         return selectedLevel;
     }
 
@@ -141,7 +141,7 @@ public class ScrollLevels : MonoBehaviour {
     {
         for (int i = 0; i < m_Levels.Count; i++)
         {
-            if(i != 2)
+            if(i != 3)
             {
                 Image[] images = m_Levels[i].GetComponentsInChildren<Image>();
 
