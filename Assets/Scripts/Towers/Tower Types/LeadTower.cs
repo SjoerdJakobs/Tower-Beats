@@ -52,7 +52,6 @@ public class LeadTower : Tower
             {
                 if (!m_IsShooting)
                 {
-                    print("Lead: Set to attack");
                     m_Animation.state.SetAnimation(0, "Lead_Turret_ATTACK", true);
                     m_IsShooting = true;
                 }
@@ -75,7 +74,6 @@ public class LeadTower : Tower
     {
         if (m_IsShooting)
         {
-            print("Lead: Set to idle");
             m_Animation.state.SetAnimation(0, "Lead_Turret_IDLE", true);
             m_IsShooting = false;
         }

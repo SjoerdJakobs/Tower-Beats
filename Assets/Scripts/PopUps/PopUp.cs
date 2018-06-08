@@ -13,7 +13,6 @@ public class PopUp : MonoBehaviour
 
     public virtual void Hide()
     {
-        print("hiding: " + name);
         ClearLastClickedTile();
         gameObject.SetActive(false);
     }
