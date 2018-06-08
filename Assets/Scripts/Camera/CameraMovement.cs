@@ -4,7 +4,9 @@ using UnityEngine.EventSystems;
 using System.Collections.Generic;
 
 [RequireComponent(typeof(Camera))]
-public class CameraMovement : MonoBehaviour {
+public class CameraMovement : MonoBehaviour
+{
+    #region Variables
 
     [SerializeField] private bool m_UseBoundaries = true;
     [Space(10f)]
@@ -29,6 +31,10 @@ public class CameraMovement : MonoBehaviour {
     private bool m_WasZoomingLastFrame;
     private Vector2[] m_LastZoomPositions;
 
+    #endregion
+
+    #region Monobehaviour functions (Initialization, Updating)
+
     private void Awake()
     {
         Init();
@@ -52,6 +58,9 @@ public class CameraMovement : MonoBehaviour {
         SetCameraBoundaries();
     }
 
+    /// <summary>
+    /// Continuously updates the camera movement
+    /// </summary>
     private void Update()
     {
         if (CanMoveCamera)
@@ -69,6 +78,13 @@ public class CameraMovement : MonoBehaviour {
         }
     }
 
+    #endregion
+
+    #region Input Handling
+
+    /// <summary>
+    /// Handles the touch input
+    /// </summary>
     private void HandleTouch()
     {
         switch(Input.touchCount)
@@ -114,6 +130,9 @@ public class CameraMovement : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Handles the mouse input
+    /// </summary>
     private void HandleMouse()
     {
         Vector3 movePosition = transform.position;
@@ -131,6 +150,14 @@ public class CameraMovement : MonoBehaviour {
         ZoomCamera(scroll, m_ZoomSpeed);
     }
 
+    #endregion
+
+    #region Panning and Zooming
+
+    /// <summary>
+    /// Pans the camera
+    /// </summary>
+    /// <param name="newPanPosition">New pan positions</param>
     private void PanCamera(Vector3 newPanPosition)
     {
         Vector3 offset = m_MainCamera.ScreenToViewportPoint(m_LastPanPosition - newPanPosition);
@@ -146,11 +173,16 @@ public class CameraMovement : MonoBehaviour {
         m_LastPanPosition = newPanPosition;
     }
 
-    private void ZoomCamera(float offset, float speed)
+    /// <summary>
+    /// Zooms the camera
+    /// </summary>
+    /// <param name="value">Zoom value</param>
+    /// <param name="speed">Speed of the zooming</param>
+    private void ZoomCamera(float value, float speed)
     {
-        if (offset == 0) return;
+        if (value == 0) return;
 
-        float calcOrthographicSize = Mathf.Clamp(m_MainCamera.orthographicSize - (offset * speed), minOrthographicSize, maxOrthographicSize);
+        float calcOrthographicSize = Mathf.Clamp(m_MainCamera.orthographicSize - (value * speed), minOrthographicSize, maxOrthographicSize);
         m_UICamera.orthographicSize = calcOrthographicSize;
         m_MainCamera.orthographicSize = calcOrthographicSize;
 
@@ -159,20 +191,139 @@ public class CameraMovement : MonoBehaviour {
     }
 
     /// <summary>
-    /// Zoom the camera
+    /// Animate zoom the camera
     /// </summary>
     /// <param name="value">0 is fully zoomed in, 1 is fully zoomed out</param>
     /// <param name="duration">Duration in seconds</param>
     public void ZoomAnimated(int value, float duration, Ease easing = Ease.Linear)
     {
-        float mappedOrtohraphicSize = MappedOrthographicSize(value);
+        float mappedOrtoghraphicSize = MappedOrthographicSize(value);
 
         if (duration == 0)
-            m_MainCamera.orthographicSize = mappedOrtohraphicSize;
+        {
+            SetOrtographicSize(mappedOrtoghraphicSize);
+        }
         else
-            m_MainCamera.DOOrthoSize(mappedOrtohraphicSize, duration).SetEase(easing);
+        {
+            m_MainCamera.DOOrthoSize(mappedOrtoghraphicSize, duration).SetEase(easing);
+            m_UICamera.DOOrthoSize(mappedOrtoghraphicSize, duration).SetEase(easing);
+        }
     }
 
+    /// <summary>
+    /// Sets the Orthographic Size of the Cameras
+    /// </summary>
+    /// <param name="size">The size that it needs to be set to</param>
+    private void SetOrtographicSize(float size)
+    {
+        m_MainCamera.orthographicSize = size;
+        m_UICamera.orthographicSize = size;
+    }
+
+    #endregion
+
+    #region Scrolling
+
+    /// <summary>
+    /// Scrolls the camera to a tile
+    /// </summary>
+    /// <param name="tile">The tile</param>
+    /// <param name="duration">Duration of the scroll</param>
+    /// <param name="enableMoveCameraOnComplete">Enable input after scroll?</param>
+    /// <param name="overwriteCanMoveCamera">Does the CanMoveCamera variable need to be overwritten?</param>
+    /// <param name="onComplete">Callback when the scroll is completed</param>
+    public void ScrollCameraToPosition(Tile tile, float duration, bool enableMoveCameraOnComplete, bool overwriteCanMoveCamera = false, System.Action onComplete = null)
+    {
+        ScrollCameraToPosition(tile.transform, duration, enableMoveCameraOnComplete, overwriteCanMoveCamera, onComplete);
+    }
+
+    /// <summary>
+    /// Scrolls the camera to a transform
+    /// </summary>
+    /// <param name="transform">The transform</param>
+    /// <param name="duration">Duration of the scroll</param>
+    /// <param name="enableMoveCameraOnComplete">Enable input after scroll?</param>
+    /// <param name="overwriteCanMoveCamera">Does the CanMoveCamera variable need to be overwritten?</param>
+    /// <param name="onComplete">Callback when the scroll is completed</param>
+    public void ScrollCameraToPosition(Transform transform, float duration, bool enableMoveCameraOnComplete, bool overwriteCanMoveCamera = false, System.Action onComplete = null)
+    {
+        ScrollCameraToPosition(transform.position, duration, enableMoveCameraOnComplete, overwriteCanMoveCamera, onComplete);
+    }
+
+    /// <summary>
+    /// Scrolls the camera to a position
+    /// </summary>
+    /// <param name="position">The position</param>
+    /// <param name="duration">Duration of the scroll</param>
+    /// <param name="enableMoveCameraOnComplete">Enable input after scroll?</param>
+    /// <param name="overwriteCanMoveCamera">Does the CanMoveCamera variable need to be overwritten?</param>
+    /// <param name="onComplete">Callback when the scroll is completed</param>
+    public void ScrollCameraToPosition(Vector2 position, float duration, bool enableMoveCameraOnComplete, bool overwriteCanMoveCamera = false, System.Action onComplete = null)
+    {
+        CanMoveCamera = overwriteCanMoveCamera;
+        Vector3 movePos = GetPositionWithinBoundaries(new Vector3(position.x, position.y, transform.position.z));
+
+        if (duration == 0)
+        {
+            transform.position = movePos;
+            if (onComplete != null) onComplete();
+            CanMoveCamera = enableMoveCameraOnComplete;
+        }
+        else
+        {
+            transform.DOMove(movePos, duration).SetEase(Ease.InOutQuad).OnComplete(delegate { if (onComplete != null) onComplete(); CanMoveCamera = enableMoveCameraOnComplete; });
+        }
+    }
+
+    #endregion
+
+    #region Utils
+
+    /// <summary>
+    /// Checks if the Pointer (both mouse and touch) is over an UI object
+    /// </summary>
+    /// <returns>Whether the pointer is over an UI object</returns>
+    public bool IsPointerOverUIObject()
+    {
+        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current)
+        {
+            position = new Vector2(Input.mousePosition.x, Input.mousePosition.y)
+        };
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+        return results.Count > 0;
+    }
+
+    /// <summary>
+    /// Checks if the given position is out of bounds
+    /// </summary>
+    /// <param name="position">The position that needs to be checked</param>
+    /// <returns>Whether the given position is out of bounds or not</returns>
+    public bool IsPositionOutOfBounds(Vector3 position)
+    {
+        if (position.x > m_MaxX || position.x < m_MinX)
+            return true;
+        else if (position.y > m_MaxY || position.y < m_MinY)
+            return true;
+
+        return false;
+    }
+
+    /// <summary>
+    /// Convert a world position to an acceptable position within the boundaries
+    /// </summary>
+    /// <param name="position">Position to convert</param>
+    /// <returns>A world position to an acceptable position within the boundaries</returns>
+    public Vector3 GetPositionWithinBoundaries(Vector3 position)
+    {
+        return new Vector3(Mathf.Clamp(position.x, m_MinX, m_MaxX), Mathf.Clamp(position.y, m_MinY, m_MaxY), position.z);
+    }
+
+    /// <summary>
+    /// Maps values from (0 / 1) to (minOrthographicSize / maxOrthographicSize)
+    /// </summary>
+    /// <param name="value">The zoom value between 0 and 1</param>
+    /// <returns>The mapped OrthographicSize</returns>
     private float MappedOrthographicSize(float value)
     {
         return (value * (maxOrthographicSize - minOrthographicSize) / 1 + minOrthographicSize);
@@ -196,61 +347,5 @@ public class CameraMovement : MonoBehaviour {
         m_MaxY = (maxTile.transform.position.y - vertExtent) + 0.2f;
     }
 
-    /// <summary>
-    /// Convert a world position to an acceptable position within the boundaries
-    /// </summary>
-    /// <param name="position">Position to convert</param>
-    /// <returns>A world position to an acceptable position within the boundaries</returns>
-    public Vector3 GetPositionWithinBoundaries(Vector3 position)
-    {
-        return new Vector3(Mathf.Clamp(position.x, m_MinX, m_MaxX), Mathf.Clamp(position.y, m_MinY, m_MaxY), position.z);
-    }
-
-    public bool IsPositionOutOfBounds(Vector3 position)
-    {
-        if (position.x > m_MaxX || position.x < m_MinX)
-            return true;
-        else if (position.y > m_MaxY || position.y < m_MinY)
-            return true;
-
-        return false;
-    }
-
-    public void ScrollCameraToPosition(Tile tile, float duration, bool enableMoveCameraOnComplete, bool overwriteCanMoveCamera = false, System.Action onComplete = null)
-    {
-        ScrollCameraToPosition(tile.transform, duration, enableMoveCameraOnComplete, overwriteCanMoveCamera, onComplete);
-    }
-
-    public void ScrollCameraToPosition(Transform transform, float duration, bool enableMoveCameraOnComplete, bool overwriteCanMoveCamera = false, System.Action onComplete = null)
-    {
-        ScrollCameraToPosition(transform.position, duration, enableMoveCameraOnComplete, overwriteCanMoveCamera, onComplete);
-    }
-
-    public void ScrollCameraToPosition(Vector2 position, float duration, bool enableMoveCameraOnComplete, bool overwriteCanMoveCamera = false, System.Action onComplete = null)
-    {
-        CanMoveCamera = overwriteCanMoveCamera;
-        Vector3 movePos = GetPositionWithinBoundaries(new Vector3(position.x, position.y, transform.position.z));
-
-        if (duration == 0)
-        {
-            transform.position = movePos;
-            if (onComplete != null) onComplete();
-            CanMoveCamera = enableMoveCameraOnComplete;
-        }
-        else
-        {
-            transform.DOMove(movePos, duration).SetEase(Ease.InOutQuad).OnComplete(delegate { if (onComplete != null) onComplete(); CanMoveCamera = enableMoveCameraOnComplete; });
-        }
-    }
-
-    public bool IsPointerOverUIObject()
-    {
-        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current)
-        {
-            position = new Vector2(Input.mousePosition.x, Input.mousePosition.y)
-        };
-        List<RaycastResult> results = new List<RaycastResult>();
-        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
-        return results.Count > 0;
-    }
+    #endregion
 }
