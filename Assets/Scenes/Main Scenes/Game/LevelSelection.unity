@@ -316,7 +316,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: England
+  m_Text: Tutorial
 --- !u!222 &23369203
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -644,10 +644,12 @@ MonoBehaviour:
   TurretPlacements: 14
   MapSize: 0
   MapDifficulty: 0
+  MapName: 
   Songs:
   - People Say
   - Through the fire and flames
   - Cold Waters
+  Locked: 1
 --- !u!1 &89680942
 GameObject:
   m_ObjectHideFlags: 0
@@ -1628,10 +1630,12 @@ MonoBehaviour:
   TurretPlacements: 69
   MapSize: 1
   MapDifficulty: 1
+  MapName: 
   Songs:
   - Through the fire and flames
   - Cold Waters
   - People Say
+  Locked: 1
 --- !u!1 &524765616
 GameObject:
   m_ObjectHideFlags: 0
@@ -2192,10 +2196,12 @@ MonoBehaviour:
   TurretPlacements: 12
   MapSize: 0
   MapDifficulty: 0
+  MapName: 
   Songs:
   - People Say
   - Cold Waters
   - Through the fire and flames
+  Locked: 0
 --- !u!1 &783365397
 GameObject:
   m_ObjectHideFlags: 0
@@ -2751,10 +2757,12 @@ MonoBehaviour:
   TurretPlacements: 8
   MapSize: 2
   MapDifficulty: 2
+  MapName: 
   Songs:
   - Cold Waters
   - People Say
   - Through the fire and flames
+  Locked: 0
 --- !u!1 &1032596973
 GameObject:
   m_ObjectHideFlags: 0
@@ -3222,10 +3230,12 @@ MonoBehaviour:
   TurretPlacements: 5
   MapSize: 0
   MapDifficulty: 2
+  MapName: 
   Songs:
   - Through the fire and flames
   - People Say
   - Cold Waters
+  Locked: 1
 --- !u!1 &1168866525
 GameObject:
   m_ObjectHideFlags: 0
@@ -4607,7 +4617,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: France
+  m_Text: 'Future
+
+'
 --- !u!222 &1598487887
 CanvasRenderer:
   m_ObjectHideFlags: 0

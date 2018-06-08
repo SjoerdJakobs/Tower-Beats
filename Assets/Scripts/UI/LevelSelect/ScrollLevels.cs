@@ -34,17 +34,17 @@ public class ScrollLevels : MonoBehaviour {
 
     public void NextLevel()
     {
-        RepositionLevels(1);
+        RepositionLevels(-1);
     }
 
     public void PreviousLevel()
     {
-        RepositionLevels(-1);
+        RepositionLevels(1);
     }
 
     void RepositionLevels(int direction)
     {
-        SoundManager.s_Instance.PlaySound(SoundNames.LEVELSELECTSCROLLSOUND);
+        //SoundManager.s_Instance.PlaySound(SoundNames.LEVELSELECTSCROLLSOUND);
 
         if(direction == 1)
         {
@@ -120,7 +120,7 @@ public class ScrollLevels : MonoBehaviour {
     public Level GetSelectedLevel()
     {
         SetColors();
-        Level selectedLevel = m_Levels[1].GetComponent<Level>();
+        Level selectedLevel = m_Levels[2].GetComponent<Level>();
         return selectedLevel;
     }
 
