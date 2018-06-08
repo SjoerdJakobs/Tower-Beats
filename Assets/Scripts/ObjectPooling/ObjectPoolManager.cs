@@ -36,7 +36,7 @@ public class ObjectPoolManager : MonoBehaviour {
     }
     /// <summary>
     /// This returns the objectpool that contains your prefab.
-    /// If the pool does not exist yet it will automaticly create one.
+    /// If the pool does not exist yet, it will automatically create 
     /// </summary>
     /// <param name="Prefab">The prefab that will be pooled</param>
     /// <param name="PoolStartSize">the starting size of the object pool</param>
@@ -80,6 +80,10 @@ public class ObjectPoolManager : MonoBehaviour {
         }        
     }
 
+    /// <summary>
+    /// this contains an action that will have all onTick functions from the object pools in it
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator Ticker()
     {
         while(true)

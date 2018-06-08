@@ -27,11 +27,10 @@ public class ObjectPool : MonoBehaviour
     /// <param name="GenericObj">Choose from the pooledSubject enum what the secondary "generic" object is</param>
     /// <param name="PoolStartSize">the amount of objects the pool starts with</param>
     /// <param name="IncreaseIncrement">the amount of objects that will be added when the pool hits its current limit</param>
-    /// <param name="ManagerTicksBeforeClean">the amount of ticks needed before the pool wil check for a clean (one tick is one second)</param>
+    /// <param name="ManagerTicksBeforeClean">the amount of ticks needed before the pool wil check for a clean</param>
     /// <param name="CleanThreshold">the amount of unused objects needed for a clean to happen example</param>
     public void Init(PooledSubObject GenericObj, int PoolStartSize = 20, int IncreaseIncrement = 5, int ManagerTicksBeforeClean = 5, int CleanThreshold = 20)
-    {
-        //temp
+    {       
         m_ObjectsAliveInPool = 0;
 
 
@@ -142,9 +141,29 @@ public class ObjectPool : MonoBehaviour
     }
 
     /// <summary>
-    /// this function 
+    /// This contains every function that should go off every tick
     /// </summary>
     public void OnTick()
+    {
+        Clean();    
+        m_CurrentTick++;
+    }
+
+    /// <summary>
+    /// put the given object back into the pool
+    /// </summary>
+    /// <param name="obj">this object will be put back in the pool</param>
+    public void AddObjectToPool(PoolObj obj)
+    {
+        obj.gameObject.SetActive(false);
+        m_DeadList.Enqueue(obj);
+        m_ObjectsAliveInPool--;
+    }
+
+    /// <summary>
+    /// Check if cleaning is necessary and if it is it cleans up the pool. 
+    /// </summary>
+    private void Clean()
     {
         if (m_CurrentTick >= m_anagerTicksBeforeClean)
         {
@@ -162,17 +181,12 @@ public class ObjectPool : MonoBehaviour
             {
                 m_CurrentTick = 0;
             }
-        }        
-        m_CurrentTick++;
+        }
     }
 
-    public void AddObjectToPool(PoolObj obj)
-    {
-        obj.gameObject.SetActive(false);
-        m_DeadList.Enqueue(obj);
-        m_ObjectsAliveInPool--;
-    }
-
+    /// <summary>
+    /// the pool removes itself from the pool list in the manager when it gets destroyed
+    /// </summary>
     private void OnDestroy()
     {
         ObjectPoolManager.ObjectPools.Remove(this);
