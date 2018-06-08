@@ -399,7 +399,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 283780377}
-        m_MethodName: PreviousLevel
+        m_MethodName: NextLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2369,11 +2369,11 @@ MonoBehaviour:
   TurretPlacements: 12
   MapSize: 0
   MapDifficulty: 0
-  MapName: 
+  MapName: tutorial
   Songs:
   - People Say
-  - Cold Waters
-  - Through the fire and flames
+  - People Say
+  - People Say
   Locked: 0
 --- !u!1 &783365397
 GameObject:
@@ -3107,11 +3107,11 @@ MonoBehaviour:
   TurretPlacements: 8
   MapSize: 2
   MapDifficulty: 2
-  MapName: 
+  MapName: BeauTest
   Songs:
-  - Cold Waters
   - People Say
   - Through the fire and flames
+  - Cold Waters
   Locked: 0
 --- !u!1 &1032596973
 GameObject:
@@ -4141,7 +4141,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 283780377}
-        m_MethodName: NextLevel
+        m_MethodName: PreviousLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

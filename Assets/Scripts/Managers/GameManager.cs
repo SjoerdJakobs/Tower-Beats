@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     public delegate void GameStop();
     public static GameStop s_OnGameStop;
 
+    public string LoadedLevel;
+
     private readonly string m_TutorialKey = "TUTORIAL";
 
     private void Awake()

@@ -134,6 +134,6 @@ public class MenuManager : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
-        Sceneloader.s_Instance.LoadScene(sceneName);
+        Sceneloader.s_Instance.LoadGameSceneWithLevel(Sceneloader.s_Instance.m_LevelToLoad);
     }
 }

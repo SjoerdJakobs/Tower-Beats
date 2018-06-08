@@ -15,7 +15,7 @@ public class Sceneloader : MonoBehaviour
     private bool m_Fading;
     private Image m_Fader;
 
-    private string m_LevelToLoad;
+    public string m_LevelToLoad;
 
     private void OnEnable()
     {
@@ -49,7 +49,6 @@ public class Sceneloader : MonoBehaviour
                 s_OnSceneLoaded();
 
             GameManager.s_Instance.StartGame(m_LevelToLoad);
-            m_LevelToLoad = null;
         }
     }
 
