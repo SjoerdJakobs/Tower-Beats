@@ -5,10 +5,9 @@ public class ObjectPool : MonoBehaviour
 {
     public GameObject ObjectPrefab { get; set; }
     public ObjectPoolManager ObjectPoolManager { get; set; }
-    //private Queue<GameObject> m_DeadList;
+
     private Queue<PoolObj> m_DeadList;
     private PooledSubObject m_objEnum;
-    //private Object m_GenericObj;
 
     private int m_ObjectsInPool;
     private int m_ObjectsAliveInPool;
@@ -22,6 +21,14 @@ public class ObjectPool : MonoBehaviour
 
     private bool m_isAboveThreshold;
 
+    /// <summary>
+    /// This fuction sets the params for the object pool that will be created.
+    /// </summary>
+    /// <param name="GenericObj">Choose from the pooledSubject enum what the secondary "generic" object is</param>
+    /// <param name="PoolStartSize">the amount of objects the pool starts with</param>
+    /// <param name="IncreaseIncrement">the amount of objects that will be added when the pool hits its current limit</param>
+    /// <param name="ManagerTicksBeforeClean">the amount of ticks needed before the pool wil check for a clean (one tick is one second)</param>
+    /// <param name="CleanThreshold">the amount of unused objects needed for a clean to happen example</param>
     public void Init(PooledSubObject GenericObj, int PoolStartSize = 20, int IncreaseIncrement = 5, int ManagerTicksBeforeClean = 5, int CleanThreshold = 20)
     {
         //temp
@@ -75,7 +82,10 @@ public class ObjectPool : MonoBehaviour
             NewPoolGameObj.SetActive(false);
         }
     }
-
+    /// <summary>
+    /// This function returns a object from the pool and increase the pool size when needed.
+    /// </summary>
+    /// <returns>PoolObj</returns>
     public PoolObj GetFromPool() 
     {
         if (m_ObjectsAliveInPool < m_ObjectsInPool)
@@ -131,6 +141,9 @@ public class ObjectPool : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// this function 
+    /// </summary>
     public void OnTick()
     {
         if (m_CurrentTick >= m_anagerTicksBeforeClean)
