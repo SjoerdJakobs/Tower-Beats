@@ -50,6 +50,7 @@ public class TowerProjectile : PoolObj
 
     [SerializeField] private AnimationCurve m_ProjectileArc;
     [SerializeField] private float m_ProjectileHeight = 4f;
+    [SerializeField] private float m_ProjectileRotationSpeed = 8f;
     [SerializeField] private float m_OffsetY = 0.6f;
 
     private bool m_Pause;
@@ -133,18 +134,24 @@ public class TowerProjectile : PoolObj
                 // Lerp the projectile to the target, add the height of the arc so that it creates an actual arc
                 transform.position = Vector2.Lerp(Data.StartPosition, end, linearT) + new Vector2(0f, m_OffsetY + height);
 
+                Vector3 difference;
                 // Add rotation to the projectile to create the visual effect of an arc
-                if (time > (Data.MoveDuration / 2) - 0.10f)
+                if (time > (Data.MoveDuration / 2) - 0.15f)
                 {
                     // Get the difference between the target and the projectile
-                    Vector3 difference = Data.Target.transform.position - transform.position;
-                    
-                    // Get the calculated rotation based on the difference
-                    float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-
-                    // Lerp the rotation of the projectile
-                    transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, rotationZ - 90), 0.075f);
+                    difference = Data.Target.transform.position - transform.position;
                 }
+                else
+                {
+                    // Get the difference between the projectile and the starting position
+                    difference = transform.position - (Vector3)Data.StartPosition;
+                }
+
+                // Get the calculated rotation based on the difference
+                float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+
+                // Lerp the rotation of the projectile
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, rotationZ - 90), m_ProjectileRotationSpeed * Time.deltaTime);
                 yield return null;
             }
         }
