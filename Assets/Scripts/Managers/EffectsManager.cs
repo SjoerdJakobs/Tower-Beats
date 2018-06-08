@@ -1,7 +1,4 @@
-﻿using Spine.Unity;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public enum EffectType
@@ -83,7 +80,6 @@ public class EffectsManager : MonoBehaviour
         {
             if (effect == m_EffectsPool[i])
             {
-                //Debug.Log("remove effect");
                 m_EffectsPool[i].gameObject.SetActive(false);
                 m_EffectsPool[i].InUse = false;
             }

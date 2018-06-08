@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -58,7 +56,6 @@ public class PropSelector : MonoBehaviour
             if (path.Contains(fileExtensions[i]))
                 path = path.Replace(fileExtensions[i], "");
         }
-        //path = path.Replace(".png", "");
 
         if (s_OnPropSelectorConfirm != null) s_OnPropSelectorConfirm(path);
 #endif

@@ -37,11 +37,6 @@ public class NotificationManager : MonoBehaviour
         Init();
     }
 
-    private void OnDestroy()
-    {
-
-    }
-
     /// <summary>
     /// Creates a instance of this object, if there is an instance already delete the new one
     /// </summary>
@@ -106,7 +101,6 @@ public class NotificationManager : MonoBehaviour
             m_Queue = StartCoroutine(NotificationQueue());
     }
 
-
     /// <summary>
     /// Checks if the notification already exists in the queue
     /// </summary>
@@ -118,7 +112,7 @@ public class NotificationManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// Loops through a queue of notifications until it's empty
     /// </summary>
     /// <returns></returns>
     private IEnumerator NotificationQueue()

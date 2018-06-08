@@ -11,8 +11,7 @@ public class ObjectPoolManager : MonoBehaviour {
     [SerializeField]
     private float m_TickIntervalValue;
     private WaitForSeconds m_TickInterval;
-
-    // Use this for initialization
+    
     void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
@@ -34,6 +33,7 @@ public class ObjectPoolManager : MonoBehaviour {
             Destroy(gameObject);
         }
     }
+
     /// <summary>
     /// This returns the objectpool that contains your prefab.
     /// If the pool does not exist yet, it will automatically create 

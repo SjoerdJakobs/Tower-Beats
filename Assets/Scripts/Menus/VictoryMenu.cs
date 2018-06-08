@@ -1,7 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class VictoryMenu : Menu {
-
+﻿public class VictoryMenu : Menu {
+    //Empty menu class, just used to open the victory screen when needed
 }

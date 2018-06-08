@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class TowerLaser : MonoBehaviour {
     
@@ -35,8 +33,7 @@ public class TowerLaser : MonoBehaviour {
     {
         PauseCheck.Pause += TogglePause;
     }
-
-    // Use this for initialization
+    
     void Start ()
     {
         if (m_ImpactArt == null)

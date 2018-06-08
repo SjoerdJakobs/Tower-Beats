@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -27,6 +26,10 @@ public class AnimProjectile : PoolObj
         StartCoroutine(MoveToTarget());
     }
 
+    /// <summary>
+    /// Moves the projectile to a target
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator MoveToTarget()
     {
         Vector3 lastPos = Vector3.zero;

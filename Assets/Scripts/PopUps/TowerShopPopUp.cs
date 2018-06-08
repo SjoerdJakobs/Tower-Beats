@@ -6,11 +6,15 @@ public class TowerShopPopUp : PopUp {
 
     [SerializeField] private List<Tower> m_Towers = new List<Tower>();
 
+    [Header("Text colors")]
     [SerializeField] private Color m_AvailableColor;
     [SerializeField] private Color m_UnavailableColor;
+
+    [Header("Tower costs")]
     [SerializeField] private Text m_BassTowerCost;
     [SerializeField] private Text m_DrumTowerCost;
     [SerializeField] private Text m_LeadTowerCost;
+
     [Space]
     [SerializeField] private TowerShopAnimation m_Animation;
 

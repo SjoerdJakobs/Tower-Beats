@@ -9,7 +9,8 @@ public class CameraMovement : MonoBehaviour
     #region Variables
 
     [SerializeField] private bool m_UseBoundaries = true;
-    [Space(10f)]
+
+    [Space(10f),Header("Speeds")]
     [SerializeField] private float m_PanSpeed = 40;
     [SerializeField] private float m_ZoomSpeed = 10;
 

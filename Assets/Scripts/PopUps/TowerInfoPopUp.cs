@@ -6,6 +6,7 @@ public class TowerInfoPopUp : PopUp {
     [SerializeField] private Text m_DamageField;
     [SerializeField] private Text m_SellValue;
     [SerializeField] private Text m_UpgradeCost;
+    [Header("Tower general info")]
     [SerializeField] private Text m_TowerName;
     [SerializeField] private Text m_TowerLevel;
     [SerializeField] private Text m_TargetType;
@@ -13,6 +14,7 @@ public class TowerInfoPopUp : PopUp {
     [SerializeField] private TowerUtilities m_TowerUtilities;
     [SerializeField] private TowerUpgradesAnimation m_Animation;
     [Space]
+    [Header("Colors")]
     [SerializeField] private Color m_NotEnoughCoinsColor;
     [SerializeField] private Color m_NormalColor;
 

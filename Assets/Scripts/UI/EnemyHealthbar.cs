@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
-using System.Collections.Generic;
 
 public class EnemyHealthbar : MonoBehaviour {
 

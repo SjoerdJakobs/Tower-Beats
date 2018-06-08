@@ -199,7 +199,6 @@ public class SongManager : MonoBehaviour {
         else
         {
             m_SongQueue = StartCoroutine(QueueSong(songNumber, songLength: m_SongAudioSources[songNumber - 1].clip.length));
-            Debug.Log("No more songs in playlist.");
         }
     }
 

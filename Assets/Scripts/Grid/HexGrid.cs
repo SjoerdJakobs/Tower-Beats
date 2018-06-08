@@ -12,7 +12,6 @@ public enum OffsetAxis
     X_AXIS,
     Y_AXIS
 }
-
 #endregion
 
 public class HexGrid : MonoBehaviour
@@ -292,6 +291,5 @@ public class HexGrid : MonoBehaviour
         }
         return temp;
     }
-
     #endregion
 }

@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// Shows the countdown till enemies start spawning
     /// </summary>
-    /// <param name="callback"></param>
+    /// <param name="callback">Callback that gets called after the timer has finished</param>
     /// <returns></returns>
     private IEnumerator StartPreparationTime(System.Action callback)
     {

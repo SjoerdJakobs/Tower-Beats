@@ -18,6 +18,8 @@ public class PlayerInfo : MonoBehaviour {
         GameManager.s_OnPreparationTimeUpdated += UpdatePreparationTime;
 
         m_Lives.fillAmount = 0; // Makes sure the bar is empty at the start before the filling tween starts
+
+        //Fills up the bar at the start
         Sequence healthBarStartSequence = DOTween.Sequence();
         healthBarStartSequence.AppendInterval(0.3f);
         healthBarStartSequence.Append(m_Lives.DOFillAmount(1, 3f)).SetEase(Ease.Linear);
@@ -26,6 +28,10 @@ public class PlayerInfo : MonoBehaviour {
         healthBarStartSequence.Insert(1.8f, m_Lives.DOColor(Color.green, 0.2f));
     }
 
+    /// <summary>
+    /// Shows the players currency
+    /// </summary>
+    /// <param name="coins"></param>
     void UpdateCoinsUI(float coins)
     {
         m_Coins.text = coins.ToString("N0"); //Makes sure the text wont show decimals
@@ -36,19 +42,16 @@ public class PlayerInfo : MonoBehaviour {
         m_Lives.DOFillAmount(lives/10,0.3f);
         if(lives > 7)
         {
-            Effects.ChangeImageColor(m_Lives, Color.green, 0.3f);
+            Effects.ChangeImageColor(m_Lives, Effects.s_EffectColors["Green"], 0.3f);
         }
         else if(lives <= 7 && lives > 3)
         {
             Effects.ChangeImageColor(m_Lives, Effects.s_EffectColors["Yellow"], 0.3f);
-            //Effects.ChangeImageColor(m_Lives, Effects.s_EffectColors["Yellow"], 0.3f);
         }
         else if(lives <= 3)
         {
             Effects.ChangeImageColor(m_Lives, Effects.s_EffectColors["Red"], 0.3f);
         }
-
-        //Effects.s_ImageFlash(m_DamageIndicator, 0.2f, 2, Effects.s_EffectColors["Red"]);
     }
 
     void UpdateSongUI(int currentSong, int maxSongs,string songName)

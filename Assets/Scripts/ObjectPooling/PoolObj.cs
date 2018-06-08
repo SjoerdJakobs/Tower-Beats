@@ -4,7 +4,6 @@ public class PoolObj : MonoBehaviour
 {
     public ObjectPool Pool { get; set; }
     public Object GenericObj { get; set; }
-    //public PoolObjDataStruct ObjData { get; set; }
     
     public void ReturnToPool()
     {
@@ -18,7 +17,6 @@ public class PoolObj : MonoBehaviour
         }
     }
 }
-
 
 public enum PooledSubObject
 {

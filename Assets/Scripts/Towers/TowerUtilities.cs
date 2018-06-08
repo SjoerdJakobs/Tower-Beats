@@ -41,6 +41,9 @@ public class TowerUtilities : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Sets the towers targeting type
+    /// </summary>
     public void ChangeTowerTargeting()
     {
         if (CurrentTile == null) return;
