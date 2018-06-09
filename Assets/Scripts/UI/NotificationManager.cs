@@ -43,10 +43,7 @@ public class NotificationManager : MonoBehaviour
     private void Init()
     {
         if (s_Instance == null)
-        {
             s_Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
         else
             Destroy(gameObject);
     }

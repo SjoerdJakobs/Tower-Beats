@@ -9,7 +9,7 @@ public struct MenuNames
     public const string TOWER_SHOP_MENU = "TowerShopMenu";
     public const string TOWER_MENU = "TowerMenu";
     public const string GAME_OVER_MENU = "GameOverMenu";
-    public const string PAUSE_MENU = "PauseMenu";
+    public const string BACK_MENU = "BackMenu";
 }
 
 public class MenuManager : MonoBehaviour
@@ -164,5 +164,10 @@ public class MenuManager : MonoBehaviour
     public void ReloadGameScene()
     {
         Sceneloader.s_Instance.LoadGameSceneWithLevel(Sceneloader.s_Instance.m_LevelToLoad);
+    }
+
+    public void StopAllAudio()
+    {
+        SongManager.s_Instance.ClearAudio();
     }
 }

@@ -240,7 +240,7 @@ public class SongManager : MonoBehaviour {
         MenuManager.s_Instance.ShowMenu(MenuNames.VICTORY_MENU);
     }
 
-    void ClearAudio()
+    public void ClearAudio()
     {
         for (int i = 0; i < m_SongAudioSources.Length; i++)
         {
