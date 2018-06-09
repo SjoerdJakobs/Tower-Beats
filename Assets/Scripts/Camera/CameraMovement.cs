@@ -184,8 +184,10 @@ public class CameraMovement : MonoBehaviour
         if (value == 0) return;
 
         float calcOrthographicSize = Mathf.Clamp(m_MainCamera.orthographicSize - (value * speed), minOrthographicSize, maxOrthographicSize);
-        m_UICamera.orthographicSize = calcOrthographicSize;
+
         m_MainCamera.orthographicSize = calcOrthographicSize;
+        if (m_UICamera != null)
+            m_UICamera.orthographicSize = calcOrthographicSize;
 
         if (m_UseBoundaries)
             transform.position = GetPositionWithinBoundaries(transform.position);
@@ -207,7 +209,8 @@ public class CameraMovement : MonoBehaviour
         else
         {
             m_MainCamera.DOOrthoSize(mappedOrtoghraphicSize, duration).SetEase(easing);
-            m_UICamera.DOOrthoSize(mappedOrtoghraphicSize, duration).SetEase(easing);
+            if(m_UICamera != null)
+                m_UICamera.DOOrthoSize(mappedOrtoghraphicSize, duration).SetEase(easing);
         }
     }
 
@@ -218,7 +221,8 @@ public class CameraMovement : MonoBehaviour
     private void SetOrtographicSize(float size)
     {
         m_MainCamera.orthographicSize = size;
-        m_UICamera.orthographicSize = size;
+        if(m_UICamera != null)
+            m_UICamera.orthographicSize = size;
     }
 
     #endregion

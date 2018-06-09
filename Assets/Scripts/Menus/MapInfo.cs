@@ -23,9 +23,9 @@ public class MapInfo : MonoBehaviour {
     {
         if(selectedLevel != null)
         {
-            m_TurretPlacement.text = "Turret Placements: " + selectedLevel.TurretPlacements.ToString();
-            m_MapSize.text = "Map size: " + selectedLevel.MapSize.ToString();
-            m_MapDifficulty.text = "Map difficulty: " + selectedLevel.MapDifficulty.ToString();
+            m_TurretPlacement.text = selectedLevel.TurretPlacements.ToString();
+            m_MapSize.text = selectedLevel.MapSize.ToString();
+            m_MapDifficulty.text = selectedLevel.MapDifficulty.ToString();
 
             for (int i = 0; i < m_Songs.Length; i++)
             {

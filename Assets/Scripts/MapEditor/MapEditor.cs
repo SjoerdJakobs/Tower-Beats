@@ -259,6 +259,11 @@ public class MapEditor : MonoBehaviour
         CopyToClipboard(JsonUtility.ToJson(m_Map, true));
     }
 
+    public void BackToMainMenu()
+    {
+        Sceneloader.s_Instance.LoadScene("MainMenu");
+    }
+
     #region Save And Load Data
 
     /// <summary>

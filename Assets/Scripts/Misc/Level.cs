@@ -9,6 +9,7 @@ public class Level : MonoBehaviour {
         Small,
         Medium,
         Large,
+        Locked,
         
     }
 
@@ -16,16 +17,17 @@ public class Level : MonoBehaviour {
     {
         Easy,
         Normal,
-        Hard
+        Hard,
+        Locked
     }
 
     public int TurretPlacements;
 
     [Header("Map size")]
-    public Mapsizes MapSize;
+    public Mapsizes MapSize = Mapsizes.Locked;
 
     [Header("Map difficulty")]
-    public MapDifficulties MapDifficulty;
+    public MapDifficulties MapDifficulty = MapDifficulties.Locked;
 
     [Header("Map name")]
     public string MapName;
