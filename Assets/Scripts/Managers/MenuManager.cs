@@ -78,6 +78,11 @@ public class MenuManager : MonoBehaviour
         if (s_OnMenuOpened != null) s_OnMenuOpened(menu);
     }
 
+    /// <summary>
+    /// Shows a menu
+    /// </summary>
+    /// <param name="menuName">Menu to show by name reference</param>
+    /// <param name="position">Position for menu to spawn at</param>
     public void ShowMenu(string menuName,Vector3 position)
     {
         Camera cam = Camera.main;
@@ -91,6 +96,10 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Hides a menu
+    /// </summary>
+    /// <param name="menuName">Menu to hide by name reference</param>
     public void HideMenu(string menuName)
     {
         for (int i = 0; i < m_Menus.Count; i++)
@@ -102,11 +111,19 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Hides a menu
+    /// </summary>
+    /// <param name="menu">Menu to hide by script reference</param>
     public void HideMenu(Menu menu)
     {
         menu.Hide();
     }
 
+    /// <summary>
+    /// Toggles a menu, if it is already open it closes
+    /// </summary>
+    /// <param name="menu">menu to toggle</param>
     public void ToggleMenu(Menu menu)
     {
         if (IsAnyMenuOpen)
@@ -132,11 +149,18 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Loads a scene
+    /// </summary>
+    /// <param name="sceneName">Scene to load by string</param>
     public void LoadScene(string sceneName)
     {
         Sceneloader.s_Instance.LoadScene(sceneName);
     }
 
+    /// <summary>
+    /// Reloads the scene and map
+    /// </summary>
     public void ReloadGameScene()
     {
         Sceneloader.s_Instance.LoadGameSceneWithLevel(Sceneloader.s_Instance.m_LevelToLoad);

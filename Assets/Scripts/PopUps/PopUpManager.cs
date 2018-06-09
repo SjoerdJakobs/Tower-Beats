@@ -47,18 +47,29 @@ public class PopUpManager : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Hide a single pop up
+    /// </summary>
+    /// <param name="popUpName">Pop up to hide by name reference</param>
     public void HidePopUp(string popUpName)
     {
         PopUp popup = m_PopUps.Find(x => x.name.ToUpper() == popUpName.ToUpper()) as PopUp;
         HidePopUp(popup);
     }
 
+    /// <summary>
+    /// Hide a single pop up
+    /// </summary>
+    /// <param name="popup">Pop up to hide by script reference</param>
     public void HidePopUp(PopUp popup)
     {
         popup.ClearLastClickedTile();
         popup.Hide();
     }
 
+    /// <summary>
+    /// Hide all pop ups
+    /// </summary>
     public void HideAll()
     {
         for (int i = 0; i < m_PopUps.Count; i++)
@@ -68,6 +79,11 @@ public class PopUpManager : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Checks if the pop up is already opened on the selected tile
+    /// </summary>
+    /// <param name="tile">The tile to check</param>
+    /// <returns></returns>
     public bool IsPopUpOpenOnTile(Tile tile)
     {
         for (int i = 0; i < m_PopUps.Count; i++)

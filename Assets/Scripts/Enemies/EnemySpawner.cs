@@ -50,6 +50,9 @@ public class EnemySpawner : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Callback for when the map has been loaded
+    /// </summary>
     private void OnMapLoaded()
     {
         m_SpawnerParticles.gameObject.transform.position = MapLoader.s_Instance.Path[0].transform.position;

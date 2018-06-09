@@ -233,6 +233,11 @@ public class MapEditor : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Checks if the map name already exists
+    /// </summary>
+    /// <param name="mapName">The map name to check</param>
+    /// <returns></returns>
     private bool MapNameAlreadyExists(string mapName)
     {
         for (int i = 0; i < m_Maps.MapsData.Count; i++)
@@ -243,6 +248,10 @@ public class MapEditor : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// Copies the data text from the created map
+    /// </summary>
+    /// <param name="s"></param>
     private void CopyToClipboard(string s)
     {
         TextEditor te = new TextEditor
