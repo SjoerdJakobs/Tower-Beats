@@ -46,7 +46,7 @@ public class ScrollLevels : MonoBehaviour {
     IEnumerator WaitForTween()
     {
         m_IsAnimating = true;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.1f);
         m_IsAnimating = false;
     }
 
@@ -65,7 +65,7 @@ public class ScrollLevels : MonoBehaviour {
                     if (i <= 0)
                         m_Levels[i].transform.position = m_LevelPositions[m_LevelPositions.Length - 1].transform.position;
                     else
-                        m_Levels[i].transform.DOMove(m_LevelPositions[i - 1].transform.position, 0.2f);
+                        m_Levels[i].transform.DOMove(m_LevelPositions[i - 1].transform.position, 0.1f);
                 }
             }
             else
@@ -75,7 +75,7 @@ public class ScrollLevels : MonoBehaviour {
                     if (i >= m_Levels.Count - 1)
                         m_Levels[i].transform.position = m_LevelPositions[0].transform.position;
                     else
-                        m_Levels[i].transform.DOMove(m_LevelPositions[i + 1].transform.position, 0.2f);
+                        m_Levels[i].transform.DOMove(m_LevelPositions[i + 1].transform.position, 0.1f);
                 }
             }
 
