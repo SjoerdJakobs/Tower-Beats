@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour {
 
+    /// <summary>
+    /// Instance of the EnemySpawner
+    /// </summary>
     public static EnemySpawner s_Instance;
     
     /// <summary>
@@ -13,11 +16,19 @@ public class EnemySpawner : MonoBehaviour {
     [SerializeField] private List<GameObject> m_EnemyPrefabs;
     [SerializeField] private List<GameObject> m_Bosses;
 
-
+    /// <summary>
+    /// List of spawned enemies
+    /// </summary>
     public List<Enemy> SpawnedEnemies = new List<Enemy>();
     
+    /// <summary>
+    /// Is the EnemySpawner paused?
+    /// </summary>
     private bool m_Paused;
 
+    /// <summary>
+    /// Spawning coroutine
+    /// </summary>
     private Coroutine m_SpawnEnemies;
     
 
@@ -171,6 +182,13 @@ public class EnemySpawner : MonoBehaviour {
             callback();
     }
 
+    /// <summary>
+    /// Spawns a boss wave
+    /// </summary>
+    /// <param name="amountOfEnemies">Amount of enemies</param>
+    /// <param name="interval">Interval between spawning</param>
+    /// <param name="callback">OnComplete callback</param>
+    /// <returns></returns>
     private IEnumerator SpawnBossWave(int amountOfEnemies, float interval, Action callback = null)
     {
         yield return new WaitForSeconds(2);
