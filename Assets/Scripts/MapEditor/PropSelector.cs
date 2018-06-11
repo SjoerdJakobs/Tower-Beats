@@ -22,6 +22,9 @@ public class PropSelector : MonoBehaviour
         UpdateProp();
     }   
 
+    /// <summary>
+    /// Selects the previous prop
+    /// </summary>
     public void MoveLeft()
     {
         if (m_CurrentPropIndex <= 0)
@@ -32,6 +35,9 @@ public class PropSelector : MonoBehaviour
         UpdateProp();
     }
 
+    /// <summary>
+    /// Selects the next prop
+    /// </summary>
     public void MoveRight()
     {
         if (m_CurrentPropIndex >= m_Props.Length - 1)
@@ -42,6 +48,9 @@ public class PropSelector : MonoBehaviour
         UpdateProp();
     }
 
+    /// <summary>
+    /// Confirm the selected prop
+    /// </summary>
     public void ConfirmSelection()
     {
 #if UNITY_EDITOR
@@ -61,6 +70,9 @@ public class PropSelector : MonoBehaviour
 #endif
     }
 
+    /// <summary>
+    /// Updates the size of the placed prop to its native size and updates the sprite
+    /// </summary>
     private void UpdateProp()
     {
         m_Image.sprite = m_Props[m_CurrentPropIndex];
