@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 using System;
@@ -12,6 +10,10 @@ public class TowerShopAnimation : MonoBehaviour
 
     public bool AnimatedIn { get; set; }
 
+    /// <summary>
+    /// Animation for enabling the tower shop menu
+    /// </summary>
+    /// <param name="callback">Callback to be called on completion</param>
     public void AnimateIn(Action callback = null)
     {
         if (AnimatedIn)
@@ -38,6 +40,10 @@ public class TowerShopAnimation : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Animation for disabling the tower shop menu
+    /// </summary>
+    /// <param name="callback">Callback to be called on completion</param>
     public void AnimateOut(Action callback = null)
     {
         if (!AnimatedIn)
@@ -57,6 +63,9 @@ public class TowerShopAnimation : MonoBehaviour
         m_Indicator.DOFade(0, 0.2f).SetDelay(0.13f).SetId("TowerShopAnimateOut");
     }
 
+    /// <summary>
+    /// Resets the UI to its default values (colors, position and scale)
+    /// </summary>
     private void ResetToDefault()
     {
         m_Indicator.color = new Color(m_Indicator.color.r, m_Indicator.color.g, m_Indicator.color.b, 0);
@@ -70,6 +79,9 @@ public class TowerShopAnimation : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Kills animation tweens to avoid bugs
+    /// </summary>
     private void KillTweens()
     {
         DOTween.Kill("TowerShopAnimateIn");
