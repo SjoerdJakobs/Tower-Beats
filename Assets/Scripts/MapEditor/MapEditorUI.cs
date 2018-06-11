@@ -42,11 +42,18 @@ public class MapEditorUI : MonoBehaviour
             ShowTypeSelector();
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="tileInfo"></param>
     private void SetTileInfo(string tileInfo)
     {
         m_CurrentSelectedTileInfo.text = tileInfo;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public void ShowTypeSelector()
     {
         m_TypeSelector.SetActive(true);
@@ -58,6 +65,9 @@ public class MapEditorUI : MonoBehaviour
         m_CopiedToClipboard.SetActive(false);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public void ShowPropSelector()
     {
         m_TypeSelector.SetActive(false);
@@ -69,6 +79,9 @@ public class MapEditorUI : MonoBehaviour
         m_CopiedToClipboard.SetActive(false);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public void ShowReset()
     {
         m_TypeSelector.SetActive(false);
@@ -80,6 +93,9 @@ public class MapEditorUI : MonoBehaviour
         m_CopiedToClipboard.SetActive(false);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public void ShowTileUtilities()
     {
         m_TypeSelector.SetActive(false);
@@ -93,6 +109,9 @@ public class MapEditorUI : MonoBehaviour
         m_CurrentLayerText.text = MapEditor.s_Instance.CurrentSelectedTile.GetLayer(TileVisualState.PROP).ToString();
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public void ShowSaveAndLoad()
     {
         m_TypeSelector.SetActive(false);
@@ -104,6 +123,9 @@ public class MapEditorUI : MonoBehaviour
         m_CopiedToClipboard.SetActive(false);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public void ShowSaved()
     {
         m_TypeSelector.SetActive(false);
@@ -115,6 +137,9 @@ public class MapEditorUI : MonoBehaviour
         m_CopiedToClipboard.SetActive(false);
     }
 
+    /// <summary>
+    /// Sets the layer of the prop higher (1 layer)
+    /// </summary>
     public void UpPropLayer()
     {
         int layer = MapEditor.s_Instance.CurrentSelectedTile.GetLayer(TileVisualState.PROP);
@@ -125,6 +150,9 @@ public class MapEditorUI : MonoBehaviour
         m_CurrentLayerText.text = layer.ToString();
     }
 
+    /// <summary>
+    /// Sets the layer of the prop lower (1 layer)
+    /// </summary>
     public void DownPropLayer()
     {
         int layer = MapEditor.s_Instance.CurrentSelectedTile.GetLayer(TileVisualState.PROP);
@@ -135,6 +163,9 @@ public class MapEditorUI : MonoBehaviour
         m_CurrentLayerText.text = layer.ToString();
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public void ResetMapEditorUI()
     {
         m_TypeSelector.SetActive(false);
@@ -145,16 +176,23 @@ public class MapEditorUI : MonoBehaviour
         m_CurrentSelectedTileInfo.text = "Select a Tile";
     }
 
+    /// <summary>
+    /// Save a map with the name given in the input text field
+    /// </summary>
     public void SaveMap()
     {
         MapEditor.s_Instance.SetMapName(m_MapNameInput.text);
         MapEditor.s_Instance.SaveMap();
     }
 
+    /// <summary>
+    /// Loads a map with the input given in the corresponding input text field
+    /// </summary>
     public void LoadMap()
     {
         MapLoader.s_Instance.LoadMap(m_MapNameInput.text, false);
     }
+
 
     public void ShowCopiedToClipboard()
     {

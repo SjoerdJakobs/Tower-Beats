@@ -208,6 +208,11 @@ public class MapEditor : MonoBehaviour
         HexGrid.s_Instance.GetTile(tile.PathTilePosition).SetTileVisualsState(TileVisualState.BASE);
     }
 
+    /// <summary>
+    /// Gets the tiles in a map and their data / state
+    /// </summary>
+    /// <param name="tilePosition">The position in the grid of the tile that needs to be checked</param>
+    /// <returns></returns>
     public TileData GetTileDataFromMap(Vector2Int tilePosition)
     {
         for (int i = 0; i < m_Map.TilesData.Count; i++)
@@ -218,6 +223,9 @@ public class MapEditor : MonoBehaviour
         return null;
     }
 
+    /// <summary>
+    /// Save a created map
+    /// </summary>
     public void SaveMap()
     {
         if(!MapNameAlreadyExists(m_Map.Name))
@@ -249,9 +257,9 @@ public class MapEditor : MonoBehaviour
     }
 
     /// <summary>
-    /// Copies the data text from the created map
+    /// Copies the string from the parameter to the clipboard
     /// </summary>
-    /// <param name="s"></param>
+    /// <param name="s">String that needs to be copied</param>
     private void CopyToClipboard(string s)
     {
         TextEditor te = new TextEditor
@@ -263,11 +271,17 @@ public class MapEditor : MonoBehaviour
         te.Copy();
     }
 
+    /// <summary>
+    /// Copies the map to the clipboard
+    /// </summary>
     public void CopyMapToClipboard()
     {
         CopyToClipboard(JsonUtility.ToJson(m_Map, true));
     }
 
+    /// <summary>
+    /// Returns to the main menu
+    /// </summary>
     public void BackToMainMenu()
     {
         Sceneloader.s_Instance.LoadScene("MainMenu");
