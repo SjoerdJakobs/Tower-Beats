@@ -69,17 +69,17 @@ public class EnemySpawner : MonoBehaviour {
         if (!isBoss)
         {
             newEnemy = EnemyPools[UnityEngine.Random.Range(0, EnemyPools.Count)].GetFromPool().GenericObj as Enemy;
-            if (m_WaveCounter > 2)
+            if (m_WaveCounter > 5)
             {
-                newEnemy.SetMaxHealth((int)(20 + ((m_WaveCounter - 2) * 3)+((m_WaveCounter*m_WaveCounter)/40)));
+                newEnemy.SetMaxHealth((int)(20 + ((m_WaveCounter - 5) * 3)+(((m_WaveCounter-5)*(m_WaveCounter - 5)) /40)));
             }
         }
         else
         {
             newEnemy = BossPools[UnityEngine.Random.Range(0, BossPools.Count)].GetFromPool().GenericObj as Enemy;
-            if (m_WaveCounter > 2)
+            if (m_WaveCounter > 5)
             {
-                newEnemy.SetMaxHealth((int)(40 + ((m_WaveCounter - 2) * 8) + ((m_WaveCounter * m_WaveCounter) / 20)));
+                newEnemy.SetMaxHealth((int)(40 + ((m_WaveCounter - 5) * 8) + (((m_WaveCounter - 5 )*( m_WaveCounter - 5)) / 20)));
             }
         }
         newEnemy.RestoreHealth();
