@@ -59,16 +59,36 @@ public class SoundManager : MonoBehaviour
     /// Plays a sound by name
     /// </summary>
     /// <param name="soundName">Name of the sound to play</param>
-    public void PlaySound(string soundName)
+    /// <param name="loop">Loop the sound?</param>
+    public void PlaySound(string soundName, bool loop = false)
     {
-        PlaySound((SoundNames)System.Enum.Parse(typeof(SoundNames), soundName));
+        PlaySound((SoundNames)System.Enum.Parse(typeof(SoundNames), soundName), loop);
     }
 
-    public void PlaySound(SoundNames soundName)
+    /// <summary>
+    /// Plays a sound by name
+    /// </summary>
+    /// <param name="soundName">Name of the sound to play</param>
+    /// <param name="loop">Loop the sound?</param>
+    public void PlaySound(SoundNames soundName, bool loop = false)
     {
         SoundData soundData = m_AudioData.Find(x => x.SoundID == soundName);
         if (soundData.AudioSource != null)
+        {
+            soundData.AudioSource.loop = loop;
             soundData.AudioSource.Play();
+        }
+    }
+
+    /// <summary>
+    /// Stops the sound
+    /// </summary>
+    /// <param name="soundName">Name of the sound that needs to be stopped</param>
+    public void StopSound(SoundNames soundName)
+    {
+        SoundData soundData = m_AudioData.Find(x => x.SoundID == soundName);
+        if (soundData.AudioSource != null)
+            soundData.AudioSource.Stop();
     }
 
     /// <summary>
