@@ -2,11 +2,20 @@
 
 public class PauseCheck : MonoBehaviour {
     
+    /// <summary>
+    /// Instance of this script.
+    /// </summary>
     public static PauseCheck s_Instance;
 
+    /// <summary>
+    /// Is the game paused?
+    /// </summary>
     [SerializeField]
     private bool m_onPause;
 
+    /// <summary>
+    /// Event which methods can describe to for when the game gets paused.
+    /// </summary>
     public static event System.Action<bool> Pause;
 
     private void Awake()
@@ -32,6 +41,9 @@ public class PauseCheck : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Unpause the game.
+    /// </summary>
     public void PauseOff()
     {
         m_onPause = false;
@@ -41,6 +53,9 @@ public class PauseCheck : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Pause the game. 
+    /// </summary>
     public void PauseOn()
     {
         m_onPause = true;
@@ -50,6 +65,9 @@ public class PauseCheck : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Toggle the pause state.
+    /// </summary>
     public void TogglePause()
     {
         m_onPause = !m_onPause;
