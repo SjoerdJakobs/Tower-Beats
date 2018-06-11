@@ -113,47 +113,52 @@ public class TowerProjectile : PoolObj
         // Move as long as the Move Duration is
         while(time < Data.MoveDuration)
         {
-            // Only move the projectile if the game isn't paused
-            if (!m_Pause)
+            // Break the coroutine and remove the projectile when the target is dead
+            if (Data.Target == null)
             {
-                // Update the time
-                time += Time.deltaTime;
-
-                // Update the end position
-                Vector3 end = Data.Target.transform.position;
-
-                // Get the time between 0 and 1
-                float linearT = time / Data.MoveDuration;
-
-                // Get the height value of the projectile arc
-                float heightT = m_ProjectileArc.Evaluate(linearT);
-
-                // Lerp the height to fake the arc
-                float height = Mathf.Lerp(0, m_ProjectileHeight, heightT);
-
-                // Lerp the projectile to the target, add the height of the arc so that it creates an actual arc
-                transform.position = Vector2.Lerp(Data.StartPosition, end, linearT) + new Vector2(0f, m_OffsetY + height);
-
-                Vector3 difference;
-                // Add rotation to the projectile to create the visual effect of an arc
-                if (time > (Data.MoveDuration / 2) - 0.15f)
-                {
-                    // Get the difference between the target and the projectile
-                    difference = Data.Target.transform.position - transform.position;
-                }
-                else
-                {
-                    // Get the difference between the projectile and the starting position
-                    difference = transform.position - (Vector3)Data.StartPosition;
-                }
-
-                // Get the calculated rotation based on the difference
-                float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-
-                // Lerp the rotation of the projectile
-                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, rotationZ - 90), m_ProjectileRotationSpeed * Time.deltaTime);
-                yield return null;
+                ReturnToPool();
+                yield break;
             }
+
+            // Only move the projectile if the game isn't paused
+            yield return new WaitWhile(() => m_Pause);
+
+            // Update the time
+            time += Time.deltaTime;
+
+            // Update the end position
+            Vector3 end = Data.Target.transform.position;
+
+            // Get the time between 0 and 1
+            float linearT = time / Data.MoveDuration;
+
+            // Get the height value of the projectile arc
+            float heightT = m_ProjectileArc.Evaluate(linearT);
+
+            // Lerp the height to fake the arc
+            float height = Mathf.Lerp(0, m_ProjectileHeight, heightT);
+
+            // Lerp the projectile to the target, add the height of the arc so that it creates an actual arc
+            transform.position = Vector2.Lerp(Data.StartPosition, end, linearT) + new Vector2(0f, m_OffsetY + height);
+
+            Vector3 difference;
+            // Add rotation to the projectile to create the visual effect of an arc
+            if (time > (Data.MoveDuration / 2) - 0.15f)
+            {
+                // Get the difference between the target and the projectile
+                difference = Data.Target.transform.position - transform.position;
+            }
+            else
+            {
+                // Get the difference between the projectile and the starting position
+                difference = transform.position - (Vector3)Data.StartPosition;
+            }
+
+            // Get the calculated rotation based on the difference
+            float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+
+            // Lerp the rotation of the projectile
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, rotationZ - 90), m_ProjectileRotationSpeed * Time.deltaTime);
         }
         // if the target isn't dead already, apply damage
         if (Data.Target != null)
