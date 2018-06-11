@@ -945,8 +945,6 @@ MonoBehaviour:
   MapName: 
   Songs:
   - N/A
-  - N/A
-  - N/A
   Locked: 1
 --- !u!114 &420163778
 MonoBehaviour:
@@ -2593,8 +2591,6 @@ MonoBehaviour:
   MapName: tutorial
   Songs:
   - People Say
-  - People Say
-  - People Say
   Locked: 0
 --- !u!114 &1051036825
 MonoBehaviour:
@@ -3740,8 +3736,6 @@ MonoBehaviour:
   MapName: 
   Songs:
   - N/A
-  - N/A
-  - N/A
   Locked: 1
 --- !u!114 &1221360720
 MonoBehaviour:
@@ -4117,8 +4111,6 @@ MonoBehaviour:
   MapName: 
   Songs:
   - N/A
-  - N/A
-  - N/A
   Locked: 1
 --- !u!114 &1278642052
 MonoBehaviour:
@@ -4472,8 +4464,6 @@ MonoBehaviour:
   MapDifficulty: 3
   MapName: 
   Songs:
-  - N/A
-  - N/A
   - N/A
   Locked: 1
 --- !u!114 &1316402075
@@ -4991,8 +4981,6 @@ MonoBehaviour:
   MapDifficulty: 3
   MapName: 
   Songs:
-  - N/A
-  - N/A
   - N/A
   Locked: 1
 --- !u!114 &1525542859

@@ -24,7 +24,7 @@ public class SongManager : MonoBehaviour {
     /// <summary>
     /// All of the songs which are in the playlist
     /// </summary>
-    private Song[] m_Songs;
+    private List<Song> m_Songs;
 
     /// <summary>
     /// Bass, Drum & Synth Audio sources. In that specific order.
@@ -54,7 +54,7 @@ public class SongManager : MonoBehaviour {
     /// <summary>
     /// Getter/Setter of the playlist.
     /// </summary>
-    public Song[] Songs
+    public List<Song> Songs
     {
         get { return m_Songs; }
         set { m_Songs = value; }
@@ -90,7 +90,7 @@ public class SongManager : MonoBehaviour {
         RemoveExcessiveTracks();
         //Gets the songs tracks from the resource / audio folder
         //Tracks are put in the Resources/Audio folder under the song name
-        for (int i = 0; i < Songs.Length; i++)
+        for (int i = 0; i < Songs.Count; i++)
         {
             string songPath = "Audio/" + songName + "/" + songName;
             string miscTracks = "Audio/" + songName + "/MiscTracks";
@@ -138,7 +138,7 @@ public class SongManager : MonoBehaviour {
     /// <param name="songNumber">Number of the currently playing song in the playlist. Increases in this function.</param>
     private void PlayNextSongInPlaylist(int songNumber)
     {
-        if (m_Songs != null && songNumber < m_Songs.Length)
+        if (m_Songs != null && songNumber < m_Songs.Count)
         {
             m_SongNumber = songNumber;
 
@@ -167,7 +167,7 @@ public class SongManager : MonoBehaviour {
     {
         if (s_OnChangeSong != null && m_Songs != null)
         {
-            s_OnChangeSong((m_SongNumber + 1), m_Songs.Length, m_Songs[m_SongNumber].Songname);
+            s_OnChangeSong((m_SongNumber + 1), m_Songs.Count, m_Songs[m_SongNumber].Songname);
         }
     }
 
@@ -231,7 +231,7 @@ public class SongManager : MonoBehaviour {
         if(m_SongQueue != null)
             StopCoroutine(m_SongQueue);
 
-        if (songNumber < m_Songs.Length)
+        if (songNumber < m_Songs.Count)
         {
             m_SongQueue = StartCoroutine(QueueSong(songNumber, songLength: m_SongAudioSources[songNumber].clip.length));
         }
@@ -249,7 +249,7 @@ public class SongManager : MonoBehaviour {
     /// <returns></returns>
     IEnumerator QueueSong(int songNumber, float songLength = 0)
     {
-        if (songNumber < m_Songs.Length)
+        if (songNumber < m_Songs.Count)
         {
             yield return new WaitForSeconds(songLength);
             PlayNextSongInPlaylist(songNumber);

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -7,6 +8,11 @@ using UnityEngine;
 [Serializable]
 public class Song
 {
+    public Song(string songName)
+    {
+        Songname = songName;
+    }
+
     public string Songname;
 }
 
@@ -15,7 +21,7 @@ public class SongPlaylist : MonoBehaviour {
     /// <summary>
     /// Playlist of songs.
     /// </summary>
-    [SerializeField]private Song[] m_Playlist;
+    [SerializeField]private List<Song> m_Playlist;
     
     /// <summary>
     /// Selected the current selected level.

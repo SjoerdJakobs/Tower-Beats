@@ -54,7 +54,7 @@ public class Level : MonoBehaviour {
     /// The level's playlist(Info)
     /// </summary>
     [Space(5)]
-    public string[] Songs = new string[3];
+    public string[] Songs;
 
     /// <summary>
     /// Bool to check whether the level is locked or not.
