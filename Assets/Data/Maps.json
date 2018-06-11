@@ -3261,305 +3261,6 @@
             ]
         },
         {
-            "Name": "tutorial",
-            "GridSize": {
-                "x": 20,
-                "y": 20
-            },
-            "TilesData": [
-                {
-                    "State": 2,
-                    "PathTileIndex": 0,
-                    "PathTilePosition": {
-                        "x": 3,
-                        "y": 10
-                    },
-                    "FilePathToAsset": "",
-                    "LayerIndex": 0
-                },
-                {
-                    "State": 2,
-                    "PathTileIndex": 1,
-                    "PathTilePosition": {
-                        "x": 3,
-                        "y": 9
-                    },
-                    "FilePathToAsset": "",
-                    "LayerIndex": 0
-                },
-                {
-                    "State": 2,
-                    "PathTileIndex": 2,
-                    "PathTilePosition": {
-                        "x": 4,
-                        "y": 8
-                    },
-                    "FilePathToAsset": "",
-                    "LayerIndex": 0
-                },
-                {
-                    "State": 2,
-                    "PathTileIndex": 3,
-                    "PathTilePosition": {
-                        "x": 4,
-                        "y": 7
-                    },
-                    "FilePathToAsset": "",
-                    "LayerIndex": 0
-                },
-                {
-                    "State": 2,
-                    "PathTileIndex": 4,
-                    "PathTilePosition": {
-                        "x": 5,
-                        "y": 7
-                    },
-                    "FilePathToAsset": "",
-                    "LayerIndex": 0
-                },
-                {
-                    "State": 2,
-                    "PathTileIndex": 5,
-                    "PathTilePosition": {
-                        "x": 6,
-                        "y": 7
-                    },
-                    "FilePathToAsset": "",
-                    "LayerIndex": 0
-                },
-                {
-                    "State": 2,
-                    "PathTileIndex": 6,
-                    "PathTilePosition": {
-                        "x": 7,
-                        "y": 7
-                    },
-                    "FilePathToAsset": "",
-                    "LayerIndex": 0
-                },
-                {
-                    "State": 2,
-                    "PathTileIndex": 7,
-                    "PathTilePosition": {
-                        "x": 8,
-                        "y": 7
-                    },
-                    "FilePathToAsset": "",
-                    "LayerIndex": 0
-                },
-                {
-                    "State": 2,
-                    "PathTileIndex": 8,
-                    "PathTilePosition": {
-                        "x": 9,
-                        "y": 7
-                    },
-                    "FilePathToAsset": "",
-                    "LayerIndex": 0
-                },
-                {
-                    "State": 2,
-                    "PathTileIndex": 9,
-                    "PathTilePosition": {
-                        "x": 10,
-                        "y": 8
-                    },
-                    "FilePathToAsset": "",
-                    "LayerIndex": 0
-                },
-                {
-                    "State": 2,
-                    "PathTileIndex": 10,
-                    "PathTilePosition": {
-                        "x": 10,
-                        "y": 9
-                    },
-                    "FilePathToAsset": "",
-                    "LayerIndex": 0
-                },
-                {
-                    "State": 2,
-                    "PathTileIndex": 11,
-                    "PathTilePosition": {
-                        "x": 11,
-                        "y": 10
-                    },
-                    "FilePathToAsset": "",
-                    "LayerIndex": 0
-                },
-                {
-                    "State": 2,
-                    "PathTileIndex": 12,
-                    "PathTilePosition": {
-                        "x": 12,
-                        "y": 10
-                    },
-                    "FilePathToAsset": "",
-                    "LayerIndex": 0
-                },
-                {
-                    "State": 2,
-                    "PathTileIndex": 13,
-                    "PathTilePosition": {
-                        "x": 13,
-                        "y": 10
-                    },
-                    "FilePathToAsset": "",
-                    "LayerIndex": 0
-                },
-                {
-                    "State": 4,
-                    "PathTileIndex": -1,
-                    "PathTilePosition": {
-                        "x": 8,
-                        "y": 9
-                    },
-                    "FilePathToAsset": "",
-                    "LayerIndex": 0
-                },
-                {
-                    "State": 4,
-                    "PathTileIndex": -1,
-                    "PathTilePosition": {
-                        "x": 12,
-                        "y": 8
-                    },
-                    "FilePathToAsset": "",
-                    "LayerIndex": 0
-                },
-                {
-                    "State": 4,
-                    "PathTileIndex": -1,
-                    "PathTilePosition": {
-                        "x": 3,
-                        "y": 5
-                    },
-                    "FilePathToAsset": "",
-                    "LayerIndex": 0
-                },
-                {
-                    "State": 2,
-                    "PathTileIndex": 14,
-                    "PathTilePosition": {
-                        "x": 14,
-                        "y": 10
-                    },
-                    "FilePathToAsset": "",
-                    "LayerIndex": 0
-                },
-                {
-                    "State": 2,
-                    "PathTileIndex": 15,
-                    "PathTilePosition": {
-                        "x": 15,
-                        "y": 10
-                    },
-                    "FilePathToAsset": "",
-                    "LayerIndex": 0
-                },
-                {
-                    "State": 2,
-                    "PathTileIndex": 16,
-                    "PathTilePosition": {
-                        "x": 15,
-                        "y": 11
-                    },
-                    "FilePathToAsset": "",
-                    "LayerIndex": 0
-                },
-                {
-                    "State": 6,
-                    "PathTileIndex": -1,
-                    "PathTilePosition": {
-                        "x": 1,
-                        "y": 7
-                    },
-                    "FilePathToAsset": "Background/Buildings/BUILDING_Billboard_001",
-                    "LayerIndex": 0
-                },
-                {
-                    "State": 6,
-                    "PathTileIndex": -1,
-                    "PathTilePosition": {
-                        "x": 1,
-                        "y": 8
-                    },
-                    "FilePathToAsset": "Background/Buildings/BUILDING_Billboard_003",
-                    "LayerIndex": 0
-                },
-                {
-                    "State": 6,
-                    "PathTileIndex": -1,
-                    "PathTilePosition": {
-                        "x": 1,
-                        "y": 9
-                    },
-                    "FilePathToAsset": "Background/Buildings/BUILDING_Billboard_002",
-                    "LayerIndex": 0
-                },
-                {
-                    "State": 6,
-                    "PathTileIndex": -1,
-                    "PathTilePosition": {
-                        "x": 14,
-                        "y": 12
-                    },
-                    "FilePathToAsset": "Background/Buildings/BUILDING_Billboard_005",
-                    "LayerIndex": 0
-                },
-                {
-                    "State": 6,
-                    "PathTileIndex": -1,
-                    "PathTilePosition": {
-                        "x": 14,
-                        "y": 13
-                    },
-                    "FilePathToAsset": "Background/Buildings/BUILDING_Billboard_006",
-                    "LayerIndex": 0
-                },
-                {
-                    "State": 6,
-                    "PathTileIndex": -1,
-                    "PathTilePosition": {
-                        "x": 15,
-                        "y": 13
-                    },
-                    "FilePathToAsset": "Background/Buildings/BUILDING_Billboard_007",
-                    "LayerIndex": 0
-                },
-                {
-                    "State": 6,
-                    "PathTileIndex": -1,
-                    "PathTilePosition": {
-                        "x": 5,
-                        "y": 9
-                    },
-                    "FilePathToAsset": "Background/Buildings/BUILDING_Billboard_008",
-                    "LayerIndex": 11
-                },
-                {
-                    "State": 6,
-                    "PathTileIndex": -1,
-                    "PathTilePosition": {
-                        "x": 16,
-                        "y": 13
-                    },
-                    "FilePathToAsset": "Background/Buildings/BUILDING_Billboard_009",
-                    "LayerIndex": 0
-                },
-                {
-                    "State": 6,
-                    "PathTileIndex": -1,
-                    "PathTilePosition": {
-                        "x": 17,
-                        "y": 12
-                    },
-                    "FilePathToAsset": "Background/Buildings/BUILDING_Billboard_010",
-                    "LayerIndex": 0
-                }
-            ]
-        },
-        {
             "Name": "swirl",
             "GridSize": {
                 "x": 20,
@@ -7314,7 +7015,7 @@
                     "FilePathToAsset": "Background/Buildings/BUILDINGS_Streetlight",
                     "LayerIndex": 0
                 },
-				{
+                {
                     "State": 4,
                     "PathTileIndex": -1,
                     "PathTilePosition": {
@@ -7322,6 +7023,885 @@
                         "y": 13
                     },
                     "FilePathToAsset": "",
+                    "LayerIndex": 0
+                }
+            ]
+        },
+        {
+            "Name": "tutorial",
+            "GridSize": {
+                "x": 20,
+                "y": 20
+            },
+            "TilesData": [
+                {
+                    "State": 2,
+                    "PathTileIndex": 0,
+                    "PathTilePosition": {
+                        "x": 2,
+                        "y": 3
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 1,
+                    "PathTilePosition": {
+                        "x": 3,
+                        "y": 4
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 2,
+                    "PathTilePosition": {
+                        "x": 3,
+                        "y": 5
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 3,
+                    "PathTilePosition": {
+                        "x": 4,
+                        "y": 6
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 4,
+                    "PathTilePosition": {
+                        "x": 4,
+                        "y": 7
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 5,
+                    "PathTilePosition": {
+                        "x": 5,
+                        "y": 8
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 6,
+                    "PathTilePosition": {
+                        "x": 6,
+                        "y": 8
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 7,
+                    "PathTilePosition": {
+                        "x": 6,
+                        "y": 9
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 8,
+                    "PathTilePosition": {
+                        "x": 7,
+                        "y": 10
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 9,
+                    "PathTilePosition": {
+                        "x": 6,
+                        "y": 11
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 10,
+                    "PathTilePosition": {
+                        "x": 6,
+                        "y": 12
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 4,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 9,
+                        "y": 10
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 4,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 7,
+                        "y": 14
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 11,
+                    "PathTilePosition": {
+                        "x": 5,
+                        "y": 13
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 12,
+                    "PathTilePosition": {
+                        "x": 5,
+                        "y": 14
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 13,
+                    "PathTilePosition": {
+                        "x": 5,
+                        "y": 15
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 14,
+                    "PathTilePosition": {
+                        "x": 6,
+                        "y": 16
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 15,
+                    "PathTilePosition": {
+                        "x": 7,
+                        "y": 16
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 16,
+                    "PathTilePosition": {
+                        "x": 8,
+                        "y": 16
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 17,
+                    "PathTilePosition": {
+                        "x": 8,
+                        "y": 15
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 18,
+                    "PathTilePosition": {
+                        "x": 9,
+                        "y": 14
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 19,
+                    "PathTilePosition": {
+                        "x": 9,
+                        "y": 13
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 20,
+                    "PathTilePosition": {
+                        "x": 10,
+                        "y": 12
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 21,
+                    "PathTilePosition": {
+                        "x": 10,
+                        "y": 11
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 22,
+                    "PathTilePosition": {
+                        "x": 11,
+                        "y": 10
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 23,
+                    "PathTilePosition": {
+                        "x": 11,
+                        "y": 9
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 4,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 5,
+                        "y": 5
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 4,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 2,
+                        "y": 7
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 24,
+                    "PathTilePosition": {
+                        "x": 11,
+                        "y": 8
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 25,
+                    "PathTilePosition": {
+                        "x": 10,
+                        "y": 8
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 26,
+                    "PathTilePosition": {
+                        "x": 9,
+                        "y": 8
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 27,
+                    "PathTilePosition": {
+                        "x": 8,
+                        "y": 7
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 28,
+                    "PathTilePosition": {
+                        "x": 8,
+                        "y": 6
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 29,
+                    "PathTilePosition": {
+                        "x": 8,
+                        "y": 5
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 30,
+                    "PathTilePosition": {
+                        "x": 9,
+                        "y": 4
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 4,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 10,
+                        "y": 6
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 31,
+                    "PathTilePosition": {
+                        "x": 10,
+                        "y": 4
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 32,
+                    "PathTilePosition": {
+                        "x": 11,
+                        "y": 4
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 33,
+                    "PathTilePosition": {
+                        "x": 11,
+                        "y": 5
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 34,
+                    "PathTilePosition": {
+                        "x": 12,
+                        "y": 6
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 35,
+                    "PathTilePosition": {
+                        "x": 12,
+                        "y": 7
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 36,
+                    "PathTilePosition": {
+                        "x": 13,
+                        "y": 8
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 37,
+                    "PathTilePosition": {
+                        "x": 14,
+                        "y": 8
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 38,
+                    "PathTilePosition": {
+                        "x": 15,
+                        "y": 8
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 39,
+                    "PathTilePosition": {
+                        "x": 15,
+                        "y": 9
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 40,
+                    "PathTilePosition": {
+                        "x": 16,
+                        "y": 10
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 41,
+                    "PathTilePosition": {
+                        "x": 15,
+                        "y": 11
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 42,
+                    "PathTilePosition": {
+                        "x": 15,
+                        "y": 12
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 4,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 14,
+                        "y": 10
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 43,
+                    "PathTilePosition": {
+                        "x": 14,
+                        "y": 13
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 44,
+                    "PathTilePosition": {
+                        "x": 13,
+                        "y": 13
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 45,
+                    "PathTilePosition": {
+                        "x": 12,
+                        "y": 13
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 2,
+                    "PathTileIndex": 46,
+                    "PathTilePosition": {
+                        "x": 12,
+                        "y": 14
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 4,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 8,
+                        "y": 12
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 4,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 5,
+                        "y": 10
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 4,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 13,
+                        "y": 5
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 6,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 3,
+                        "y": 13
+                    },
+                    "FilePathToAsset": "Background/Buildings/BUILDING_Billboard_006",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 6,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 3,
+                        "y": 14
+                    },
+                    "FilePathToAsset": "Background/Buildings/BUILDING_Billboard_007",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 6,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 3,
+                        "y": 15
+                    },
+                    "FilePathToAsset": "Background/Buildings/BUILDING_Billboard_008",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 6,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 4,
+                        "y": 16
+                    },
+                    "FilePathToAsset": "Background/Buildings/BUILDING_Billboard_012",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 6,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 12,
+                        "y": 16
+                    },
+                    "FilePathToAsset": "Background/Buildings/BUILDING_Tall_Orange",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 6,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 13,
+                        "y": 16
+                    },
+                    "FilePathToAsset": "Background/Buildings/BUILDING_Tall_Purple",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 6,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 13,
+                        "y": 15
+                    },
+                    "FilePathToAsset": "Background/Buildings/BUILDING_Billboard_015",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 6,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 4,
+                        "y": 8
+                    },
+                    "FilePathToAsset": "Background/Buildings/BUILDINGS_Streetlight",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 6,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 10,
+                        "y": 15
+                    },
+                    "FilePathToAsset": "Background/Buildings/BUILDING_Billboard_007",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 6,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 11,
+                        "y": 16
+                    },
+                    "FilePathToAsset": "Background/Buildings/BUILDING_Billboard_010",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 6,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 6,
+                        "y": 1
+                    },
+                    "FilePathToAsset": "Background/Buildings/BUILDINGS_Pond",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 6,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 8,
+                        "y": 2
+                    },
+                    "FilePathToAsset": "Background/Buildings/BUILDINGS_Tank",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 6,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 5,
+                        "y": 16
+                    },
+                    "FilePathToAsset": "Background/Buildings/BUILDINGS_Streetlight",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 6,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 5,
+                        "y": 17
+                    },
+                    "FilePathToAsset": "Background/Buildings/BUILDING_Billboard_003",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 6,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 7,
+                        "y": 17
+                    },
+                    "FilePathToAsset": "Background/Buildings/BUILDING_Billboard_006",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 6,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 8,
+                        "y": 17
+                    },
+                    "FilePathToAsset": "Background/Buildings/BUILDING_Billboard_011",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 6,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 6,
+                        "y": 17
+                    },
+                    "FilePathToAsset": "Background/Buildings/BUILDING_Special_003",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 6,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 2,
+                        "y": 14
+                    },
+                    "FilePathToAsset": "Background/Buildings/BUILDING_Special_004",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 6,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 1,
+                        "y": 13
+                    },
+                    "FilePathToAsset": "Background/Buildings/BUILDING_Special_005",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 6,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 3,
+                        "y": 12
+                    },
+                    "FilePathToAsset": "Background/Buildings/BUILDING_Special_007",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 6,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 2,
+                        "y": 12
+                    },
+                    "FilePathToAsset": "Background/Buildings/BUILDING_Standard_Orange",
+                    "LayerIndex": 7
+                },
+                {
+                    "State": 6,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 2,
+                        "y": 10
+                    },
+                    "FilePathToAsset": "Background/Buildings/BUILDINGS_Pond",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 6,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 6,
+                        "y": 2
+                    },
+                    "FilePathToAsset": "Background/Buildings/BUILDINGS_Tank",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 6,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 15,
+                        "y": 16
+                    },
+                    "FilePathToAsset": "Background/Buildings/BUILDING_Billboard_003",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 6,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 14,
+                        "y": 15
+                    },
+                    "FilePathToAsset": "Background/Buildings/BUILDING_Billboard_005",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 4,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 16,
+                        "y": 14
+                    },
+                    "FilePathToAsset": "",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 6,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 16,
+                        "y": 16
+                    },
+                    "FilePathToAsset": "Background/Buildings/BUILDING_Billboard_007",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 6,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 17,
+                        "y": 16
+                    },
+                    "FilePathToAsset": "Background/Buildings/BUILDING_Billboard_008",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 6,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 17,
+                        "y": 15
+                    },
+                    "FilePathToAsset": "Background/Buildings/BUILDING_Billboard_010",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 6,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 18,
+                        "y": 14
+                    },
+                    "FilePathToAsset": "Background/Buildings/BUILDING_Billboard_012",
+                    "LayerIndex": 0
+                },
+                {
+                    "State": 6,
+                    "PathTileIndex": -1,
+                    "PathTilePosition": {
+                        "x": 17,
+                        "y": 13
+                    },
+                    "FilePathToAsset": "Background/Buildings/BUILDING_Billboard_014",
                     "LayerIndex": 0
                 }
             ]

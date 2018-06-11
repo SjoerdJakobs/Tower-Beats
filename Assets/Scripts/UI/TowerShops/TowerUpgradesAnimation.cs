@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using System;
@@ -20,6 +18,10 @@ public class TowerUpgradesAnimation : MonoBehaviour
 
     public bool AnimatedIn { get; set; }
 
+    /// <summary>
+    /// Animation for enabling the tower menu
+    /// </summary>
+    /// <param name="callback">Callback to be called on completion</param>
     public void AnimateIn(Action callback = null)
     {
         if (AnimatedIn)
@@ -62,6 +64,10 @@ public class TowerUpgradesAnimation : MonoBehaviour
         m_DamageContainer.DOAnchorPosY(0, 0.5f).SetEase(Ease.OutExpo).SetDelay(upgradeButtonDelay + turretNameDelay).OnComplete(delegate { if (callback != null) callback(); AnimatedIn = true; }).SetId("TowerUpgradeAnimateIn");
     }
 
+    /// <summary>
+    /// Animation for disabling the tower menu
+    /// </summary>
+    /// <param name="callback">Callback to be called on completion</param>
     public void AnimateOut(Action callback = null)
     {
         if (!AnimatedIn)
@@ -99,6 +105,9 @@ public class TowerUpgradesAnimation : MonoBehaviour
         m_TowerTargeting.DOFade(0, 0.2f).SetDelay(0.5f).SetId("TowerUpgradeAnimateOut");
     }
 
+    /// <summary>
+    /// Reset the UI to its default values (colors, positions and scales)
+    /// </summary>
     private void ResetToDefault()
     {
         //Indicator
@@ -133,6 +142,9 @@ public class TowerUpgradesAnimation : MonoBehaviour
         m_DamageContainer.anchoredPosition = new Vector2(m_DamageContainer.anchoredPosition.x, 35f);
     }
 
+    /// <summary>
+    /// Kill tweens to avoid bugs
+    /// </summary>
     private void KillTweens()
     {
         DOTween.Kill("TowerUpgradeAnimateIn");
@@ -149,12 +161,16 @@ public class TowerUpgradesAnimation : MonoBehaviour
         KillTweens();
     }
 
+    /// <summary>
+    /// Animation for the indicator
+    /// </summary>
+    /// <param name="active"></param>
     public void SetIndicatorState(bool active)
     {
         if(m_IndicatorSeq != null)
             m_IndicatorSeq.Kill();
 
-        m_IndicatorSeq = DOTween.Sequence();
+        m_IndicatorSeq = DOTween.Sequence(); //Sets the sequence to a new sequence
 
         if (active)
         {

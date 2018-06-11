@@ -25,6 +25,10 @@ public class ScrollLevels : MonoBehaviour {
         StartCoroutine(LateStart());
     }
 
+    /// <summary>
+    /// Wait for a frame before this starts running
+    /// </summary>
+    /// <returns></returns>
     IEnumerator LateStart()
     {
         yield return new WaitForEndOfFrame();
@@ -33,16 +37,26 @@ public class ScrollLevels : MonoBehaviour {
             MapInfo.s_OnLevelChange(GetSelectedLevel());
     }
 
+    /// <summary>
+    /// Selects the next level in the list
+    /// </summary>
     public void NextLevel()
     {
         RepositionLevels(-1);
     }
 
+    /// <summary>
+    /// Selects the previous level in the list
+    /// </summary>
     public void PreviousLevel()
     {
         RepositionLevels(1);
     }
 
+    /// <summary>
+    /// Wait for tween to finish
+    /// </summary>
+    /// <returns></returns>
     IEnumerator WaitForTween()
     {
         m_IsAnimating = true;
@@ -50,6 +64,10 @@ public class ScrollLevels : MonoBehaviour {
         m_IsAnimating = false;
     }
 
+    /// <summary>
+    /// Reposition the level buttons in the wheel in a certain direction
+    /// </summary>
+    /// <param name="direction">Direction the level buttons move in</param>
     void RepositionLevels(int direction)
     {
         if (!m_IsAnimating)
@@ -130,6 +148,10 @@ public class ScrollLevels : MonoBehaviour {
         MapInfo.s_OnLevelChange(GetSelectedLevel());
     }
 
+    /// <summary>
+    /// Get the level data from the currently selected level
+    /// </summary>
+    /// <returns></returns>
     public Level GetSelectedLevel()
     {
         SetColors();
@@ -137,6 +159,9 @@ public class ScrollLevels : MonoBehaviour {
         return selectedLevel;
     }
 
+    /// <summary>
+    /// Sets the color of the level image
+    /// </summary>
     private void SetColors()
     {
         for (int i = 0; i < m_Levels.Count; i++)
@@ -168,6 +193,9 @@ public class ScrollLevels : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Resets the color of the level buttons
+    /// </summary>
     private void ResetButtonColors()
     {
         for (int i = 0; i < m_Levels.Count; i++)

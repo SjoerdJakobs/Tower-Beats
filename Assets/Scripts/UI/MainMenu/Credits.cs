@@ -14,6 +14,9 @@ public class Credits : MonoBehaviour
         ShowCredits();
     }
 
+    /// <summary>
+    /// Shows the credits
+    /// </summary>
     private void ShowCredits()
     {
         SetCreditsDefaultState();
@@ -21,6 +24,9 @@ public class Credits : MonoBehaviour
         m_BackButton.transform.DOScale(1, 0.5f).SetEase(Ease.OutExpo).SetDelay(m_ShowingTime - 7f).SetId("Credits");
     }
 
+    /// <summary>
+    /// Resets the credits screen so it starts at the top again
+    /// </summary>
     private void SetCreditsDefaultState()
     {
         DOTween.Kill("Credits");
