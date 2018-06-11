@@ -33,7 +33,9 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-        SoundManager.s_Instance.PlaySound(SoundNames.BACKGROUND_MUSIC, true);
+        if(!SoundManager.s_Instance.IsSoundPlaying(SoundNames.BACKGROUND_MUSIC))
+            SoundManager.s_Instance.PlaySound(SoundNames.BACKGROUND_MUSIC, true);
+
         ShowMainButtons();
         ShowDonDiablo();
     }

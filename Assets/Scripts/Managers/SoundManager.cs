@@ -92,6 +92,20 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Is the sound playing?
+    /// </summary>
+    /// <param name="soundName">Name of the sound</param>
+    /// <returns>Whether the sound is playing or not</returns>
+    public bool IsSoundPlaying(SoundNames soundName)
+    {
+        SoundData soundData = m_AudioData.Find(x => x.SoundID == soundName);
+        if (soundData.AudioSource != null)
+            return soundData.AudioSource.isPlaying;
+        else
+            return false;
+    }
+
+    /// <summary>
     /// Sets a mixer groups volume
     /// </summary>
     /// <param name="key">Key of the volume to set</param>
