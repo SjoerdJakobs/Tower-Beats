@@ -24,6 +24,9 @@ public class PopUp : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    /// <summary>
+    /// Clears the last clicked tile (Sets it to null)
+    /// </summary>
     public void ClearLastClickedTile()
     {
         LastClickedFromTile = null;
