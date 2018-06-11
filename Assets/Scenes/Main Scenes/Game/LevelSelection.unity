@@ -2585,7 +2585,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 567e51e959f615d47bc6eb9e61e2865a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TurretPlacements: 12
+  TurretPlacements: 10
   MapSize: 0
   MapDifficulty: 0
   MapName: tutorial
@@ -4824,10 +4824,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f583832e69c3e945a433363f9218773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Playlist:
-  - Songname: 1
-  - Songname: 2
-  - Songname: 3
 --- !u!114 &1499095263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5651,7 +5647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 567e51e959f615d47bc6eb9e61e2865a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TurretPlacements: 8
+  TurretPlacements: 13
   MapSize: 2
   MapDifficulty: 2
   MapName: BeauTest

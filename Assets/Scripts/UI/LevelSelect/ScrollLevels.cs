@@ -23,6 +23,10 @@ public class ScrollLevels : MonoBehaviour {
             Destroy(gameObject);
 
         StartCoroutine(LateStart());
+
+        // Play background music if the background music isn't playing yet
+        if (!SoundManager.s_Instance.IsSoundPlaying(SoundNames.BACKGROUND_MUSIC))
+            SoundManager.s_Instance.PlaySound(SoundNames.BACKGROUND_MUSIC, true);
     }
 
     /// <summary>
