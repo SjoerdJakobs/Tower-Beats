@@ -95,11 +95,20 @@ public class EnemySpawner : MonoBehaviour {
         newEnemy.Move(MapLoader.s_Instance.Path[0].transform.position);
     }
 
+    /// <summary>
+    /// function that is added to the togglepouse action
+    /// </summary>
+    /// <param name="Pause">turn pouse on or off</param>
     private void TogglePause(bool Pause)
     {
         m_Paused = Pause;
     }
-
+    /// <summary>
+    /// spawn a new wave
+    /// </summary>
+    /// <param name="amountOfEnemies">the number of enemies to spawn</param>
+    /// <param name="interval">the interval between spawns</param>
+    /// <param name="callback">the callback function</param>
     public void SpawnWave(int amountOfEnemies, float interval, Action callback = null)
     {
         if (m_BossWaveCounter < 3)
@@ -120,6 +129,12 @@ public class EnemySpawner : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// the coroutine that times the spawning of the enemies
+    /// </summary>
+    /// <param name="amountOfEnemies">the number of enemies to spawn</param>
+    /// <param name="interval">the interval between spawns</param>
+    /// <returns></returns>
     private IEnumerator SpawnEnemies(int amountOfEnemies, float interval, Action callback = null)
     {
         yield return new WaitForSeconds(1f);
@@ -160,16 +175,26 @@ public class EnemySpawner : MonoBehaviour {
 
     }
 
+    /// <summary>
+    /// remove enemy from the spawned enemies list
+    /// </summary>
+    /// <param name="enemy"></param>
     void RemoveEnemyFromList(Enemy enemy)
     {
         SpawnedEnemies.Remove(enemy);
     }
 
+    /// <summary>
+    /// stops the spawning coroutine
+    /// </summary>
     void StopEnemySpawning()
     {
         StopCoroutine(m_SpawnEnemies);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     private void OnDestroy()
     {
         GameManager.s_OnGameStop -= StopEnemySpawning;
