@@ -7,21 +7,35 @@ public class EnemySpawner : MonoBehaviour {
 
     public static EnemySpawner s_Instance;
     
-    [SerializeField]
-    private List<GameObject> m_EnemyPrefabs;
+    /// <summary>
+    /// prefab object lists
+    /// </summary>
+    [SerializeField] private List<GameObject> m_EnemyPrefabs;
+    [SerializeField] private List<GameObject> m_Bosses;
 
-    [SerializeField]
-    private List<GameObject> m_Bosses;
 
     public List<Enemy> SpawnedEnemies = new List<Enemy>();
+    
     private bool m_Paused;
+
     private Coroutine m_SpawnEnemies;
     
+
+    /// <summary>
+    /// the object pools
+    /// </summary>
     public List<ObjectPool> EnemyPools = new List<ObjectPool>();
     public List<ObjectPool> BossPools = new List<ObjectPool>();
-
+    
+    /// <summary>
+    /// the 
+    /// </summary>
     [SerializeField] private ParticleSystem m_SpawnerParticles;
 
+
+    /// <summary>
+    /// wave counters
+    /// </summary>
     private int m_BossWaveCounter = 0;
     private int m_WaveCounter = 0;
 
