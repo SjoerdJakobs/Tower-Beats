@@ -29,6 +29,13 @@ public class MapInfo : MonoBehaviour {
 
             for (int i = 0; i < m_Songs.Length; i++)
             {
+                m_Songs[i].text = "";
+                m_Songs[i].transform.parent.gameObject.SetActive(false);
+            }
+
+            for (int i = 0; i < selectedLevel.Songs.Length; i++)
+            {
+                m_Songs[i].transform.parent.gameObject.SetActive(true);
                 m_Songs[i].text = selectedLevel.Songs[i];
             }
         }

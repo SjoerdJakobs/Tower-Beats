@@ -3,16 +3,20 @@ using UnityEngine.UI;
 
 public class TowerInfoPopUp : PopUp {
 
-    [SerializeField] private Text m_DamageField;
+    [Header("Cost info")]
     [SerializeField] private Text m_SellValue;
     [SerializeField] private Text m_UpgradeCost;
+
     [Header("Tower general info")]
     [SerializeField] private Text m_TowerName;
     [SerializeField] private Text m_TowerLevel;
     [SerializeField] private Text m_TargetType;
+    [SerializeField] private Text m_DamageField;
+
     [Space]
     [SerializeField] private TowerUtilities m_TowerUtilities;
     [SerializeField] private TowerUpgradesAnimation m_Animation;
+
     [Space]
     [Header("Colors")]
     [SerializeField] private Color m_NotEnoughCoinsColor;
@@ -20,6 +24,10 @@ public class TowerInfoPopUp : PopUp {
 
     private Tile m_CurrentTile;
 
+    /// <summary>
+    /// Shows the tower info pop up
+    /// </summary>
+    /// <param name="calledFrom">The tile this is called on</param>
     public override void Show(Tile calledFrom)
     {
         TowerUtilities.s_OnUpgrade += UpdateTowerInfo;
@@ -32,6 +40,9 @@ public class TowerInfoPopUp : PopUp {
         UpdateTowerInfo();
     }
 
+    /// <summary>
+    /// Hides the tower info pop up and clears the last clicked tile
+    /// </summary>
     public override void Hide()
     {
         TowerUtilities.s_OnUpgrade -= UpdateTowerInfo;
@@ -56,6 +67,10 @@ public class TowerInfoPopUp : PopUp {
         TowerUtilities.s_OnUpgrade -= UpdateTowerInfo;
     }
 
+    /// <summary>
+    /// Gets called when the players currency gets updated
+    /// </summary>
+    /// <param name="value">The value of the change in currency</param>
     private void OnPlayerCoinsUpdated(float value)
     {
         if(m_CurrentTile.Tower != null)

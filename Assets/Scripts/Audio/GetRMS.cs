@@ -14,25 +14,42 @@ public enum InstrumentGroup
 
 public class GetRMS : MonoBehaviour {
 
+    /// <summary>
+    /// Audio cues.
+    /// </summary>
     public delegate void AudioCueEvent();
     public static AudioCueEvent s_BassCue;
     public static AudioCueEvent s_DrumCue;
     public static AudioCueEvent s_LeadCue;
 
+    /// <summary>
+    /// Event which gets triggered if the audio is lost.
+    /// </summary>
     public static AudioCueEvent s_OnBassLost;
     public static AudioCueEvent s_OnLeadLost;
 
+    /// <summary>
+    /// Bloom
+    /// </summary>
     private Bloom m_BloomProfile;
     private float m_BloomIntensity;
 
+    /// <summary>
+    /// Timer for resetting animations.
+    /// </summary>
     private float m_Timer;
 
+    /// <summary>
+    /// Instrument of this object.
+    /// </summary>
     public InstrumentGroup Instrument;
 
+    /// <summary>
+    /// Slider it is connected with.
+    /// </summary>
     public RMSSlider Slider { get; set; }
 
     private int qSamples = 512;  // array size
-    //private float refValue = 0.1f; // RMS value for 0 dB
     private float rmsValue;   // sound level - RMS
 
     private float[] samples; // audio samples
@@ -50,11 +67,12 @@ public class GetRMS : MonoBehaviour {
 
     void Start()
     {
-
-        //PostProcessingBehaviour filters = GetComponent<PostProcessingBehaviour>();
         samples = new float[qSamples];
     }
 
+    /// <summary>
+    /// Gets the volume of the current instrument.
+    /// </summary>
     void GetVolume()
     {
         m_Timer += Time.deltaTime;
@@ -103,11 +121,17 @@ public class GetRMS : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Sets camera for bloom.
+    /// </summary>
     void GetPostPostProcessingBehaviour()
     {
         m_BloomProfile = Camera.main.GetComponent<Bloom>();
     }
 
+    /// <summary>
+    /// Sets the slider and its threshold.
+    /// </summary>
     void SetSlider()
     {
         Slider = FindObjectOfType<RMSSliders>().GetSlider(Instrument);
@@ -117,13 +141,11 @@ public class GetRMS : MonoBehaviour {
     void Update()
     {
         GetVolume();
-        //transform.localScale.y = volume * rmsValue;
         if (Slider != null)
             Slider.SetFill((rmsValue * 6));
         if(m_BloomProfile != null && Instrument == InstrumentGroup.Lead)
         {
             m_BloomIntensity = Mathf.Clamp(1+(rmsValue * 6), 1f, 2f);
-            //m_BloomIntensity = rmsValue * 60;
             m_BloomProfile.intensity = m_BloomIntensity;
         }
     }

@@ -2,6 +2,9 @@
 
 public class TowerConfig
 {
+    /// <summary>
+    /// Dictionary which holds the data for all the towers and their upgrades.
+    /// </summary>
     public static Dictionary<string, List<TowerData>> s_Towers = new Dictionary<string, List<TowerData>>()
     {
         // TYPE, LEVEL, MAXLEVEL, UPGRADECOST, BUYCOST, VALUE (Sell), DAMAGE, RANGE, INTERVAL

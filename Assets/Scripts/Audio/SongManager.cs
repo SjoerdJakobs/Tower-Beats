@@ -4,56 +4,93 @@ using UnityEngine;
 
 public class SongManager : MonoBehaviour {
 
+    /// <summary>
+    /// An event which gets called everytime the song changes.
+    /// </summary>
     public delegate void SongChangeEvent(int currentSong,int maxSongs,string songName);
-    //An event which gets called everytime the song changes.
     public static SongChangeEvent s_OnChangeSong;
 
+    /// <summary>
+    /// A delegate which gets called when all of the songs in the playlist are done playing(when the level is done).
+    /// </summary>
     public delegate void PlaylistCompletion();
-    //A delegate which gets called when all of the songs in the playlist are done playing(when the level is done).
     public static PlaylistCompletion s_OnPlaylistComplete;
 
+    /// <summary>
+    /// Instance of this script.
+    /// </summary>
     public static SongManager s_Instance;
 
-    //All of the songs which are in the playlist
-    private Song[] m_Songs;
+    /// <summary>
+    /// All of the songs which are in the playlist
+    /// </summary>
+    private List<Song> m_Songs;
 
-    //Bass, Drum & Synth Audio sources. In that specific order.
+    /// <summary>
+    /// Bass, Drum & Synth Audio sources. In that specific order.
+    /// </summary>
     [SerializeField]private AudioSource[] m_SongAudioSources;
 
-    //Number of the currently playing song in the playlist.
+    /// <summary>
+    /// Number of the currently playing song in the playlist.
+    /// </summary>
     private int m_SongNumber = 0;
     
+    /// <summary>
+    /// Routine in which songs get queued.
+    /// </summary>
     private Coroutine m_SongQueue;
 
-    //List of remaining tracks the song.
+    /// <summary>
+    /// List of remaining tracks the song.
+    /// </summary>
     [SerializeField]private List<GameObject> m_RemainingTracksObjects = new List<GameObject>();
 
+    /// <summary>
+    /// Audio sources for the song
+    /// </summary>
     public AudioSource[] SongAudioSources { get { return m_SongAudioSources; } }
-    public Song[] Songs
+
+    /// <summary>
+    /// Getter/Setter of the playlist.
+    /// </summary>
+    public List<Song> Songs
     {
         get { return m_Songs; }
         set { m_Songs = value; }
     }
 
+    /// <summary>
+    /// Main audioclips(Bass, Drum & Lead).
+    /// </summary>
     private AudioClip m_Bass;
     private AudioClip m_Drum;
     private AudioClip m_Lead;
 
+    /// <summary>
+    /// Array of the remaining tracks.
+    /// </summary>
     private AudioClip[] m_RemainingTracks;
 
-
+    /// <summary>
+    /// Getter/Setter of m_SongNumber.
+    /// </summary>
     public int SongNumber
     {
         get { return m_SongNumber; }
         set { m_SongNumber = value; }
     }
 
+    /// <summary>
+    /// Loads a song by name.
+    /// </summary>
+    /// <param name="songName">Name of the song</param>
     void LoadSong(string songName)
     {
         RemoveExcessiveTracks();
         //Gets the songs tracks from the resource / audio folder
         //Tracks are put in the Resources/Audio folder under the song name
-        for (int i = 0; i < Songs.Length; i++)
+        for (int i = 0; i < Songs.Count; i++)
         {
             string songPath = "Audio/" + songName + "/" + songName;
             string miscTracks = "Audio/" + songName + "/MiscTracks";
@@ -62,7 +99,6 @@ public class SongManager : MonoBehaviour {
             m_Drum = Resources.Load<AudioClip>(songPath + " Drums");
             m_Lead = Resources.Load<AudioClip>(songPath + " Lead");
 
-            //ResourceRequest remainingClips = Resources.LoadAsync(miscTracks);
             m_RemainingTracks = Resources.LoadAll<AudioClip>(miscTracks);
         }
     }
@@ -102,7 +138,7 @@ public class SongManager : MonoBehaviour {
     /// <param name="songNumber">Number of the currently playing song in the playlist. Increases in this function.</param>
     private void PlayNextSongInPlaylist(int songNumber)
     {
-        if (m_Songs != null && songNumber < m_Songs.Length)
+        if (m_Songs != null && songNumber < m_Songs.Count)
         {
             m_SongNumber = songNumber;
 
@@ -124,11 +160,14 @@ public class SongManager : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Sets the UI information for the player.
+    /// </summary>
     void SetSongUI()
     {
         if (s_OnChangeSong != null && m_Songs != null)
         {
-            s_OnChangeSong((m_SongNumber + 1), m_Songs.Length, m_Songs[m_SongNumber].Songname);
+            s_OnChangeSong((m_SongNumber + 1), m_Songs.Count, m_Songs[m_SongNumber].Songname);
         }
     }
 
@@ -192,7 +231,7 @@ public class SongManager : MonoBehaviour {
         if(m_SongQueue != null)
             StopCoroutine(m_SongQueue);
 
-        if (songNumber < m_Songs.Length)
+        if (songNumber < m_Songs.Count)
         {
             m_SongQueue = StartCoroutine(QueueSong(songNumber, songLength: m_SongAudioSources[songNumber].clip.length));
         }
@@ -210,7 +249,7 @@ public class SongManager : MonoBehaviour {
     /// <returns></returns>
     IEnumerator QueueSong(int songNumber, float songLength = 0)
     {
-        if (songNumber < m_Songs.Length)
+        if (songNumber < m_Songs.Count)
         {
             yield return new WaitForSeconds(songLength);
             PlayNextSongInPlaylist(songNumber);
@@ -230,16 +269,13 @@ public class SongManager : MonoBehaviour {
     private void OnLevelComplete()
     {
         GameManager.s_OnGameStop();
-        //m_SongNumber = 0;
-        //m_SongQueue = null;
-        /*m_SongAudioSources[0].clip = null;
-        m_SongAudioSources[1].clip = null;
-        m_SongAudioSources[2].clip = null;
-        RemoveExcessiveTracks();*/
         ClearAudio();
         MenuManager.s_Instance.ShowMenu(MenuNames.VICTORY_MENU);
     }
 
+    /// <summary>
+    /// Clears the song audio.
+    /// </summary>
     public void ClearAudio()
     {
         for (int i = 0; i < m_SongAudioSources.Length; i++)
@@ -257,6 +293,9 @@ public class SongManager : MonoBehaviour {
         m_SongNumber = 0;
     }
 
+    /// <summary>
+    /// Skip the current song.
+    /// </summary>
     public void SkipSong()
     {
         PlayNextSongInPlaylist(m_SongNumber + 1);

@@ -218,7 +218,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: b0fe5e830ed564cc9afff3e506625474, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e8a44f7b5c95b1b429ee47f6ef8f9a9b, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -245,7 +245,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: b0fe5e830ed564cc9afff3e506625474, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e8a44f7b5c95b1b429ee47f6ef8f9a9b, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -276,15 +276,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dee403cbe6b17e4488e1792fa3a3df74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pool: {fileID: 0}
-  GenericObj: {fileID: 0}
   m_EnemyString: Enemy1_
   m_DeathParticle: {fileID: 198932277168318268}
   m_MaxHealth: 20
-  m_SkeletonAnims: {fileID: 114982690086836404}
-  m_EnemyTransform: {fileID: 4116346665807472}
   m_MoveSpeed: 1.3
   m_CoinsToGive: 15
+  m_SkeletonAnims: {fileID: 114982690086836404}
+  m_EnemyTransform: {fileID: 4116346665807472}
 --- !u!114 &114576587740759294
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -333,15 +331,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dee403cbe6b17e4488e1792fa3a3df74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pool: {fileID: 0}
-  GenericObj: {fileID: 0}
   m_EnemyString: Enemy1_
   m_DeathParticle: {fileID: 198932277168318268}
   m_MaxHealth: 20
-  m_SkeletonAnims: {fileID: 0}
-  m_EnemyTransform: {fileID: 0}
   m_MoveSpeed: 1.3
   m_CoinsToGive: 15
+  m_SkeletonAnims: {fileID: 0}
+  m_EnemyTransform: {fileID: 0}
 --- !u!114 &114982690086836404
 MonoBehaviour:
   m_ObjectHideFlags: 1

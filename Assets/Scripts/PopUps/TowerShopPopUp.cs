@@ -20,6 +20,10 @@ public class TowerShopPopUp : PopUp {
 
     private Tile m_CurrentTile;
 
+    /// <summary>
+    /// Shows the tower shop pop up
+    /// </summary>
+    /// <param name="calledFrom">The tile this is called on</param>
     public override void Show(Tile calledFrom)
     {
         UpdateCosts();
@@ -30,6 +34,9 @@ public class TowerShopPopUp : PopUp {
         m_Animation.AnimateIn();
     }
 
+    /// <summary>
+    /// Hides the tower shop pop up
+    /// </summary>
     public override void Hide()
     {
         PlayerData.s_OnUpdateCoins -= OnPlayerCoinsUpdated;
@@ -56,6 +63,11 @@ public class TowerShopPopUp : PopUp {
         CompareCostAndSetText(TowerConfig.s_Towers[TowerTypeTags.LEAD_TOWER][0].BuyCost, m_LeadTowerCost);
     }
 
+    /// <summary>
+    /// Checks if the player has enough currency and sets the color of the text accordingly
+    /// </summary>
+    /// <param name="cost">Cost value of a tower</param>
+    /// <param name="textToColor">Text target that gets colored</param>
     void CompareCostAndSetText(float cost, Text textToColor)
     {
         if (textToColor == null) return;
@@ -71,6 +83,10 @@ public class TowerShopPopUp : PopUp {
         }
     }
 
+    /// <summary>
+    /// Purchase a tower
+    /// </summary>
+    /// <param name="towerType">The type of tower the player tries to purchase</param>
     public void PurchaseTower(string towerType)
     {
         //If player has enough coins
@@ -96,6 +112,11 @@ public class TowerShopPopUp : PopUp {
         }
     }
 
+    /// <summary>
+    /// Spawn a purchased tower on the map
+    /// </summary>
+    /// <param name="towerType">Type of tower to spawn</param>
+    /// <param name="indexInList">The index in the tower list. Check the list to get the correct tower</param>
     void SpawnTower(string towerType,int indexInList)
     {
         EffectsManager.s_Instance.SpawnEffect(EffectType.TURRET_SPAWN, false, m_CurrentTile.transform.position);
