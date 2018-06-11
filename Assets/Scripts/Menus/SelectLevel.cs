@@ -15,6 +15,7 @@ public class SelectLevel : MonoBehaviour
                 m_Playlist[i].Songname = selectedLevel.Songs[i];
             }
             SongManager.s_Instance.Songs = m_Playlist;
+            SoundManager.s_Instance.StopSound(SoundNames.BACKGROUND_MUSIC);
             Sceneloader.s_Instance.LoadGameSceneWithLevel(selectedLevel.MapName);
         }
     }
