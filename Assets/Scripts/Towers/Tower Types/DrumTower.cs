@@ -18,7 +18,7 @@ public class DrumTower : Tower
     public override void Awake()
     {
         base.Awake();
-        m_Pool = ObjectPoolManager.s_Instance.GetObjectPool(attackProjectile, 20, 5, 5, 20, true,PooledSubObject.TowerProjectile);
+        m_Pool = ObjectPoolManager.s_Instance.GetObjectPool(attackProjectile, 10, 5, 5, 20, false,PooledSubObject.TowerProjectile);
         GetRMS.s_DrumCue += Attack;
         m_Animation = GetComponent<SkeletonAnimation>();
         StartCoroutine(SpawnEffect());
