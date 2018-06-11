@@ -276,7 +276,7 @@ public class SongManager : MonoBehaviour {
     /// <summary>
     /// Clears the song audio.
     /// </summary>
-    void ClearAudio()
+    public void ClearAudio()
     {
         for (int i = 0; i < m_SongAudioSources.Length; i++)
         {

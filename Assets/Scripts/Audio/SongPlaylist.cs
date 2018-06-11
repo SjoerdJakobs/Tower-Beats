@@ -1,6 +1,9 @@
 ﻿using System;
 using UnityEngine;
 
+/// <summary>
+/// Songs class.
+/// </summary>
 [Serializable]
 public class Song
 {
@@ -9,8 +12,14 @@ public class Song
 
 public class SongPlaylist : MonoBehaviour {
 
+    /// <summary>
+    /// Playlist of songs.
+    /// </summary>
     [SerializeField]private Song[] m_Playlist;
     
+    /// <summary>
+    /// Selected the current selected level.
+    /// </summary>
     public void SelectLevel()
     {
         SongManager.s_Instance.Songs = m_Playlist;

@@ -5,9 +5,20 @@ using UnityEngine.UI;
 
 public class RMSSlider : MonoBehaviour
 {
+    /// <summary>
+    /// Instrument this slider is connected to.
+    /// </summary>
     [SerializeField] private InstrumentGroup m_Instrument;
     public InstrumentGroup Instrument { get { return m_Instrument; } }
+
+    /// <summary>
+    /// Fill image.
+    /// </summary>
     [SerializeField] private Image m_FillMeter;
+
+    /// <summary>
+    /// Threshold bar.
+    /// </summary>
     [SerializeField] private Slider m_Threshold;
 
     /// <summary>

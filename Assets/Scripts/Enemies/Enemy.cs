@@ -5,16 +5,30 @@ using DG.Tweening;
 
 public class Enemy : PoolObj
 {
+    /// <summary>
+    /// Name of the enemy.
+    /// </summary>
     [SerializeField] private string m_EnemyString;
     public string EnemyString
     {
         get { return m_EnemyString; }
     }
 
+    /// <summary>
+    /// Particle system for death particles.
+    /// </summary>
     [SerializeField]private ParticleSystem m_DeathParticle;
+
+    /// <summary>
+    /// Event for destroying the enemy.
+    /// </summary>
+    /// <param name="enemy"></param>
     public delegate void DestroyEvent(Enemy enemy);
     public static DestroyEvent s_OnDestroyEnemy;
 
+    /// <summary>
+    /// Enemy stats.
+    /// </summary>
     [Header("Stats")]
     [SerializeField] private float m_MaxHealth;
     [SerializeField] private float m_MoveSpeed;
@@ -22,6 +36,9 @@ public class Enemy : PoolObj
     public float CurrentHealth { get; set; }
     public bool IsAlive { get; set; }
 
+    /// <summary>
+    /// Object and animations.
+    /// </summary>
     [Header("Object and animations")]
     [SerializeField]private SkeletonAnimation m_SkeletonAnims;
     public SkeletonAnimation SkeletonAnims
@@ -29,22 +46,44 @@ public class Enemy : PoolObj
         get { return m_SkeletonAnims; }
         set { m_SkeletonAnims = value; }
     }
+
+    /// <summary>
+    /// Current enemy waypoint
+    /// </summary>
     private int m_WaypointIndex;
     public int WaypointIndex
     {
         get { return m_WaypointIndex; }
     }
+    /// <summary>
+    /// Animation state.
+    /// </summary>
     private AnimationState m_Anim;
+
+    /// <summary>
+    /// Healthbar of the enemy
+    /// </summary>
     private EnemyHealthbar m_EnemyHealthbar;
+
+    /// <summary>
+    /// Renderer of the enemy.
+    /// </summary>
     private MeshRenderer m_Renderer;
+
+    /// <summary>
+    /// Transform of the enemy.
+    /// </summary>
     [SerializeField] private Transform m_EnemyTransform;
 
+    /// <summary>
+    /// Current node index.
+    /// </summary>
     private int m_CurrentNodeIndex;
 
     private void Awake()
     {
         CurrentHealth = m_MaxHealth;
-        m_Renderer = GetComponentInChildren<MeshRenderer>();//GetComponent<MeshRenderer>();
+        m_Renderer = GetComponentInChildren<MeshRenderer>();
 
         PauseCheck.Pause += TogglePause;
 
@@ -56,17 +95,29 @@ public class Enemy : PoolObj
         GameManager.s_OnGameStop += Death;
     }
 
+    /// <summary>
+    /// Sets the new max health of the enemy.
+    /// </summary>
+    /// <param name="NewMaxInt">New value</param>
     public void SetMaxHealth(int NewMaxInt)
     {
         m_MaxHealth = NewMaxInt;
     }
 
+    /// <summary>
+    /// Heals the enemy to full HP.
+    /// </summary>
     public void RestoreHealth()
     {
         CurrentHealth = m_MaxHealth;
         m_EnemyHealthbar.ChangeEnemyHealthUI(CurrentHealth / m_MaxHealth);
     }
 
+    /// <summary>
+    /// Take damage.
+    /// </summary>
+    /// <param name="damage">Damage to take</param>
+    /// <param name="towerType">Tower which the enemy takes damage from</param>
     public void TakeDamage(float damage, string towerType)
     {
         if (IsAlive)
@@ -103,6 +154,11 @@ public class Enemy : PoolObj
         StartCoroutine(Death(false));
     }
 
+    /// <summary>
+    /// Death routine.
+    /// </summary>
+    /// <param name="killedByPlayer">Bool whether the enemy is killed by a player or not</param>
+    /// <returns></returns>
     public IEnumerator Death(bool killedByPlayer)
     {
         DOTween.Kill(this);
@@ -132,12 +188,18 @@ public class Enemy : PoolObj
         DeathCallback();
     }
 
+    /// <summary>
+    /// Callback whichs gets called on death.
+    /// </summary>
     private void DeathCallback()
     {
         m_DeathParticle.gameObject.SetActive(false);
         ReturnToPool();
     }
 
+    /// <summary>
+    /// Damage objective function.
+    /// </summary>
     public void DamageObjective()
     {
         Effects.s_Screenshake(0.2f, 20);
@@ -151,6 +213,10 @@ public class Enemy : PoolObj
         }
     }
 
+    /// <summary>
+    /// Move the enemy to the objective.
+    /// </summary>
+    /// <param name="startPos">Start position of enemy</param>
     public void Move(Vector3 startPos)
     {
         if (IsAlive)
@@ -204,7 +270,10 @@ public class Enemy : PoolObj
 
     }
 
-
+    /// <summary>
+    /// Pause the enemies.
+    /// </summary>
+    /// <param name="pause"></param>
     public void TogglePause(bool pause)
     {
         if (pause)
@@ -222,6 +291,10 @@ public class Enemy : PoolObj
         GameManager.s_OnGameStop -= Death;
     }
     
+    /// <summary>
+    /// Callback for each new waypoint.
+    /// </summary>
+    /// <returns></returns>
     IEnumerator Callback()
     {
         if(m_EnemyString == "Enemy2_")
