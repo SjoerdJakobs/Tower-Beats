@@ -84,6 +84,8 @@ public class TowerInfoPopUp : PopUp {
     {
         Tower tower = m_CurrentTile.Tower;
 
+        if (tower == null) return;
+
         m_DamageField.text = tower.TowerData.AttackDamage.ToString();
         m_SellValue.text = tower.TowerData.SellValue.ToString();
         m_TowerName.text = (tower.TowerData.Type.ToString() + " Turret");

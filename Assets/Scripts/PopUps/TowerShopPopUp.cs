@@ -51,11 +51,18 @@ public class TowerShopPopUp : PopUp {
         PlayerData.s_OnUpdateCoins -= OnPlayerCoinsUpdated;
     }
 
+    /// <summary>
+    /// Gets called when the Player's coins are updated
+    /// </summary>
+    /// <param name="value"></param>
     private void OnPlayerCoinsUpdated(float value)
     {
         UpdateCosts();
     }
 
+    /// <summary>
+    /// Updates the text
+    /// </summary>
     private void UpdateCosts()
     {
         CompareCostAndSetText(TowerConfig.s_Towers[TowerTypeTags.BASS_TOWER][0].BuyCost, m_BassTowerCost);
