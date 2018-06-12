@@ -6,21 +6,45 @@ using UnityEditor;
 
 public class PropSelector : MonoBehaviour
 {
+    #region Variables
+
+    /// <summary>
+    /// Delegate that returns the prop's file path when selected
+    /// </summary>
+    /// <param name="propPath">The prop's file path</param>
     public delegate void PropSelectorConfirm(string propPath);
+    /// <summary>
+    /// Gets called when a prop gets selected and confirmed
+    /// </summary>
     public static PropSelectorConfirm s_OnPropSelectorConfirm;
 
     [SerializeField] private Image m_Image;
     private Sprite[] m_Props;
 
+    /// <summary>
+    /// Index of the current prop
+    /// </summary>
     private int m_CurrentPropIndex;
+
+    #endregion
+
+    #region Monobehaviour Functions
 
     private void Start()
     {
+        // Load all the props
         m_Props = Resources.LoadAll<Sprite>("Background/Buildings");
+
+        // Reset the current prop index
         m_CurrentPropIndex = 0;
 
+        // Update the selected prop
         UpdateProp();
-    }   
+    }
+
+    #endregion
+
+    #region Selection
 
     /// <summary>
     /// Selects the previous prop
@@ -78,4 +102,6 @@ public class PropSelector : MonoBehaviour
         m_Image.sprite = m_Props[m_CurrentPropIndex];
         m_Image.SetNativeSize();
     }
+
+    #endregion
 }

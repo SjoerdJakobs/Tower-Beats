@@ -68,9 +68,6 @@ public class ObjectPool : MonoBehaviour
                 case PooledSubObject.TowerProjectile:
                     poolObj.GenericObj = poolObj.gameObject.GetComponent<TowerProjectile>();
                     break;
-                case PooledSubObject.AnimProjectile:
-                    poolObj.GenericObj = poolObj.gameObject.GetComponent<AnimProjectile>();
-                    break;
                 default:
                     //m_GenericObj = null;
                     break;
@@ -119,9 +116,6 @@ public class ObjectPool : MonoBehaviour
                         break;
                     case PooledSubObject.TowerProjectile:
                         poolObj.GenericObj = poolObj.gameObject.GetComponent<TowerProjectile>();
-                        break;
-                    case PooledSubObject.AnimProjectile:
-                        poolObj.GenericObj = poolObj.gameObject.GetComponent<AnimProjectile>();
                         break;
                     default:
                         //m_GenericObj = null;
