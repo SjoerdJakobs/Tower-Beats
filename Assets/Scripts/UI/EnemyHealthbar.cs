@@ -3,15 +3,17 @@ using UnityEngine.UI;
 
 public class EnemyHealthbar : MonoBehaviour {
 
+    /// <summary>
+    /// Image of the healthbar fill.
+    /// </summary>
     [SerializeField] private Image m_EnemyHealthbar;
 
-    private int m_CurrentHealthbar = 10;
-
+    /// <summary>
+    /// Changes the enemy healthbar to current health value.
+    /// </summary>
+    /// <param name="newHealthValue">Enemy current health</param>
     public void ChangeEnemyHealthUI(float newHealthValue)
     {
-        if(m_CurrentHealthbar > 0)
-        {
-            m_EnemyHealthbar.fillAmount = newHealthValue;
-        }
+         m_EnemyHealthbar.fillAmount = newHealthValue;
     }
 }

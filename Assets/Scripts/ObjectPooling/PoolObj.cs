@@ -25,6 +25,5 @@ public enum PooledSubObject
     VisualEffect = 2,
     Enemy = 3,
     Rigidbody = 4,
-    TowerProjectile = 5,
-    AnimProjectile = 6
+    TowerProjectile = 5
 }

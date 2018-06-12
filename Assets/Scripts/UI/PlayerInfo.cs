@@ -2,24 +2,73 @@
 using UnityEngine.UI;
 using DG.Tweening;
 
-public class PlayerInfo : MonoBehaviour {
+public class PlayerInfo : MonoBehaviour
+{
+    #region Variables
 
     [SerializeField] private Text m_Coins;
     [SerializeField] private Image m_Lives;
     [SerializeField] private Text m_SongText;
-    [SerializeField] private Image m_DamageIndicator;
     [SerializeField] private Text m_PreparationTimer;
+
+    #endregion
+
+    #region Monobehaviour Functions
 
     private void Awake()
     {
-        PlayerData.s_OnUpdateCoins += UpdateCoinsUI;
-        PlayerData.s_OnUpdateLives += UpdateLivesUI;
-        SongManager.s_OnChangeSong += UpdateSongUI;
-        GameManager.s_OnPreparationTimeUpdated += UpdatePreparationTime;
+        // Add the listeners
+        AddListeners(true);
 
-        m_Lives.fillAmount = 0; // Makes sure the bar is empty at the start before the filling tween starts
+        // Show the healthbar animation
+        ShowHealthbarSequence();
+    }
 
-        //Fills up the bar at the start
+    private void OnDestroy()
+    {
+        // Remove the listeners
+        AddListeners(false);
+    }
+
+    #endregion
+
+    #region Listeners
+
+    /// <summary>
+    /// Adds or removes the Listeners
+    /// </summary>
+    /// <param name="add">Add the Listeners?</param>
+    private void AddListeners(bool add)
+    {
+        if(add)
+        {
+            PlayerData.s_OnUpdateCoins += UpdateCoinsUI;
+            PlayerData.s_OnUpdateLives += UpdateLivesUI;
+            SongManager.s_OnChangeSong += UpdateSongUI;
+            GameManager.s_OnPreparationTimeUpdated += UpdatePreparationTime;
+        }
+        else
+        {
+            PlayerData.s_OnUpdateCoins -= UpdateCoinsUI;
+            PlayerData.s_OnUpdateLives -= UpdateLivesUI;
+            SongManager.s_OnChangeSong -= UpdateSongUI;
+            GameManager.s_OnPreparationTimeUpdated -= UpdatePreparationTime;
+        }
+    }
+
+    #endregion
+
+    #region Animations
+
+    /// <summary>
+    /// Shows the healthbar startup sequence animation
+    /// </summary>
+    private void ShowHealthbarSequence()
+    {
+        // Sets the default fill amount for the animation
+        m_Lives.fillAmount = 0;
+
+        // Fills up the bar at the start
         Sequence healthBarStartSequence = DOTween.Sequence();
         healthBarStartSequence.AppendInterval(0.3f);
         healthBarStartSequence.Append(m_Lives.DOFillAmount(1, 3f)).SetEase(Ease.Linear);
@@ -27,6 +76,10 @@ public class PlayerInfo : MonoBehaviour {
         healthBarStartSequence.Insert(0.7f, m_Lives.DOColor(Effects.s_EffectColors["Yellow"], 0.2f));
         healthBarStartSequence.Insert(1.8f, m_Lives.DOColor(Color.green, 0.2f));
     }
+
+    #endregion
+
+    #region UI Callbacks
 
     /// <summary>
     /// Shows the players currency
@@ -37,6 +90,10 @@ public class PlayerInfo : MonoBehaviour {
         m_Coins.text = coins.ToString("N0"); //Makes sure the text wont show decimals
     }
 
+    /// <summary>
+    /// Updates the lives
+    /// </summary>
+    /// <param name="lives">Lives left</param>
     void UpdateLivesUI(float lives)
     {
         m_Lives.DOFillAmount(lives/10,0.3f);
@@ -54,11 +111,21 @@ public class PlayerInfo : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Updates the song
+    /// </summary>
+    /// <param name="currentSong">Current song index</param>
+    /// <param name="maxSongs">Max song count</param>
+    /// <param name="songName">Name of the song</param>
     void UpdateSongUI(int currentSong, int maxSongs,string songName)
     {
         m_SongText.text = currentSong + "/" + maxSongs + "  " + songName;
     }
 
+    /// <summary>
+    /// Updates the Preparation timer
+    /// </summary>
+    /// <param name="time">Time left</param>
     private void UpdatePreparationTime(int time)
     {
         m_PreparationTimer.color = new Color(m_PreparationTimer.color.r, m_PreparationTimer.color.g, m_PreparationTimer.color.b, 0);
@@ -78,11 +145,5 @@ public class PlayerInfo : MonoBehaviour {
             m_PreparationTimer.text = time.ToString();
     }
 
-    private void OnDestroy()
-    {
-        PlayerData.s_OnUpdateCoins -= UpdateCoinsUI;
-        PlayerData.s_OnUpdateLives -= UpdateLivesUI;
-        SongManager.s_OnChangeSong -= UpdateSongUI;
-        GameManager.s_OnPreparationTimeUpdated -= UpdatePreparationTime;
-    }
+    #endregion
 }

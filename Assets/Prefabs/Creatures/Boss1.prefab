@@ -268,7 +268,7 @@ MonoBehaviour:
   m_DeathParticle: {fileID: 198453596117569358}
   m_MaxHealth: 100
   m_MoveSpeed: 0.5
-  m_CoinsToGive: 150
+  m_CoinsToGive: 160
   m_SkeletonAnims: {fileID: 114766811858702698}
   m_EnemyTransform: {fileID: 4758114640712898}
 --- !u!114 &114766811858702698

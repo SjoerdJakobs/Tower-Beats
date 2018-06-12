@@ -8,23 +8,46 @@ public class CameraMovement : MonoBehaviour
 {
     #region Variables
 
+    /// <summary>
+    /// Use the Grid's boundaries?
+    /// </summary>
     [SerializeField] private bool m_UseBoundaries = true;
 
     [Space(10f),Header("Speeds")]
     [SerializeField] private float m_PanSpeed = 40;
     [SerializeField] private float m_ZoomSpeed = 10;
 
+    /// <summary>
+    /// Minimal Orthographic Size of the Camera
+    /// </summary>
     private float minOrthographicSize = 5f;
+    /// <summary>
+    /// Maximal Orthographic Size of the Camera
+    /// </summary>
     private float maxOrthographicSize = 8f;
 
+    /// <summary>
+    /// Instance of the CameraMovement
+    /// </summary>
     public static CameraMovement s_Instance;
 
+    /// <summary>
+    /// Boundaries
+    /// </summary>
     private float m_MinX, m_MaxX, m_MinY, m_MaxY;
 
+    /// <summary>
+    /// Reference to the Main Camera
+    /// </summary>
     private Camera m_MainCamera;
-    [Space]
-    [SerializeField] private Camera m_UICamera;
+    /// <summary>
+    /// Reference to the UI Camera
+    /// </summary>
+    [Space, SerializeField] private Camera m_UICamera;
 
+    /// <summary>
+    /// Can the camera be moved by player input?
+    /// </summary>
     public bool CanMoveCamera { get; set; }
 
     private Vector3 m_LastPanPosition;

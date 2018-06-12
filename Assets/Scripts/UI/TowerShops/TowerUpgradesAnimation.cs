@@ -5,6 +5,8 @@ using System;
 
 public class TowerUpgradesAnimation : MonoBehaviour
 {
+
+    #region variables for animating
     [SerializeField] private Image m_Indicator;
     [SerializeField] private CanvasGroup m_SellButton;
     [SerializeField] private CanvasGroup m_UpgradeButton;
@@ -17,6 +19,7 @@ public class TowerUpgradesAnimation : MonoBehaviour
     private Sequence m_IndicatorSeq;
 
     public bool AnimatedIn { get; set; }
+    #endregion
 
     /// <summary>
     /// Animation for enabling the tower menu

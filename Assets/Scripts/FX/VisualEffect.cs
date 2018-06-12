@@ -7,12 +7,26 @@ using System;
 
 public class VisualEffect : MonoBehaviour
 {
+    /// <summary>
+    /// Skeleton animation for this effect.
+    /// </summary>
     private SkeletonAnimation m_Animation;
+
+    /// <summary>
+    /// Meshrenderer of this effect.
+    /// </summary>
     private MeshRenderer m_Renderer;
 
+    /// <summary>
+    /// Delegate for when the effect is completed.
+    /// </summary>
+    /// <param name="effect"></param>
     public delegate void EffectCompleted(VisualEffect effect);
     public static EffectCompleted s_OnEffectCompleted;
 
+    /// <summary>
+    /// Bool to check if the effect is in use.
+    /// </summary>
     public bool InUse { get; set; }
 
     private void Awake()
@@ -21,6 +35,11 @@ public class VisualEffect : MonoBehaviour
         m_Renderer = GetComponent<MeshRenderer>();
     }
 
+    /// <summary>
+    /// Set the animation.
+    /// </summary>
+    /// <param name="type">Effect which gets called</param>
+    /// <param name="loop">looping?</param>
     public void Init(EffectType type, bool loop)
     {
         InUse = true;
@@ -55,16 +74,27 @@ public class VisualEffect : MonoBehaviour
         m_Animation.AnimationState.Complete += OnEffectComplete;
     }
 
+    /// <summary>
+    /// Set the layer of the effect.
+    /// </summary>
+    /// <param name="layer">Layer number</param>
     public void SetLayer(int layer)
     {
         m_Renderer.sortingOrder = layer;
     }
 
+    /// <summary>
+    /// Stop this animation.
+    /// </summary>
     public void Stop()
     {
         m_Animation.state.ClearTracks();
     }
 
+    /// <summary>
+    /// Callback when the effect is completed.
+    /// </summary>
+    /// <param name="trackEntry"></param>
     private void OnEffectComplete(TrackEntry trackEntry)
     {
         m_Animation.AnimationState.Complete -= OnEffectComplete;

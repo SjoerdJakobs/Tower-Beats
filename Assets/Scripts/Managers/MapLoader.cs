@@ -5,26 +5,71 @@ using UnityEngine;
 
 public class MapLoader : MonoBehaviour
 {
+    #region Variables
+
+    /// <summary>
+    /// Instance of the MapLoader
+    /// </summary>
     public static MapLoader s_Instance;
+
+    /// <summary>
+    /// .JSON File that contains all the maps (Located in "/Assets/Data/")
+    /// </summary>
     [SerializeField] private TextAsset m_MapsFile;
 
+    /// <summary>
+    /// Data class that contains all the maps
+    /// </summary>
     private Maps m_MapsData = new Maps();
+
+    /// <summary>
+    /// Local Data class of the current map
+    /// </summary>
     private Map m_Map;
+
+    /// <summary>
+    /// Local Data class of the current map
+    /// </summary>
     public Map MapData { get { return m_Map; } }
 
+    /// <summary>
+    /// Local List of all Path Tiles
+    /// </summary>
     private List<Tile> m_Path = new List<Tile>();
+
+    /// <summary>
+    /// List of all Path Tiles
+    /// </summary>
     public List<Tile> Path { get { return m_Path; } }
+
+    /// <summary>
+    /// Tile that contains the Head Quarters
+    /// </summary>
     public Tile HeadQuarters { get; private set; }
     
+    /// <summary>
+    /// Is the map loaded?
+    /// </summary>
     public bool MapLoaded { get; private set; }
 
+    /// <summary>
+    /// Gets called when the map is loaded
+    /// </summary>
     public static Action s_OnMapLoaded;
+
+#endregion
+
+    #region Monobehaviour Functions
 
     private void Awake()
     {
         // Initialize the MapLoader
         Init();
     }
+
+    #endregion
+
+    #region Initialization
 
     /// <summary>
     /// Initializes the MapLoader
@@ -39,6 +84,10 @@ public class MapLoader : MonoBehaviour
         // Load all the maps' data
         LoadAllMapsData();
     }
+
+    #endregion
+
+    #region Core
 
     /// <summary>
     /// Load a Map
@@ -76,6 +125,12 @@ public class MapLoader : MonoBehaviour
         }));
     }
 
+    /// <summary>
+    /// Updates all the Map Visuals (Includes Grid Updates)
+    /// </summary>
+    /// <param name="animate">Animate the update?</param>
+    /// <param name="onComplete">Callback when it's done Updating all the visuals</param>
+    /// <returns></returns>
     private IEnumerator UpdateVisuals(bool animate, Action onComplete)
     {
         // Update the HexGrid
@@ -87,9 +142,10 @@ public class MapLoader : MonoBehaviour
         // Update the Tiles
         bool tilesUpdated = UpdateTiles(animate);
 
+        // Wait for the tiles to update
         yield return new WaitUntil(() => tilesUpdated);
 
-        onComplete();
+        if(onComplete != null) onComplete();
     }
 
     /// <summary>
@@ -219,6 +275,15 @@ public class MapLoader : MonoBehaviour
         return true;
     }
 
+    #endregion
+
+    #region Animating the loaded Map
+
+    /// <summary>
+    /// Load and Animate the paths
+    /// </summary>
+    /// <param name="path">Paths to animate</param>
+    /// <param name="onComplete">Gets called when it's done animating</param>
     private IEnumerator AnimateLoadPath(List<Tile> path, Action onComplete = null)
     {
         HeadQuarters.AnimateFadeScaleIn(TileVisualState.HEADQUARTERS);
@@ -234,6 +299,11 @@ public class MapLoader : MonoBehaviour
         if (onComplete != null) onComplete();
     }
 
+    /// <summary>
+    /// Loads and Animates the Tower Spawns
+    /// </summary>
+    /// <param name="spawns">List of all the Tower Spawns that need to be animated</param>
+    /// <param name="onComplete">Gets called when it's done animating</param>
     private IEnumerator AnimateLoadSpawns(List<Tile> spawns, Action onComplete = null)
     {
         for (int i = 0; i < spawns.Count; i++)
@@ -244,6 +314,11 @@ public class MapLoader : MonoBehaviour
         if (onComplete != null) onComplete();
     }
 
+    /// <summary>
+    /// Loads and Animates the Props
+    /// </summary>
+    /// <param name="props">List of all Props that need to be animated</param>
+    /// <param name="onComplete">Gets called when it's done animating</param>
     private IEnumerator AnimateLoadProps(List<Tile> props, Action onComplete = null)
     {
         for (int i = 0; i < props.Count; i++)
@@ -254,6 +329,10 @@ public class MapLoader : MonoBehaviour
         if (onComplete != null) onComplete();
     }
 
+    #endregion
+
+    #region Load Maps Data
+
     /// <summary>
     /// Loads all the maps' data
     /// </summary>
@@ -262,6 +341,10 @@ public class MapLoader : MonoBehaviour
         string jsonString = m_MapsFile.ToString();
         JsonUtility.FromJsonOverwrite(jsonString, m_MapsData);
     }
+
+    #endregion
+
+    #region Utils
 
     /// <summary>
     /// Get the waypoints from the path
@@ -284,4 +367,6 @@ public class MapLoader : MonoBehaviour
 
         return temp;
     }
+
+    #endregion
 }

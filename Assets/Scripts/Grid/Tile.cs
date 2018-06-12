@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
-using System;
 
 #region Enums
 
@@ -68,24 +66,51 @@ public class Tile : MonoBehaviour
 {
     #region Variables
 
+    /// <summary>
+    /// The currentstate of the tile
+    /// </summary>
     public TileState CurrentState { get; set; }
 
+    /// <summary>
+    /// The tiles position in the grid
+    /// </summary>
     public Vector2Int PositionInGrid { get; set; }
     public int X { get { return PositionInGrid.x; } set { PositionInGrid = new Vector2Int(value, PositionInGrid.y); } }
     public int Y { get { return PositionInGrid.y; } set { PositionInGrid = new Vector2Int(PositionInGrid.x, value); } }
 
+    /// <summary>
+    /// Bool to check if camera should move to tile on click or not
+    /// </summary>
     private bool m_MoveCameraToTileOnClick = true;
+
+    /// <summary>
+    /// Visual states of a tile
+    /// </summary>
     [SerializeField]private List<TileArt> m_TileArt = new List<TileArt>();
 
+    /// <summary>
+    /// Sets the clickable state on a tile
+    /// </summary>
+    /// <param name="state">The state to set the tile to</param>
     public delegate void SetClickableState(bool state);
     public static SetClickableState s_OnSetTileClickableState;
 
+    /// <summary>
+    /// Delegate that gets called when a clickable tile is clicked
+    /// </summary>
+    /// <param name="tile">Tile that gets clicked</param>
     public delegate void TileClicked(Tile tile);
     public static TileClicked s_OnTileClicked;
 
+    /// <summary>
+    /// Bool to check if tile is clickable or not
+    /// </summary>
     public bool CanClick { get; set; }
 
-    public Tower Tower { get; set; } //The tower on this tile
+    /// <summary>
+    /// The tower on this tile
+    /// </summary>
+    public Tower Tower { get; set; }
 
     #endregion
 
@@ -105,12 +130,20 @@ public class Tile : MonoBehaviour
         s_OnSetTileClickableState -= SetTileClickableState;
     }
 
+    /// <summary>
+    /// Callback for when the scene has finished loading
+    /// </summary>
+    /// <param name="scene">Scene that gets loaded</param>
+    /// <param name="mode">Loading mode of the scene</param>
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         CurrentState = TileState.NOT_USABLE;
         Tower = null;
     }
 
+    /// <summary>
+    /// Only counts as a button click if the click down and up are both on the same tile
+    /// </summary>
     private void OnMouseUpAsButton()
     {
         OnTileClick();
@@ -120,6 +153,9 @@ public class Tile : MonoBehaviour
 
     #region Tile functions
 
+    /// <summary>
+    /// Function that gets called when a clickable tile gets clicked
+    /// </summary>
     public void OnTileClick()
     {
         if (!CameraMovement.s_Instance.IsPointerOverUIObject())
@@ -195,6 +231,11 @@ public class Tile : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Changes the selected tile and the visual state of the current and previously selected tile
+    /// </summary>
+    /// <param name="lastSelected">The previously selected tile</param>
+    /// <param name="currentSelected">The tile that is currently selected</param>
     private void OnSelectedTileChanged(Tile lastSelected, Tile currentSelected)
     {
         if(lastSelected == this)
@@ -204,11 +245,18 @@ public class Tile : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Sets the clickable state of the tile
+    /// </summary>
+    /// <param name="state">Bool to check if the tile should be clickable or not</param>
     private void SetTileClickableState(bool state)
     {
         CanClick = state;
     }
 
+    /// <summary>
+    /// Resets the tiles visual state
+    /// </summary>
     private void ResetTileVisuals()
     {
         for (int i = 0; i < m_TileArt.Count; i++)
@@ -218,11 +266,20 @@ public class Tile : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Gets the tiles renderer
+    /// </summary>
+    /// <param name="state">The tiles visual state</param>
+    /// <returns></returns>
     private SpriteRenderer GetRenderer(TileVisualState state)
     {
         return m_TileArt.Find(x => x.VisualState == state).VisualStateRenderer;
     }
 
+    /// <summary>
+    /// Animate the tile with a fade and scale
+    /// </summary>
+    /// <param name="state">The visual state of the tile</param>
     public void AnimateFadeScaleIn(TileVisualState state)
     {
         SpriteRenderer renderer = GetRenderer(state);
@@ -235,6 +292,10 @@ public class Tile : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Animate the tile with a scale and a bounce effect
+    /// </summary>
+    /// <param name="state">The visual state of the tile</param>
     public void AnimateScaleBounceIn(TileVisualState state)
     {
         SpriteRenderer renderer = GetRenderer(state);

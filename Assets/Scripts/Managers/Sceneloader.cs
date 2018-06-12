@@ -116,12 +116,12 @@ public class Sceneloader : MonoBehaviour
     }
 
     /// <summary>
-    /// Fade the screen.
+    /// Fades the screen
     /// </summary>
-    /// <param name="state"></param>
-    /// <param name="duration"></param>
-    /// <param name="easing"></param>
-    /// <param name="onComplete"></param>
+    /// <param name="state">Fade in or out?</param>
+    /// <param name="duration">Duration of the fading</param>
+    /// <param name="easing">Easing type</param>
+    /// <param name="onComplete">Callback when it's done fading</param>
     private void Fade(bool state, float duration, Ease easing, Action onComplete = null)
     {
         if (m_Fading) return;

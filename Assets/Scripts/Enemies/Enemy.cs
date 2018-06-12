@@ -292,7 +292,7 @@ public class Enemy : PoolObj
     }
     
     /// <summary>
-    /// Callback for each new waypoint.
+    /// Callback for each new waypoint. Each tile the enemy moves, there is a 10% chance the boss enemy will dab.
     /// </summary>
     /// <returns></returns>
     IEnumerator Callback()

@@ -5,9 +5,19 @@ using System;
 
 public class TowerShopAnimation : MonoBehaviour
 {
+    /// <summary>
+    /// Indicator for the tower.
+    /// </summary>
     [SerializeField] private Image m_Indicator;
+
+    /// <summary>
+    /// Canvas group of the buttons.
+    /// </summary>
     [SerializeField] private CanvasGroup[] m_Buttons;
 
+    /// <summary>
+    /// Animate in?
+    /// </summary>
     public bool AnimatedIn { get; set; }
 
     /// <summary>

@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Names of all menus.
+/// </summary>
 public struct MenuNames
 {
     public const string SETTINGS_MENU = "SettingsMenu";
@@ -14,19 +17,43 @@ public struct MenuNames
 
 public class MenuManager : MonoBehaviour
 {
+    /// <summary>
+    /// Instance of this script.
+    /// </summary>
     public static MenuManager s_Instance;
 
+    /// <summary>
+    /// Delegate for opening a menu.
+    /// </summary>
+    /// <param name="menu">Menu to open.</param>
     public delegate void MenuOpened(Menu menu);
     public static MenuOpened s_OnMenuOpened;
 
+    /// <summary>
+    /// Delegate for closing a menu.
+    /// </summary>
+    /// <param name="menu">menu to close.</param>
     public delegate void MenuClosed(Menu menu);
     public static MenuClosed s_OnMenuClosed;
 
+    /// <summary>
+    /// Is the game paused?
+    /// </summary>
     public static bool s_IsPaused;
 
+    /// <summary>
+    /// List of all menus.
+    /// </summary>
     [SerializeField] private List<Menu> m_Menus = new List<Menu>();
+
+    /// <summary>
+    /// Current opened menu.
+    /// </summary>
     private Menu m_CurrentOpenMenu;
 
+    /// <summary>
+    /// Is there an active menu?
+    /// </summary>
     public bool IsAnyMenuOpen
     {
         get { return (m_CurrentOpenMenu != null) ? true : false; }
