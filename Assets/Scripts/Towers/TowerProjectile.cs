@@ -127,7 +127,8 @@ public class TowerProjectile : PoolObj
             time += Time.deltaTime;
 
             // Update the end position
-            Vector3 end = Data.Target.transform.position;
+            if (Data.Target != null)
+                Vector3 end = Data.Target.transform.position;
 
             // Get the time between 0 and 1
             float linearT = time / Data.MoveDuration;
